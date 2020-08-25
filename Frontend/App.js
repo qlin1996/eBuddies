@@ -20,8 +20,8 @@ export default function App() {
     // <Signup />
     // <SignupTwo />
     // <Interests />
-    <SingleEventScreen />
-    /* <AllEventsScreen/> */
+    // <SingleEventScreen />
+    <AllEventsScreen />
     // <UserProfileScreen />
   );
 }

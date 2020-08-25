@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import Style from "./SingleEventScreenStyle";
 import { Helpers, Metrics } from "../../themes";
 
@@ -68,4 +68,6 @@ const mapDispatchToProps = (dispatch) => ({
   // fetchSingleEvent: () => dispatch(ExampleActions.fetchSingleEvent()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);
+// export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);
+
+export default SingleEvent;

@@ -17,6 +17,7 @@
   "license": "MIT",
   "main": "index.js",
   "scripts": {
-    "seed": "node ./script/seed.js"
+    "seed": "node ./script/seed.js",
+    "start": "node index.js"
   }
 }

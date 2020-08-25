@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { User, Event } = require("../db/models");
 
 //GET --> /API/EVENTS
 router.get("/", async (req, res, next) => {

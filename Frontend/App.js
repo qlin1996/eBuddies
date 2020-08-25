@@ -6,6 +6,8 @@ import Signup from "./containers/Signup/SignupScreen";
 import SignupTwo from "./containers/SignupTwo/SignupTwoScreen";
 import Interests from "./containers/Interests/InterestsScreen";
 import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
+import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
+import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 
 export default function App() {
   return (
@@ -17,7 +19,9 @@ export default function App() {
     // <Login />
     // <Signup />
     // <SignupTwo />
-    <Interests />
+    // <Interests />
+    <SingleEventScreen />
+    /* <AllEventsScreen/> */
     // <UserProfileScreen />
   );
 }

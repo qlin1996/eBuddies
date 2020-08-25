@@ -7,7 +7,9 @@ import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
 import Signup from "./containers/Signup/SignupScreen";
 import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
+import Interests from "./containers/Interests/InterestsScreen";
 import Navigator from "./navigators/Drawer";
+import SignUpNavigator from "./navigators/SignUpStack";
 
 export default function App() {
   return (
@@ -18,13 +20,14 @@ export default function App() {
     // </View>
     // <Login />
     // <Signup />
-    <UserProfileScreen />
+    // <UserProfileScreen />
     // <SignupTwo />
     // <Interests />
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
-    <Navigator />
+    // <Navigator />
+    <SignUpNavigator />
   );
 }
 

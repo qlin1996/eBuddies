@@ -1,8 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { View, Text, Image, Button, TextInput, StyleSheet } from "react-native";
-import Style from "../AllEvents/AllEventsScreenStyle";
-import styles from "./SignUpScreenStyle";
+// import Style from "../AllEvents/AllEventsScreenStyle";
+import styles from "./SignupScreenStyle";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class Signup extends React.Component {

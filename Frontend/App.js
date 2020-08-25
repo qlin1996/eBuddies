@@ -7,13 +7,11 @@ import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
 import Signup from "./containers/Signup/SignupScreen";
 import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
-import SignUpNavigator from "./navigators/SignUpStack";
 import Navigator from "./navigators/Drawer";
 
 export default function App() {
   return (
-    <>
-      {/* // <View style={styles.container}>
+    // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <Text> Hi it's Claire!!!!</Text>
     //   <StatusBar style="auto" />
@@ -25,10 +23,6 @@ export default function App() {
     // <Interests />
     // <SingleEventScreen />
     // <AllEventsScreen />
-  // <UserProfileScreen /> */}
-      <SignUpNavigator />
-      {/* <SignUpStack /> */}
-    </>
     // <UserProfileScreen />
     <Navigator />
   );

@@ -1,22 +1,21 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { createAppContainer } from "react-navigation";
 
 import SignUpScreen from "../containers/Signup/SignupScreen";
 import SignUpTwoScreen from "../containers/SignupTwo/SignupTwoScreen";
 import Interests from "../containers/Interests/InterestsScreen";
 
 const signUpScreens = {
-  SignUpScreen: {
+  SIGNUP: {
     screen: SignUpScreen,
   },
-  SignUpTwoScreen: {
+  ADDRESS: {
     screen: SignUpTwoScreen,
   },
-  Interests: {
+  INTERESTS: {
     screen: Interests,
   },
 };
 
 const SignUpStack = createStackNavigator(signUpScreens);
 
-export default createAppContainer(SignUpStack);
+export default SignUpStack;

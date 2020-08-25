@@ -14,7 +14,7 @@ class Signup extends React.Component {
   }
 
   pressHandler = () => {
-    this.props.navigation.navigate("SignUpTwoScreen");
+    this.props.navigation.navigate("ADDRESS");
   };
 
   render() {

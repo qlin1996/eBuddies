@@ -9,7 +9,7 @@ class SignupTwo extends React.Component {
   }
 
   pressHandler = () => {
-    this.props.navigation.navigate("Interests");
+    this.props.navigation.navigate("INTERESTS");
   };
 
   render() {

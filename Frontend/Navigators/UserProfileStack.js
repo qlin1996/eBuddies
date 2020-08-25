@@ -1,21 +1,40 @@
+// import { createStackNavigator } from "react-navigation-stack";
+// import UserProfileScreen from "../UserProfile/UserProfileScreen";
+// import Header from "./Header";
+// import React from "react";
+
+// const screens = {
+//   UserProfileScreen: {
+//     screen: UserProfileScreen,
+//     navigationOptions: {
+//       headerTitle: () => <Header />,
+//     },
+//   },
+// };
+
+// const UserProfileStack = createStackNavigator(screens, {
+//   defaultNavigationOptions: {
+//     headerTintColor: "blue",
+//     headerStyle: { height: 60 },
+//   },
+// });
+
+// export default UserProfileStack;
+
 import { createStackNavigator } from "react-navigation-stack";
 import UserProfileScreen from "../UserProfile/UserProfileScreen";
-import Header from "./Header";
-import React from "react";
 
 const screens = {
-  UserProfileScreen: {
+  PROFILE: {
     screen: UserProfileScreen,
-    navigationOptions: {
-      headerTitle: () => <Header />,
-    },
+    title: "PROFILE",
   },
 };
 
 const UserProfileStack = createStackNavigator(screens, {
   defaultNavigationOptions: {
     headerTintColor: "blue",
-    headerStyle: { height: 60 },
+    headerStyle: { backgroundColor: "eee", height: 60 },
   },
 });
 

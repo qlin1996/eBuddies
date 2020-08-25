@@ -3,6 +3,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./containers/Login/LoginScreen";
 import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
+import Signup from "./containers/Signup/SignupScreen";
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
     //   <StatusBar style="auto" />
     // </View>
     // <Login />
-    <UserProfileScreen />
+    <Signup />
+    // <UserProfileScreen />
   );
 }
 

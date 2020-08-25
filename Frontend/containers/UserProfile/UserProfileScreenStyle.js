@@ -2,16 +2,6 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
-  header: {
-    paddingTop: 60,
-    paddingBottom: 15,
-    ...Helpers.crossCenter,
-  },
-  headerText: {
-    color: Colors.blue,
-    ...Fonts.h5,
-    fontWeight: "bold",
-  },
   imageContainer: {
     ...Helpers.crossCenter,
     backgroundColor: Colors.mediumBlue,

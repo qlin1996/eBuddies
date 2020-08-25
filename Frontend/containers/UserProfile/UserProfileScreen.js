@@ -7,9 +7,6 @@ class UserProfileScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={Style.header}>
-          <Text style={Style.headerText}>PROFILE</Text>
-        </View>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}

@@ -1,11 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import axios from "axios";
+import { StyleSheet, Text, View, Button } from "react-native";
 import Login from "./containers/Login/LoginScreen";
-import Signup from "./containers/Signup/SignupScreen";
-import SignupTwo from "./containers/SignupTwo/SignupTwoScreen";
-import Interests from "./containers/Interests/InterestsScreen";
 import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
+import Signup from "./containers/Signup/SignupScreen";
 
 export default function App() {
   return (
@@ -16,9 +15,7 @@ export default function App() {
     // </View>
     // <Login />
     // <Signup />
-    // <SignupTwo />
-    <Interests />
-    // <UserProfileScreen />
+    <UserProfileScreen />
   );
 }
 

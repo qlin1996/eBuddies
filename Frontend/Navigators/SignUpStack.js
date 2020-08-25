@@ -1,38 +1,23 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "react-navigation-stack";
+import { createAppContainer } from "react-navigation";
 
-import SignUpScreen from "./SignUpScreen";
-import SignUpTwoScreen from "./SignUpTwoScreen";
-import InterestsScreen from "./InterestsScreen";
+import SignUpScreen from "../containers/Signup/SignupScreen";
+import SignUpTwoScreen from "../containers/SignupTwo/SignupTwoScreen";
+import InterestsScreen from "../containers/Interests/InterestsScreen";
 
-const Stack = createStackNavigator();
+// v4
+const signUpScreens = {
+  SignUpScreen: {
+    screen: SignUpScreen,
+  },
+  SignUpTwoScreen: {
+    screen: SignUpTwoScreen,
+  },
+  InterestsScreen: {
+    screen: InterestsScreen,
+  },
+};
 
-function SignUpStack() {
-  return (
-    <Stack.Navigator
-      initialRouteName="Sign Up"
-      component={SignUpScreen}
-      //   screenOptions={{ gestureEnabled: false }}
-    >
-      <Stack.Screen
-        name="Sign Up Pt. 1"
-        component={SignUpScreen}
-        // options={{ title: "Sign Up Pt. 1" }}
-        options={{ headerShown: true }}
-      />
-      <Stack.Screen
-        name="Sign Up Pt. 2"
-        component={SignUpTwoScreen}
-        // options={{ title: "Sign Up Pt. 2" }}
-        options={{ headerShown: true }}
-      />
-      <Stack.Screen
-        name="Interests"
-        component={InterestsScreen}
-        options={{ headerShown: true }}
-        // initialParams={{ user: "me" }}
-      />
-    </Stack.Navigator>
-  );
-}
+const SignUpStack = createStackNavigator(signUpScreens);
 
-export default SignUpStack;
+export default createAppContainer(SignUpStack);

@@ -1,20 +1,18 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 import Login from "./containers/Login/LoginScreen";
-import SignUpStack from "./navigators/SignUpStack";
 import Signup from "./containers/Signup/SignupScreen";
 import SignupTwo from "./containers/SignupTwo/SignupTwoScreen";
 import Interests from "./containers/Interests/InterestsScreen";
 import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
 import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
+import SignUpNavigator from "./navigators/SignUpStack";
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <SignUpStack />
+    <>
       {/* // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
     //   <Text> Hi it's Claire!!!!</Text>
@@ -26,8 +24,10 @@ export default function App() {
     // <Interests />
     // <SingleEventScreen />
     // <AllEventsScreen />
-    // <UserProfileScreen /> */}
-    </NavigationContainer>
+  // <UserProfileScreen /> */}
+      <SignUpNavigator />
+      {/* <SignUpStack /> */}
+    </>
   );
 }
 

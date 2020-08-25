@@ -15,15 +15,16 @@ class Signup extends React.Component {
     };
   }
 
+  pressHandler = () => {
+    navigation.navigate("SignUpTwoScreen");
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.background}>
           <View>
-            <Image
-              style={styles.arrow}
-              source={require("../../assets/arrow.png")}
-            />
+            <Button title="SignUpPart2" onPress={this.pressHandler} />
           </View>
           <TextInput
             style={{

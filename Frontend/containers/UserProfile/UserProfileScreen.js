@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Image } from "react-native";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
@@ -39,4 +39,4 @@ class UserProfileScreen extends React.Component {
     );
   }
 }
-export default connect(null)(UserProfileScreen);
+export default UserProfileScreen;

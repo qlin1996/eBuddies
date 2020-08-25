@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native'
-import { Helpers, Metrics, Fonts, Colors } from 'App/Theme'
+import { StyleSheet } from "react-native";
+import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   colMain: {
@@ -7,7 +7,7 @@ export default StyleSheet.create({
     width: 375,
     height: 667,
     backgroundColor: Colors.white,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   eventHeader: {
     ...Helpers.fullWidth,
@@ -27,7 +27,7 @@ export default StyleSheet.create({
     width: 375,
     height: 250,
     backgroundColor: Colors.secondary,
-    overflow: 'hidden',
+    overflow: "hidden",
   },
   avatarContainer: {
     ...Helpers.fullWidth,
@@ -37,12 +37,12 @@ export default StyleSheet.create({
   result: {
     ...Fonts.normal,
     marginBottom: Metrics.tiny,
-    textAlign: 'center',
+    textAlign: "center",
   },
   text: {
     ...Fonts.normal,
     color: Colors.text,
-    textAlign: 'left',
+    textAlign: "left",
     marginTop: 20,
     marginBottom: 20,
     marginHorizontal: 20,
@@ -50,7 +50,7 @@ export default StyleSheet.create({
   headerText: {
     ...Fonts.normal,
     color: Colors.text,
-    textAlign: 'left',
+    textAlign: "left",
     marginTop: 3,
     marginBottom: 0,
     marginHorizontal: 20,
@@ -59,17 +59,17 @@ export default StyleSheet.create({
   moreText: {
     ...Fonts.normal,
     color: Colors.text,
-    textAlign: 'left',
+    textAlign: "left",
     marginBottom: 20,
     marginHorizontal: 20,
     fontSize: 12,
   },
   eventFooter: {
     width: 300,
-    alignContent: 'center',
-    justifyContent: 'center',
+    alignContent: "center",
+    justifyContent: "center",
     height: 70,
     backgroundColor: Colors.lightBlue,
     padding: Metrics.medium,
   },
-})
+});

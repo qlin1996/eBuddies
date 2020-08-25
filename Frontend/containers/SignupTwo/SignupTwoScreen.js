@@ -1,22 +1,21 @@
 import React from "react";
-import { View, Button, TextInput } from "react-native";
+// import { connect } from "react-redux";
+import { View, Image, Text, Button, TextInput, StyleSheet } from "react-native";
+// import Style from "../AllEvents/AllEventsScreenStyle";
 import styles from "./SignupTwoScreenStyle";
-import { Fonts } from "../../themes";
+import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class SignupTwo extends React.Component {
-  constructor() {
-    super();
-  }
-
-  pressHandler = () => {
-    this.props.navigation.navigate("Interests");
-  };
-
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.background}>
-          <View></View>
+          <View>
+            <Image
+              style={styles.arrow}
+              source={require("../../assets/arrow.png")}
+            />
+          </View>
           <TextInput
             style={{
               ...Fonts.normal,
@@ -86,7 +85,6 @@ class SignupTwo extends React.Component {
               color="white"
               style={{ ...Fonts.normal, textAlign: "center" }}
               title="CONTINUE"
-              onPress={this.pressHandler}
             >
               CONTINUE
             </Button>

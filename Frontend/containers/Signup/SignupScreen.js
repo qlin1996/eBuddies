@@ -15,13 +15,11 @@ class Signup extends React.Component {
 
   pressHandler = () => {
     this.props.navigation.navigate("SignUpTwoScreen");
-    console.log("PRESS >> ", this.props);
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <Button title="Sign Up 2/3" onPress={this.pressHandler} />
         <View style={styles.background}>
           <View></View>
           <TextInput
@@ -83,7 +81,7 @@ class Signup extends React.Component {
               color="white"
               style={{ ...Fonts.normal, textAlign: "center" }}
               title="CONTINUE"
-              onPress={this.onSignUp}
+              onPress={this.pressHandler}
             >
               CONTINUE
             </Button>

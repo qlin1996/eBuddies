@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 // import { connect } from "react-redux";
-import { View, Text, Button, Image } from "react-native";
-// import Style from "../AllEvents/AllEventsScreenStyle";
+import { View, Text, Button } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { Fonts } from "../../themes";
 
 class Interests extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -17,7 +20,7 @@ class Interests extends React.Component {
           <View>
             <View style={styles.selectInterests}>
               <Button
-                selectedValue={selectedValue}
+                // selectedValue={selectedValue}
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedValue(itemValue)
                 }
@@ -29,7 +32,7 @@ class Interests extends React.Component {
             </View>
             <View style={styles.selectInterests}>
               <Button
-                selectedValue={selectedValue}
+                // selectedValue={selectedValue}
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedValue(itemValue)
                 }
@@ -41,7 +44,7 @@ class Interests extends React.Component {
             </View>
             <View style={styles.selectInterests}>
               <Button
-                selectedValue={selectedValue}
+                // selectedValue={selectedValue}
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedValue(itemValue)
                 }
@@ -53,7 +56,7 @@ class Interests extends React.Component {
             </View>
             <View style={styles.selectInterests}>
               <Button
-                selectedValue={selectedValue}
+                // selectedValue={selectedValue}
                 onValueChange={(itemValue, itemIndex) =>
                   setSelectedValue(itemValue)
                 }

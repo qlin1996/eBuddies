@@ -1,9 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
-import { View, Text, Image, Button, TextInput, StyleSheet } from "react-native";
-// import Style from "../AllEvents/AllEventsScreenStyle";
+import { View, Button, TextInput } from "react-native";
 import styles from "./SignupScreenStyle";
-import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
+import { Fonts } from "../../themes";
 
 class Signup extends React.Component {
   constructor() {
@@ -16,16 +14,16 @@ class Signup extends React.Component {
   }
 
   pressHandler = () => {
-    navigation.navigate("SignUpTwoScreen");
+    this.props.navigation.navigate("SignUpTwoScreen");
+    console.log("PRESS >> ", this.props);
   };
 
   render() {
     return (
       <View style={styles.container}>
+        <Button title="Sign Up 2/3" onPress={this.pressHandler} />
         <View style={styles.background}>
-          <View>
-            <Button title="SignUpPart2" onPress={this.pressHandler} />
-          </View>
+          <View></View>
           <TextInput
             style={{
               ...Fonts.normal,

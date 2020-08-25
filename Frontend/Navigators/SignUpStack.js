@@ -3,9 +3,8 @@ import { createAppContainer } from "react-navigation";
 
 import SignUpScreen from "../containers/Signup/SignupScreen";
 import SignUpTwoScreen from "../containers/SignupTwo/SignupTwoScreen";
-import InterestsScreen from "../containers/Interests/InterestsScreen";
+import Interests from "../containers/Interests/InterestsScreen";
 
-// v4
 const signUpScreens = {
   SignUpScreen: {
     screen: SignUpScreen,
@@ -13,8 +12,8 @@ const signUpScreens = {
   SignUpTwoScreen: {
     screen: SignUpTwoScreen,
   },
-  InterestsScreen: {
-    screen: InterestsScreen,
+  Interests: {
+    screen: Interests,
   },
 };
 

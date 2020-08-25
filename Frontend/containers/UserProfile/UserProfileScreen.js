@@ -1,15 +1,18 @@
 import React from "react";
+import axios from "axios";
 import { Text, View, Image } from "react-native";
 // import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
+  async componentDidMount() {
+    let url = "http://localhost:8080/api/users";
+    let users = await axios.get(url);
+    console.log(users.data);
+  }
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={Style.header}>
-          <Text style={Style.headerText}>PROFILE</Text>
-        </View>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}

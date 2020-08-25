@@ -1,7 +1,6 @@
 const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
-const compression = require("compression");
 const session = require("express-session");
 const passport = require("passport");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
@@ -33,9 +32,6 @@ const createApp = () => {
   // body parsing middleware
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
-
-  // compression middleware
-  app.use(compression());
 
   // session middleware with passport
   app.use(

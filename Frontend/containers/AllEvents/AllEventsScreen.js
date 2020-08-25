@@ -2,7 +2,7 @@ import React from "react";
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import Style from "./AllEventsScreenStyle";
-import { Helpers, Metrics } from "../../themes";
+import { Helpers, Metrics } from "../../themes/";
 
 class AllEvents extends React.Component {
   componentDidMount() {

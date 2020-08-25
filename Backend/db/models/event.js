@@ -5,18 +5,18 @@ const db = require("../db");
 const Event = db.define("event", {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
 
   description: {
     type: Sequelize.TEXT,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
 
   imgUrl: {
@@ -26,34 +26,34 @@ const Event = db.define("event", {
   },
 
   date: {
-    type: Sequelize.DATE,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    type: Sequelize.TEXT,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
 
   time: {
-    type: Sequelize.TIME,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    type: Sequelize.TEXT,
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
 
   category: {
     type: Sequelize.ENUM("Food", "Entertainment", "Education", "Fitness"),
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
   address: {
     type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
+    // allowNull: false,
+    // validate: {
+    //   notEmpty: true,
+    // },
   },
 });
 

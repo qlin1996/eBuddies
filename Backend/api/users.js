@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const { User, Event } = require("../db/models");
 
+//401 NOT AUTHORIZED
 const isLoggedIn = (req, res, next) => {
   if (!User) {
     const error = new Error(
@@ -13,7 +14,7 @@ const isLoggedIn = (req, res, next) => {
   }
 };
 
-//GET --> /api/users
+//GET --> /API/USERS
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
     const users = await User.findAll({
@@ -25,7 +26,7 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
-//GET --> /api/users/:userId
+//GET --> /API/USERS/:USERID
 router.get("/:userId", isLoggedIn, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
@@ -40,7 +41,7 @@ router.get("/:userId", isLoggedIn, async (req, res, next) => {
   }
 });
 
-//PUT --> /api/users/:id
+//PUT --> /API/USERS/:USERID
 router.put("/:userId", async (req, res, next) => {
   try {
     await User.findOne({
@@ -58,7 +59,7 @@ router.put("/:userId", async (req, res, next) => {
   }
 });
 
-//POST --> /api.users
+//POST --> /API/USERS/
 router.post("/", isLoggedIn, async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);

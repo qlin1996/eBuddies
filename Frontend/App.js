@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import Login from "./containers/Login/LoginScreen";
 import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
 import Signup from "./containers/Signup/SignupScreen";
+import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
+import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 
 export default function App() {
   return (
@@ -16,6 +18,11 @@ export default function App() {
     // <Login />
     // <Signup />
     <UserProfileScreen />
+    // <SignupTwo />
+    // <Interests />
+    // <SingleEventScreen />
+    <AllEventsScreen />
+    // <UserProfileScreen />
   );
 }
 

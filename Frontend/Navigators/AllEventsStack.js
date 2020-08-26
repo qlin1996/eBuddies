@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation-stack";
-import AllEventsScreen from "../AllEvents/AllEventsScreen";
+import AllEventsScreen from "../containers/AllEvents/AllEventsScreen";
 
 const screens = {
   AllEventsScreen: {
@@ -10,11 +10,6 @@ const screens = {
   },
 };
 
-const AllEventsStack = createStackNavigator(screens, {
-  defaultNavigationOptions: {
-    headerTintColor: "blue",
-    headerStyle: { height: 60 },
-  },
-});
+const AllEventsStack = createStackNavigator(screens);
 
 export default AllEventsStack;

@@ -1,5 +1,5 @@
 import { createStackNavigator } from "react-navigation-stack";
-import LoginScreen from "../Login/LoginScreen";
+import LoginScreen from "../containers/Login/LoginScreen";
 
 const screens = {
   LoginScreen: {
@@ -10,11 +10,6 @@ const screens = {
   },
 };
 
-const LoginStack = createStackNavigator(screens, {
-  defaultNavigationOptions: {
-    headerTintColor: "blue",
-    headerStyle: { height: 60 },
-  },
-});
+const LoginStack = createStackNavigator(screens);
 
 export default LoginStack;

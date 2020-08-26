@@ -1,8 +1,9 @@
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
-import UserProfileScreen from "../containers/UserProfile/UserProfileScreen";
-import AllEventsScreen from "../containers/AllEvents/AllEventsScreen";
-import LoginScreen from "../containers/Login/LoginScreen";
+import UserProfileScreen from "./UserProfileStack";
+import AllEventsScreen from "./AllEventsStack";
+import LoginScreen from "./LoginStack";
+import SignUpScreen from "./SignUpStack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   EVENTS: {
@@ -13,6 +14,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   LOGIN: {
     screen: LoginScreen,
+  },
+  SIGNUP: {
+    screen: SignUpScreen,
   },
 });
 

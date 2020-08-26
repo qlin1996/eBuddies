@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, View, Image } from "react-native";
+import { View } from "react-native";
 import { connect } from "react-redux";
-import Style from "./AllEventsScreenStyle";
+import Event from "../Event/EventScreen";
 import { Helpers, Metrics } from "../../themes";
 import { getAllEvents } from "../../store/events";
 
@@ -11,7 +11,7 @@ class AllEvents extends React.Component {
   }
 
   render() {
-    let event = this.props.events[0];
+    let event = this.props.events;
     // console.log("EVENTS PROPS >> ", this.props.events[0].name);
 
     return (
@@ -25,18 +25,7 @@ class AllEvents extends React.Component {
           ]}
         >
           <View>
-            <View style={Style.eventHeader}>
-              <Text style={Style.headerText}>{event.name}</Text>
-              <Text style={Style.headerText}>{event.address}</Text>
-              <Text style={Style.headerText}>{event.date}</Text>
-              <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
-            </View>
-
-            <View style={Style.eventImg} />
-
-            <View>
-              <Text style={Style.text}>{event.description}</Text>
-            </View>
+            <Event event={event} />
           </View>
         </View>
       </>

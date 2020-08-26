@@ -12,7 +12,6 @@ class AllEvents extends React.Component {
 
   render() {
     let event = this.props.events;
-    // console.log("EVENTS PROPS >> ", this.props.events[0].name);
 
     return (
       <>

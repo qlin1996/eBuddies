@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { View, Text, Image, Button, TextInput } from "react-native";
 // import Style from "../AllEvents/AllEventsScreenStyle";
 import styles from "./LoginScreenStyle";
-import { auth1 } from "../../store/user";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class Login extends React.Component {
@@ -15,13 +14,7 @@ class Login extends React.Component {
     };
   }
 
-  handleLogin = (event) => {
-    event.preventDefault();
-    this.props.auth1(this.state.email, this.state.password);
-    // this.props.navigation.navigate("ADDRESS");
-  };
   render() {
-    const { auth1 } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.background}>
@@ -38,14 +31,9 @@ class Login extends React.Component {
               paddingHorizontal: 10,
             }}
             value={this.state.email}
-            onChangeText={(email) => this.setState({ email })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
             placeholder="jdoe@gmail.com"
             placeholderTextColor="rgba(38,153,251,1)"
-            // keyboardType="email-address"
+            keyboardType="email-address"
           />
           <TextInput
             style={{
@@ -60,17 +48,12 @@ class Login extends React.Component {
               paddingHorizontal: 10,
             }}
             value={this.state.password}
-            onChangeText={(password) => this.setState({ password })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
             placeholder="Enter Password"
             placeholderTextColor="rgba(38,153,251,1)"
+            secureTextEntry
           />
           <View style={styles.button}>
             <Button
-              onPress={this.handleLogin}
               color="white"
               style={{ ...Fonts.normal, textAlign: "center" }}
               title="CONTINUE"
@@ -97,13 +80,5 @@ class Login extends React.Component {
     );
   }
 }
-const mapToState = (state) => ({
-  user: state.user,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  auth1: (email, password) => dispatch(auth1(email, password)),
-});
-
-export default connect(mapToState, mapDispatchToProps)(Login);
-// export default Login;
+export default connect(null)(Login);

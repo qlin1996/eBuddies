@@ -15,19 +15,10 @@ export default StyleSheet.create({
     ...Metrics.mediumVerticalMargin,
     ...Metrics.mediumHorizontalMargin,
   },
-  name: {
-    color: Colors.blue,
-    fontWeight: "bold",
-    ...Fonts.h3,
-  },
-  location: {
-    color: Colors.blue,
-    ...Metrics.bottomMargin,
-  },
-  description: {
-    color: Colors.blue,
+  text: {
     ...Fonts.normal,
-    ...Metrics.bottomMargin,
+    ...Metrics.tinyVerticalMargin,
+    color: Colors.blue,
   },
   interestsContainer: {
     backgroundColor: Colors.lightBlue,
@@ -42,14 +33,5 @@ export default StyleSheet.create({
   },
   interestContainer: {
     flexDirection: "row",
-  },
-  interest: {
-    color: Colors.blue,
-    borderColor: Colors.blue,
-    borderWidth: 1,
-    borderRadius: 8,
-    ...Metrics.smallVerticalPadding,
-    ...Metrics.smallHorizontalPadding,
-    marginRight: 10,
   },
 });

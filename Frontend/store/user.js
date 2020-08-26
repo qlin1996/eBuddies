@@ -26,7 +26,7 @@ const updateCurrentUser = (user) => ({ type: UPDATE_CURRENT_USER, user });
 export const putUser = (id, newInfo) => async (dispatch) => {
   try {
     const { data } = await axios.put(
-      `http://localhost:8080/api/users/${id}`,
+      `http://localhost:8081/api/users/${id}`,
       newInfo
     );
     return dispatch(updateUserAdmin(id, data));
@@ -37,7 +37,7 @@ export const putUser = (id, newInfo) => async (dispatch) => {
 
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get("http://localhost:8080/auth/me");
+    const res = await axios.get("http://localhost:8081/auth/me");
     if (res.data) {
       dispatch(getUser(res.data));
     } else {
@@ -51,7 +51,7 @@ export const me = () => async (dispatch) => {
 export const auth1 = (email, password) => async (dispatch) => {
   let res;
   try {
-    res = await axios.post("http://localhost:8080/auth/login", {
+    res = await axios.post("http://localhost:8081/auth/login", {
       email,
       password,
     });
@@ -82,7 +82,7 @@ export const auth2 = (email, password, firstName, lastName, method) => async (
 ) => {
   let res;
   try {
-    res = await axios.post(`http://localhost:8080/auth/${method}`, {
+    res = await axios.post(`http://localhost:8081/auth/${method}`, {
       email,
       password,
       firstName,
@@ -101,7 +101,7 @@ export const auth2 = (email, password, firstName, lastName, method) => async (
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post("http://localhost:8080/auth/logout");
+    await axios.post("http://localhost:8081/auth/logout");
     history.push("/login");
     return dispatch(removeUser());
   } catch (err) {
@@ -112,7 +112,7 @@ export const logout = () => async (dispatch) => {
 export const updateUser = (id, body) => async (dispatch) => {
   try {
     const { data } = await axios.put(
-      `http://localhost:8080/api/users/${id}`,
+      `http://localhost:8081/api/users/${id}`,
       body
     );
     return dispatch(updateCurrentUser(data));

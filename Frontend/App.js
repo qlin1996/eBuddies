@@ -8,7 +8,8 @@ import Signup from "./containers/Signup/SignupScreen";
 import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 import Navigator from "./navigators/Drawer";
-
+// import { Provider } from "react-redux";
+// import store from "./store/store.js";
 export default function App() {
   return (
     // <View style={styles.container}>
@@ -18,13 +19,15 @@ export default function App() {
     // </View>
     // <Login />
     // <Signup />
-    <UserProfileScreen />
+    // <UserProfileScreen />
     // <SignupTwo />
     // <Interests />
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
+    // <Provider store={store}>
     <Navigator />
+    // </Provider>
   );
 }
 

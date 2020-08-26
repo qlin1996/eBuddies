@@ -21,7 +21,7 @@ class AllEvents extends React.Component {
           ]}
         >
           <View>
-            <View style={Style.headerMain}>
+            <View style={Style.eventHeader}>
               <Text style={Style.headerText}>All Events</Text>
               <Text style={Style.headerText}>New York, NY</Text>
               <Text style={Style.headerText}>8/21/20</Text>

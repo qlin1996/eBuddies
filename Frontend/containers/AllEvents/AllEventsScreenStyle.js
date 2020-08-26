@@ -11,9 +11,10 @@ export default StyleSheet.create({
   },
   eventHeader: {
     ...Helpers.fullWidth,
-    height: 70,
+    height: 80,
     backgroundColor: Colors.lightBlue,
     padding: Metrics.medium,
+    top: 0,
   },
   eventAvatar: {
     ...Helpers.fullWidth,
@@ -51,7 +52,8 @@ export default StyleSheet.create({
     ...Fonts.normal,
     color: Colors.text,
     textAlign: "left",
-    marginTop: 3,
+    paddingTop: 7,
+    marginTop: 0,
     marginBottom: 0,
     marginHorizontal: 20,
     fontSize: 13,

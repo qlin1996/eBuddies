@@ -24,7 +24,7 @@ export default function App() {
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
-    <Navigator />
+    // <Navigator />
   );
 }
 

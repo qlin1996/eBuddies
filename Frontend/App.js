@@ -1,3 +1,5 @@
+import { registerRootComponent } from "expo";
+
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import axios from "axios";
@@ -10,8 +12,10 @@ import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 import Interests from "./containers/Interests/InterestsScreen";
 import Navigator from "./navigators/Drawer";
 import SignUpNavigator from "./navigators/SignUpStack";
-// import { Provider } from "react-redux";
-// import store from "./store/store.js";
+
+import { Provider } from "react-redux";
+import store from "./store/store.js";
+
 export default function App() {
   return (
     // <View style={styles.container}>
@@ -28,10 +32,10 @@ export default function App() {
     // <AllEventsScreen />
     // <UserProfileScreen />
     // <Navigator />
-    // <Provider store={store}>
-    <Navigator />
-    // <SignUpNavigator />
-    // </Provider>
+    /* // <SignUpNavigator /> */
+    <Provider store={store}>
+      <Navigator />
+    </Provider>
   );
 }
 
@@ -43,3 +47,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+registerRootComponent(App);

@@ -7,7 +7,9 @@ import UserProfileScreen from "./containers/UserProfile/UserProfileScreen";
 import Signup from "./containers/Signup/SignupScreen";
 import AllEventsScreen from "./containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
+import Interests from "./containers/Interests/InterestsScreen";
 import Navigator from "./navigators/Drawer";
+import SignUpNavigator from "./navigators/SignUpStack";
 // import { Provider } from "react-redux";
 // import store from "./store/store.js";
 export default function App() {
@@ -27,6 +29,7 @@ export default function App() {
     // <UserProfileScreen />
     // <Provider store={store}>
     <Navigator />
+    // <SignUpNavigator />
     // </Provider>
   );
 }

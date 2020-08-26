@@ -1,22 +1,12 @@
 import { createStackNavigator } from "react-navigation-stack";
-import UserProfileScreen from "../UserProfile/UserProfileScreen";
-import Header from "./Header";
-import React from "react";
+import UserProfileScreen from "../containers/UserProfile/UserProfileScreen";
 
 const screens = {
-  UserProfileScreen: {
+  PROFILE: {
     screen: UserProfileScreen,
-    navigationOptions: {
-      headerTitle: () => <Header />,
-    },
   },
 };
 
-const UserProfileStack = createStackNavigator(screens, {
-  defaultNavigationOptions: {
-    headerTintColor: "blue",
-    headerStyle: { height: 60 },
-  },
-});
+const UserProfileStack = createStackNavigator(screens);
 
 export default UserProfileStack;

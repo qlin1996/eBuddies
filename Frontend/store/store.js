@@ -3,12 +3,12 @@ import { createStore, combineReducers } from "redux";
 // import thunk from "redux-thunk";
 import userReducer from "./user";
 import usersReducer from "./users";
-import eventsReducer from "./events";
+import eventReducer from "./events";
 
 const rootReducer = combineReducers({
   user: userReducer,
   users: usersReducer,
-  events: eventsReducer,
+  events: eventReducer,
 });
 
 const configureStore = () => {

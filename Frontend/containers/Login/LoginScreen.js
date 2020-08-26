@@ -1,5 +1,5 @@
 import React from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { View, Text, Image, Button, TextInput } from "react-native";
 // import Style from "../AllEvents/AllEventsScreenStyle";
 import styles from "./LoginScreenStyle";
@@ -81,4 +81,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default connect(null)(Login);

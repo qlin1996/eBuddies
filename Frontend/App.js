@@ -12,11 +12,11 @@ import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 import Interests from "./containers/Interests/InterestsScreen";
 import Navigator from "./navigators/Drawer";
 import SignUpNavigator from "./navigators/SignUpStack";
+// import configureStore from "./store/store";
+// import { Provider } from "react-redux";
+// const store = configureStore();
 
-import { Provider } from "react-redux";
-import store from "./store/store.js";
-
-export default function App() {
+const App = () => {
   return (
     // <View style={styles.container}>
     //   <Text>Open up App.js to start working on your app!</Text>
@@ -31,13 +31,14 @@ export default function App() {
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
-    // <Navigator />
-    /* // <SignUpNavigator /> */
-    <Provider store={store}>
-      <Navigator />
-    </Provider>
+    // {/* <SignUpNavigator /> */}
+    // <Provider store={store}>
+    <Navigator />
+    // </Provider>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {

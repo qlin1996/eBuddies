@@ -3,13 +3,17 @@ import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import Style from "./AllEventsScreenStyle";
 import { Helpers, Metrics } from "../../themes";
+import { getAllEvents } from "../../store/events";
 
-class AllEvents extends React.Component {
+export class AllEvents extends React.Component {
   componentDidMount() {
-    // this._fetchEvents()
+    // this.props.getAllEvents();
   }
 
   render() {
+    // let { events } = this.props || [];
+    console.log("EVENTS PROPS >> ", this.props.events);
+
     return (
       <>
         <View
@@ -42,29 +46,14 @@ class AllEvents extends React.Component {
       </>
     );
   }
-
-  // _fetchEvents() {
-  //   this.props.fetchEvents()
-  // }
 }
 
-AllEvents.propTypes = {
-  // event: PropTypes.object,
-  // eventIsLoading: PropTypes.bool,
-  // eventErrorMessage: PropTypes.string,
-  // fetchEvents: PropTypes.func,
-};
-
 const mapStateToProps = (state) => ({
-  event: state.example.event,
-  eventIsLoading: state.example.eventIsLoading,
-  eventErrorMessage: state.example.eventErrorMessage,
+  events: state.events,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // fetchEvents: () => dispatch(ExampleActions.fetchEvents()),
+  getAllEvents: () => dispatch(getAllEvents()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllEvents);
-
-export default AllEvents;

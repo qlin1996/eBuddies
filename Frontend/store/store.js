@@ -1,6 +1,10 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
 import userReducer from "./user";
 import usersReducer from "./users";
 import eventReducer from "./events";

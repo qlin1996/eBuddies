@@ -8,6 +8,8 @@ import { getAllEvents } from "../../store/events";
 class AllEvents extends React.Component {
   componentDidMount() {
     this.props.getAllEvents();
+    console.log("BELOW ARE ALL THE EVENTS");
+    console.log(this.props.events);
   }
 
   render() {

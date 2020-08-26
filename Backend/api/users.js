@@ -30,11 +30,6 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 router.get("/:userId", isLoggedIn, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.params.userId);
-    if (!user || User.isAdmin === "no") {
-      const err = Error("Credientials not found");
-      err.status = 404;
-      return next(err); // or `throw err`
-    }
     res.json(user);
   } catch (error) {
     next(error);
@@ -44,16 +39,13 @@ router.get("/:userId", isLoggedIn, async (req, res, next) => {
 //PUT --> /API/USERS/:USERID
 router.put("/:userId", async (req, res, next) => {
   try {
-    await User.findOne({
+    const user = await User.findOne({
       where: {
         id: req.params.userId,
       },
-    })
-      .then((user) => user.update(req.body))
-      .then((user) => {
-        res.json(user);
-      })
-      .catch(next);
+    });
+    const updatedUser = await user.update(req.body);
+    res.json(updatedUser);
   } catch (error) {
     next(error);
   }

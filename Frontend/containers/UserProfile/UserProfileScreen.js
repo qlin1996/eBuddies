@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { Text, View, Image } from "react-native";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
@@ -42,4 +42,9 @@ class UserProfileScreen extends React.Component {
     );
   }
 }
-export default UserProfileScreen;
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(UserProfileScreen);

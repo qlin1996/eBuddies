@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Image } from "react-native";
 import { connect } from "react-redux";
 import Style from "./AllEventsScreenStyle";
 import { Helpers, Metrics } from "../../themes";
@@ -8,13 +8,11 @@ import { getAllEvents } from "../../store/events";
 class AllEvents extends React.Component {
   componentDidMount() {
     this.props.getAllEvents();
-    console.log("BELOW ARE ALL THE EVENTS");
-    console.log(this.props.events);
   }
 
   render() {
-    // let { events } = this.props || [];
-    console.log("EVENTS PROPS >> ", this.props.events);
+    let event = this.props.events[0];
+    // console.log("EVENTS PROPS >> ", this.props.events[0].name);
 
     return (
       <>
@@ -28,20 +26,16 @@ class AllEvents extends React.Component {
         >
           <View>
             <View style={Style.eventHeader}>
-              <Text style={Style.headerText}>All Events</Text>
-              <Text style={Style.headerText}>New York, NY</Text>
-              <Text style={Style.headerText}>8/21/20</Text>
+              <Text style={Style.headerText}>{event.name}</Text>
+              <Text style={Style.headerText}>{event.address}</Text>
+              <Text style={Style.headerText}>{event.date}</Text>
+              <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
             </View>
 
             <View style={Style.eventImg} />
 
             <View>
-              <Text style={Style.text}>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt mollit anim.
-                <Text style={Style.text}>Name of Event</Text>
-              </Text>
-              <Text style={Style.moreText}>...more</Text>
+              <Text style={Style.text}>{event.description}</Text>
             </View>
           </View>
         </View>

@@ -27,8 +27,8 @@ export default StyleSheet.create({
   eventImg: {
     width: 375,
     height: 250,
-    backgroundColor: Colors.secondary,
     overflow: "hidden",
+    marginTop: 20,
   },
   avatarContainer: {
     ...Helpers.fullWidth,

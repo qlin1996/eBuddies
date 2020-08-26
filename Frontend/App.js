@@ -14,6 +14,7 @@ import Navigator from "./navigators/Drawer";
 import SignUpNavigator from "./navigators/SignUpStack";
 import configureStore from "./store/store";
 import { Provider } from "react-redux";
+
 const store = configureStore();
 
 const App = () => {

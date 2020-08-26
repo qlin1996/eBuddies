@@ -10,6 +10,7 @@ const rootReducer = combineReducers({
   users: usersReducer,
   events: eventReducer,
 });
+
 const configureStore = () => {
   return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 };

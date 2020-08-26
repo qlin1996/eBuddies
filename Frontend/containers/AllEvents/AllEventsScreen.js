@@ -5,9 +5,9 @@ import Style from "./AllEventsScreenStyle";
 import { Helpers, Metrics } from "../../themes";
 import { getAllEvents } from "../../store/events";
 
-export class AllEvents extends React.Component {
+class AllEvents extends React.Component {
   componentDidMount() {
-    // this.props.getAllEvents();
+    this.props.getAllEvents();
   }
 
   render() {

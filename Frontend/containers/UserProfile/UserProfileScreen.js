@@ -6,9 +6,9 @@ import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
   async componentDidMount() {
-    let url = "http://localhost:8080/api/users";
-    let users = await axios.get(url);
-    console.log(users.data);
+    // let url = "http://localhost:8080/api/users";
+    // let users = await axios.get(url);
+    // console.log(users.data);
   }
   render() {
     return (

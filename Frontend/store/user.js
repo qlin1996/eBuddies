@@ -1,5 +1,4 @@
 import axios from "axios";
-import history from "./history";
 
 /**
  * ACTION TYPES
@@ -8,7 +7,7 @@ const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
 const UPDATE_CURRENT_USER = "UPDATE_CURRENT_USER";
 const ADD_USER = "ADD_USER";
-const GET_USER_DATA = "GET_USER_DATA";
+
 /**
  * INITIAL STATE
  */
@@ -21,23 +20,9 @@ const getUser = (user) => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const updateCurrentUser = (user) => ({ type: UPDATE_CURRENT_USER, user });
 
-const getUserData = (user) => ({ type: GET_USER_DATA });
-
 /**
  * THUNK CREATORS
  */
-
-export const getUserDataThunk = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(
-      `http://localhost:8080/api/users/${userId}`
-    );
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
 export const putUser = (id, newInfo) => async (dispatch) => {
   try {
     const { data } = await axios.put(
@@ -47,17 +32,6 @@ export const putUser = (id, newInfo) => async (dispatch) => {
     return dispatch(updateUserAdmin(id, data));
   } catch (error) {
     console.log(error);
-  }
-};
-export const getUserInfo = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(
-      `http://localhost:8080/api/users/${userId}`
-    );
-
-    return dispatch(getUser(data));
-  } catch (err) {
-    console.error(err);
   }
 };
 

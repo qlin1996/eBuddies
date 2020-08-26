@@ -61,7 +61,7 @@ async function seed() {
     description: "best workout in the world",
     category: "Fitness",
     address: "419 Lafayette St, New York, NY 10003",
-    date: "Monday, September 4th: 09/clea04/2020",
+    date: "Monday, September 4th: 09/04/2020",
     time: "08:00 AM",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",

@@ -27,6 +27,7 @@ export default function App() {
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
+    // <Navigator />
     // <Provider store={store}>
     <Navigator />
     // <SignUpNavigator />

@@ -55,35 +55,47 @@ export const auth1 = (email, password) => async (dispatch) => {
       email,
       password,
     });
+    return dispatch(getUser());
   } catch (error) {
-    console.error(error);
+    next(error);
   }
+
+  // export const auth1 = (email, password, method) => async (dispatch) => {
+  //   let res;
+  //   try {
+  //     res = await axios.post(`http://localhost:8080/auth/${method}`, {
+  //       email,
+  //       password,
+  //     });
+  //   } catch (authError) {
+  //     return dispatch(getUser({ error: authError }));
+  //   }
 
   try {
     return dispatch(getUser(res.data));
-  } catch (error) {
-    console.error(error);
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr);
   }
 };
-export const auth2 = (firstName, lastName, email, password) => async (
+export const auth2 = (email, password, firstName, lastName, method) => async (
   dispatch
 ) => {
   let res;
   try {
-    res = await axios.post("http://localhost:8080/auth/signup", {
-      firstName,
-      lastName,
+    res = await axios.post(`http://localhost:8080/auth/${method}`, {
       email,
       password,
+      firstName,
+      lastName,
     });
-  } catch (error) {
-    console.error(error);
+  } catch (authError) {
+    dispatch(getUser({ error: authError }));
   }
 
   try {
     return dispatch(getUser(res.data));
-  } catch (error) {
-    console.error(error);
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr);
   }
 };
 

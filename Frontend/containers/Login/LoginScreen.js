@@ -18,13 +18,6 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.background}>
-          <View>
-            <Image
-              style={styles.arrow}
-              source={require("../../assets/arrow.png")}
-            />
-          </View>
-
           <TextInput
             style={{
               ...Fonts.normal,

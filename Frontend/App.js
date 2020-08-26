@@ -10,8 +10,9 @@ import SingleEventScreen from "./containers/SingleEvent/SingleEventScreen";
 import Interests from "./containers/Interests/InterestsScreen";
 import Navigator from "./navigators/Drawer";
 import SignUpNavigator from "./navigators/SignUpStack";
-import { Provider } from "react-redux";
-import configureStore from "./store/store.js";
+// import configureStore from "./store/store";
+// import { Provider } from "react-redux";
+// const store = configureStore();
 
 const App = () => {
   return (
@@ -28,11 +29,10 @@ const App = () => {
     // <SingleEventScreen />
     // <AllEventsScreen />
     // <UserProfileScreen />
-    // <Navigator />
-    <Provider store={configureStore}>
-      <Navigator />
-      {/*  <SignUpNavigator /> */}
-    </Provider>
+    // {/* <SignUpNavigator /> */}
+    // <Provider store={store}>
+    <Navigator />
+    // </Provider>
   );
 };
 

@@ -52,8 +52,8 @@ router.put("/:userId", async (req, res, next) => {
       .then((user) => user.update(req.body))
       .then((user) => {
         res.json(user);
-      })
-      .catch(next);
+      });
+    // .catch(next);
   } catch (error) {
     next(error);
   }

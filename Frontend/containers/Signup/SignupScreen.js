@@ -1,5 +1,12 @@
 import React from "react";
-import { View, Button, TextInput } from "react-native";
+import {
+  View,
+  Button,
+  TextInput,
+  TouchableWithoutFeedback,
+} from "react-native";
+import { auth2 } from "../../store/user";
+import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
 
@@ -7,17 +14,26 @@ class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: "",
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
     };
   }
 
-  pressHandler = () => {
+  pressHandler = () => {};
+  handleSignup = (event) => {
+    event.preventDefault();
+    this.props.auth2(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.email,
+      this.state.password
+    );
     this.props.navigation.navigate("ADDRESS");
   };
-
   render() {
+    const { auth2 } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.background}>
@@ -34,9 +50,13 @@ class Signup extends React.Component {
               color: "rgba(38,153,251,1)",
               paddingHorizontal: 10,
             }}
-            onChangeText={(name) => this.setState({ name })}
-            value={this.state.name}
-            placeholder="John Doe"
+            value={this.state.firstName}
+            onChangeText={(firstName) => this.setState({ firstName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="John"
             placeholderTextColor="rgba(38,153,251,1)"
             keyboardType="name-phone-pad"
           />
@@ -52,8 +72,34 @@ class Signup extends React.Component {
               color: "rgba(38,153,251,1)",
               paddingHorizontal: 10,
             }}
-            onChangeText={(email) => this.setState({ email })}
+            value={this.state.lastName}
+            onChangeText={(lastName) => this.setState({ lastName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="Doe"
+            placeholderTextColor="rgba(38,153,251,1)"
+            keyboardType="name-phone-pad"
+          />
+          <TextInput
+            style={{
+              ...Fonts.normal,
+              height: 50,
+              backgroundColor: "rgb(235, 233, 233)",
+              borderBottomWidth: 0.5,
+              borderBottomColor: "rgba(38,153,251,1)",
+              marginHorizontal: 40,
+              marginBottom: 20,
+              color: "rgba(38,153,251,1)",
+              paddingHorizontal: 10,
+            }}
             value={this.state.email}
+            onChangeText={(email) => this.setState({ email })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
             placeholder="jdoe@gmail.com"
             placeholderTextColor="rgba(38,153,251,1)"
             keyboardType="email-address"
@@ -70,8 +116,12 @@ class Signup extends React.Component {
               color: "rgba(38,153,251,1)",
               paddingHorizontal: 10,
             }}
-            onChangeText={(password) => this.setState({ password })}
             value={this.state.password}
+            onChangeText={(password) => this.setState({ password })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
             placeholder="Create Password"
             placeholderTextColor="rgba(38,153,251,1)"
             secureTextEntry
@@ -81,7 +131,7 @@ class Signup extends React.Component {
               color="white"
               style={{ ...Fonts.normal, textAlign: "center" }}
               title="CONTINUE"
-              onPress={this.pressHandler}
+              onPress={this.handleSignup}
             >
               CONTINUE
             </Button>
@@ -105,5 +155,13 @@ class Signup extends React.Component {
     );
   }
 }
+const mapToState = (state) => ({
+  user: state.user,
+});
 
-export default Signup;
+const mapDispatchToProps = (dispatch) => ({
+  auth2: (firstName, lastName, email, password) =>
+    dispatch(auth2(firstName, lastName, email, password)),
+});
+
+export default connect(mapToState, mapDispatchToProps)(Signup);

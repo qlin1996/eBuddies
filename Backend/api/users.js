@@ -43,6 +43,12 @@ router.put("/:userId", async (req, res, next) => {
       where: {
         id: req.params.userId,
       },
+    })
+      .then((user) => user.update(req.body))
+      .then((user) => {
+        res.json(user);
+      });
+    // .catch(next);
     });
     const updatedUser = await user.update(req.body);
     res.json(updatedUser);

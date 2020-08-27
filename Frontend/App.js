@@ -1,3 +1,5 @@
+import { registerRootComponent } from "expo";
+
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import axios from "axios";
@@ -12,6 +14,7 @@ import Navigator from "./navigators/Drawer";
 import SignUpNavigator from "./navigators/SignUpStack";
 import configureStore from "./store/store";
 import { Provider } from "react-redux";
+
 const store = configureStore();
 
 const App = () => {
@@ -46,3 +49,5 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+registerRootComponent(App);

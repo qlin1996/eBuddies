@@ -36,7 +36,7 @@ const User = db.define("user", {
     type: Sequelize.STRING,
   },
   zipCode: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
 
   imgUrl: {

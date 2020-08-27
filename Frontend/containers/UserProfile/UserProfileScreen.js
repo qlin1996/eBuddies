@@ -16,12 +16,6 @@ class UserProfileScreen extends React.Component {
 
     return (
       <View style={{ flex: 1 }}>
-        <Button
-          title="Edit"
-          onPress={() => this.props.navigation.navigate("EDIT")}
-        >
-          Edit
-        </Button>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}
@@ -45,10 +39,18 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             {interests.map((interest) => (
-              <Text style={Style.interest}>{interest.userInterest}</Text>
+              <Text key={interest.id} style={Style.interest}>
+                {interest.userInterest}
+              </Text>
             ))}
           </View>
         </View>
+        <Button
+          title="Edit"
+          onPress={() => this.props.navigation.navigate("EDIT")}
+        >
+          Edit
+        </Button>
       </View>
     );
   }

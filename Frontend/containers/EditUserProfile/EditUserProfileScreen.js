@@ -22,15 +22,20 @@ class EditUserProfileScreen extends React.Component {
     };
   }
 
-  async componentDidMount() {}
+  async componentDidMount() {
+    this.setState({
+      firstName: this.props.user.firstName,
+      lastName: this.props.user.lastName,
+      city: this.props.user.city,
+      state: this.props.user.state,
+      description: this.props.user.description,
+    });
+  }
 
   render() {
+    console.log("STATE", this.state);
     return (
       <View style={{ flex: 1 }}>
-        <Button
-          title="Update My Profile"
-          onPress={() => this.props.navigation.navigate("PROFILE")}
-        ></Button>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}
@@ -45,26 +50,46 @@ class EditUserProfileScreen extends React.Component {
             value={this.state.firstName}
             style={Style.text}
             placeholder="First Name"
+            onChangeText={(firstName) => this.setState({ firstName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
           />
           <TextInput
             style={Style.text}
             value={this.state.lastName}
             placeholder="Last Name"
+            onChangeText={(lastName) => this.setState({ lastName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
           />
           <TextInput
             style={Style.text}
             value={this.state.city}
             placeholder="City"
+            onChangeText={(city) => this.setState({ city })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
           />
           <TextInput
             style={Style.text}
             value={this.state.state}
             placeholder="State"
+            onChangeText={(state) => this.setState({ state })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
           />
           <TextInput
             style={Style.text}
             value={this.state.description}
             placeholder="Description"
+            onChangeText={(description) => this.setState({ description })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
           />
         </View>
         <View style={Style.interestsContainer}>
@@ -76,6 +101,10 @@ class EditUserProfileScreen extends React.Component {
             <Button title="Fitness" />
           </TouchableOpacity>
         </View>
+        <Button
+          title="Update My Profile"
+          onPress={() => this.props.navigation.navigate("PROFILE")}
+        ></Button>
       </View>
     );
   }

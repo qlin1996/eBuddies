@@ -1,5 +1,6 @@
 const router = require("express").Router();
 
+router.use("/interests", require("./interests"));
 router.use("/users", require("./users"));
 router.use("/events", require("./events"));
 router.use("/messages", require("./messages"));

@@ -3,12 +3,16 @@ import axios from "axios";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
+import { getAllInterests } from "../../store/interest";
 
 class UserProfileScreen extends React.Component {
-  async componentDidMount() {}
+  async componentDidMount() {
+    await this.props.getAllInterests(this.props.user.id);
+  }
 
   render() {
     const user = this.props.user;
+    const interests = this.props.interests;
 
     return (
       <View style={{ flex: 1 }}>
@@ -40,8 +44,9 @@ class UserProfileScreen extends React.Component {
         <View style={Style.interestsContainer}>
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
-            <Text style={Style.interest}>Food</Text>
-            <Text style={Style.interest}>Fitness</Text>
+            {interests.map((interest) => (
+              <Text style={Style.interest}>{interest.userInterest}</Text>
+            ))}
           </View>
         </View>
       </View>
@@ -51,6 +56,11 @@ class UserProfileScreen extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  interests: state.interests,
 });
 
-export default connect(mapStateToProps)(UserProfileScreen);
+const mapDispatchToProps = (dispatch) => ({
+  getAllInterests: (userId) => dispatch(getAllInterests(userId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileScreen);

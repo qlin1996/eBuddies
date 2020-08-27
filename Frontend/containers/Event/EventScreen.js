@@ -4,7 +4,7 @@ import Style from "./EventScreenStyle";
 
 const Event = (props) => {
   const { event } = props;
-  console.log("EVENT PROPS >> ", event);
+  // console.log("EVENT PROPS >> ", event);
   return (
     <>
       <View style={Style.colMain}>

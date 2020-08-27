@@ -21,7 +21,6 @@ export const getAllInterests = (userId) => async (dispatch) => {
       `http://localhost:8080/api/interests/${userId}`
     );
     // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
-
     return dispatch(getInterests(data));
   } catch (error) {}
 };

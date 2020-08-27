@@ -1,21 +1,20 @@
 import React from "react";
-import axios from "axios";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
+import { getAllInterests } from "../../store/interest";
 
 class UserProfileScreen extends React.Component {
-  async componentDidMount() {}
+  async componentDidMount() {
+    await this.props.getAllInterests(this.props.user.id);
+  }
 
   render() {
+    const user = this.props.user;
+    const interests = this.props.interests;
+
     return (
       <View style={{ flex: 1 }}>
-        <Button
-          title="Edit"
-          onPress={() => this.props.navigation.navigate("EDIT")}
-        >
-          Edit
-        </Button>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}
@@ -26,21 +25,29 @@ class UserProfileScreen extends React.Component {
           />
         </View>
         <View style={Style.profileContainer}>
-          <Text style={Style.name}>John Doe</Text>
-          <Text style={Style.location}>San Francisco, CA</Text>
-          <Text style={Style.description}>
-            Hi! My name is John, I'm a creative geek from San Francisco, CA. I
-            enjoy creating eye candy solutions for web and mobile apps. Contact
-            me at john@mail.com
+          <Text style={Style.name}>
+            {user.firstName} {}
+            {user.lastName}
           </Text>
+          <Text style={Style.location}>
+            {user.city}, {user.state}
+          </Text>
+          <Text style={Style.description}>{user.description}</Text>
         </View>
         <View style={Style.interestsContainer}>
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
-            <Text style={Style.interest}>Food</Text>
-            <Text style={Style.interest}>Fitness</Text>
+            {interests.map((interest) => (
+              <Text style={Style.interest}>{interest.userInterest}</Text>
+            ))}
           </View>
         </View>
+        <Button
+          title="Edit"
+          onPress={() => this.props.navigation.navigate("EDIT")}
+        >
+          Edit
+        </Button>
       </View>
     );
   }
@@ -48,6 +55,11 @@ class UserProfileScreen extends React.Component {
 
 const mapStateToProps = (state) => ({
   user: state.user,
+  interests: state.interests,
 });
 
-export default connect(mapStateToProps)(UserProfileScreen);
+const mapDispatchToProps = (dispatch) => ({
+  getAllInterests: (userId) => dispatch(getAllInterests(userId)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfileScreen);

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import { Helpers, Metrics } from "../../themes";
@@ -27,14 +27,7 @@ class AllEvents extends React.Component {
 
     return (
       <>
-        <View
-          style={[
-            Helpers.fill,
-            Helpers.rowMain,
-            Metrics.mediumHorizontalMargin,
-            Metrics.mediumVerticalMargin,
-          ]}
-        >
+        <ScrollView>
           <View>
             {events.length >= 1 ? (
               eventList
@@ -42,7 +35,7 @@ class AllEvents extends React.Component {
               <Text>Sorry, no events scheduled.</Text>
             )}
           </View>
-        </View>
+        </ScrollView>
       </>
     );
   }

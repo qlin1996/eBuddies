@@ -30,7 +30,7 @@ async function seed() {
       streetAddress: faker.address.streetName(),
       city: faker.address.city(),
       state: faker.address.state(),
-      zipCode: 12345,
+      zipCode: "12345",
       // imgUrl,
       //interests
       // userId: id + 1,

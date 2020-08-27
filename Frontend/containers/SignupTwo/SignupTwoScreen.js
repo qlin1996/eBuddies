@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, TextInput } from "react-native";
+import { View, Button, TextInput, Image } from "react-native";
 import styles from "./SignupTwoScreenStyle";
 import { Fonts } from "../../themes";
 import { connect } from "react-redux";
@@ -12,7 +12,7 @@ class SignupTwo extends React.Component {
       streetAddress: "",
       city: "",
       state: "",
-      zipCode: 0,
+      zipCode: "",
     };
   }
   componentDidMount() {
@@ -23,10 +23,17 @@ class SignupTwo extends React.Component {
     this.props.updateUser(this.props.user.id, this.state);
     this.props.navigation.navigate("INTERESTS");
   };
+  handleLogin = () => {
+    this.props.navigation.navigate("LOGIN");
+  };
 
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../../assets/ebuddies.gif")}
+          style={styles.logo}
+        />
         <View style={styles.background}>
           <View></View>
           <TextInput
@@ -140,6 +147,7 @@ class SignupTwo extends React.Component {
               color="rgba(38,153,251,1)"
               style={{ ...Fonts.small }}
               title="LOGIN"
+              onPress={this.handleLogin}
             />
           </View>
         </View>
@@ -152,11 +160,15 @@ const mapToState = (state) => ({
   user: state.user,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  updateUser: (id, updateData) => dispatch(updateUser(id, updateData)),
-  getUser: (userId) => {
-    dispatch(getUserInfo(userId));
-  },
-});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateUser: (id, updateData) => {
+      return dispatch(updateUser(id, updateData));
+    },
+    getUser: (id) => {
+      return dispatch(getUserInfo(id));
+    },
+  };
+};
 
 export default connect(mapToState, mapDispatchToProps)(SignupTwo);

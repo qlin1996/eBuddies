@@ -65,6 +65,7 @@ export const auth1 = (email, password) => async (dispatch) => {
     console.error(error);
   }
 };
+
 export const auth2 = (firstName, lastName, email, password) => async (
   dispatch
 ) => {
@@ -84,6 +85,15 @@ export const auth2 = (firstName, lastName, email, password) => async (
     return dispatch(getUser(res.data));
   } catch (error) {
     console.error(error);
+  }
+};
+export const getUserInfo = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`http://localhost:8080/api/users/${id}`);
+
+    return dispatch(getUser(data));
+  } catch (err) {
+    console.error(err);
   }
 };
 

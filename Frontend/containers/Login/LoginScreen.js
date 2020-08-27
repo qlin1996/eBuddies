@@ -18,12 +18,19 @@ class Login extends React.Component {
   handleLogin = (event) => {
     event.preventDefault();
     this.props.auth1(this.state.email, this.state.password);
-    // this.props.navigation.navigate("ADDRESS");
+    this.props.navigation.navigate("EVENTS");
+  };
+
+  handleSignup = () => {
+    this.props.navigation.navigate("SIGNUP");
   };
   render() {
-    const { auth1 } = this.props;
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../../assets/ebuddies.gif")}
+          style={styles.logo}
+        />
         <View style={styles.background}>
           <TextInput
             style={{
@@ -90,6 +97,7 @@ class Login extends React.Component {
               color="rgba(38,153,251,1)"
               style={{ ...Fonts.small }}
               title="SIGN UP"
+              onPress={this.handleSignup}
             />
           </View>
         </View>

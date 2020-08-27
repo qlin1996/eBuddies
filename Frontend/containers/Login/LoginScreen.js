@@ -27,10 +27,10 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
+        {/* <Image
           source={require("../../assets/ebuddies.gif")}
           style={styles.logo}
-        />
+        /> */}
         <View style={styles.background}>
           <TextInput
             style={{

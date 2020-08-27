@@ -8,6 +8,8 @@ class UserProfileScreen extends React.Component {
   async componentDidMount() {}
 
   render() {
+    const user = this.props.user;
+
     return (
       <View style={{ flex: 1 }}>
         <Button
@@ -26,13 +28,14 @@ class UserProfileScreen extends React.Component {
           />
         </View>
         <View style={Style.profileContainer}>
-          <Text style={Style.name}>John Doe</Text>
-          <Text style={Style.location}>San Francisco, CA</Text>
-          <Text style={Style.description}>
-            Hi! My name is John, I'm a creative geek from San Francisco, CA. I
-            enjoy creating eye candy solutions for web and mobile apps. Contact
-            me at john@mail.com
+          <Text style={Style.name}>
+            {user.firstName} {}
+            {user.lastName}
           </Text>
+          <Text style={Style.location}>
+            {user.city}, {user.state}
+          </Text>
+          <Text style={Style.description}>{user.description}</Text>
         </View>
         <View style={Style.interestsContainer}>
           <Text style={Style.interests}>INTERESTS</Text>

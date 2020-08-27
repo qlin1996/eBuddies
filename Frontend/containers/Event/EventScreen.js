@@ -9,15 +9,15 @@ const Event = (props) => {
     <>
       <View style={Style.colMain}>
         <View style={Style.headerMain}>
-          <Text style={Style.headerText}>{event[0].name}</Text>
-          <Text style={Style.headerText}>{event[0].address}</Text>
-          <Text style={Style.headerText}>{event[0].date}</Text>
+          <Text style={Style.headerText}>{event.name}</Text>
+          <Text style={Style.headerText}>{event.address}</Text>
+          <Text style={Style.headerText}>{event.date}</Text>
         </View>
 
-        <Image style={Style.eventImg} source={{ uri: event[0].imgUrl }} />
+        <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
 
         <View>
-          <Text style={Style.text}>{event[0].description}</Text>
+          <Text style={Style.text}>{event.description}</Text>
         </View>
       </View>
     </>

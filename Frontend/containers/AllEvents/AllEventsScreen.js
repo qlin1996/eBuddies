@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import { Helpers, Metrics } from "../../themes";
@@ -11,7 +11,19 @@ class AllEvents extends React.Component {
   }
 
   render() {
-    let event = this.props.events;
+    let { events } = this.props || [];
+
+    let eventList;
+
+    if (events.length >= 1) {
+      eventList = events.map((event) => {
+        return (
+          <View key={event.id}>
+            <Event event={event} />
+          </View>
+        );
+      });
+    }
 
     return (
       <>
@@ -24,7 +36,11 @@ class AllEvents extends React.Component {
           ]}
         >
           <View>
-            <Event event={event} />
+            {events.length >= 1 ? (
+              eventList
+            ) : (
+              <Text>Sorry, no events scheduled.</Text>
+            )}
           </View>
         </View>
       </>

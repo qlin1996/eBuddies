@@ -9,6 +9,13 @@ export default StyleSheet.create({
     backgroundColor: Colors.white,
     overflow: "hidden",
   },
+  eventButton: {
+    ...Fonts.normal,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom: 50,
+    marginHorizontal: 50,
+  },
   eventFooter: {
     width: 300,
     alignContent: "center",
@@ -16,5 +23,19 @@ export default StyleSheet.create({
     height: 70,
     backgroundColor: Colors.lightBlue,
     padding: Metrics.medium,
+  },
+  errorMsg: {
+    ...Fonts.normal,
+    alignContent: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    height: 70,
+    marginTop: 20,
+    marginBottom: 20,
+    marginHorizontal: 10,
+    color: Colors.primary,
+    padding: Metrics.medium,
+    backgroundColor: Colors.lightBlue,
+    fontSize: 15,
   },
 });

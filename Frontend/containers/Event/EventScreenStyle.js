@@ -8,7 +8,9 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 0,
     backgroundColor: Colors.lightBlue,
-    borderBottomWidth: 2,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderTopColor: Colors.primary,
     borderBottomColor: Colors.grey,
   },
   headerText: {
@@ -37,6 +39,7 @@ export default StyleSheet.create({
   eventImg: {
     width: 420,
     height: 270,
+    flex: 1,
   },
   eventDescription: {
     ...Fonts.normal,
@@ -44,6 +47,13 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 50,
     marginHorizontal: 10,
+  },
+  eventButton: {
+    ...Fonts.normal,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom: 50,
+    marginHorizontal: 50,
   },
   text: {
     ...Fonts.normal,

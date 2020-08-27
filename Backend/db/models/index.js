@@ -15,7 +15,6 @@ Messages.belongsTo(User);
 User.hasMany(Event, { as: "host" });
 Event.belongsTo(User, { as: "host" });
 User.hasMany(Interest, { as: "userInterest" });
-// Interest.belongsTo(User, { as: "userInterests" });
 
 module.exports = {
   User,

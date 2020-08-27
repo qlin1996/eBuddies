@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  View,
-  Button,
-  TextInput,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { View, Button, TextInput, Image } from "react-native";
 import { auth2 } from "../../store/user";
 import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
-
 class Signup extends React.Component {
   constructor() {
     super();
@@ -21,23 +15,31 @@ class Signup extends React.Component {
     };
   }
 
-  pressHandler = () => {};
-  handleSignup = (event) => {
-    event.preventDefault();
+  handleSignup = () => {
     this.props.auth2(
       this.state.firstName,
       this.state.lastName,
       this.state.email,
       this.state.password
     );
-    this.props.navigation.navigate("ADDRESS");
+    const waitForSignUp = () => {
+      this.props.navigation.navigate("ADDRESS");
+    };
+    setTimeout(waitForSignUp, 1500);
   };
+
+  // handleLogin = () => {
+  //        this.props.navigation.navigate("ADDRESS");
+
+  // }
   render() {
-    const { auth2 } = this.props;
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../../assets/ebuddies.gif")}
+          style={styles.logo}
+        />
         <View style={styles.background}>
-          <View></View>
           <TextInput
             style={{
               ...Fonts.normal,
@@ -135,6 +137,14 @@ class Signup extends React.Component {
             >
               CONTINUE
             </Button>
+            {/* <Button
+              color="blue"
+              style={{ ...Fonts.normal, textAlign: "center" }}
+              title="CONTINUE"
+              onPress={this.handlePress}
+            >
+              CONTINUE2
+            </Button> */}
           </View>
           <View style={styles.account}>
             <Button
@@ -148,6 +158,7 @@ class Signup extends React.Component {
               color="rgba(38,153,251,1)"
               style={{ ...Fonts.small }}
               title="LOGIN"
+              onPress={this.handleLogin}
             />
           </View>
         </View>

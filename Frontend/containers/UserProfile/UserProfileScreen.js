@@ -5,12 +5,8 @@ import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
-  async componentDidMount() {
-    let url = "http://localhost:8080/api/users/1";
-    let user = await axios.get(url);
-    console.log("USER");
-    console.log(user.data);
-  }
+  async componentDidMount() {}
+
   render() {
     return (
       <View style={{ flex: 1 }}>

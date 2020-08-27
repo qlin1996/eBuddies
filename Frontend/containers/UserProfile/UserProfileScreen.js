@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
@@ -39,9 +38,7 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             {interests.map((interest) => (
-              <Text key={interest.id} style={Style.interest}>
-                {interest.userInterest}
-              </Text>
+              <Text style={Style.interest}>{interest.userInterest}</Text>
             ))}
           </View>
         </View>

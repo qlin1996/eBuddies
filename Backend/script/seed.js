@@ -31,8 +31,8 @@ async function seed() {
       city: faker.address.city(),
       state: faker.address.state(),
       zipCode: "12345",
+      userInterest: "Food",
       // imgUrl,
-      //interests
       // userId: id + 1,
       // eventId: 1,
     });

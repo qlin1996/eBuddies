@@ -55,47 +55,45 @@ export const auth1 = (email, password) => async (dispatch) => {
       email,
       password,
     });
-    return dispatch(getUser());
   } catch (error) {
-    next(error);
+    console.error(error);
   }
-
-  // export const auth1 = (email, password, method) => async (dispatch) => {
-  //   let res;
-  //   try {
-  //     res = await axios.post(`http://localhost:8080/auth/${method}`, {
-  //       email,
-  //       password,
-  //     });
-  //   } catch (authError) {
-  //     return dispatch(getUser({ error: authError }));
-  //   }
 
   try {
     return dispatch(getUser(res.data));
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
+  } catch (error) {
+    console.error(error);
   }
 };
-export const auth2 = (email, password, firstName, lastName, method) => async (
+
+export const auth2 = (firstName, lastName, email, password) => async (
   dispatch
 ) => {
   let res;
   try {
-    res = await axios.post(`http://localhost:8080/auth/${method}`, {
-      email,
-      password,
+    res = await axios.post("http://localhost:8080/auth/signup", {
       firstName,
       lastName,
+      email,
+      password,
     });
-  } catch (authError) {
-    dispatch(getUser({ error: authError }));
+  } catch (error) {
+    console.error(error);
   }
 
   try {
     return dispatch(getUser(res.data));
-  } catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const getUserInfo = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.get(`http://localhost:8080/api/users/${id}`);
+
+    return dispatch(getUser(data));
+  } catch (err) {
+    console.error(err);
   }
 };
 

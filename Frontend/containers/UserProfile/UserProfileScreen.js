@@ -1,18 +1,31 @@
 import React from "react";
 import axios from "axios";
-import { Text, View, Image } from "react-native";
+import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 
 class UserProfileScreen extends React.Component {
   async componentDidMount() {
+<<<<<<< HEAD
     // let url = "http://localhost:8080/api/users";
     // let users = await axios.get(url);
     // console.log(users.data);
+=======
+    let url = "http://localhost:8080/api/users/1";
+    let user = await axios.get(url);
+    console.log("USER");
+    console.log(user.data);
+>>>>>>> master
   }
   render() {
     return (
       <View style={{ flex: 1 }}>
+        <Button
+          title="Edit"
+          onPress={() => this.props.navigation.navigate("EDIT")}
+        >
+          Edit
+        </Button>
         <View style={Style.imageContainer}>
           <Image
             style={Style.image}
@@ -35,7 +48,7 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             <Text style={Style.interest}>Food</Text>
-            <Text style={Style.interest}>HealthFitness</Text>
+            <Text style={Style.interest}>Fitness</Text>
           </View>
         </View>
       </View>

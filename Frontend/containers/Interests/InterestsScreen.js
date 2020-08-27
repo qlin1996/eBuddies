@@ -1,6 +1,6 @@
 import React from "react";
 // import { connect } from "react-redux";
-import { View, Text, Button } from "react-native";
+import { View, Text, Button, Image } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { Fonts } from "../../themes";
 
@@ -8,10 +8,16 @@ class Interests extends React.Component {
   constructor() {
     super();
   }
-
+  handleLogin = () => {
+    this.props.navigation.navigate("LOGIN");
+  };
   render() {
     return (
       <View style={styles.container}>
+        <Image
+          source={require("../../assets/ebuddies.gif")}
+          style={styles.logo}
+        />
         <View style={styles.background}>
           <View></View>
           <View>
@@ -90,6 +96,7 @@ class Interests extends React.Component {
               color="rgba(38,153,251,1)"
               style={{ ...Fonts.small }}
               title="LOGIN"
+              onPress={this.handleLogin}
             />
           </View>
         </View>

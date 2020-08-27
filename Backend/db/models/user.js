@@ -47,9 +47,6 @@ const User = db.define("user", {
   description: {
     type: Sequelize.TEXT,
   },
-  interests: {
-    type: Sequelize.ENUM("Food", "Entertainment", "Education", "Fitness"),
-  },
 
   password: {
     type: Sequelize.STRING,

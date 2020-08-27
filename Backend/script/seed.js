@@ -1,6 +1,6 @@
 "use strict";
 const db = require("../db");
-const { User, Event, Activity, Messages } = require("../db/models");
+const { User, Event, Activity, Messages, Interest } = require("../db/models");
 const faker = require("faker");
 
 async function seed() {
@@ -9,6 +9,7 @@ async function seed() {
   const users = [];
   const events = [];
   const messages = [];
+  const interests = [];
   const activities = [
     {
       eventId: 1,
@@ -31,7 +32,6 @@ async function seed() {
       city: faker.address.city(),
       state: faker.address.state(),
       zipCode: "12345",
-      userInterest: "Food",
       // imgUrl,
       // userId: id + 1,
       // eventId: 1,
@@ -107,6 +107,24 @@ async function seed() {
   });
   users.push(anderson);
 
+  //INTERESTS
+  const CGinterest1 = await Interest.create({
+    userInterest: "Food",
+    userId: 101,
+  });
+  interests.push(CGinterest1);
+  const CGinterest2 = await Interest.create({
+    userInterest: "Fitness",
+    userId: 101,
+  });
+  interests.push(CGinterest2);
+  const CGinterest3 = await Interest.create({
+    userInterest: "Education",
+    userId: 101,
+  });
+  interests.push(CGinterest3);
+
+  //BARRYS EVENT
   const event = await Event.create({
     name: "Barry's Bootcamp",
     description: "Best workout in the world",
@@ -116,7 +134,7 @@ async function seed() {
     time: "08:00 AM",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
-    userId: 1,
+    userId: 101,
     hostId: 1,
   });
 

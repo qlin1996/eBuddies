@@ -74,6 +74,7 @@ class Login extends React.Component {
             returnKeyType="go"
             placeholder="Enter Password"
             placeholderTextColor="rgba(38,153,251,1)"
+            secureTextEntry
           />
           <View style={styles.button}>
             <Button

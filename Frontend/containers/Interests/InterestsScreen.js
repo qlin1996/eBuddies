@@ -1,16 +1,30 @@
 import React from "react";
 // import { connect } from "react-redux";
-import { View, Text, Button, Image } from "react-native";
+import { View, Text, Button, Image, TouchableOpacity } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { Fonts } from "../../themes";
 
 class Interests extends React.Component {
   constructor() {
     super();
+    this.state = {
+      food: false,
+      education: false,
+      fitness: false,
+      entertainment: false,
+    };
   }
   handleLogin = () => {
     this.props.navigation.navigate("LOGIN");
   };
+
+  updateChoice(event) {
+    let newState = { ...this.state };
+    newState[event] = !newState[event];
+    this.setState(newState);
+    console.log(event);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -26,50 +40,46 @@ class Interests extends React.Component {
           <View>
             <View style={styles.selectInterests}>
               <Button
-                // selectedValue={selectedValue}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedValue(itemValue)
-                }
                 color="rgba(38,153,251,1)"
                 style={{ ...Fonts.small }}
                 title="Food"
-                value="food"
+                onPress={() => {
+                  this.updateChoice("food");
+                }}
+                selected={this.state.food}
               />
             </View>
             <View style={styles.selectInterests}>
               <Button
-                // selectedValue={selectedValue}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedValue(itemValue)
-                }
                 color="rgba(38,153,251,1)"
                 style={{ ...Fonts.small }}
                 title="Entertainment"
-                value="entertainment"
+                onPress={() => {
+                  this.updateChoice("entertainment");
+                }}
+                selected={this.state.entertainment}
               />
             </View>
             <View style={styles.selectInterests}>
               <Button
-                // selectedValue={selectedValue}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedValue(itemValue)
-                }
                 color="rgba(38,153,251,1)"
                 style={{ ...Fonts.small }}
-                title="Health/Fitness"
-                value="health/fitness"
+                title="Fitness"
+                onPress={() => {
+                  this.updateChoice("fitness");
+                }}
+                selected={this.state.fitness}
               />
             </View>
             <View style={styles.selectInterests}>
               <Button
-                // selectedValue={selectedValue}
-                onValueChange={(itemValue, itemIndex) =>
-                  setSelectedValue(itemValue)
-                }
                 color="rgba(38,153,251,1)"
                 style={{ ...Fonts.small }}
                 title="Education"
-                value="education"
+                onPress={() => {
+                  this.updateChoice("education");
+                }}
+                selected={this.state.education}
               />
             </View>
           </View>
@@ -90,7 +100,6 @@ class Interests extends React.Component {
               title="Already have an account?"
             />
           </View>
-
           <View style={styles.login}>
             <Button
               color="rgba(38,153,251,1)"

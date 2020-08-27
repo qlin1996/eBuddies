@@ -17,7 +17,7 @@ export default StyleSheet.create({
   },
   text: {
     ...Fonts.normal,
-    ...Metrics.tinyVerticalMargin,
+    ...Metrics.bottomMargin,
     color: Colors.blue,
   },
   interestsContainer: {
@@ -33,5 +33,14 @@ export default StyleSheet.create({
   },
   interestContainer: {
     flexDirection: "row",
+  },
+  interest: {
+    color: Colors.blue,
+    borderColor: Colors.blue,
+    borderWidth: 1,
+    borderRadius: 8,
+    ...Metrics.smallVerticalPadding,
+    ...Metrics.smallHorizontalPadding,
+    marginRight: 10,
   },
 });

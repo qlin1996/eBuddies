@@ -2,12 +2,20 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
-  colMain: {
+  headerMain: {
     ...Helpers.fullWidth,
-    width: 375,
-    height: 667,
-    backgroundColor: Colors.white,
-    overflow: "hidden",
+    height: 70,
+    backgroundColor: Colors.lightBlue,
+    padding: Metrics.medium,
+  },
+  headerText: {
+    ...Fonts.normal,
+    color: Colors.primary,
+    textAlign: "left",
+    marginTop: 3,
+    marginBottom: 0,
+    marginHorizontal: 20,
+    fontSize: 13,
   },
   eventHeader: {
     ...Helpers.fullWidth,
@@ -47,16 +55,6 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     marginHorizontal: 20,
-  },
-  headerText: {
-    ...Fonts.normal,
-    color: Colors.text,
-    textAlign: "left",
-    paddingTop: 7,
-    marginTop: 0,
-    marginBottom: 0,
-    marginHorizontal: 20,
-    fontSize: 13,
   },
   moreText: {
     ...Fonts.normal,

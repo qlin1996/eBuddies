@@ -30,38 +30,89 @@ async function seed() {
       streetAddress: faker.address.streetName(),
       city: faker.address.city(),
       state: faker.address.state(),
-      zipCode: 12345,
+      zipCode: "12345",
+      userInterest: "Food",
       // imgUrl,
-      //interests
       // userId: id + 1,
       // eventId: 1,
     });
     users.push(user.dataValues);
   }
+
+  //USER INFO FOR CLAIRE
   const claire = await User.create({
     firstName: "Claire",
     lastName: "Giordano",
     description:
       "A fordham student looking to find fun workout classes in nyc & quiet coffee shops for studying ",
-    email: "cgiordano1@gmail.com",
+    email: "Cgiordano1@gmail.com",
     streetAddress: "1821 claire drive",
     city: "New York",
     state: "New York",
     zipCode: "10019",
-    password: "claire",
+    password: "Claire",
     imgUrl:
       "https://media-exp1.licdn.com/dms/image/C4D03AQFXsmj2gUhdBA/profile-displayphoto-shrink_400_400/0?e=1603929600&v=beta&t=ehdUywqM6iY3w3AG96LflI_5_1Mjdzux3BaZRh3toHM",
     isGuest: "no",
+  });
+
+  //USER INFO FOR Q
+  const qi = await User.create({
+    firstName: "Qi",
+    lastName: "Lin",
+    description: "Q's description here",
+    email: "Q1@gmail.com",
+    streetAddress: "Q's address here",
+    city: "New York",
+    state: "New York",
+    zipCode: "10019",
+    password: "Qi",
+    imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U015BBESASE-affe9133d7a4-512",
+    isGuest: "no",
     // eventId: 1,
   });
-  users.push(claire);
+  users.push(qi);
+
+  //USER INFO FOR BLAKE
+  const blake = await User.create({
+    firstName: "Blake",
+    lastName: "Ferm",
+    description: "Blakes's description here",
+    email: "Blake1@gmail.com",
+    streetAddress: "Blake's address here",
+    city: "New York",
+    state: "New York",
+    zipCode: "10019",
+    password: "Blake",
+    imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U01223LJ6TC-2a445d981f58-512",
+    isGuest: "no",
+    // eventId: 1,
+  });
+  users.push(blake);
+
+  //USER INFO FOR ANDERSON
+  const anderson = await User.create({
+    firstName: "Anderson",
+    lastName: "Quiñones",
+    description: "Anderson's description here",
+    email: "Anderson1@gmail.com",
+    streetAddress: "Anderson's address here",
+    city: "New York",
+    state: "New York",
+    zipCode: "10019",
+    password: "Anderson",
+    imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UVDH49WAZ-2755e5ff7bb7-512",
+    isGuest: "no",
+    // eventId: 1,
+  });
+  users.push(anderson);
 
   const event = await Event.create({
     name: "Barry's Bootcamp",
-    description: "best workout in the world",
+    description: "Best workout in the world",
     category: "Fitness",
     address: "419 Lafayette St, New York, NY 10003",
-    date: "Monday, September 4th: 09/clea04/2020",
+    date: "09/04/2020",
     time: "08:00 AM",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
@@ -69,12 +120,29 @@ async function seed() {
     hostId: 1,
   });
 
+  const event2 = await Event.create({
+    name: "Larry's Bootcamp",
+    description: "The best workout in the world",
+    category: "Fitness",
+    address: "419 Lafayette St, New York, NY 10003",
+    date: "09/04/2020",
+    time: "08:00 AM",
+    imgUrl:
+      "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
+    userId: 2,
+    hostId: 2,
+  });
+
   events.push(event);
+
   const mesagge = await Messages.create({
     message: "Hey",
     userId: 1,
   });
   messages.push(mesagge);
+
+  events.push(event2);
+
   await Promise.all(
     activities.map((activity) => {
       return Activity.create(activity);

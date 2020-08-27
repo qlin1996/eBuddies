@@ -5,10 +5,13 @@ export default StyleSheet.create({
     backgroundColor: "rgb(233, 233, 233)",
     flex: 1,
   },
+  logo: {
+    alignSelf: "center",
+  },
   background: {
     backgroundColor: "rgb(235, 233, 233)",
     position: "relative",
-    top: 150,
+    top: 110,
   },
   button: {
     backgroundColor: "rgba(38,153,251,1)",
@@ -27,7 +30,7 @@ export default StyleSheet.create({
   login: {
     width: 550,
     position: "relative",
-    top: 160,
+    top: 110,
     height: 60,
     alignSelf: "center",
     backgroundColor: "rgba(188, 224, 253, 1)",
@@ -42,7 +45,7 @@ export default StyleSheet.create({
     ...Fonts.small,
     color: "black",
     position: "relative",
-    top: 150,
+    top: 120,
   },
   header: {
     ...Fonts.h3,

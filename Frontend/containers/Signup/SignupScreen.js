@@ -4,6 +4,7 @@ import { auth2 } from "../../store/user";
 import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
+
 class Signup extends React.Component {
   constructor() {
     super();
@@ -28,10 +29,6 @@ class Signup extends React.Component {
     setTimeout(waitForSignUp, 1500);
   };
 
-  // handleLogin = () => {
-  //        this.props.navigation.navigate("ADDRESS");
-
-  // }
   render() {
     return (
       <View style={styles.container}>

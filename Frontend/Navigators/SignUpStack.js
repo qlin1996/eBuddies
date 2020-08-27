@@ -1,5 +1,4 @@
 import { createStackNavigator } from "react-navigation-stack";
-import { Colors, Fonts } from "../themes";
 
 import SignUpScreen from "../containers/Signup/SignupScreen";
 import SignUpTwoScreen from "../containers/SignupTwo/SignupTwoScreen";

@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
-import { Helpers, Metrics } from "../../themes";
 import { getAllEvents } from "../../store/events";
 
 class AllEvents extends React.Component {

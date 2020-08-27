@@ -1,9 +1,11 @@
 import React from "react";
 // import { connect } from "react-redux";
-import { View, Text, Button, Image, TouchableOpacity } from "react-native";
+import { View, Text, Button, Image, TouchableHighlight } from "react-native";
 import styles from "./InterestsScreenStyle";
+import { connect } from "react-redux";
 import { Fonts } from "../../themes";
-
+import { getUserInfo } from "../../store/user";
+import { postNewInterest } from "../../store/interest";
 class Interests extends React.Component {
   constructor() {
     super();
@@ -12,18 +14,70 @@ class Interests extends React.Component {
       education: false,
       fitness: false,
       entertainment: false,
+      pressStatus1: false,
+      pressStatus2: false,
+      pressStatus3: false,
+      pressStatus4: false,
     };
+  }
+  componentDidMount() {
+    this.props.getUser(this.props.user.id);
   }
   handleLogin = () => {
     this.props.navigation.navigate("LOGIN");
   };
 
-  updateChoice(event) {
+  updateChoice = (event) => {
+    if (event === "food") {
+      this.state.pressStatus1 = !this.state.pressStatus1;
+    }
+    if (event === "entertainment") {
+      this.state.pressStatus2 = !this.state.pressStatus2;
+    }
+    if (event === "fitness") {
+      this.state.pressStatus3 = !this.state.pressStatus3;
+    }
+    if (event === "education") {
+      this.state.pressStatus4 = !this.state.pressStatus4;
+    }
     let newState = { ...this.state };
     newState[event] = !newState[event];
     this.setState(newState);
-    console.log(event);
-  }
+  };
+
+  handleSignup = (event) => {
+    let food = "Food";
+    let education = "Education";
+    let fitness = "Fitness";
+    let entertainment = "Entertainment";
+
+    event.preventDefault();
+    if (this.state.food === true) {
+      this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: food,
+      });
+    }
+    if (this.state.education === true) {
+      this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: education,
+      });
+    }
+    if (this.state.fitness === true) {
+      this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: fitness,
+      });
+    }
+    if (this.state.entertainment === true) {
+      this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: entertainment,
+      });
+    }
+    this.props.navigation.navigate("PROFILE");
+  };
 
   render() {
     return (
@@ -38,54 +92,63 @@ class Interests extends React.Component {
             <Text style={styles.header}>Select Interests</Text>
           </View>
           <View>
-            <View style={styles.selectInterests}>
+            <View
+              style={
+                this.state.pressStatus1 ? styles.button : styles.buttonPress
+              }
+            >
               <Button
                 color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
                 title="Food"
                 onPress={() => {
                   this.updateChoice("food");
                 }}
-                selected={this.state.food}
               />
             </View>
-            <View style={styles.selectInterests}>
+            <View
+              style={
+                this.state.pressStatus2 ? styles.button : styles.buttonPress
+              }
+            >
               <Button
                 color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
                 title="Entertainment"
                 onPress={() => {
                   this.updateChoice("entertainment");
                 }}
-                selected={this.state.entertainment}
               />
             </View>
-            <View style={styles.selectInterests}>
+            <View
+              style={
+                this.state.pressStatus3 ? styles.button : styles.buttonPress
+              }
+            >
               <Button
                 color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
                 title="Fitness"
                 onPress={() => {
                   this.updateChoice("fitness");
                 }}
-                selected={this.state.fitness}
               />
             </View>
-            <View style={styles.selectInterests}>
+            <View
+              style={
+                this.state.pressStatus4 ? styles.button : styles.buttonPress
+              }
+            >
               <Button
                 color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
                 title="Education"
                 onPress={() => {
                   this.updateChoice("education");
                 }}
-                selected={this.state.education}
               />
             </View>
           </View>
 
-          <View style={styles.button}>
+          <View style={styles.continueButton}>
             <Button
+              onPress={this.handleSignup}
               color="white"
               style={{ ...Fonts.normal, textAlign: "center" }}
               title="CONTINUE"
@@ -113,5 +176,19 @@ class Interests extends React.Component {
     );
   }
 }
+const mapToState = (state) => ({
+  user: state.user,
+  interests: state.interests,
+});
+const mapDispatchToProps = (dispatch) => {
+  return {
+    postNewInterest: (id, updateData) => {
+      return dispatch(postNewInterest(id, updateData));
+    },
+    getUser: (id) => {
+      return dispatch(getUserInfo(id));
+    },
+  };
+};
 
-export default Interests;
+export default connect(mapToState, mapDispatchToProps)(Interests);

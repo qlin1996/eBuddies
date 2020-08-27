@@ -1,6 +1,6 @@
 "use strict";
 const db = require("../db");
-const { User, Event, Activity } = require("../db/models");
+const { User, Event, Activity, Messages } = require("../db/models");
 const faker = require("faker");
 
 async function seed() {
@@ -8,7 +8,7 @@ async function seed() {
   console.log("db synced!");
   const users = [];
   const events = [];
-
+  const messages = [];
   const activities = [
     {
       eventId: 1,
@@ -134,6 +134,13 @@ async function seed() {
   });
 
   events.push(event);
+
+  const mesagge = await Messages.create({
+    message: "Hey",
+    userId: 1,
+  });
+  messages.push(mesagge);
+
   events.push(event2);
 
   await Promise.all(

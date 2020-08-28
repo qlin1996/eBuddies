@@ -32,8 +32,8 @@ class UserProfileScreen extends React.Component {
         <View style={Style.interestsContainer}>
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
-            {interests.map((interest, index) => (
-              <Text style={Style.interest} key={index}>
+            {interests.map((interest) => (
+              <Text style={Style.interest}>
                 {interest.userInterest}
               </Text>
             ))}

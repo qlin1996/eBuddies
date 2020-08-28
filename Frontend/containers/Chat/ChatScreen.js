@@ -1,33 +1,28 @@
 import React from "react";
 import { GiftedChat } from "react-native-gifted-chat";
-window.navigator.userAgent = "react-native";
 import io from "socket.io-client";
-
+const socket = io("http://localhost:8080", {
+  transports: ["websocket"],
+});
 export default class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { messages: [] };
     this.onSend = this.onSend.bind(this);
-    this.socket = io("localhost:8080", { jsonp: false });
   }
-  componentWillMount() {
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: "Hello developer",
-          createdAt: new Date(Date.UTC(2016, 7, 30, 17, 20, 0)),
-          user: {
-            _id: 2,
-            name: "React Native",
-            avatar: "https://facebook.github.io/react/img/logo_og.png",
-          },
-        },
-      ],
+
+  componentDidMount() {
+    socket.on("connect", function () {
+      console.log("a Socket connection has been made");
+    });
+    //person send me a message
+    socket.on("recieve message", (message) => {
+      console.log(message);
     });
   }
   onSend(messages = []) {
-    this.socket.emit("message", "hello");
+    //me sending a message
+    socket.emit("send message", "hey");
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),

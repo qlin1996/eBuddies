@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import Style from "./EditUserProfileScreenStyle";
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -24,6 +26,7 @@ class EditUserProfileScreen extends React.Component {
       Education: false,
       Fitness: false,
       Entertainment: false,
+      image: null,
     };
   }
 
@@ -43,6 +46,7 @@ class EditUserProfileScreen extends React.Component {
       Education: keys.includes("Education"),
       Fitness: keys.includes("Fitness"),
       Entertainment: keys.includes("Entertainment"),
+      image: this.props.user.imgUrl,
     });
   }
 
@@ -50,6 +54,19 @@ class EditUserProfileScreen extends React.Component {
     let newState = { ...this.state };
     newState[interest] = !newState[interest];
     this.setState(newState);
+  };
+
+  pickImage = async () => {
+    try {
+      await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: 1,
+      });
+      this.setState({ image: uri });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   render() {
@@ -60,10 +77,17 @@ class EditUserProfileScreen extends React.Component {
             <Image
               style={Style.image}
               source={{
+                uri: this.state.image,
+              }}
+            />
+            <Button title="Choose Image" onPress={this.pickImage} />
+            {/* <Image
+              style={Style.image}
+              source={{
                 uri:
                   "https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png",
               }}
-            />
+            /> */}
           </View>
           <View style={Style.profileContainer}>
             <Text>First Name</Text>

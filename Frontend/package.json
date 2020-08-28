@@ -12,6 +12,8 @@
     "axios": "^0.20.0",
     "expo": "^38.0.9",
     "expo-cli": "^3.25.0",
+    "expo-image-picker": "~8.3.0",
+    "expo-permissions": "~9.0.1",
     "expo-status-bar": "^1.0.2",
     "global": "^4.4.0",
     "history": "^5.0.0",

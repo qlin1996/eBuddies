@@ -16,7 +16,6 @@ class AllEvents extends React.Component {
 
   handleEventClick = () => {
     this.props.navigation.navigate("SINGLEEVENT");
-    console.log("Button hit >>");
   };
 
   render() {

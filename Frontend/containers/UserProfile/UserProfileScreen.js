@@ -2,8 +2,19 @@ import React from "react";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
+import { logout } from "../../store/user";
 
 class UserProfileScreen extends React.Component {
+  handleLogout = async () => {
+    // console.log(this.props.user, "------BEFOE");
+    try {
+      await this.props.logout();
+      this.props.navigation.navigate("LOGIN");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
@@ -14,8 +25,7 @@ class UserProfileScreen extends React.Component {
           <Image
             style={Style.image}
             source={{
-              uri:
-                "https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png",
+              uri: user.imgUrl,
             }}
           />
         </View>
@@ -24,8 +34,9 @@ class UserProfileScreen extends React.Component {
             {user.firstName} {}
             {user.lastName}
           </Text>
+          <Text style={Style.location}>{user.streetAddress},</Text>
           <Text style={Style.location}>
-            {user.city}, {user.state}
+            {user.city}, {user.state} {user.zipCode}
           </Text>
           <Text style={Style.description}>{user.description}</Text>
         </View>
@@ -33,7 +44,7 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             {interests.map((interest) => (
-              <Text style={Style.interest}>
+              <Text key={interest.id} style={Style.interest}>
                 {interest.userInterest}
               </Text>
             ))}
@@ -45,6 +56,9 @@ class UserProfileScreen extends React.Component {
         >
           Edit
         </Button>
+        <Button title="Logout" onPress={this.handleLogout}>
+          Logout
+        </Button>
       </View>
     );
   }
@@ -55,4 +69,8 @@ const mapStateToProps = (state) => ({
   interests: state.interests,
 });
 
-export default connect(mapStateToProps)(UserProfileScreen);
+const mapDispatch = (dispatch) => ({
+  logout: () => dispatch(logout()),
+});
+
+export default connect(mapStateToProps, mapDispatch)(UserProfileScreen);

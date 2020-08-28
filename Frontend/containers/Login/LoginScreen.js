@@ -22,7 +22,7 @@ class Login extends React.Component {
     await this.props.auth1(this.state.email, this.state.password);
     await this.props.me();
     await this.props.getAllInterests(this.props.user.id);
-    this.props.navigation.navigate("EVENTS");
+    this.props.navigation.navigate("MYEVENTS");
   };
 
   handleSignup = () => {
@@ -56,7 +56,7 @@ class Login extends React.Component {
             returnKeyType="go"
             placeholder="jdoe@gmail.com"
             placeholderTextColor="rgba(38,153,251,1)"
-            // keyboardType="email-address"
+            keyboardType="email-address"
           />
           <TextInput
             style={{

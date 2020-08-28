@@ -4,6 +4,7 @@ import { View, Text, Image, Button, TextInput } from "react-native";
 // import Style from "../AllEvents/AllEventsScreenStyle";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
+import { me } from "../../store/user";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class Login extends React.Component {
@@ -18,6 +19,7 @@ class Login extends React.Component {
   handleLogin = (event) => {
     event.preventDefault();
     this.props.auth1(this.state.email, this.state.password);
+    this.props.me();
     this.props.navigation.navigate("EVENTS");
   };
 
@@ -112,6 +114,7 @@ const mapToState = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   auth1: (email, password) => dispatch(auth1(email, password)),
+  me: () => dispatch(me()),
 });
 
 export default connect(mapToState, mapDispatchToProps)(Login);

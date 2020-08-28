@@ -51,13 +51,6 @@ class SingleEvent extends React.Component {
   // }
 }
 
-SingleEvent.propTypes = {
-  // event: PropTypes.object,
-  // eventIsLoading: PropTypes.bool,
-  // eventErrorMessage: PropTypes.string,
-  // fetchEvents: PropTypes.func,
-};
-
 const mapStateToProps = (state) => ({
   event: state.example.event,
   eventIsLoading: state.example.eventIsLoading,

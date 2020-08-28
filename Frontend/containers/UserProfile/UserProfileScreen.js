@@ -2,8 +2,18 @@ import React from "react";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
+import { logout } from "../../store/user";
 
 class UserProfileScreen extends React.Component {
+  handleLogout = async () => {
+    try {
+      await this.props.logout();
+      this.props.navigation.navigate("LOGIN");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
@@ -33,7 +43,9 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             {interests.map((interest) => (
-              <Text style={Style.interest}>{interest.userInterest}</Text>
+              <Text key={interest.id} style={Style.interest}>
+                {interest.userInterest}
+              </Text>
             ))}
           </View>
         </View>
@@ -42,6 +54,10 @@ class UserProfileScreen extends React.Component {
           onPress={() => this.props.navigation.navigate("EDIT")}
         >
           Edit
+        </Button>
+
+        <Button title="Logout" onPress={this.handleLogout}>
+          Logout
         </Button>
       </View>
     );
@@ -53,4 +69,8 @@ const mapStateToProps = (state) => ({
   interests: state.interests,
 });
 
-export default connect(mapStateToProps)(UserProfileScreen);
+const mapDispatch = (dispatch) => ({
+  logout: () => dispatch(logout()),
+});
+
+export default connect(mapStateToProps, mapDispatch)(UserProfileScreen);

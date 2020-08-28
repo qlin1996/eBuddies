@@ -1,7 +1,7 @@
 import { createDrawerNavigator } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
-import AllEventsScreen from "./AllEventsStack";
 import UserProfileScreen from "./UserProfileStack";
+import AllEventsScreen from "./AllEventsStack";
 import LoginScreen from "./LoginStack";
 import SignUpScreen from "./SignUpStack";
 import MyEventsScreen from "./MyEventsStack";

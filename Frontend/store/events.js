@@ -24,15 +24,15 @@ export const getAllEvents = () => async (dispatch) => {
   } catch (error) {}
 };
 
-export const getUserEvents = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(
-      `http://localhost:8080/api/events/${userId}`
-    );
-    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
-    return dispatch(getEvents(data));
-  } catch (error) {}
-};
+// export const getUserEvents = (userId) => async (dispatch) => {
+//   try {
+//     const { data } = await axios.get(
+//       `http://localhost:8080/api/events/${userId}`
+//     );
+//     // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
+//     return dispatch(getEvents(data));
+//   } catch (error) {}
+// };
 
 export const postNewEvent = (event) => async (dispatch) => {
   try {

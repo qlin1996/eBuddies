@@ -25,11 +25,11 @@ export const getAllInterests = (userId) => async (dispatch) => {
   } catch (error) {}
 };
 
-export const postNewInterest = (interest) => async (dispatch) => {
+export const postNewInterest = (userObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8080/api/interests",
-      interest
+      "http://localhost:8080/api/interests/",
+      userObject
     );
     return dispatch(postInterest(data));
   } catch (error) {

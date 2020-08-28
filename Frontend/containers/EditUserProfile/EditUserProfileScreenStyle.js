@@ -43,4 +43,14 @@ export default StyleSheet.create({
     ...Metrics.smallHorizontalPadding,
     marginRight: 10,
   },
+  interestSelected: {
+    color: Colors.blue,
+    borderColor: Colors.blue,
+    borderWidth: 1,
+    borderRadius: 8,
+    ...Metrics.smallVerticalPadding,
+    ...Metrics.smallHorizontalPadding,
+    marginRight: 10,
+    backgroundColor: Colors.lightBlue,
+  },
 });

@@ -5,6 +5,7 @@ import { View, Text, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
+import { getAllInterests } from "../../store/interest";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class Login extends React.Component {
@@ -16,10 +17,11 @@ class Login extends React.Component {
     };
   }
 
-  handleLogin = (event) => {
+  handleLogin = async (event) => {
     event.preventDefault();
-    this.props.auth1(this.state.email, this.state.password);
-    this.props.me();
+    await this.props.auth1(this.state.email, this.state.password);
+    await this.props.me();
+    await this.props.getAllInterests(this.props.user.id);
     this.props.navigation.navigate("EVENTS");
   };
 
@@ -115,6 +117,7 @@ const mapToState = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   auth1: (email, password) => dispatch(auth1(email, password)),
   me: () => dispatch(me()),
+  getAllInterests: (userId) => dispatch(getAllInterests(userId)),
 });
 
 export default connect(mapToState, mapDispatchToProps)(Login);

@@ -4,6 +4,7 @@ import UserProfileScreen from "./UserProfileStack";
 import AllEventsScreen from "./AllEventsStack";
 import LoginScreen from "./LoginStack";
 import SignUpScreen from "./SignUpStack";
+import MyEventsScreen from "./MyEventsStack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   EVENTS: {
@@ -17,6 +18,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   SIGNUP: {
     screen: SignUpScreen,
+  },
+  MYEVENTS: {
+    screen: MyEventsScreen,
   },
 });
 

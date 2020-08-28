@@ -11,24 +11,59 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-// POST --> /API/EVENTS
-router.post("/", async (req, res, next) => {
+//GET --> /API/EVENTS/:USERID
+router.get("/:userId", async (req, res, next) => {
   try {
-    const addEvent = await Event.create(req.body);
-    res.status(201).send(addEvent);
+    const events = await Event.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.json(events);
+  } catch (error) {
+    next(error);
+  }
+});
+
+//POST --> /API/EVENTS
+router.post("/", async (req, res, next) => {
+  /* etc */
+  try {
+    const event = await Event.create(req.body);
+    res.json(event);
   } catch (error) {
     next(error);
   }
 });
 
 //PUT --> /PUT/EVENTS/:EVENTID
-router.put("/:eventId", function (req, res, next) {
+router.put("/:eventId", async (req, res, next) => {
   /* etc */
+  try {
+    const event = await Event.findOne({
+      where: {
+        id: req.params.eventId,
+      },
+    });
+    const updatedEvent = await event.update(req.body);
+    res.send(updatedEvent);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //DELETE --> /DELETE/EVENTS/:EVENTID
-router.delete("/:eventId", function (req, res, next) {
+router.delete("/:eventId", async (req, res, next) => {
   /* etc */
+  try {
+    await Event.destroy({
+      where: {
+        id: req.params.eventId,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

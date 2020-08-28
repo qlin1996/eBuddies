@@ -1,10 +1,8 @@
 const User = require("./user");
 const Event = require("./event");
 const Activity = require("./activity");
-
-const Messages = require("./messages");
-
 const Interest = require("./interest");
+const Messages = require("./messages");
 
 User.belongsToMany(Event, { through: Activity });
 Event.belongsToMany(User, { through: Activity });

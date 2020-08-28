@@ -53,7 +53,6 @@ class EditUserProfileScreen extends React.Component {
   };
 
   render() {
-    console.log("STATE", this.state);
     return (
       <ScrollView>
         <View style={{ flex: 1 }}>
@@ -119,7 +118,13 @@ class EditUserProfileScreen extends React.Component {
                   this.updateChoice("Food");
                 }}
               >
-                <Text style={Style.interest}>Food</Text>
+                <Text
+                  style={
+                    this.state.Food ? Style.interestSelected : Style.interest
+                  }
+                >
+                  Food
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -127,7 +132,15 @@ class EditUserProfileScreen extends React.Component {
                   this.updateChoice("Entertainment");
                 }}
               >
-                <Text style={Style.interest}>Entertainment</Text>
+                <Text
+                  style={
+                    this.state.Entertainment
+                      ? Style.interestSelected
+                      : Style.interest
+                  }
+                >
+                  Entertainment
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -135,7 +148,15 @@ class EditUserProfileScreen extends React.Component {
                   this.updateChoice("Education");
                 }}
               >
-                <Text style={Style.interest}>Education</Text>
+                <Text
+                  style={
+                    this.state.Education
+                      ? Style.interestSelected
+                      : Style.interest
+                  }
+                >
+                  Education
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
@@ -143,7 +164,13 @@ class EditUserProfileScreen extends React.Component {
                   this.updateChoice("Fitness");
                 }}
               >
-                <Text style={Style.interest}>Fitness</Text>
+                <Text
+                  style={
+                    this.state.Fitness ? Style.interestSelected : Style.interest
+                  }
+                >
+                  Fitness
+                </Text>
               </TouchableOpacity>
             </View>
           </View>

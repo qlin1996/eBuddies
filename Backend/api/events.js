@@ -11,9 +11,14 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-//POST --> /API/EVENTS
-router.post("/", function (req, res, next) {
-  /* etc */
+// POST --> /API/EVENTS
+router.post("/", async (req, res, next) => {
+  try {
+    const addEvent = await Event.create(req.body);
+    res.status(201).send(addEvent);
+  } catch (error) {
+    next(error);
+  }
 });
 
 //PUT --> /PUT/EVENTS/:EVENTID

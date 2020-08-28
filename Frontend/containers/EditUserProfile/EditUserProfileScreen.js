@@ -12,6 +12,9 @@ import { connect } from "react-redux";
 import Style from "./EditUserProfileScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+import { updateUser } from "../../store/user";
+import { deleteAllInterests, postNewInterest } from "../../store/interest";
+import { Metrics, Fonts, Colors } from "../../themes";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -19,14 +22,18 @@ class EditUserProfileScreen extends React.Component {
     this.state = {
       firstName: "",
       lastName: "",
+      email: "",
+      streetAddress: "",
       city: "",
       state: "",
+      zipCode: "",
       description: "",
       Food: false,
       Education: false,
       Fitness: false,
       Entertainment: false,
-      image: null,
+      imgUrl: "",
+      height: 0,
     };
   }
 
@@ -38,14 +45,17 @@ class EditUserProfileScreen extends React.Component {
     this.setState({
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,
+      email: this.props.user.email,
+      streetAddress: this.props.user.streetAddress,
       city: this.props.user.city,
       state: this.props.user.state,
+      zipCode: this.props.user.zipCode,
       description: this.props.user.description,
       Food: keys.includes("Food"),
       Education: keys.includes("Education"),
       Fitness: keys.includes("Fitness"),
       Entertainment: keys.includes("Entertainment"),
-      image: this.props.user.imgUrl,
+      imgUrl: this.props.user.imgUrl,
     });
   }
 
@@ -62,8 +72,8 @@ class EditUserProfileScreen extends React.Component {
         allowsEditing: true,
         aspect: 1,
       });
-      this.setState({ image: uri });
-      console.log("IAMGE URI", uri);
+      this.setState({ imgUrl: uri });
+      // console.log("IAMGE URI", uri);
     } catch (error) {
       console.log(error);
     }
@@ -76,13 +86,55 @@ class EditUserProfileScreen extends React.Component {
         allowsEditing: true,
         aspect: 1,
       });
-      this.setState({ image: uri });
+      this.setState({ imgUrl: uri });
     } catch (error) {
       console.log(error);
     }
   };
 
+  handleUpdate = async () => {
+    await this.props.updateUser(this.props.user.id, {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      streetAddress: this.state.streetAddress,
+      city: this.state.city,
+      state: this.state.state,
+      zipCode: this.state.zipCode,
+      description: this.state.description,
+      imgUrl: this.state.imgUrl,
+    });
+    await this.props.deleteAllInterests(this.props.user.id);
+    if (this.state.Food === true) {
+      await this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: "Food",
+      });
+    }
+    if (this.state.Education === true) {
+      await this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: "Education",
+      });
+    }
+    if (this.state.Fitness === true) {
+      await this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: "Fitness",
+      });
+    }
+    if (this.state.Entertainment === true) {
+      await this.props.postNewInterest({
+        userId: this.props.user.id,
+        userInterest: "Entertainment",
+      });
+    }
+    this.props.navigation.navigate("PROFILE");
+  };
+
   render() {
+    console.log("IMAGE URL FROM PROPS", this.props.user.imgUrl);
+    console.log("STATE", this.state);
     return (
       <ScrollView>
         <View style={{ flex: 1 }}>
@@ -90,7 +142,7 @@ class EditUserProfileScreen extends React.Component {
             <Image
               style={Style.image}
               source={{
-                uri: this.state.image,
+                uri: this.state.imgUrl,
               }}
             />
             <Button title="Select Picture" onPress={this.selectPicture} />
@@ -115,6 +167,24 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
+            <Text>Email</Text>
+            <TextInput
+              style={Style.text}
+              value={this.state.email}
+              onChangeText={(email) => this.setState({ email })}
+              ref={(input) => {
+                this.textInput = input;
+              }}
+            />
+            <Text>Street</Text>
+            <TextInput
+              style={Style.text}
+              value={this.state.streetAddress}
+              onChangeText={(streetAddress) => this.setState({ streetAddress })}
+              ref={(input) => {
+                this.textInput = input;
+              }}
+            />
             <Text>City</Text>
             <TextInput
               style={Style.text}
@@ -133,9 +203,27 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
-            <Text>Description</Text>
+            <Text>Zip Code</Text>
             <TextInput
               style={Style.text}
+              value={this.state.zipCode}
+              onChangeText={(zipCode) => this.setState({ zipCode })}
+              ref={(input) => {
+                this.textInput = input;
+              }}
+            />
+            <Text>Description</Text>
+            <TextInput
+              multiline={true}
+              style={{
+                height: Math.max(35, this.state.height),
+                ...Fonts.normal,
+                ...Metrics.bottomMargin,
+                color: Colors.blue,
+              }}
+              onContentSizeChange={(event) => {
+                this.setState({ height: event.nativeEvent.contentSize.height });
+              }}
               value={this.state.description}
               onChangeText={(description) => this.setState({ description })}
               ref={(input) => {
@@ -208,7 +296,7 @@ class EditUserProfileScreen extends React.Component {
 
           <Button
             title="Update My Profile"
-            onPress={() => this.props.navigation.navigate("PROFILE")}
+            onPress={this.handleUpdate}
           ></Button>
         </View>
       </ScrollView>
@@ -221,4 +309,19 @@ const mapStateToProps = (state) => ({
   interests: state.interests,
 });
 
-export default connect(mapStateToProps)(EditUserProfileScreen);
+const mapDispatchToProps = (dispatch) => ({
+  updateUser: (id, updateData) => {
+    return dispatch(updateUser(id, updateData));
+  },
+  deleteAllInterests: (userId) => {
+    return dispatch(deleteAllInterests(userId));
+  },
+  postNewInterest: (interestObj) => {
+    return dispatch(postNewInterest(interestObj));
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(EditUserProfileScreen);

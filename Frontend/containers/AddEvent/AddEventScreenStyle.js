@@ -2,33 +2,6 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
-  colMain: {
-    ...Helpers.fullWidth,
-    width: 375,
-    height: 667,
-    backgroundColor: Colors.white,
-    overflow: "hidden",
-  },
-  headerWrapper: {
-    ...Helpers.fullWidth,
-    height: 75,
-    marginTop: 20,
-    marginBottom: 0,
-    backgroundColor: Colors.lightBlue,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderTopColor: Colors.primary,
-    borderBottomColor: Colors.grey,
-  },
-  headerText: {
-    ...Fonts.normal,
-    color: Colors.primary,
-    textAlign: "left",
-    marginTop: 3,
-    marginBottom: 0,
-    marginHorizontal: 10,
-    fontSize: 14,
-  },
   eventForm: {
     ...Fonts.normal,
     color: Colors.primary,
@@ -36,15 +9,9 @@ export default StyleSheet.create({
     marginTop: 3,
     marginBottom: 0,
     marginHorizontal: 10,
-    fontSize: 14,
+    fontSize: 20,
   },
-  eventHeader: {
-    ...Helpers.fullWidth,
-    height: 50,
-    padding: Metrics.medium,
-    top: 20,
-  },
-  eventButton: {
+  addEventButton: {
     ...Fonts.normal,
     textAlign: "center",
     marginTop: 20,
@@ -54,7 +21,13 @@ export default StyleSheet.create({
   eventImg: {
     width: 420,
     height: 270,
-    flex: 1,
+    marginTop: 20,
+    marginBottom: 0,
+    backgroundColor: Colors.lightBlue,
+    borderTopWidth: 1,
+    borderBottomWidth: 2,
+    borderTopColor: Colors.primary,
+    borderBottomColor: Colors.grey,
   },
   eventDescription: {
     ...Fonts.normal,

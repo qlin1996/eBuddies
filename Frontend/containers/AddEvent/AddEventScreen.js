@@ -1,66 +1,99 @@
 import React from "react";
-import { Text, View } from "react-native";
-// import { connect } from "react-redux";
+import { TextInput, View, Button, ScrollView } from "react-native";
+import { connect } from "react-redux";
+import { postNewEvent } from "../../store/events";
 import Style from "./AddEventScreenStyle";
-import { Helpers, Metrics } from "../../themes";
+// import { Helpers, Metrics } from "../../themes";
 
-class AddEvent extends React.Component {
-  componentDidMount() {
-    // this._fetchSingleEvent()
+class AddEventScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      address: "",
+      date: "",
+      time: "",
+      description: "",
+      eventId: "",
+    };
   }
+
+  handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    this.props.postNewEvent(this.state);
+
+    this.setState({
+      name: "",
+      address: "",
+      date: "",
+      time: "",
+      description: "",
+    });
+  };
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
   render() {
     return (
       <>
-        <View
-          style={[
-            Helpers.fill,
-            Helpers.rowMain,
-            Metrics.mediumHorizontalMargin,
-            Metrics.mediumVerticalMargin,
-          ]}
-        >
-          <View>
-            {/* event image */}
-            <View style={Style.eventImg} />
+        <ScrollView>
+          {/* event image */}
+          <View style={Style.eventImg} />
 
-            {/* event information */}
-            <View style={Style.eventForm}>
-              <Text style={Style.eventTitle}>Title</Text>
+          {/* event information */}
+          <View style={Style.text}>
+            <TextInput
+              style={Style.text}
+              placeHolder="Enter Title"
+              onChangeText={this.handleChange}
+              value={this.state.name}
+            />
 
-              <Text style={Style.eventLocation}>Location</Text>
-              <Text style={Style.eventDate}>8/24/20</Text>
-              <Text style={Style.eventDescription}>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt.
-              </Text>
-            </View>
+            <TextInput
+              style={Style.text}
+              placeHolder="Address"
+              onChangeText={this.handleChange}
+              value={this.state.address}
+            />
 
-            {/* add event button */}
-            <View style={Style.addEventCircle}>
-              <Text style={Style.addEventPlusSign}>+</Text>
-            </View>
+            <TextInput
+              style={Style.text}
+              placeHolder="Date"
+              onChangeText={this.handleChange}
+              value={this.state.date}
+            />
+
+            <TextInput
+              style={Style.text}
+              placeHolder="Time"
+              onChangeText={this.handleChange}
+              value={this.state.time}
+            />
+
+            <TextInput
+              style={Style.text}
+              placeHolder="Description"
+              onChangeText={this.handleChange}
+              value={this.state.description}
+            />
           </View>
-        </View>
+
+          <Button
+            style={Style.addEventButton}
+            title="Add Event"
+            onPress={this.handleSubmit}
+          />
+        </ScrollView>
       </>
     );
   }
-
-  // _fetchSingleEvent() {
-  //   this.props.fetchSingleEvent()
-  // }
 }
 
-const mapStateToProps = (state) => ({
-  event: state.example.event,
-  eventIsLoading: state.example.eventIsLoading,
-  eventErrorMessage: state.example.eventErrorMessage,
+const mapDispatch = (dispatch) => ({
+  postNewEvent: (addEventForm) => dispatch(postNewEvent(addEventForm)),
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  // fetchSingleEvent: () => dispatch(ExampleActions.fetchSingleEvent()),
-});
-
-// export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);
-
-export default AddEvent;
+export default connect(null, mapDispatch)(AddEventScreen);

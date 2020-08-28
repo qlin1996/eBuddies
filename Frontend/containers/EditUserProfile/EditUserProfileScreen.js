@@ -14,6 +14,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { updateUser } from "../../store/user";
 import { deleteAllInterests, postNewInterest } from "../../store/interest";
+import { Metrics, Fonts, Colors } from "../../themes";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -32,6 +33,7 @@ class EditUserProfileScreen extends React.Component {
       Fitness: false,
       Entertainment: false,
       imgUrl: "",
+      height: 0,
     };
   }
 
@@ -213,7 +215,16 @@ class EditUserProfileScreen extends React.Component {
             />
             <Text>Description</Text>
             <TextInput
-              style={Style.text}
+              multiline={true}
+              style={{
+                height: Math.max(35, this.state.height),
+                ...Fonts.normal,
+                ...Metrics.bottomMargin,
+                color: Colors.blue,
+              }}
+              onContentSizeChange={(event) => {
+                this.setState({ height: event.nativeEvent.contentSize.height });
+              }}
               value={this.state.description}
               onChangeText={(description) => this.setState({ description })}
               ref={(input) => {

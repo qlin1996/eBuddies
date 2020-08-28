@@ -38,7 +38,7 @@ export const postNewEvent = (addEventForm) => async (dispatch) => {
   try {
     const { data } = await axios.post(
       // "http://localhost:8080/api/events",
-      "http://localhost:8081/api/events",
+      "http://192.168.1.3:8081/api/events",
       addEventForm
     );
     return dispatch(postEvent(data));

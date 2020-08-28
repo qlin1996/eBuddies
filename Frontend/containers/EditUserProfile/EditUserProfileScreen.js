@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import Style from "./EditUserProfileScreenStyle";
+import * as ImagePicker from "expo-image-picker";
+import * as Permissions from "expo-permissions";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -20,10 +22,11 @@ class EditUserProfileScreen extends React.Component {
       city: "",
       state: "",
       description: "",
-      food: false,
-      education: false,
-      fitness: false,
-      entertainment: false,
+      Food: false,
+      Education: false,
+      Fitness: false,
+      Entertainment: false,
+      image: null,
     };
   }
 
@@ -39,22 +42,48 @@ class EditUserProfileScreen extends React.Component {
       city: this.props.user.city,
       state: this.props.user.state,
       description: this.props.user.description,
-      food: keys.includes("Food"),
-      education: keys.includes("Education"),
-      fitness: keys.includes("Fitness"),
-      entertainment: keys.includes("Entertainment"),
+      Food: keys.includes("Food"),
+      Education: keys.includes("Education"),
+      Fitness: keys.includes("Fitness"),
+      Entertainment: keys.includes("Entertainment"),
+      image: this.props.user.imgUrl,
     });
   }
 
   updateChoice = (interest) => {
-    console.log("IT WENT HEREEEEE");
     let newState = { ...this.state };
     newState[interest] = !newState[interest];
     this.setState(newState);
   };
 
+  selectPicture = async () => {
+    try {
+      await Permissions.askAsync(Permissions.CAMERA_ROLL);
+      const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: 1,
+      });
+      this.setState({ image: uri });
+      console.log("IAMGE URI", uri);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  takePicture = async () => {
+    try {
+      await Permissions.askAsync(Permissions.CAMERA);
+      const { cancelled, uri } = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: 1,
+      });
+      this.setState({ image: uri });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
-    console.log("STATE", this.state);
     return (
       <ScrollView>
         <View style={{ flex: 1 }}>
@@ -62,10 +91,11 @@ class EditUserProfileScreen extends React.Component {
             <Image
               style={Style.image}
               source={{
-                uri:
-                  "https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png",
+                uri: this.state.image,
               }}
             />
+            <Button title="Select Picture" onPress={this.selectPicture} />
+            <Button title="Take Picture" onPress={this.takePicture} />
           </View>
           <View style={Style.profileContainer}>
             <Text>First Name</Text>
@@ -114,18 +144,67 @@ class EditUserProfileScreen extends React.Component {
               }}
             />
             <Text>INTERESTS</Text>
-            <View style={Style.interestContainer}></View>
-            <TouchableOpacity
-              onPress={() => {
-                this.updateChoice("Food");
-              }}
-            >
-              <Text style={Style.interest}>Food</Text>
-            </TouchableOpacity>
+            <View style={Style.interestContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Food");
+                }}
+              >
+                <Text
+                  style={
+                    this.state.Food ? Style.interestSelected : Style.interest
+                  }
+                >
+                  Food
+                </Text>
+              </TouchableOpacity>
 
-            <Text style={Style.interest}>Entertainment</Text>
-            <Text style={Style.interest}>Education</Text>
-            <Text style={Style.interest}>Fitness</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Entertainment");
+                }}
+              >
+                <Text
+                  style={
+                    this.state.Entertainment
+                      ? Style.interestSelected
+                      : Style.interest
+                  }
+                >
+                  Entertainment
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Education");
+                }}
+              >
+                <Text
+                  style={
+                    this.state.Education
+                      ? Style.interestSelected
+                      : Style.interest
+                  }
+                >
+                  Education
+                </Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Fitness");
+                }}
+              >
+                <Text
+                  style={
+                    this.state.Fitness ? Style.interestSelected : Style.interest
+                  }
+                >
+                  Fitness
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
           <Button

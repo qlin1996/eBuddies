@@ -14,6 +14,17 @@ export default StyleSheet.create({
     top: 110,
   },
   button: {
+    color: Colors.blue,
+    borderWidth: 0.5,
+    borderColor: Colors.blue,
+    width: 300,
+    padding: 10,
+    margin: 2,
+    backgroundColor: "rgba(188, 224, 253, 1)",
+    alignSelf: "center",
+  },
+
+  continueButton: {
     backgroundColor: "rgba(38,153,251,1)",
     borderWidth: 0.5,
     alignSelf: "center",
@@ -27,6 +38,18 @@ export default StyleSheet.create({
     width: 342,
     height: 60,
   },
+
+  buttonPress: {
+    color: Colors.blue,
+    borderWidth: 0.5,
+    borderColor: Colors.blue,
+    width: 300,
+    padding: 10,
+    margin: 2,
+    backgroundColor: "white",
+    alignSelf: "center",
+  },
+
   login: {
     width: 550,
     position: "relative",

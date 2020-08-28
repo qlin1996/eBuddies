@@ -47,7 +47,7 @@ class MyEvents extends React.Component {
                 <Text style={Style.interests}>Based on your Interests</Text>
                 <View style={Style.interestsContainer}>
                   {interests.map((interest) => (
-                    <View>
+                    <View key={interest.id}>
                       <Text style={Style.interestPt}>✯</Text>
                       <Text style={Style.interest}>
                         {interest.userInterest}
@@ -68,6 +68,13 @@ class MyEvents extends React.Component {
                     </View>
                   );
                 })}
+
+                <Button
+                  title="ALL EVENTS"
+                  onPress={() => this.props.navigation.navigate("EVENTS")}
+                >
+                  ALL EVENTS
+                </Button>
               </View>
             ) : (
               <View>
@@ -80,15 +87,6 @@ class MyEvents extends React.Component {
                 </Button>
               </View>
             )}
-          </View>
-          <View>
-            <Text>Welcome, Guest</Text>
-            <Button
-              title="ALL EVENTS"
-              onPress={() => this.props.navigation.navigate("EVENTS")}
-            >
-              ALL EVENTS
-            </Button>
           </View>
         </ScrollView>
       </>

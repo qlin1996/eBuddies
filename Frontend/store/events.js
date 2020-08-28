@@ -24,9 +24,7 @@ export const getAllEvents = () => async (dispatch) => {
   }
 };
 
-<<<<<<< HEAD
-export const postNewEvent = (addEventForm) => async (dispatch) => {
-=======
+
 export const getUserEvents = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(
@@ -38,7 +36,6 @@ export const getUserEvents = (userId) => async (dispatch) => {
 };
 
 export const postNewEvent = (event) => async (dispatch) => {
->>>>>>> master
   try {
     const { data } = await axios.post(
       // "http://localhost:8080/api/events",

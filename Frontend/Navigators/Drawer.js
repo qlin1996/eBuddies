@@ -30,6 +30,7 @@ const RootDrawerNavigator = createDrawerNavigator({
 =======
   MYEVENTS: {
     screen: MyEventsScreen,
+  },
   CHAT: {
     screen: ChatScreen,
 >>>>>>> master

@@ -127,8 +127,7 @@ async function seed() {
   //BARRYS EVENT
   const event = await Event.create({
     name: "Barry's Bootcamp",
-    description: "Best workout in the world",
-    category: "Fitness",
+    description: "Great class and love the vibe!",
     address: "419 Lafayette St, New York, NY 10003",
     date: "09/04/2020",
     time: "08:00 AM",
@@ -142,11 +141,11 @@ async function seed() {
     name: "Larry's Bootcamp",
     description: "The best workout in the world",
     category: "Fitness",
-    address: "419 Lafayette St, New York, NY 10003",
-    date: "09/04/2020",
-    time: "08:00 AM",
+    address: "41 Broom St, New York, NY 10003",
+    date: "10/12/2020",
+    time: "09:00 AM",
     imgUrl:
-      "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
+      "https://whateveryourdose.com/wp-content/uploads/2016/10/barrys-bootcamp-class.jpg",
     userId: 2,
     hostId: 2,
   });

@@ -56,10 +56,24 @@ class EditUserProfileScreen extends React.Component {
     this.setState(newState);
   };
 
-  pickImage = async () => {
+  selectPicture = async () => {
     try {
       await Permissions.askAsync(Permissions.CAMERA_ROLL);
       const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: 1,
+      });
+      this.setState({ image: uri });
+      console.log("IAMGE URI", uri);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  takePicture = async () => {
+    try {
+      await Permissions.askAsync(Permissions.CAMERA);
+      const { cancelled, uri } = await ImagePicker.launchCameraAsync({
         allowsEditing: true,
         aspect: 1,
       });
@@ -80,14 +94,8 @@ class EditUserProfileScreen extends React.Component {
                 uri: this.state.image,
               }}
             />
-            <Button title="Choose Image" onPress={this.pickImage} />
-            {/* <Image
-              style={Style.image}
-              source={{
-                uri:
-                  "https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png",
-              }}
-            /> */}
+            <Button title="Select Picture" onPress={this.selectPicture} />
+            <Button title="Take Picture" onPress={this.takePicture} />
           </View>
           <View style={Style.profileContainer}>
             <Text>First Name</Text>

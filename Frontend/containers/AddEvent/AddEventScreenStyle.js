@@ -1,22 +1,11 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
+import { Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   eventForm: {
-    ...Fonts.normal,
-    color: Colors.primary,
-    textAlign: "left",
-    marginTop: 3,
-    marginBottom: 0,
-    marginHorizontal: 10,
-    fontSize: 20,
-  },
-  addEventButton: {
-    ...Fonts.normal,
-    textAlign: "center",
-    marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 50,
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
   },
   eventImg: {
     width: 420,
@@ -44,12 +33,19 @@ export default StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 20,
   },
-  eventFooter: {
-    width: 300,
-    alignContent: "center",
-    justifyContent: "center",
-    height: 70,
-    backgroundColor: Colors.lightBlue,
-    padding: Metrics.medium,
+  textInput: {
+    width: "90%",
+    height: 42,
+    borderColor: "#009688",
+    borderWidth: 1,
+    backgroundColor: "#fff",
+    textAlign: "center",
+  },
+  addEventButton: {
+    ...Fonts.normal,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom: 50,
+    marginHorizontal: 50,
   },
 });

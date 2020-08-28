@@ -11,6 +11,20 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//GET --> /API/EVENTS/:USERID
+router.get("/:userId", async (req, res, next) => {
+  try {
+    const events = await Event.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    });
+    res.json(events);
+  } catch (error) {
+    next(error);
+  }
+});
+
 //POST --> /API/EVENTS
 router.post("/", async (req, res, next) => {
   /* etc */

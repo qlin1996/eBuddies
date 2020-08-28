@@ -42,7 +42,6 @@ class EditUserProfileScreen extends React.Component {
     this.props.interests.forEach((interest) => {
       keys.push(interest.userInterest);
     });
-
     this.setState({
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,

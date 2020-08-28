@@ -33,7 +33,6 @@ class UserProfileScreen extends React.Component {
             {user.firstName} {}
             {user.lastName}
           </Text>
-          <Text style={Style.location}>{user.streetAddress},</Text>
           <Text style={Style.location}>
             {user.city}, {user.state} {user.zipCode}
           </Text>

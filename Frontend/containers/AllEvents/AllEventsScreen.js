@@ -1,13 +1,23 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
+import Style from "./AllEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 
 class AllEvents extends React.Component {
+  constructor() {
+    super();
+  }
+
   componentDidMount() {
     this.props.getAllEvents();
   }
+
+  handleEventClick = () => {
+    this.props.navigation.navigate("SINGLEEVENT");
+    console.log("Button hit >>");
+  };
 
   render() {
     let { events } = this.props || [];
@@ -19,6 +29,11 @@ class AllEvents extends React.Component {
         return (
           <View key={event.id}>
             <Event event={event} />
+            <Button
+              style={Style.eventButton}
+              title="View Event"
+              onPress={this.handleEventClick}
+            />
           </View>
         );
       });
@@ -31,7 +46,7 @@ class AllEvents extends React.Component {
             {events.length >= 1 ? (
               eventList
             ) : (
-              <Text>Sorry, no events scheduled.</Text>
+              <Text style={Style.errorMsg}>Sorry, no events scheduled.</Text>
             )}
           </View>
         </ScrollView>

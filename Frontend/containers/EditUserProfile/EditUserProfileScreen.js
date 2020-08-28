@@ -20,10 +20,10 @@ class EditUserProfileScreen extends React.Component {
       city: "",
       state: "",
       description: "",
-      food: false,
-      education: false,
-      fitness: false,
-      entertainment: false,
+      Food: false,
+      Education: false,
+      Fitness: false,
+      Entertainment: false,
     };
   }
 
@@ -39,15 +39,14 @@ class EditUserProfileScreen extends React.Component {
       city: this.props.user.city,
       state: this.props.user.state,
       description: this.props.user.description,
-      food: keys.includes("Food"),
-      education: keys.includes("Education"),
-      fitness: keys.includes("Fitness"),
-      entertainment: keys.includes("Entertainment"),
+      Food: keys.includes("Food"),
+      Education: keys.includes("Education"),
+      Fitness: keys.includes("Fitness"),
+      Entertainment: keys.includes("Entertainment"),
     });
   }
 
   updateChoice = (interest) => {
-    console.log("IT WENT HEREEEEE");
     let newState = { ...this.state };
     newState[interest] = !newState[interest];
     this.setState(newState);
@@ -114,18 +113,39 @@ class EditUserProfileScreen extends React.Component {
               }}
             />
             <Text>INTERESTS</Text>
-            <View style={Style.interestContainer}></View>
-            <TouchableOpacity
-              onPress={() => {
-                this.updateChoice("Food");
-              }}
-            >
-              <Text style={Style.interest}>Food</Text>
-            </TouchableOpacity>
+            <View style={Style.interestContainer}>
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Food");
+                }}
+              >
+                <Text style={Style.interest}>Food</Text>
+              </TouchableOpacity>
 
-            <Text style={Style.interest}>Entertainment</Text>
-            <Text style={Style.interest}>Education</Text>
-            <Text style={Style.interest}>Fitness</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Entertainment");
+                }}
+              >
+                <Text style={Style.interest}>Entertainment</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Education");
+                }}
+              >
+                <Text style={Style.interest}>Education</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                onPress={() => {
+                  this.updateChoice("Fitness");
+                }}
+              >
+                <Text style={Style.interest}>Fitness</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
           <Button

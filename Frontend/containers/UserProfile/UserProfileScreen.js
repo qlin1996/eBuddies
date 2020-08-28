@@ -2,13 +2,8 @@ import React from "react";
 import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
-import { getAllInterests } from "../../store/interest";
 
 class UserProfileScreen extends React.Component {
-  async componentDidMount() {
-    await this.props.getAllInterests(this.props.user.id);
-  }
-
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
@@ -58,8 +53,4 @@ const mapStateToProps = (state) => ({
   interests: state.interests,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getAllInterests: (userId) => dispatch(getAllInterests(userId)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserProfileScreen);
+export default connect(mapStateToProps)(UserProfileScreen);

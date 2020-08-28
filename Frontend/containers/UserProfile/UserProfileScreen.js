@@ -6,7 +6,6 @@ import { logout } from "../../store/user";
 
 class UserProfileScreen extends React.Component {
   handleLogout = async () => {
-    // console.log(this.props.user, "------BEFOE");
     try {
       await this.props.logout();
       this.props.navigation.navigate("LOGIN");
@@ -56,6 +55,7 @@ class UserProfileScreen extends React.Component {
         >
           Edit
         </Button>
+
         <Button title="Logout" onPress={this.handleLogout}>
           Logout
         </Button>

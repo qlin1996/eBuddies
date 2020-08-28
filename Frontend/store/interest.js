@@ -2,6 +2,7 @@ import axios from "axios";
 
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
+const DELETE_INTERESTS = "DELETE_INTERESTS";
 
 export const getInterests = (interests) => {
   return {
@@ -15,6 +16,10 @@ export const postInterest = (interest) => ({
   interest,
 });
 
+export const deleteInterests = () => ({
+  type: DELETE_INTERESTS,
+});
+
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(
@@ -25,13 +30,24 @@ export const getAllInterests = (userId) => async (dispatch) => {
   } catch (error) {}
 };
 
-export const postNewInterest = (userObject) => async (dispatch) => {
+export const postNewInterest = (interestObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
       "http://localhost:8080/api/interests/",
-      userObject
+      interestObject
     );
     return dispatch(postInterest(data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteAllInterests = (userId) => async (dispatch) => {
+  try {
+    const { data } = await axios.delete(
+      `http://localhost:8080/api/interests/${userId}`
+    );
+    return dispatch(deleteInterests(data));
   } catch (error) {
     console.log(error);
   }
@@ -45,6 +61,8 @@ export default function interestReducer(state = [], action) {
   switch (action.type) {
     case GET_INTERESTS:
       return action.interests;
+    case DELETE_INTERESTS:
+      return [];
     case POST_INTEREST:
       return [...state, action.interest];
     default:

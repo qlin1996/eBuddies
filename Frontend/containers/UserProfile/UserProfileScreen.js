@@ -14,8 +14,7 @@ class UserProfileScreen extends React.Component {
           <Image
             style={Style.image}
             source={{
-              uri:
-                "https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+men+people+person+profile+user+users-1320196163635839021.png",
+              uri: user.imgUrl,
             }}
           />
         </View>
@@ -24,8 +23,9 @@ class UserProfileScreen extends React.Component {
             {user.firstName} {}
             {user.lastName}
           </Text>
+          <Text style={Style.location}>{user.streetAddress},</Text>
           <Text style={Style.location}>
-            {user.city}, {user.state}
+            {user.city}, {user.state} {user.zipCode}
           </Text>
           <Text style={Style.description}>{user.description}</Text>
         </View>
@@ -33,9 +33,7 @@ class UserProfileScreen extends React.Component {
           <Text style={Style.interests}>INTERESTS</Text>
           <View style={Style.interestContainer}>
             {interests.map((interest) => (
-              <Text style={Style.interest}>
-                {interest.userInterest}
-              </Text>
+              <Text style={Style.interest}>{interest.userInterest}</Text>
             ))}
           </View>
         </View>

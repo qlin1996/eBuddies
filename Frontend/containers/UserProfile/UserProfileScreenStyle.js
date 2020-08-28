@@ -22,12 +22,11 @@ export default StyleSheet.create({
   },
   location: {
     color: Colors.blue,
-    ...Metrics.bottomMargin,
   },
   description: {
     color: Colors.blue,
     ...Fonts.normal,
-    ...Metrics.bottomMargin,
+    marginTop: 30,
   },
   interestsContainer: {
     backgroundColor: Colors.lightBlue,

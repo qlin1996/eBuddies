@@ -4,6 +4,10 @@ import Style from "./EventScreenStyle";
 
 const Event = (props) => {
   const { event } = props;
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
   return (
     <>
       <View style={Style.colMain}>

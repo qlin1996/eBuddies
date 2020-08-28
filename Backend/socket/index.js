@@ -7,8 +7,9 @@ module.exports = (io) => {
     socket.on("disconnect", () => {
       console.log(`Connection ${socket.id} has left the building`);
     });
-    socket.on("message", function (message) {
+    socket.on("send message", function (message) {
       console.log(message);
+      io.emit("recieve message", "this is the server message");
     });
   });
 };

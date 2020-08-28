@@ -1,11 +1,11 @@
 import { StyleSheet } from "react-native";
-import { Metrics, Fonts, Colors } from "../../themes";
+import { Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   eventForm: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    // justifyContent: "center",
+    // alignItems: "center",
   },
   eventImg: {
     width: 420,

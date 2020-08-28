@@ -47,36 +47,48 @@ class AddEventScreen extends React.Component {
           <View style={Style.eventForm}>
             <TextInput
               style={Style.text}
-              placeHolder="Enter Title"
-              onChangeText={this.handleChange}
+              name="name"
+              type="text"
+              placeholder="Event Name"
+              onChangeText={(text) => {
+                this.setState({ name: text });
+              }}
               value={this.state.name}
             />
 
             <TextInput
               style={Style.text}
-              placeHolder="Address"
-              onChangeText={this.handleChange}
+              placeholder="Address"
+              onChangeText={(text) => {
+                this.setState({ address: text });
+              }}
               value={this.state.address}
             />
 
             <TextInput
               style={Style.text}
-              placeHolder="Date"
-              onChangeText={this.handleChange}
+              placeholder="Date"
+              onChangeText={(text) => {
+                this.setState({ date: text });
+              }}
               value={this.state.date}
             />
 
             <TextInput
               style={Style.text}
-              placeHolder="Time"
-              onChangeText={this.handleChange}
+              placeholder="Time"
+              onChangeText={(text) => {
+                this.setState({ time: text });
+              }}
               value={this.state.time}
             />
 
             <TextInput
               style={Style.text}
-              placeHolder="Description"
-              onChangeText={this.handleChange}
+              placeholder="Description"
+              onChangeText={(text) => {
+                this.setState({ description: text });
+              }}
               value={this.state.description}
             />
           </View>

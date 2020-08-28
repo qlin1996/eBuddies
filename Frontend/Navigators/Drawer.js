@@ -5,6 +5,7 @@ import UserProfileScreen from "./UserProfileStack";
 import LoginScreen from "./LoginStack";
 import SignUpScreen from "./SignUpStack";
 import MyEventsScreen from "./MyEventsStack";
+import AddEventScreen from "./AddEventStack";
 import ChatScreen from "./ChatStack";
 
 const RootDrawerNavigator = createDrawerNavigator({
@@ -22,6 +23,9 @@ const RootDrawerNavigator = createDrawerNavigator({
   },
   MYEVENTS: {
     screen: MyEventsScreen,
+  },
+  ADDEVENT: {
+    screen: AddEventScreen,
   },
   CHAT: {
     screen: ChatScreen,

@@ -10,7 +10,6 @@ export default class ChatScreen extends React.Component {
     this.state = { messages: [] };
     this.onSend = this.onSend.bind(this);
   }
-
   componentDidMount() {
     socket.on("connect", function () {
       console.log("a Socket connection has been made");

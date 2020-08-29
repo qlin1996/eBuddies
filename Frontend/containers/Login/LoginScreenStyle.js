@@ -62,7 +62,7 @@ export default StyleSheet.create({
   },
   containerG: {
     flex: 1,
-    backgroundColor: "#e9ebee",
+    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
     height: 200,

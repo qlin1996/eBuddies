@@ -20,7 +20,7 @@ export default StyleSheet.create({
     margin: 10,
     borderColor: "rgba(38,153,251,1)",
     position: "relative",
-    top: "-5%",
+    top: "-13%",
     width: 342,
     height: 60,
   },
@@ -35,7 +35,7 @@ export default StyleSheet.create({
   camera: {
     position: "relative",
     top: "-45%",
-    left: "27%",
+    left: "25%",
     width: 20,
     height: 20,
   },
@@ -52,9 +52,9 @@ export default StyleSheet.create({
   },
   image: {
     position: "relative",
-    // top: 100,
-    width: 150,
-    height: 150,
+    top: "-13%",
+    width: 130,
+    height: 130,
     alignSelf: "center",
   },
   login: {

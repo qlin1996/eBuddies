@@ -20,7 +20,6 @@ class AllEvents extends React.Component {
 
   render() {
     let { events } = this.props || [];
-
     let eventList;
 
     if (events.length >= 1) {
@@ -41,13 +40,11 @@ class AllEvents extends React.Component {
     return (
       <>
         <ScrollView>
-          <View>
-            {events.length >= 1 ? (
-              eventList
-            ) : (
-              <Text style={Style.errorMsg}>Sorry, no events scheduled.</Text>
-            )}
-          </View>
+          {events.length >= 1 ? (
+            eventList
+          ) : (
+            <Text style={Style.errorMsg}>Sorry, no events scheduled.</Text>
+          )}
         </ScrollView>
       </>
     );

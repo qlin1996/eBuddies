@@ -47,6 +47,12 @@ class UserProfileScreen extends React.Component {
               </Text>
             ))}
           </View>
+          <Button
+            title="HOST"
+            onPress={() => this.props.navigation.navigate("HOST")}
+          >
+            HOSTED EVENTS
+          </Button>
         </View>
         <Button
           title="Edit"

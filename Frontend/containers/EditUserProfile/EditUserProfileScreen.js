@@ -23,7 +23,6 @@ class EditUserProfileScreen extends React.Component {
       firstName: "",
       lastName: "",
       email: "",
-      streetAddress: "",
       city: "",
       state: "",
       zipCode: "",
@@ -46,7 +45,6 @@ class EditUserProfileScreen extends React.Component {
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,
       email: this.props.user.email,
-      streetAddress: this.props.user.streetAddress,
       city: this.props.user.city,
       state: this.props.user.state,
       zipCode: this.props.user.zipCode,
@@ -97,7 +95,6 @@ class EditUserProfileScreen extends React.Component {
       firstName: this.state.firstName,
       lastName: this.state.lastName,
       email: this.state.email,
-      streetAddress: this.state.streetAddress,
       city: this.state.city,
       state: this.state.state,
       zipCode: this.state.zipCode,
@@ -172,15 +169,6 @@ class EditUserProfileScreen extends React.Component {
               style={Style.text}
               value={this.state.email}
               onChangeText={(email) => this.setState({ email })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
-            <Text>Street</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.streetAddress}
-              onChangeText={(streetAddress) => this.setState({ streetAddress })}
               ref={(input) => {
                 this.textInput = input;
               }}

@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  Image,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+
 import { connect } from "react-redux";
-import { View, Text, Image, Button, TextInput } from "react-native";
-// import Style from "../AllEvents/AllEventsScreenStyle";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
+import * as Facebook from "expo-facebook";
+
+console.disableYellowBox = true;
 
 class Login extends React.Component {
   constructor() {
@@ -16,7 +28,6 @@ class Login extends React.Component {
       password: "",
     };
   }
-
   handleLogin = async (event) => {
     event.preventDefault();
     await this.props.auth1(this.state.email, this.state.password);
@@ -27,6 +38,32 @@ class Login extends React.Component {
 
   handleSignup = () => {
     this.props.navigation.navigate("SIGNUP");
+  };
+
+  logInFb = async () => {
+    try {
+      await Facebook.initializeAsync("1194639730905892");
+      const {
+        type,
+        token,
+        expires,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ["public_profile"],
+      });
+      if (type === "success") {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(
+          `https://graph.facebook.com/me?access_token=${token}`
+        );
+        Alert.alert("Logged in!", `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
   };
   render() {
     return (
@@ -90,6 +127,16 @@ class Login extends React.Component {
               CONTINUE
             </Button>
           </View>
+          <View style={styles.containerFb}>
+            <TouchableOpacity style={styles.loginBtn} onPress={this.logInFb}>
+              <Text style={{ color: "#fff" }}>Login with Facebook</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.containerG}>
+            <TouchableOpacity style={styles.loginBtn2} onPress={this.logInFb}>
+              <Text style={{ color: "red" }}>Login with Google</Text>
+            </TouchableOpacity>
+          </View>
           <View style={styles.account}>
             <Button
               color="rgba(38,153,251,1)"
@@ -121,4 +168,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapToState, mapDispatchToProps)(Login);
-// export default Login;

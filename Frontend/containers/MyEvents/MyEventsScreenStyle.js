@@ -38,17 +38,30 @@ export default StyleSheet.create({
     backgroundColor: Colors.lightBlue,
     fontSize: 15,
   },
-  interestsContainer: {
-    // backgroundColor: Colors.lightBlue,
-    // ...Metrics.mediumHorizontalPadding,
-    // ...Metrics.mediumVerticalPadding,
+
+  welcomeDiv: {
+    width: 380,
+    borderColor: "white",
+    borderWidth: 4,
+    position: "relative",
+    left: "1%",
+    shadowColor: "gray",
+    shadowOffset: {
+      width: 1,
+      height: 5,
+    },
+    shadowOpacity: 1.7,
+    shadowRadius: 1.65,
+    margin: 15,
+    elevation: 6,
   },
-  welcome: {
+  welcomeText: {
     color: Colors.blue,
     textAlign: "center",
-    ...Fonts.h4,
+    ...Fonts.h1,
+    letterSpacing: 4,
     fontWeight: "bold",
-    ...Metrics.bottomMargin,
+    // ...Metrics.bottomMargin,
   },
   interests: {
     textAlign: "center",
@@ -56,10 +69,31 @@ export default StyleSheet.create({
     ...Fonts.normal,
     fontWeight: "bold",
     ...Metrics.bottomMargin,
+    shadowRadius: 1.65,
+    margin: 15,
+    elevation: 6,
+    position: "relative",
+    top: 5,
+  },
+  interestPoints: {
+    textAlign: "center",
+    color: Colors.blue,
+    ...Fonts.normal,
+    fontWeight: "bold",
+    ...Metrics.bottomMargin,
+    shadowRadius: 1.65,
+    margin: 15,
+    elevation: 6,
+    position: "relative",
+    top: "4%",
   },
   interestContainer: {
     flexDirection: "row",
   },
+
+  // childInterest: {
+  //   flex: 4,
+  // },
   interest: {
     color: Colors.blue,
     textAlign: "center",
@@ -71,11 +105,13 @@ export default StyleSheet.create({
     ...Metrics.smallHorizontalPadding,
     marginRight: 10,
     width: 114,
+    position: "relative",
+    top: "-30%",
   },
   interestPt: {
     position: "relative",
+    top: "20%",
+    left: "10%",
     color: Colors.blue,
-    top: "50%",
-    left: "30%",
   },
 });

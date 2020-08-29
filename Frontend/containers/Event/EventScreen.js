@@ -6,17 +6,17 @@ const Event = (props) => {
   const { event } = props;
   return (
     <>
-      <View style={Style.colMain}>
-        <View style={Style.headerWrapper}>
-          <Text style={Style.headerText}>{event.name}</Text>
-          <Text style={Style.headerText}>{event.address}</Text>
-          <Text style={Style.headerText}>{event.date}</Text>
+      <View style={Style.wholeCardDiv}>
+        <View style={Style.imageDiv}>
+          <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
         </View>
-
-        <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
-
-        <View>
-          <Text style={Style.eventDescription}>{event.description}</Text>
+        <View style={Style.headerBackground}>
+          <Text style={Style.headerText}>{event.name}</Text>
+        </View>
+        <View style={Style.informationDiv}>
+          <Text style={Style.fonts}>{event.description}</Text>
+          <Text style={Style.addressFonts}>{event.address}</Text>
+          <Text style={Style.dateFonts}>{event.date}</Text>
         </View>
       </View>
     </>

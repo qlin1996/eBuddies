@@ -122,7 +122,8 @@ async function seed() {
   //FITNESS
   const fitness1 = await Event.create({
     name: "Barry's Bootcamp",
-    description: "Great class and love the vibe!",
+    description: "The original high intensity interval workout.",
+    category: "Fitness",
     address: "419 Lafayette St, New York, NY 10003",
     date: "09/04/2020",
     time: "08:00 AM",
@@ -134,8 +135,7 @@ async function seed() {
 
   const fitness2 = await Event.create({
     name: "Switch Playground",
-    description:
-      "DJ music & dramatic lighting sets the scene at this hip gym with playground-style training classes.",
+    description: "DJ music & dramatic lighting sets the scene at this hip gym.",
     category: "Fitness",
     address: "130 E 12th St, New York, NY 10003",
     date: "09/28/2020",
@@ -148,8 +148,7 @@ async function seed() {
 
   const fitness3 = await Event.create({
     name: "Rumble",
-    description:
-      "Rumble Training, a 50-minute, 10-round, treadmill and strength-based workout that delivers serious results in a fun, high-energy setting.",
+    description: "Delivers serious results in a fun, high-energy setting.",
     category: "Fitness",
     address: "49 W 23rd St, New York, NY 10010",
     date: "10/08/2020",
@@ -162,8 +161,7 @@ async function seed() {
 
   const fitness4 = await Event.create({
     name: "Yoga Spark",
-    description:
-      "We play music that’ll make you want to move. And because we know you’re busy, we’ll get you stretching, sweating and back out the door in just 60 minutes. Whether you’ve practiced 2 times or 2,000, we’ll keep you challenged and having fun.",
+    description: "We play music that’ll make you want to move.",
     category: "Fitness",
     address: "158 Duane St, New York, NY 10013",
     date: "10/21/2020",
@@ -176,8 +174,7 @@ async function seed() {
 
   const fitness5 = await Event.create({
     name: "Exhale – Exhale HIIT",
-    description:
-      "Stylish, upscale wellness studio with barre, cardio & yoga classes, plus facials & massages.",
+    description: "Barre, cardio & yoga classes, plus facials & massages.",
     category: "Fitness",
     address: "150 Central Park S, New York, NY 10019",
     date: "09/01/2020",
@@ -190,11 +187,9 @@ async function seed() {
 
   const fitness6 = await Event.create({
     name: "Soul Cycle",
-    description:
-      "SoulCycle is more than just a workout. It’s a sanctuary. We ride together as a pack in candlelit studios to the rhythm of one-of-a-kind playlists. We’re coached by legendary instructors who motivate and challenge us.",
+    description: "SoulCycle is more than just a workout. It’s a sanctuary.",
     category: "Fitness",
-    address:
-      "5 Bryant Park 41st Between 6th Ave. and Broadway, New York, NY 10018",
+    address: "5 Bryant Park 41st , New York, NY 10018",
     date: "10/09/2020",
     time: "8:30 AM",
     imgUrl:
@@ -206,8 +201,7 @@ async function seed() {
   //FOOD
   const food1 = await Event.create({
     name: "Momofuku Kāwi    ",
-    description:
-      "Momofuku executive chef, has instantly joined the top ranks of New York’s modern Korean movement at Kāwi. She sends out jiggly raw crabs, a reasonably rare dish in NYC.",
+    description: "Top ranks of New York’s modern Korean movement at Kāwi.",
     category: "Food",
     address: "20 Hudson Yards New York, NY 10001",
     date: "09/24/2020",
@@ -220,8 +214,7 @@ async function seed() {
 
   const food2 = await Event.create({
     name: "Cote",
-    description:
-      "Guests cook their own dry-aged steaks on tabletop grills at this upscale Korean spot.",
+    description: "Guests cook their own dry-aged steaks on tabletop grills.",
     category: "Food",
     address: "16 W 22nd St, New York, NY 10010",
     date: "09/01/2020",
@@ -234,8 +227,7 @@ async function seed() {
 
   const food3 = await Event.create({
     name: "Pizza Beach",
-    description:
-      "Wood-fired pies, pastas & veggie dishes in a large, California-inspired setting.",
+    description: "Wood-fired pies in a large, California-inspired setting.",
     category: "Food",
     address: "167 Orchard St, New York, NY 10002",
     date: "10/17/2020",
@@ -248,8 +240,7 @@ async function seed() {
 
   const food4 = await Event.create({
     name: "Eataly",
-    description:
-      "surrounded by floor-to-floor windows, Eataly NYC Downtown's 40,000 square feet space overlooks the iconic backdrop of the historic district and the World Trade Center memorial.",
+    description: "surrounded by floor-to-floor windows.",
     category: "Food",
     address: "200 5th Ave NYC Flatiron",
     date: "10/09/2020",
@@ -261,10 +252,9 @@ async function seed() {
 
   const food5 = await Event.create({
     name: "Manhatta",
-    description:
-      "Set on the 60th floor, this ritzy, high-end restaurant features New American cuisine & city views.",
+    description: "Set on the 60th floor, this ritzy.",
     category: "Food",
-    address: "28 Liberty St 60th floor, New York, NY 10005",
+    address: "28 Liberty St, New York, NY 10005",
     date: "10/19/2020",
     time: "10:00 PM",
     imgUrl:
@@ -276,8 +266,7 @@ async function seed() {
   //EDUCATION
   const education1 = await Event.create({
     name: "NY Study Room",
-    description:
-      "A quiet, peaceful place to study with unlimited seating and computer devices available. A 2-min walk from the Empire State Building. ",
+    description: "A quiet, peaceful place to study with unlimited seating. ",
     category: "Education",
     address: "312 5th Ave, New York, NY 10001",
     date: "09/12/2020",
@@ -317,8 +306,7 @@ async function seed() {
   //ENTERTAINMENT
   const entertainment1 = await Event.create({
     name: "Angela's Wedding",
-    description:
-      "Join Angela in celebrating at her wedding!!!! (Event of the year) ",
+    description: "Celebrate with Angela at her Wedding",
     category: "Entertainment",
     address: "Angela's House",
     date: "04/20/2020",
@@ -332,9 +320,9 @@ async function seed() {
   const entertainment2 = await Event.create({
     name: "Kanye Concert",
     description:
-      "Kanye Omari West is an American rapper, record producer, and fashion designer",
+      "Kanye Omari West is a rapper, record producer, and fashion designer",
     category: "Entertainment",
-    address: "Madison Sequare Garden- 419 Lafayette St, New York, NY 10003",
+    address: "Madison Sequare Garden, New York, NY 10003",
     date: "11/04/2020",
     time: "11:00 PM",
     imgUrl:
@@ -346,7 +334,7 @@ async function seed() {
   const entertainment3 = await Event.create({
     name: "SantaCon 2020",
     description:
-      "SantaCon is an annual pub crawl in which people dressed in Santa Claus costumes or as other Christmas characters parade in various cities around the world.",
+      "SantaCon is an annual pub crawl in which people are dressed in Santa Claus costumes.",
     category: "Entertainment",
     address: "Basically every street in NYC",
     date: "12/19/2020",
@@ -358,8 +346,7 @@ async function seed() {
   });
   const entertainment4 = await Event.create({
     name: "Nik's Dinner Party",
-    description:
-      "Nik generously invites you to dine at his home in Prague and cook everyone a 6 course meal.",
+    description: "Nik generously invites you to dine at his home in Prague.",
     category: "Entertainment",
     address: "Prague, Czech Republic",
     date: "11/10/2020",

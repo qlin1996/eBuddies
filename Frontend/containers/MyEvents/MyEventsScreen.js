@@ -69,7 +69,10 @@ class MyEvents extends React.Component {
                     <View style={Style.childContainer}>
                       <View key={event.id}>
                         <Text style={Style.interestPoints}>
-                          Because off your Interest in {event.category}
+                          Because off your Interest in{" "}
+                          <Text style={Style.specificInterest}>
+                            {event.category}{" "}
+                          </Text>
                         </Text>
                         <Event event={event} />
 

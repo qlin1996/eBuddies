@@ -90,7 +90,19 @@ export default StyleSheet.create({
   interestContainer: {
     flexDirection: "row",
   },
-
+  specificInterest: {
+    textAlign: "center",
+    color: Colors.blue,
+    ...Fonts.normal,
+    fontWeight: "bold",
+    ...Metrics.bottomMargin,
+    shadowRadius: 1.65,
+    margin: 15,
+    elevation: 6,
+    position: "relative",
+    top: "4%",
+    textDecorationLine: "underline",
+  },
   // childInterest: {
   //   flex: 4,
   // },

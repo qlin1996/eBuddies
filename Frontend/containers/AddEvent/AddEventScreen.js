@@ -3,7 +3,6 @@ import { TextInput, View, Button, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
 import Style from "./AddEventScreenStyle";
-// import { Helpers, Metrics } from "../../themes";
 
 class AddEventScreen extends React.Component {
   constructor(props) {

@@ -4,8 +4,6 @@ import { Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   eventForm: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
   },
   eventImg: {
     width: 420,

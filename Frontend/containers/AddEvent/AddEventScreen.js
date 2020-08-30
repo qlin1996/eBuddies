@@ -45,7 +45,7 @@ class AddEventScreen extends React.Component {
 
           {/* event information */}
 
-        <View style={Style.eventForm}>
+          <View style={Style.eventForm}>
             <TextInput
               style={Style.text}
               name="name"

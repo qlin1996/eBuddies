@@ -38,7 +38,6 @@ class MyEvents extends React.Component {
       <>
         <ScrollView>
           <View>
-            {/* {events.length >= 1 && user.firstName ? ( */}
             {user.firstName ? (
               <View>
                 <Text style={Style.welcome}>

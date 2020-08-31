@@ -4,9 +4,10 @@ import UserProfileScreen from "./UserProfileStack";
 import AllEventsScreen from "./AllEventsStack";
 import LoginScreen from "./LoginStack";
 import SignUpScreen from "./SignUpStack";
-import MyEventsScreen from "./MyEventsStack";
+import RecommendedEventsScreen from "./RecommendedEventsStack";
 import AddEventScreen from "./AddEventStack";
 import ChatScreen from "./ChatStack";
+import MyCalendarScreen from "./MyCalendarStack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   EVENTS: {
@@ -36,11 +37,11 @@ const RootDrawerNavigator = createDrawerNavigator({
       title: "Sign Up",
     },
   },
-  MYEVENTS: {
-    screen: MyEventsScreen,
+  RECOMMENDEDEVENTS: {
+    screen: RecommendedEventsScreen,
     navigationOptions: {
       // headerTitle: () => <Header />,
-      title: "My Events",
+      title: "Recommended Events",
     },
   },
   ADDEVENT: {
@@ -55,6 +56,13 @@ const RootDrawerNavigator = createDrawerNavigator({
     navigationOptions: {
       // headerTitle: () => <Header />,
       title: "Chat",
+    },
+  },
+  MYCALENDAR: {
+    screen: MyCalendarScreen,
+    navigationOptions: {
+      // headerTitle: () => <Header />,
+      title: "My Calendar",
     },
   },
 });

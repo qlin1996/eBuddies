@@ -13,7 +13,7 @@ async function seed() {
   const activities = [
     {
       eventId: 1,
-      userId: 1,
+      userId: 101,
     },
     {
       eventId: 1,
@@ -31,9 +31,6 @@ async function seed() {
       city: faker.address.city(),
       state: faker.address.state(),
       zipCode: "12345",
-      // imgUrl,
-      // userId: id + 1,
-      // eventId: 1,
     });
     users.push(user.dataValues);
   }

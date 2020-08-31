@@ -26,9 +26,6 @@ const User = db.define("user", {
       notEmpty: true,
     },
   },
-  streetAddress: {
-    type: Sequelize.STRING,
-  },
   city: {
     type: Sequelize.STRING,
   },
@@ -50,10 +47,6 @@ const User = db.define("user", {
 
   password: {
     type: Sequelize.STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true
-    // },
 
     get() {
       return () => this.getDataValue("password");

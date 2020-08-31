@@ -1,12 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { View, Text, Image, Button, TextInput } from "react-native";
-// import Style from "../AllEvents/AllEventsScreenStyle";
+import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
+import { Fonts } from "../../themes";
 
 class Login extends React.Component {
   constructor() {
@@ -31,10 +30,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          source={require("../../assets/ebuddies.gif")}
-          style={styles.logo}
-        />
         <View style={styles.background}>
           <TextInput
             style={{

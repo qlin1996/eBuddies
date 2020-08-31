@@ -8,7 +8,7 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "rgb(235, 233, 233)",
     position: "relative",
-    top: 120,
+    top: 80,
   },
   button: {
     backgroundColor: "rgba(38,153,251,1)",
@@ -20,9 +20,42 @@ export default StyleSheet.create({
     margin: 10,
     borderColor: "rgba(38,153,251,1)",
     position: "relative",
-    top: 60,
+    top: "-13%",
     width: 342,
     height: 60,
+  },
+  imageContainer: {
+    position: "relative",
+    top: "-3%",
+    width: 180,
+    height: 180,
+    alignSelf: "center",
+    // backgroundColor: "rgba(38,153,251,1)",
+  },
+  camera: {
+    position: "relative",
+    top: "-45%",
+    left: "25%",
+    width: 20,
+    height: 20,
+  },
+  selectPic: {
+    position: "relative",
+    top: "1%",
+    left: "20%",
+  },
+  takePic: {
+    position: "relative",
+    top: "-7.9%",
+    width: 118,
+    left: "10%",
+  },
+  image: {
+    position: "relative",
+    top: "-13%",
+    width: 130,
+    height: 130,
+    alignSelf: "center",
   },
   login: {
     width: 550,

@@ -3,11 +3,11 @@ import { View, Text, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import { me } from "../../store/user";
-import Style from "./MyEventsScreenStyle";
+import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 
-class MyEvents extends React.Component {
+class RecommendedEvents extends React.Component {
   constructor() {
     super();
   }
@@ -124,4 +124,4 @@ const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyEvents);
+export default connect(mapStateToProps, mapDispatchToProps)(RecommendedEvents);

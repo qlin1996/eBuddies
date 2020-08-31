@@ -1,28 +1,10 @@
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-} from "react-native";
-
+import React from "react";
 import { connect } from "react-redux";
 import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
-import * as Facebook from "expo-facebook";
-import * as Google from "expo-google-app-auth";
-
-const IOS_CLIENT_ID =
-  "723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb.apps.googleusercontent.com";
-console.disableYellowBox = true;
 import { Fonts } from "../../themes";
 
 class Login extends React.Component {
@@ -33,6 +15,7 @@ class Login extends React.Component {
       password: "",
     };
   }
+
   handleLogin = async (event) => {
     event.preventDefault();
     await this.props.auth1(this.state.email, this.state.password);
@@ -44,49 +27,6 @@ class Login extends React.Component {
   handleSignup = () => {
     this.props.navigation.navigate("SIGNUP");
   };
-
-  logInFb = async () => {
-    try {
-      await Facebook.initializeAsync("1194639730905892");
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ["public_profile"],
-      });
-      if (type === "success") {
-        // Get the user's name using Facebook's Graph API
-        const response = await fetch(
-          `https://graph.facebook.com/me?access_token=${token}`
-        );
-        alert("Logged in!", `Hi ${(await response.json()).name}!`);
-      } else {
-        // type === 'cancel'
-      }
-    } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
-    }
-  };
-
-  signInWithGoogle = async () => {
-    try {
-      const result = await Google.logInAsync({
-        iosClientId: IOS_CLIENT_ID,
-        scopes: ["profile", "email"],
-      });
-      if (result.type === "success") {
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
-      }
-    } catch (e) {
-      return { error: true };
-    }
-  };
-
   render() {
     return (
       <View style={styles.container}>
@@ -145,19 +85,6 @@ class Login extends React.Component {
               CONTINUE
             </Button>
           </View>
-          <View style={styles.containerFb}>
-            <TouchableOpacity style={styles.loginBtn} onPress={this.logInFb}>
-              <Text style={{ color: "#fff" }}>Login with Facebook</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.containerG}>
-            <TouchableOpacity
-              style={styles.loginBtn2}
-              onPress={() => this.signInWithGoogle()}
-            >
-              <Text style={{ color: "red" }}>Login with Google</Text>
-            </TouchableOpacity>
-          </View>
           <View style={styles.account}>
             <Button
               color="rgba(38,153,251,1)"
@@ -189,3 +116,4 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapToState, mapDispatchToProps)(Login);
+// export default Login;

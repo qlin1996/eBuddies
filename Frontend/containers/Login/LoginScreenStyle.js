@@ -28,7 +28,7 @@ export default StyleSheet.create({
     ...Fonts.small,
     color: "black",
     position: "relative",
-    top: 210,
+    top: 160,
   },
   arrow: {
     width: 30,
@@ -36,5 +36,57 @@ export default StyleSheet.create({
     position: "relative",
     top: -50,
     left: 15,
+  },
+  containerFb: {
+    flex: 1,
+    backgroundColor: "#e9ebee",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  loginBtn: {
+    backgroundColor: "#4267b2",
+    height: 35,
+    alignSelf: "center",
+    position: "relative",
+    top: 50,
+    alignItems: "center",
+
+    right: 80,
+    width: 160,
+    borderRadius: 20,
+  },
+
+  containerG: {
+    flex: 1,
+    backgroundColor: "#e9ebee",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  loginBtn2: {
+    backgroundColor: "white",
+    alignItems: "center",
+
+    height: 35,
+    alignSelf: "center",
+    position: "relative",
+    top: 50,
+    left: 80,
+    width: 160,
+    borderRadius: 20,
+  },
+  login: {
+    width: 550,
+    position: "relative",
+    top: 155,
+    height: 60,
+    alignSelf: "center",
+    backgroundColor: "rgba(188, 224, 253, 1)",
+    borderWidth: 0.5,
+    paddingTop: 10,
+    ...Fonts.normal,
+    paddingBottom: 10,
+    margin: 10,
+    borderColor: "rgba(38,153,251,1)",
   },
 });

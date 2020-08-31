@@ -30,6 +30,13 @@ class SignupTwo extends React.Component {
       description: this.state.description,
       imgUrl: this.state.imgUrl,
     });
+    this.setState({
+      description: "",
+      imgUrl: "",
+      city: "",
+      state: "",
+      zipCode: "",
+    });
 
     this.props.navigation.navigate("INTERESTS");
   };

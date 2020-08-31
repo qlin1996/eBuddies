@@ -18,16 +18,13 @@ class AddEventScreen extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   this.setState({ hostId: this.props.user.id });
-  //   console.log("u", this.props.user.id);
-  //   console.log("STATE B4", this.state);
-  // }
+  componentDidMount() {
+    this.setState({ hostId: this.props.user.id });
+  }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.setState({ hostId: this.props.user.id });
-    console.log("STATE", this.state);
     this.props.postNewEvent(this.state);
 
     this.setState({

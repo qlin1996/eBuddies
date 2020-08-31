@@ -16,7 +16,7 @@ class Signup extends React.Component {
     };
   }
 
-  handleSignup = () => {
+  handleSignup = async () => {
     this.props.auth2(
       this.state.firstName,
       this.state.lastName,
@@ -25,8 +25,14 @@ class Signup extends React.Component {
     );
     const waitForSignUp = () => {
       this.props.navigation.navigate("ADDRESS");
+      this.setState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+      });
     };
-    setTimeout(waitForSignUp, 1500);
+    setTimeout(waitForSignUp, 1000);
   };
 
   render() {
@@ -130,14 +136,6 @@ class Signup extends React.Component {
             >
               CONTINUE
             </Button>
-            {/* <Button
-              color="blue"
-              style={{ ...Fonts.normal, textAlign: "center" }}
-              title="CONTINUE"
-              onPress={this.handlePress}
-            >
-              CONTINUE2
-            </Button> */}
           </View>
           <View style={styles.account}>
             <Button

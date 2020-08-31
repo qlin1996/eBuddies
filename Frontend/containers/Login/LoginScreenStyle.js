@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
+import { Fonts } from "../../themes";
 export default StyleSheet.create({
   container: {
     backgroundColor: "rgb(233, 233, 233)",

@@ -3,7 +3,6 @@ import { TextInput, View, Button, ScrollView } from "react-native";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
 import Style from "./AddEventScreenStyle";
-// import { Helpers, Metrics } from "../../themes";
 
 class AddEventScreen extends React.Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class AddEventScreen extends React.Component {
 
           {/* event information */}
 
-        <View style={Style.eventForm}>
+          <View style={Style.eventForm}>
             <TextInput
               style={Style.text}
               name="name"

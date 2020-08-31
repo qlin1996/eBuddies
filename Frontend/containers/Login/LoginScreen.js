@@ -11,6 +11,7 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
+import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
@@ -22,6 +23,7 @@ import * as Google from "expo-google-app-auth";
 const IOS_CLIENT_ID =
   "723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb.apps.googleusercontent.com";
 console.disableYellowBox = true;
+import { Fonts } from "../../themes";
 
 class Login extends React.Component {
   constructor() {
@@ -88,10 +90,6 @@ class Login extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          source={require("../../assets/ebuddies.gif")}
-          style={styles.logo}
-        />
         <View style={styles.background}>
           <TextInput
             style={{

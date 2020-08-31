@@ -1,18 +1,23 @@
+import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
 import AllEventsScreen from "../containers/AllEvents/AllEventsScreen";
 import SingleEventScreen from "../containers/SingleEvent/SingleEventScreen";
+import HeaderScreen from "../containers/Header/HeaderScreen";
 
 const screens = {
   AllEventsScreen: {
     screen: AllEventsScreen,
-    navigationOptions: {
-      title: "EVENTS",
+    navigationOptions: ({ navigation }) => {
+      return {
+        headerTitle: () => <HeaderScreen navigation={navigation} />,
+      };
     },
   },
   SINGLEEVENT: {
     screen: SingleEventScreen,
     navigationOptions: {
-      title: "SINGLEEVENT",
+      // headerTitle: () => <Header />,
+      title: "Single Event",
     },
   },
 };

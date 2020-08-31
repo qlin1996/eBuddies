@@ -30,6 +30,7 @@ export default StyleSheet.create({
     justifyContent: "center",
     textAlign: "center",
     height: 70,
+    paddingTop: 20,
     marginTop: 20,
     marginBottom: 20,
     marginHorizontal: 10,

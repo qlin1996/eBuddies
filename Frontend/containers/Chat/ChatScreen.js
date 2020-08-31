@@ -16,17 +16,18 @@ export default class ChatScreen extends React.Component {
     });
     //person send me a message
     socket.on("recieve message", (message) => {
-      console.log(message);
+      console.log("This is the message", message);
     });
   }
   onSend(messages = []) {
     //me sending a message
-    socket.emit("send message", "hey");
+
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
       };
     });
+    socket.emit("send message", messages);
   }
   render() {
     return (

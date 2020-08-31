@@ -9,7 +9,7 @@ module.exports = (io) => {
     });
     socket.on("send message", function (message) {
       console.log(message);
-      io.emit("recieve message", "this is the server message");
+      io.emit("recieve message", message);
     });
   });
 };

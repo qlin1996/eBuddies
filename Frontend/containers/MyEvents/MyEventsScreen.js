@@ -55,6 +55,15 @@ class MyEvents extends React.Component {
               >
                 {interests.map((interest) => (
                   <View style={Style.childInterest}>
+          <View>
+            {user.firstName ? (
+              <View>
+                <Text style={Style.welcome}>
+                  Welcome, {user.firstName} {user.lastName}
+                </Text>
+                <Text style={Style.interests}>Based on your Interests</Text>
+                <View style={Style.interestsContainer}>
+                  {interests.map((interest) => (
                     <View key={interest.id}>
                       <Text style={Style.interestPt}>✯</Text>
                       <Text style={Style.interest}>
@@ -76,6 +85,13 @@ class MyEvents extends React.Component {
                       </Text>
                       <Event event={event} />
 
+                  ))}
+                </View>
+                {events.map((event) => {
+                  return (
+                    <View key={event.id}>
+                      <Event event={event} />
+                      <Text>Because off your Interest in {event.category}</Text>
                       <Button
                         style={Style.eventButton}
                         title="View Event"
@@ -104,6 +120,28 @@ class MyEvents extends React.Component {
             </View>
           )}
           {/* </View> */}
+                  );
+                })}
+
+                <Button
+                  title="ALL EVENTS"
+                  onPress={() => this.props.navigation.navigate("EVENTS")}
+                >
+                  ALL EVENTS
+                </Button>
+              </View>
+            ) : (
+              <View>
+                <Text>Welcome, Guest</Text>
+                <Button
+                  title="Continue to All Events"
+                  onPress={() => this.props.navigation.navigate("EVENTS")}
+                >
+                  Continue to All Events
+                </Button>
+              </View>
+            )}
+          </View>
         </ScrollView>
       </>
     );

@@ -7,6 +7,7 @@ import SignUpScreen from "./SignUpStack";
 import MyEventsScreen from "./MyEventsStack";
 import AddEventScreen from "./AddEventStack";
 import ChatScreen from "./ChatStack";
+import MyCalendarScreen from "./MyCalendarStack";
 
 const RootDrawerNavigator = createDrawerNavigator({
   EVENTS: {
@@ -55,6 +56,13 @@ const RootDrawerNavigator = createDrawerNavigator({
     navigationOptions: {
       // headerTitle: () => <Header />,
       title: "Chat",
+    },
+  },
+  MYCALENDAR: {
+    screen: MyCalendarScreen,
+    navigationOptions: {
+      // headerTitle: () => <Header />,
+      title: "My Calendar",
     },
   },
 });

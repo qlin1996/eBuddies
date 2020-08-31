@@ -37,92 +37,54 @@ class MyEvents extends React.Component {
     return (
       <>
         <ScrollView>
-          {/* <View> */}
-          {user.firstName ? (
-            <View>
-              <View style={Style.welcomeDiv}>
-                <Text style={Style.welcomeText}>
-                  Welcome, {user.firstName} {user.lastName}
-                </Text>
-              </View>
-              <Text style={Style.interests}>Based on your Interests</Text>
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: "row",
-                  alignSelf: "center",
-                }}
-              >
-                {interests.map((interest) => (
-                  <View style={Style.childInterest}>
           <View>
             {user.firstName ? (
               <View>
-                <Text style={Style.welcome}>
-                  Welcome, {user.firstName} {user.lastName}
-                </Text>
+                <View style={Style.welcomeDiv}>
+                  <Text style={Style.welcomeText}>
+                    Welcome, {user.firstName} {user.lastName}
+                  </Text>
+                </View>
                 <Text style={Style.interests}>Based on your Interests</Text>
-                <View style={Style.interestsContainer}>
+                <View
+                  style={{
+                    flex: 1,
+                    flexDirection: "row",
+                    alignSelf: "center",
+                  }}
+                >
                   {interests.map((interest) => (
                     <View key={interest.id}>
-                      <Text style={Style.interestPt}>✯</Text>
-                      <Text style={Style.interest}>
-                        {interest.userInterest}
-                      </Text>
-                    </View>
-                  </View>
-                ))}
-              </View>
-              {events.map((event) => {
-                return (
-                  <View style={Style.childContainer}>
-                    <View key={event.id}>
-                      <Text style={Style.interestPoints}>
-                        Because off your Interest in{" "}
-                        <Text style={Style.specificInterest}>
-                          {event.category}{" "}
+                      <View style={Style.childInterest}>
+                        <Text style={Style.interestPt}>✯</Text>
+                        <Text style={Style.interest}>
+                          {interest.userInterest}
                         </Text>
-                      </Text>
-                      <Event event={event} />
-
+                      </View>
+                    </View>
                   ))}
                 </View>
                 {events.map((event) => {
                   return (
                     <View key={event.id}>
-                      <Event event={event} />
-                      <Text>Because off your Interest in {event.category}</Text>
-                      <Button
-                        style={Style.eventButton}
-                        title="View Event"
-                        onPress={this.handleEventClick}
-                      />
+                      <View style={Style.childContainer}>
+                        <Text style={Style.interestPoints}>
+                          Because off your Interest in{" "}
+                          <Text style={Style.specificInterest}>
+                            {event.category}{" "}
+                          </Text>
+                        </Text>
+                        <Event event={event} />
+
+                        <Button
+                          style={Style.eventButton}
+                          title="View Event"
+                          onPress={this.handleEventClick}
+                        />
+                      </View>
                     </View>
-                  </View>
-                );
-              })}
-              <Button
-                title="ALL EVENTS"
-                onPress={() => this.props.navigation.navigate("EVENTS")}
-              >
-                ALL EVENTS
-              </Button>
-            </View>
-          ) : (
-            <View>
-              <Text>Welcome, Guest</Text>
-              <Button
-                title="Continue to All Events"
-                onPress={() => this.props.navigation.navigate("EVENTS")}
-              >
-                Continue to All Events
-              </Button>
-            </View>
-          )}
-          {/* </View> */}
                   );
                 })}
-
                 <Button
                   title="ALL EVENTS"
                   onPress={() => this.props.navigation.navigate("EVENTS")}

@@ -50,11 +50,11 @@ export default StyleSheet.create({
 
   informationDiv: {
     backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: 100,
-    width: 402,
+    height: 102,
+    width: 372,
     position: "absolute",
-    left: "-4%",
-    top: "74%",
+    // left: "-4%",
+    top: "72.5%",
   },
 
   fonts: {

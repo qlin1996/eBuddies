@@ -15,10 +15,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb"
+        }
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "facebookScheme": "fb1194639730905892",
+    "facebookAppId": "1194639730905892",
+    "facebookDisplayName": "eBuddies"
   }
 }

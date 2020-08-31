@@ -39,7 +39,7 @@ class Login extends React.Component {
     await this.props.auth1(this.state.email, this.state.password);
     await this.props.me();
     await this.props.getAllInterests(this.props.user.id);
-    this.props.navigation.navigate("MYEVENTS");
+    this.props.navigation.navigate("RECOMMENDEDEVENTS");
   };
 
   handleSignup = () => {

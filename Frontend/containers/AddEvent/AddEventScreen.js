@@ -14,12 +14,20 @@ class AddEventScreen extends React.Component {
       time: "",
       description: "",
       eventId: "",
+      hostId: "",
     };
   }
 
+  // componentDidMount() {
+  //   this.setState({ hostId: this.props.user.id });
+  //   console.log("u", this.props.user.id);
+  //   console.log("STATE B4", this.state);
+  // }
+
   handleSubmit = (evt) => {
     evt.preventDefault();
-
+    this.setState({ hostId: this.props.user.id });
+    console.log("STATE", this.state);
     this.props.postNewEvent(this.state);
 
     this.setState({
@@ -28,11 +36,14 @@ class AddEventScreen extends React.Component {
       date: "",
       time: "",
       description: "",
+      hostId: "",
     });
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
   render() {
@@ -104,8 +115,12 @@ class AddEventScreen extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
 const mapDispatch = (dispatch) => ({
   postNewEvent: (addEventForm) => dispatch(postNewEvent(addEventForm)),
 });
 
-export default connect(null, mapDispatch)(AddEventScreen);
+export default connect(mapStateToProps, mapDispatch)(AddEventScreen);

@@ -1,10 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { View, Image, Button, TextInput } from "react-native";
+// import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
+// import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
+import * as Facebook from "expo-facebook";
+import * as Google from "expo-google-app-auth";
+
+const IOS_CLIENT_ID =
+  "723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb.apps.googleusercontent.com";
+console.disableYellowBox = true;
 import { Fonts } from "../../themes";
 
 class Login extends React.Component {

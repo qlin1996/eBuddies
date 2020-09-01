@@ -15,7 +15,7 @@ class SignupTwo extends React.Component {
       imgUrl: "",
       city: "",
       state: "",
-      zipCode: 0,
+      zipCode: "",
     };
   }
 
@@ -45,7 +45,7 @@ class SignupTwo extends React.Component {
         imgUrl: "",
         city: "",
         state: "",
-        zipCode: 0,
+        zipCode: "",
       });
       this.props.navigation.navigate("INTERESTS");
     }

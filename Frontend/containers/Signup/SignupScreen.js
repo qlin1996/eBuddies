@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Button, TextInput, Text } from "react-native";
-import { auth2 } from "../../store/user";
-import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
+import { connect } from "react-redux";
+import { getUsersInfo } from "../../store/users";
 
 class Signup extends React.Component {
   constructor() {
@@ -13,7 +13,12 @@ class Signup extends React.Component {
       lastName: "",
       email: "",
       password: "",
+      uniqueEmail: true,
     };
+  }
+
+  async componentDidMount() {
+    await this.props.getUsersInfo();
   }
 
   validateEmail = (email) => {
@@ -23,30 +28,34 @@ class Signup extends React.Component {
     } else return false;
   };
 
-  handleSignup = async () => {
-    if (
-      this.state.firstName.length &&
-      this.state.lastName.length &&
-      this.state.email.length &&
-      this.validateEmail(this.state.email) &&
-      this.state.password.length
-    ) {
-      this.props.auth2(
-        this.state.firstName,
-        this.state.lastName,
-        this.state.email,
-        this.state.password
-      );
-      const waitForSignUp = () => {
-        this.props.navigation.navigate("ADDRESS");
-        this.setState({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-        });
-      };
-      setTimeout(waitForSignUp, 1000);
+  handleSignup = () => {
+    const allEmails = [];
+    this.props.users.map((user) => {
+      return allEmails.push(user.email);
+    });
+
+    if (allEmails.includes(this.state.email)) {
+      this.setState({ uniqueEmail: false });
+    } else {
+      if (
+        this.state.firstName.length &&
+        this.state.lastName.length &&
+        this.state.email.length &&
+        this.validateEmail(this.state.email) &&
+        this.state.password.length
+      ) {
+        const waitForSignUp = () => {
+          this.props.navigation.navigate("ADDRESS", this.state);
+          this.setState({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
+            uniqueEmail: true,
+          });
+        };
+        setTimeout(waitForSignUp, 1000);
+      }
     }
   };
 
@@ -59,6 +68,11 @@ class Signup extends React.Component {
       <View style={styles.container}>
         <View style={styles.background}>
           {/* validations */}
+          {this.state.uniqueEmail === false && (
+            <Text style={{ color: "red" }}>
+              There is already an account with this email. Please try to login.
+            </Text>
+          )}
           {this.state.firstName.length === 0 && (
             <Text>First Name is Required</Text>
           )}
@@ -190,13 +204,13 @@ class Signup extends React.Component {
     );
   }
 }
-const mapToState = (state) => ({
-  user: state.user,
+
+const mapStateToProps = (state) => ({
+  users: state.users,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  auth2: (firstName, lastName, email, password) =>
-    dispatch(auth2(firstName, lastName, email, password)),
+const mapDispatch = (dispatch) => ({
+  getUsersInfo: () => dispatch(getUsersInfo()),
 });
 
-export default connect(mapToState, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatch)(Signup);

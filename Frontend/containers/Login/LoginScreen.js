@@ -24,7 +24,6 @@ import * as Google from "expo-google-app-auth";
 const IOS_CLIENT_ID =
   "723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb.apps.googleusercontent.com";
 console.disableYellowBox = true;
-// import { Fonts } from "../../themes";
 
 class Login extends React.Component {
   constructor() {
@@ -34,12 +33,13 @@ class Login extends React.Component {
       password: "",
     };
   }
-  handleLogin = async (event) => {
-    event.preventDefault();
-    await this.props.auth1(this.state.email, this.state.password);
-    await this.props.me();
-    await this.props.getAllInterests(this.props.user.id);
-    this.props.navigation.navigate("RECOMMENDEDEVENTS");
+  handleLogin = async () => {
+    if (this.state.email.length && this.state.password.length) {
+      await this.props.auth1(this.state.email, this.state.password);
+      await this.props.me();
+      await this.props.getAllInterests(this.props.user.id);
+      this.props.navigation.navigate("RECOMMENDEDEVENTS");
+    }
   };
 
   handleSignup = () => {
@@ -47,44 +47,48 @@ class Login extends React.Component {
   };
 
   logInFb = async () => {
-    try {
-      await Facebook.initializeAsync("1194639730905892");
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync({
-        permissions: ["public_profile"],
-      });
-      if (type === "success") {
-        // Get the user's name using Facebook's Graph API
-        const response = await fetch(
-          `https://graph.facebook.com/me?access_token=${token}`
-        );
-        alert("Logged in!", `Hi ${(await response.json()).name}!`);
-      } else {
-        // type === 'cancel'
+    if (this.state.email.length && this.state.password.length) {
+      try {
+        await Facebook.initializeAsync("1194639730905892");
+        const {
+          type,
+          token,
+          expires,
+          permissions,
+          declinedPermissions,
+        } = await Facebook.logInWithReadPermissionsAsync({
+          permissions: ["public_profile"],
+        });
+        if (type === "success") {
+          // Get the user's name using Facebook's Graph API
+          const response = await fetch(
+            `https://graph.facebook.com/me?access_token=${token}`
+          );
+          alert("Logged in!", `Hi ${(await response.json()).name}!`);
+        } else {
+          // type === 'cancel'
+        }
+      } catch ({ message }) {
+        alert(`Facebook Login Error: ${message}`);
       }
-    } catch ({ message }) {
-      alert(`Facebook Login Error: ${message}`);
     }
   };
 
   signInWithGoogle = async () => {
-    try {
-      const result = await Google.logInAsync({
-        iosClientId: IOS_CLIENT_ID,
-        scopes: ["profile", "email"],
-      });
-      if (result.type === "success") {
-        return result.accessToken;
-      } else {
-        return { cancelled: true };
+    if (this.state.email.length && this.state.password.length) {
+      try {
+        const result = await Google.logInAsync({
+          iosClientId: IOS_CLIENT_ID,
+          scopes: ["profile", "email"],
+        });
+        if (result.type === "success") {
+          return result.accessToken;
+        } else {
+          return { cancelled: true };
+        }
+      } catch (e) {
+        return { error: true };
       }
-    } catch (e) {
-      return { error: true };
     }
   };
   verifyCallback = (response) => console.log(response);
@@ -96,6 +100,9 @@ class Login extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.background}>
+          {this.state.email.length === 0 && (
+            <Text style={{ color: "red" }}>Email is Required</Text>
+          )}
           <TextInput
             style={{
               ...Fonts.normal,
@@ -118,6 +125,9 @@ class Login extends React.Component {
             placeholderTextColor="rgba(38,153,251,1)"
             keyboardType="email-address"
           />
+          {this.state.password.length === 0 && (
+            <Text style={{ color: "red" }}>Password is Required</Text>
+          )}
           <TextInput
             style={{
               ...Fonts.normal,

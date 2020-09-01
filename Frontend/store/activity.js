@@ -23,7 +23,7 @@ export const deleteActivity = () => ({
 export const getAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:8080/api/activities/${userId}`
+      `http://localhost:8081/api/activities/${userId}`
     );
     // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     return dispatch(getActivities(data));
@@ -33,7 +33,7 @@ export const getAllActivities = (userId) => async (dispatch) => {
 export const postNewActivity = (activityObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8080/api/activities/",
+      "http://localhost:8081/api/activities/",
       activityObject
     );
     return dispatch(postActivity(data));
@@ -45,7 +45,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
 export const deleteAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://localhost:8080/api/activities/${userId}`
+      `http://localhost:8081/api/activities/${userId}`
     );
     return dispatch(deleteActivities(data));
   } catch (error) {

@@ -437,9 +437,13 @@ async function seed() {
 
   const mesagge = await Messages.create({
     message: "Hey",
+    senderId: 104,
+    eventId: 1,
   });
   const mesagge2 = await Messages.create({
     message: "Gang",
+    senderId: 104,
+    eventId: 1,
   });
   messages.push(mesagge);
   messages.push(mesagge2);

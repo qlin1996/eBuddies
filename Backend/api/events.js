@@ -6,8 +6,22 @@ router.get("/", async (req, res, next) => {
   try {
     const events = await Event.findAll();
     res.json(events);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// GET --> API/EVENTS/:EVENTID
+router.get("/:eventId", async (req, res, next) => {
+  try {
+    const event = await Event.findOne({
+      where: {
+        id: req.params.eventId,
+      },
+    });
+    res.json(event);
+  } catch (error) {
+    next(error);
   }
 });
 

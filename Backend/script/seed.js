@@ -397,10 +397,12 @@ async function seed() {
 
   const mesagge = await Messages.create({
     message: "Hey",
-    userId: 1,
+  });
+  const mesagge2 = await Messages.create({
+    message: "Gang",
   });
   messages.push(mesagge);
-
+  messages.push(mesagge2);
   await Promise.all(
     activities.map((activity) => {
       return Activity.create(activity);

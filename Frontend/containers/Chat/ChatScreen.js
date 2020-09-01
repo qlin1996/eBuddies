@@ -27,7 +27,7 @@ export default class ChatScreen extends React.Component {
         messages: GiftedChat.append(previousState.messages, messages),
       };
     });
-    socket.emit("send message", messages);
+    socket.emit("send message ", messages);
   }
   render() {
     return (

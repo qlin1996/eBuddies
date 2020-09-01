@@ -6,8 +6,10 @@ const Messages = require("./messages");
 
 User.belongsToMany(Event, { through: Activity });
 Event.belongsToMany(User, { through: Activity });
-User.hasMany(Messages);
-Messages.belongsTo(User);
+Messages.belongsTo(Event);
+Messages.belongsTo(User, { as: "sender" });
+User.hasMany(Messages, { as: "sender" });
+Event.hasMany(Messages);
 // Event.belongsToMany(User);
 //alias as host
 User.hasMany(Event, { as: "host" });

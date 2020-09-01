@@ -28,24 +28,24 @@ const User = db.define("user", {
   },
   city: {
     type: Sequelize.STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true,
-    // },
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   state: {
     type: Sequelize.STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true,
-    // },
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
   zipCode: {
     type: Sequelize.STRING,
-    // allowNull: false,
-    // validate: {
-    //   notEmpty: true,
-    // },
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
   },
 
   imgUrl: {

@@ -90,12 +90,6 @@ export const auth2 = (
       state,
       zipCode,
     });
-    console.log("RES", res.data);
-  } catch (error) {
-    console.error(error);
-  }
-
-  try {
     return dispatch(getUser(res.data));
   } catch (error) {
     console.error(error);

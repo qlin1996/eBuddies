@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import Recaptcha from "react-grecaptcha";
 
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
@@ -85,6 +86,10 @@ class Login extends React.Component {
     } catch (e) {
       return { error: true };
     }
+  };
+  verifyCallback = (response) => console.log(response);
+  expiredCallback = () => {
+    console.log("hi");
   };
 
   render() {
@@ -192,6 +197,15 @@ class Login extends React.Component {
             />
           </View>
         </View>
+        <Recaptcha
+          sitekey={RECAPTCHA_SITE_KEY}
+          callback={verifyCallback}
+          expiredCallback={expiredCallback}
+          locale="zh-TW"
+          className="customClassName"
+          // Other props will be passed into the component.
+          data-theme="dark"
+        />
       </View>
     );
   }

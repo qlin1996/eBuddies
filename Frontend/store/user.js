@@ -66,9 +66,17 @@ export const auth1 = (email, password) => async (dispatch) => {
   }
 };
 
-export const auth2 = (firstName, lastName, email, password) => async (
-  dispatch
-) => {
+export const auth2 = (
+  firstName,
+  lastName,
+  email,
+  password,
+  description,
+  imgUrl,
+  city,
+  state,
+  zipCode
+) => async (dispatch) => {
   let res;
   try {
     res = await axios.post("http://localhost:8080/auth/signup", {
@@ -76,6 +84,11 @@ export const auth2 = (firstName, lastName, email, password) => async (
       lastName,
       email,
       password,
+      description,
+      imgUrl,
+      city,
+      state,
+      zipCode,
     });
     console.log("RES", res.data);
   } catch (error) {

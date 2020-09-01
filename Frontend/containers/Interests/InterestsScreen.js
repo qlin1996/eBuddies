@@ -1,11 +1,11 @@
 import React from "react";
-// import { connect } from "react-redux";
 import { View, Text, Button, Image, TouchableHighlight } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { connect } from "react-redux";
 import { Fonts } from "../../themes";
-import { getUserInfo } from "../../store/user";
+import { auth2 } from "../../store/user";
 import { postNewInterest } from "../../store/interest";
+
 class Interests extends React.Component {
   constructor() {
     super();
@@ -18,11 +18,32 @@ class Interests extends React.Component {
       pressStatus2: false,
       pressStatus3: false,
       pressStatus4: false,
+      description: "",
+      imgUrl: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
     };
   }
+
   componentDidMount() {
-    this.props.getUser(this.props.user.id);
+    this.setState({
+      description: this.props.navigation.getParam("description"),
+      imgUrl: this.props.navigation.getParam("imgUrl"),
+      city: this.props.navigation.getParam("city"),
+      state: this.props.navigation.getParam("state"),
+      zipCode: this.props.navigation.getParam("zipCode"),
+      firstName: this.props.navigation.getParam("firstName"),
+      lastName: this.props.navigation.getParam("lastName"),
+      email: this.props.navigation.getParam("email"),
+      password: this.props.navigation.getParam("password"),
+    });
   }
+
   handleLogin = () => {
     this.props.navigation.navigate("LOGIN");
   };
@@ -45,42 +66,47 @@ class Interests extends React.Component {
     this.setState(newState);
   };
 
-  handleSignup = (event) => {
-    let food = "Food";
-    let education = "Education";
-    let fitness = "Fitness";
-    let entertainment = "Entertainment";
-
-    event.preventDefault();
+  handleSignup = async () => {
+    await this.props.auth2(
+      this.state.firstName,
+      this.state.lastName,
+      this.state.email,
+      this.state.password,
+      this.state.description,
+      this.state.imgUrl,
+      this.state.city,
+      this.state.state,
+      this.state.zipCode
+    );
     if (this.state.food === true) {
-      this.props.postNewInterest({
+      await this.props.postNewInterest({
         userId: this.props.user.id,
-        userInterest: food,
+        userInterest: "Food",
       });
     }
     if (this.state.education === true) {
-      this.props.postNewInterest({
+      await this.props.postNewInterest({
         userId: this.props.user.id,
-        userInterest: education,
+        userInterest: "Education",
       });
     }
     if (this.state.fitness === true) {
-      this.props.postNewInterest({
+      await this.props.postNewInterest({
         userId: this.props.user.id,
-        userInterest: fitness,
+        userInterest: "Fitness",
       });
     }
     if (this.state.entertainment === true) {
-      this.props.postNewInterest({
+      await this.props.postNewInterest({
         userId: this.props.user.id,
-        userInterest: entertainment,
+        userInterest: "Entertainment",
       });
     }
-    this.props.navigation.navigate("RECOMMENDEDEVENTS");
-//     this.props.navigation.navigate("UserNavigator");
+    await this.props.navigation.navigate("RECOMMENDEDEVENTS");
   };
 
   render() {
+    console.log("STATE 3--->", this.state);
     return (
       <View style={styles.container}>
         <Image
@@ -181,13 +207,36 @@ const mapToState = (state) => ({
   user: state.user,
   interests: state.interests,
 });
+
 const mapDispatchToProps = (dispatch) => {
   return {
     postNewInterest: (id, updateData) => {
       return dispatch(postNewInterest(id, updateData));
     },
-    getUser: (id) => {
-      return dispatch(getUserInfo(id));
+    auth2: (
+      firstName,
+      lastName,
+      email,
+      password,
+      description,
+      imgUrl,
+      city,
+      state,
+      zipCode
+    ) => {
+      return dispatch(
+        auth2(
+          firstName,
+          lastName,
+          email,
+          password,
+          description,
+          imgUrl,
+          city,
+          state,
+          zipCode
+        )
+      );
     },
   };
 };

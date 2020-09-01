@@ -47,12 +47,6 @@ class UserProfileScreen extends React.Component {
               </Text>
             ))}
           </View>
-          {/* <Button
-            title="HOST"
-            onPress={() => this.props.navigation.navigate("HOST")}
-          >
-            HOSTED EVENTS
-          </Button> */}
         </View>
         <View style={Style.edit}>
           <Button
@@ -69,7 +63,6 @@ class UserProfileScreen extends React.Component {
           <Button title="LOGOUT" onPress={this.handleLogout}>
             Logout
           </Button>
-
         </View>
       </View>
     );

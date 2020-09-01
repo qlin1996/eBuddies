@@ -12,6 +12,7 @@ module.exports = (io) => {
       console.log(message);
       io.emit("recieve message", message);
     });
+
     socket.on("create", function (room) {
       socket.join(room);
     });

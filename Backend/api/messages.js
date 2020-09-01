@@ -10,6 +10,15 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const message = await Message.create(req.body);
+    res.json(message);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:messageId", async (req, res, next) => {
   try {
     const message = await Message.findOne({

@@ -5,15 +5,10 @@ import Event from "../Event/EventScreen";
 import { me } from "../../store/user";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
-import { getUserInfo } from "../../store/user";
 
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
-  }
-
-  componentDidMount() {
-    this.props.getUser(this.props.user.id);
   }
 
   handleEventClick = () => {
@@ -21,7 +16,6 @@ class RecommendedEvents extends React.Component {
   };
 
   render() {
-    // let { events } = this.props || [];
     const user = this.props.user;
     const interests = this.props.interests;
 
@@ -59,7 +53,6 @@ class RecommendedEvents extends React.Component {
                   {interests.map((interest) => (
                     <View key={interest.id}>
                       <View style={Style.childInterest}>
-                        {/* <Text style={Style.interestPt}>✯</Text> */}
                         <Text style={Style.interest}>
                           {interest.userInterest}
                         </Text>
@@ -123,10 +116,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // me: () => dispatch(me()),
-  getUser: (id) => {
-    return dispatch(getUserInfo(id));
-  },
   getAllEvents: () => dispatch(getAllEvents()),
 });
 

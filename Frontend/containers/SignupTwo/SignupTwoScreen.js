@@ -15,34 +15,46 @@ class SignupTwo extends React.Component {
       imgUrl: "",
       city: "",
       state: "",
-      zipCode: "",
+      zipCode: 0,
     };
   }
+
   componentDidMount() {
     this.props.getUser(this.props.user.id);
   }
-  handleSignup2 = async (event) => {
-    event.preventDefault();
-    await this.props.updateUser(this.props.user.id, {
-      city: this.state.city,
-      state: this.state.state,
-      zipCode: this.state.zipCode,
-      description: this.state.description,
-      imgUrl: this.state.imgUrl,
-    });
-    this.setState({
-      description: "",
-      imgUrl: "",
-      city: "",
-      state: "",
-      zipCode: "",
-    });
 
-    this.props.navigation.navigate("INTERESTS");
+  isValidUSZip = (zipCode) => {
+    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
+
+  handleSignup2 = async () => {
+    if (
+      this.state.city.length &&
+      this.state.state.length &&
+      this.isValidUSZip(this.state.zipCode)
+    ) {
+      await this.props.updateUser(this.props.user.id, {
+        city: this.state.city,
+        state: this.state.state,
+        zipCode: this.state.zipCode,
+        description: this.state.description,
+        imgUrl: this.state.imgUrl,
+      });
+      this.setState({
+        description: "",
+        imgUrl: "",
+        city: "",
+        state: "",
+        zipCode: "",
+      });
+      this.props.navigation.navigate("INTERESTS");
+    }
+  };
+
   handleLogin = () => {
     this.props.navigation.navigate("LOGIN");
   };
+
   selectPicture = async () => {
     try {
       await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -78,6 +90,11 @@ class SignupTwo extends React.Component {
             style={styles.logo}
           />
           <View style={styles.background}>
+            {this.state.city.length === 0 && <Text>City is Required</Text>}
+            {this.state.state.length === 0 && <Text>State is Required</Text>}
+            {!this.isValidUSZip(this.state.zipCode) && (
+              <Text>Valid US Zip Code is Required</Text>
+            )}
             <TextInput
               style={{
                 ...Fonts.normal,

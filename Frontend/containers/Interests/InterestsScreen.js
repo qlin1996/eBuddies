@@ -76,11 +76,10 @@ class Interests extends React.Component {
         userInterest: entertainment,
       });
     }
-    this.props.navigation.navigate("RECOMMENDEDEVENTS");
+    this.props.navigation.navigate("UserNavigator");
   };
 
   render() {
-    console.log("USER in interest", this.props.user.id);
     return (
       <View style={styles.container}>
         <Image

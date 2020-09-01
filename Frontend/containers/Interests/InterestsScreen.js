@@ -106,7 +106,6 @@ class Interests extends React.Component {
   };
 
   render() {
-    console.log("STATE 3--->", this.state);
     return (
       <View style={styles.container}>
         <Image

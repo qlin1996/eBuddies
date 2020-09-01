@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, TextInput, Image } from "react-native";
+import { View, Button, TextInput, Text } from "react-native";
 import { auth2 } from "../../store/user";
 import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
@@ -16,23 +16,38 @@ class Signup extends React.Component {
     };
   }
 
+  validateEmail = (email) => {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (this.state.email.length && re.test(email)) {
+      return true;
+    } else return false;
+  };
+
   handleSignup = async () => {
-    this.props.auth2(
-      this.state.firstName,
-      this.state.lastName,
-      this.state.email,
-      this.state.password
-    );
-    const waitForSignUp = () => {
-      this.props.navigation.navigate("ADDRESS");
-      this.setState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-      });
-    };
-    setTimeout(waitForSignUp, 1000);
+    if (
+      this.state.firstName.length &&
+      this.state.lastName.length &&
+      this.state.email.length &&
+      this.validateEmail(this.state.email) &&
+      this.state.password.length
+    ) {
+      this.props.auth2(
+        this.state.firstName,
+        this.state.lastName,
+        this.state.email,
+        this.state.password
+      );
+      const waitForSignUp = () => {
+        this.props.navigation.navigate("ADDRESS");
+        this.setState({
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+        });
+      };
+      setTimeout(waitForSignUp, 1000);
+    }
   };
 
   handleLogin = () => {
@@ -43,6 +58,20 @@ class Signup extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.background}>
+          {/* validations */}
+          {this.state.firstName.length === 0 && (
+            <Text>First Name is Required</Text>
+          )}
+          {this.state.lastName.length === 0 && (
+            <Text>Last Name is Required</Text>
+          )}
+          {!this.validateEmail(this.state.email) && (
+            <Text>Valid Email is Required</Text>
+          )}
+          {this.state.password.length === 0 && (
+            <Text>Password is Required</Text>
+          )}
+
           <TextInput
             style={{
               ...Fonts.normal,

@@ -51,15 +51,29 @@ class MyCalendar extends React.Component {
             return (
               <View key={event.id}>
                 <Event event={event} />
-                <Button
-                  style={Style.eventButton}
-                  title="View Event"
-                  onPress={() => {
-                    this.props.navigation.navigate("SINGLEEVENT", {
-                      id: event.id,
-                    });
+                <View
+                  style={{
+                    position: "relative",
+                    margin: 4,
+                    padding: 4,
+                    backgroundColor: "white",
+                    borderRadius: 9,
+                    // borderWidth: 3,
+                    // borderColor: "",
+                    width: "40%",
+                    top: "-1%",
+                    left: "29%",
                   }}
-                />
+                >
+                  <Button
+                    title="VIEW EVENT"
+                    onPress={() => {
+                      this.props.navigation.navigate("JOINEDEVENT", {
+                        id: event.id,
+                      });
+                    }}
+                  ></Button>
+                </View>
               </View>
             );
           })}

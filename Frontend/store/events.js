@@ -35,19 +35,6 @@ export const getUserEvents = (userId) => async (dispatch) => {
   } catch (error) {}
 };
 
-export const postUserEvent = (id, event) => async (dispatch) => {
-  try {
-    const { data } = await axios.post(
-      `http://localhost:8080/api/users/${id}`,
-      event
-    );
-    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
-    return dispatch(postEvent(data));
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const postNewEvent = (addEventForm) => async (dispatch) => {
   try {
     const { data } = await axios.post(

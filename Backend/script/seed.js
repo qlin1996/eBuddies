@@ -135,8 +135,7 @@ async function seed() {
 
   const fitness2 = await Event.create({
     name: "Switch Playground",
-    description:
-      "DJ music & dramatic lighting sets the scene at this hip gym with playground-style training classes.",
+    description: "DJ music & dramatic lighting sets the scene at this hip gym.",
     category: "Fitness",
     address: "130 E 12th St",
     city: "New York",
@@ -186,7 +185,7 @@ async function seed() {
     name: "Exhale – Exhale HIIT",
     description: "Upscale wellness studio with barre, cardio & yoga classes.",
     category: "Fitness",
-    address: "150 Central Park S.",
+    address: "15 Central Park",
     city: "New York",
     state: "New York",
     zipCode: "10019",
@@ -202,7 +201,7 @@ async function seed() {
     name: "Soul Cycle",
     description: "SoulCycle is more than just a workout.",
     category: "Fitness",
-    address: "5 Bryant Park 41st.",
+    address: "Bryant Park 41st.",
     city: "New York",
     state: "New York",
     zipCode: "10018",
@@ -282,7 +281,7 @@ async function seed() {
     name: "Manhatta",
     description: "High-end restaurant features American cuisine & city views.",
     category: "Food",
-    address: "28 Liberty St 60th floor.",
+    address: "28 Liberty St.",
     city: "New York",
     state: "New York",
     zipCode: "10053",
@@ -297,8 +296,7 @@ async function seed() {
   //EDUCATION
   const education1 = await Event.create({
     name: "NY Study Room",
-    description:
-      "A quiet, peaceful place to study with unlimited seating and computer devices available. A 2-min walk from the Empire State Building. ",
+    description: "A quiet, peaceful place to study with unlimited seating.",
     category: "Education",
     address: "312 5th Ave",
     city: "New York",
@@ -316,7 +314,7 @@ async function seed() {
     name: "Ground Central Coffee Company",
     description: "Coffee shop, comfortable place to study in NYC.",
     category: "Education",
-    address: "155 East 52nd Street, 3rd Ave",
+    address: "155 East 52nd St.",
     city: "New York",
     state: "New York",
     zipCode: "10019",
@@ -382,7 +380,7 @@ async function seed() {
     name: "SantaCon 2020",
     description: "SantaCon is an annual pub crawl.",
     category: "Entertainment",
-    address: "Basically every street in NYC",
+    address: "All of NYC",
     city: "New York",
     state: "New York",
     zipCode: "10019",
@@ -395,8 +393,7 @@ async function seed() {
   });
   const entertainment4 = await Event.create({
     name: "Nik's Dinner Party",
-    description:
-      "Nik generously invites you to dine at his home in Prague and cook everyone a 6 course meal.",
+    description: "Nik generously invites you to dine at his home in Prague.",
     category: "Entertainment",
     address: "Nik's Home",
     city: "Prague",

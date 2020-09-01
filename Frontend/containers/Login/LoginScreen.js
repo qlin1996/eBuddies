@@ -197,15 +197,6 @@ class Login extends React.Component {
             />
           </View>
         </View>
-        <Recaptcha
-          sitekey={RECAPTCHA_SITE_KEY}
-          callback={verifyCallback}
-          expiredCallback={expiredCallback}
-          locale="zh-TW"
-          className="customClassName"
-          // Other props will be passed into the component.
-          data-theme="dark"
-        />
       </View>
     );
   }

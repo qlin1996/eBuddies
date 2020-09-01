@@ -25,7 +25,10 @@ const updateCurrentUser = (user) => ({ type: UPDATE_CURRENT_USER, user });
  */
 export const putUser = (id, newInfo) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`${serverLink}/api/users/${id}`, newInfo);
+    const { data } = await axios.put(
+      `http://localhost:8081/api/users/${id}`,
+      newInfo
+    );
     return dispatch(updateUserAdmin(id, data));
   } catch (error) {
     console.log(error);
@@ -34,7 +37,7 @@ export const putUser = (id, newInfo) => async (dispatch) => {
 
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${serverLink}/auth/me`);
+    const res = await axios.get("http://localhost:8081/auth/me");
     if (res.data) {
       dispatch(getUser(res.data));
     } else {
@@ -48,7 +51,7 @@ export const me = () => async (dispatch) => {
 export const auth1 = (email, password) => async (dispatch) => {
   let res;
   try {
-    res = await axios.post(`${serverLink}/auth/login`, {
+    res = await axios.post("http://localhost:8081/auth/login", {
       email,
       password,
     });
@@ -76,7 +79,7 @@ export const auth2 = (
 ) => async (dispatch) => {
   let res;
   try {
-    res = await axios.post(`${serverLink}/auth/signup`, {
+    res = await axios.post("http://localhost:8081/auth/signup", {
       firstName,
       lastName,
       email,
@@ -100,7 +103,7 @@ export const auth2 = (
 };
 export const getUserInfo = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${serverLink}/api/users/${id}`);
+    const { data } = await axios.get(`http://localhost:8081/api/users/${id}`);
 
     return dispatch(getUser(data));
   } catch (err) {
@@ -110,7 +113,7 @@ export const getUserInfo = (id) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post(`${serverLink}/auth/logout`);
+    await axios.post("http://localhost:8081/auth/logout");
     return dispatch(removeUser());
   } catch (err) {
     console.error(err);
@@ -119,7 +122,10 @@ export const logout = () => async (dispatch) => {
 
 export const updateUser = (id, body) => async (dispatch) => {
   try {
-    const { data } = await axios.put(`${serverLink}/api/users/${id}`, body);
+    const { data } = await axios.put(
+      `http://localhost:8081/api/users/${id}`,
+      body
+    );
     return dispatch(updateCurrentUser(data));
   } catch (error) {
     console.error(error);

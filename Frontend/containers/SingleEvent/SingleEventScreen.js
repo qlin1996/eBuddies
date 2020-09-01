@@ -9,14 +9,12 @@ class SingleEvent extends React.Component {
     try {
       const eventId = this.props.navigation.getParam("id");
       this.props.fetchSingleEvent(eventId);
-      console.log("ID >> ", eventId);
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
-    console.log("PROPS >> ", this.props);
     return (
       <>
         <View>

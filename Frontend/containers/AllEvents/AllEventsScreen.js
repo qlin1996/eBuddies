@@ -27,16 +27,30 @@ class AllEvents extends React.Component {
         return (
           <View key={event.id}>
             <Event event={event} />
-            <Button
-              style={Style.eventButton}
-              title="View Event"
-              // onPress={this.handleEventClick}
-              onPress={() => {
-                this.props.navigation.navigate("SINGLEEVENT", {
-                  id: event.id,
-                });
+            <View
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.6)",
+                width: "27%",
+                alignSelf: "center",
+                borderRadius: "10%",
+                // padding: 2,
+                // margin: 1,
+                position: "relative",
+                top: "-13%",
+                color: "white",
               }}
-            />
+            >
+              <Button
+                style={Style.eventButton}
+                title="View Event"
+                // onPress={this.handleEventClick}
+                onPress={() => {
+                  this.props.navigation.navigate("SINGLEEVENT", {
+                    id: event.id,
+                  });
+                }}
+              />
+            </View>
           </View>
         );
       });

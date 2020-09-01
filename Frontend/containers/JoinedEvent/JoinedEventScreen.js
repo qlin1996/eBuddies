@@ -4,10 +4,10 @@ import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
 import { postUserEvent } from "../../store/events";
-import Style from "./SingleEventScreenStyle";
+import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
-class SingleEvent extends React.Component {
+class JoinedEvent extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -33,7 +33,7 @@ class SingleEvent extends React.Component {
       this.setState({ isModalVisible: true });
 
       const waitForModal = () => {
-        this.props.navigation.navigate("MYCALENDAR");
+        this.props.navigation.navigate("CHAT");
         this.setState({
           isModalVisible: false,
         });
@@ -71,14 +71,14 @@ class SingleEvent extends React.Component {
               padding: 4,
               backgroundColor: "white",
               borderRadius: 9,
-              borderWidth: 3,
-              borderColor: "white",
+              // borderWidth: 3,
+              // borderColor: "",
               width: "40%",
-              top: "52%",
-              alignSelf: "center",
+              top: "59.5%",
+              left: "29%",
             }}
           >
-            <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+            <Button title="JOIN THE CHAT" onPress={this.handleJoin}></Button>
           </View>
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
@@ -89,15 +89,21 @@ class SingleEvent extends React.Component {
             />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
-                Event, {this.props.event.name} has been added!
+                Connecting you to the Group Chat for, {this.props.event.name}!
               </Text>
             </View>
-            <Image
-              style={Style.image2}
-              source={{
-                uri: this.props.event.imgUrl,
-              }}
-            />
+            <View>
+              <Text
+                style={{
+                  textAlign: "center",
+                  fontSize: 60,
+                  position: "relative",
+                  top: "20%",
+                }}
+              >
+                💬💬
+              </Text>
+            </View>
           </View>
         </Modal>
       </>
@@ -123,4 +129,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);
+export default connect(mapStateToProps, mapDispatchToProps)(JoinedEvent);

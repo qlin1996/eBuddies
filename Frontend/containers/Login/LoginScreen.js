@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import Recaptcha from "react-grecaptcha";
 
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
@@ -30,14 +31,25 @@ class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      error: "",
     };
   }
   handleLogin = async () => {
-    if (this.state.email.length && this.state.password.length) {
-      await this.props.auth1(this.state.email, this.state.password);
-      await this.props.me();
-      await this.props.getAllInterests(this.props.user.id);
-      this.props.navigation.navigate("RECOMMENDEDEVENTS");
+    try {
+      if (this.state.email.length && this.state.password.length) {
+        const result = await this.props.auth1(
+          this.state.email,
+          this.state.password
+        );
+
+        await this.props.me();
+        await this.props.getAllInterests(this.props.user.id);
+        this.props.navigation.navigate("RECOMMENDEDEVENTS");
+      }
+    } catch (error) {
+      this.setState({
+        error: error,
+      });
     }
   };
 
@@ -90,10 +102,19 @@ class Login extends React.Component {
       }
     }
   };
+  verifyCallback = (response) => console.log(response);
+  expiredCallback = () => {
+    console.log("hi");
+  };
 
   render() {
+    console.log("STATE", this.state);
     return (
       <View style={styles.container}>
+        {this.state.error ? (
+          <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
+        ) : null}
+
         <View style={styles.background}>
           {this.state.email.length === 0 && (
             <Text style={{ color: "red" }}>Email is Required</Text>

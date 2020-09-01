@@ -49,20 +49,14 @@ export const me = () => async (dispatch) => {
 };
 
 export const auth1 = (email, password) => async (dispatch) => {
-  let res;
   try {
-    res = await axios.post("http://localhost:8081/auth/login", {
+    const { data } = await axios.post("http://localhost:8081/auth/login", {
       email,
       password,
     });
+    return dispatch(getUser(data));
   } catch (error) {
-    console.error(error);
-  }
-
-  try {
-    return dispatch(getUser(res.data));
-  } catch (error) {
-    console.error(error);
+    throw error;
   }
 };
 

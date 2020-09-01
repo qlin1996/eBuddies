@@ -26,18 +26,12 @@ class SingleEvent extends React.Component {
           />
 
           <View style={Style.eventDetailsWrapper}>
-            <Text style={Style.eventDetails}>
-              Event Name: {this.props.event.name}
-            </Text>
-            <Text style={Style.eventDetails}>
-              Event Address: {this.props.event.address}
-            </Text>
-            <Text style={Style.eventDetails}>
-              Event Date: {this.props.event.date}
-            </Text>
+            <Text style={Style.eventDetails}>{this.props.event.name}</Text>
+            <Text style={Style.eventDetails}>{this.props.event.address}</Text>
+            <Text style={Style.eventDetails}>{this.props.event.date}</Text>
 
             <Text style={Style.eventDetails}>
-              Event Description: {this.props.event.description}
+              {this.props.event.description}
             </Text>
           </View>
         </View>

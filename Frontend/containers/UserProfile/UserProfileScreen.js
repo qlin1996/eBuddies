@@ -69,6 +69,7 @@ class UserProfileScreen extends React.Component {
           <Button title="LOGOUT" onPress={this.handleLogout}>
             Logout
           </Button>
+
         </View>
       </View>
     );

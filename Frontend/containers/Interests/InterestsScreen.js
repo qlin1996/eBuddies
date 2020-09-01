@@ -77,6 +77,7 @@ class Interests extends React.Component {
       });
     }
     this.props.navigation.navigate("RECOMMENDEDEVENTS");
+//     this.props.navigation.navigate("UserNavigator");
   };
 
   render() {

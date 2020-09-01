@@ -25,13 +25,18 @@ class AddEventScreen extends React.Component {
       eventId: "",
       imgUrl: "",
       isModalVisible: false,
+      hostId: "",
     };
+  }
+
+  componentDidMount() {
+    this.setState({ hostId: this.props.user.id });
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault();
     this.setState({ isModalVisible: true });
-
+    this.setState({ hostId: this.props.user.id });
     this.props.postNewEvent(this.state);
 
     this.setState({
@@ -45,6 +50,7 @@ class AddEventScreen extends React.Component {
       description: "",
       eventId: "",
       // imgUrl: "",
+      hostId: "",
     });
     const waitForModal = () => {
       this.props.navigation.navigate("EVENTS");
@@ -56,7 +62,9 @@ class AddEventScreen extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
   };
 
   selectPicture = async () => {
@@ -222,8 +230,12 @@ class AddEventScreen extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
 const mapDispatch = (dispatch) => ({
   postNewEvent: (addEventForm) => dispatch(postNewEvent(addEventForm)),
 });
 
-export default connect(null, mapDispatch)(AddEventScreen);
+export default connect(mapStateToProps, mapDispatch)(AddEventScreen);

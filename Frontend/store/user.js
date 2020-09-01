@@ -77,6 +77,7 @@ export const auth2 = (firstName, lastName, email, password) => async (
       email,
       password,
     });
+    console.log("RES", res.data);
   } catch (error) {
     console.error(error);
   }

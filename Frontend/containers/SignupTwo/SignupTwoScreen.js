@@ -45,7 +45,7 @@ class SignupTwo extends React.Component {
         imgUrl: "",
         city: "",
         state: "",
-        zipCode: "",
+        zipCode: 0,
       });
       this.props.navigation.navigate("INTERESTS");
     }

@@ -35,6 +35,10 @@ class Signup extends React.Component {
     setTimeout(waitForSignUp, 1000);
   };
 
+  handleLogin = () => {
+    this.props.navigation.navigate("LOGIN");
+  };
+
   render() {
     return (
       <View style={styles.container}>

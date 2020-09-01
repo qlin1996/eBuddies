@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, ScrollView, Button, Image } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
-import { me } from "../../store/user";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 

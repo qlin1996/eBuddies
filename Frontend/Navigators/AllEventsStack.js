@@ -16,7 +16,6 @@ const screens = {
   SINGLEEVENT: {
     screen: SingleEventScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "Single Event",
     },
   },

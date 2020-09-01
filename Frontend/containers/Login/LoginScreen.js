@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-// import { View, Image, Button, TextInput } from "react-native";
+import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";

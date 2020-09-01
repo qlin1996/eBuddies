@@ -14,7 +14,6 @@ export const fetchSingleEvent = (id) => async (dispatch) => {
     //   `http://192.168.1.3:8081/api/events/${id}`
     // );
     const { data } = await axios.get(`http://localhost:8081/api/events/${id}`);
-    console.log("DATA >> ", data);
     return dispatch(getSingleEvent(data));
   } catch (err) {
     console.error(err);

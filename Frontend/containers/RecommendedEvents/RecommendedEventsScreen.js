@@ -46,6 +46,9 @@ class RecommendedEvents extends React.Component {
                   </Text>
                 </View>
                 <Text style={Style.interests}>Based on your Interests</Text>
+                {interests.length === 0 && (
+                  <Text>You have not selected any interests</Text>
+                )}
                 <View
                   style={{
                     flex: 1,

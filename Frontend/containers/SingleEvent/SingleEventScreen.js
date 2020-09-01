@@ -1,66 +1,49 @@
 import React from "react";
-import { Text, View } from "react-native";
-// import { connect } from "react-redux";
+import { Text, View, Image } from "react-native";
+import { connect } from "react-redux";
+import { fetchSingleEvent } from "../../store/singleEvent";
 import Style from "./SingleEventScreenStyle";
-import { Helpers, Metrics } from "../../themes";
 
 class SingleEvent extends React.Component {
   componentDidMount() {
-    // this._fetchSingleEvent()
+    try {
+      const eventId = this.props.navigation.getParam("id");
+      this.props.fetchSingleEvent(eventId);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
     return (
       <>
-        <View
-          style={[
-            Helpers.fill,
-            Helpers.rowMain,
-            Metrics.mediumHorizontalMargin,
-            Metrics.mediumVerticalMargin,
-          ]}
-        >
-          <View>
-            {/* event image */}
-            <View style={Style.eventImg} />
+        <View>
+          <Image
+            style={Style.eventImg}
+            source={{ uri: this.props.event.imgUrl }}
+          />
 
-            {/* event information */}
-            <View>
-              <Text style={Style.eventTitle}>Title</Text>
+          <View style={Style.eventDetailsWrapper}>
+            <Text style={Style.eventDetails}>{this.props.event.name}</Text>
+            <Text style={Style.eventDetails}>{this.props.event.address}</Text>
+            <Text style={Style.eventDetails}>{this.props.event.date}</Text>
 
-              <Text style={Style.eventLocation}>Location</Text>
-              <Text style={Style.eventDate}>8/24/20</Text>
-              <Text style={Style.eventDescription}>
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                qui officia deserunt.
-              </Text>
-            </View>
-
-            {/* add event button */}
-            <View style={Style.addEventCircle}>
-              <Text style={Style.addEventPlusSign}>+</Text>
-            </View>
+            <Text style={Style.eventDetails}>
+              {this.props.event.description}
+            </Text>
           </View>
         </View>
       </>
     );
   }
-
-  // _fetchSingleEvent() {
-  //   this.props.fetchSingleEvent()
-  // }
 }
 
 const mapStateToProps = (state) => ({
-  event: state.example.event,
-  eventIsLoading: state.example.eventIsLoading,
-  eventErrorMessage: state.example.eventErrorMessage,
+  event: state.singleEvent,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // fetchSingleEvent: () => dispatch(ExampleActions.fetchSingleEvent()),
+  fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
 });
 
-// export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);
-
-export default SingleEvent;
+export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent);

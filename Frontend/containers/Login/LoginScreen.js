@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-// import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
@@ -39,7 +38,7 @@ class Login extends React.Component {
     await this.props.auth1(this.state.email, this.state.password);
     await this.props.me();
     await this.props.getAllInterests(this.props.user.id);
-    this.props.navigation.navigate("MYEVENTS");
+    this.props.navigation.navigate("RECOMMENDEDEVENTS");
   };
 
   handleSignup = () => {
@@ -110,7 +109,7 @@ class Login extends React.Component {
               this.textInput = input;
             }}
             returnKeyType="go"
-            placeholder="jdoe@gmail.com"
+            placeholder="Email Address"
             placeholderTextColor="rgba(38,153,251,1)"
             keyboardType="email-address"
           />
@@ -148,7 +147,16 @@ class Login extends React.Component {
           </View>
           <View style={styles.containerFb}>
             <TouchableOpacity style={styles.loginBtn} onPress={this.logInFb}>
-              <Text style={{ color: "#fff" }}>Login with Facebook</Text>
+              <Text
+                style={{
+                  position: "relative",
+                  top: "20%",
+                  color: "#fff",
+                  fontSize: 16,
+                }}
+              >
+                Login with Facebook
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.containerG}>
@@ -156,7 +164,16 @@ class Login extends React.Component {
               style={styles.loginBtn2}
               onPress={() => this.signInWithGoogle()}
             >
-              <Text style={{ color: "red" }}>Login with Google</Text>
+              <Text
+                style={{
+                  position: "relative",
+                  top: "20%",
+                  color: "red",
+                  fontSize: 16,
+                }}
+              >
+                Login with Google
+              </Text>
             </TouchableOpacity>
           </View>
           <View style={styles.account}>

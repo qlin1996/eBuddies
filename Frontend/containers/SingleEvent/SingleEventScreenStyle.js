@@ -10,10 +10,22 @@ export default StyleSheet.create({
     overflow: "hidden",
   },
   eventImg: {
-    width: 375,
+    width: 420,
     height: 250,
     backgroundColor: Colors.secondary,
     overflow: "hidden",
+  },
+  eventDetailsWrapper: {
+    ...Helpers.fullWidth,
+    height: 667,
+    backgroundColor: Colors.white,
+    paddingTop: 20,
+    overflow: "hidden",
+  },
+  eventDetails: {
+    ...Fonts.normal,
+    color: Colors.primary,
+    fontSize: 20,
   },
   eventTitle: {
     ...Fonts.h4,
@@ -27,12 +39,6 @@ export default StyleSheet.create({
     color: Colors.blue,
     textAlign: "left",
     marginHorizontal: 20,
-  },
-  locationIcon: {
-    ...Fonts.large,
-    color: Colors.blue,
-    textAlign: "left",
-    marginHorizontal: 40,
   },
   eventDate: {
     ...Fonts.medium,
@@ -48,30 +54,6 @@ export default StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 20,
   },
-  moreText: {
-    ...Fonts.normal,
-    color: Colors.text,
-    textAlign: "left",
-    marginBottom: 20,
-    marginHorizontal: 20,
-    fontSize: 12,
-  },
-  addEventCircle: {
-    ...Helpers.fullWidth,
-    height: 50,
-    width: 50,
-    borderRadius: 50,
-    backgroundColor: Colors.primary,
-    alignItems: "center",
-    marginLeft: "auto",
-    marginTop: 20,
-    marginRight: 20,
-  },
-  addEventPlusSign: {
-    color: Colors.white,
-    fontSize: 40,
-    top: -5,
-  },
   eventFooter: {
     width: 300,
     alignContent: "center",
@@ -79,5 +61,12 @@ export default StyleSheet.create({
     height: 70,
     backgroundColor: Colors.lightBlue,
     padding: Metrics.medium,
+  },
+  eventButton: {
+    ...Fonts.normal,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom: 50,
+    marginHorizontal: 50,
   },
 });

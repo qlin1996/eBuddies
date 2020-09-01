@@ -1,15 +1,18 @@
 import React from "react";
 import { GiftedChat } from "react-native-gifted-chat";
 import io from "socket.io-client";
+
 const socket = io("http://localhost:8080", {
   transports: ["websocket"],
 });
+
 export default class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = { messages: [] };
     this.onSend = this.onSend.bind(this);
   }
+
   componentDidMount() {
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
@@ -19,6 +22,7 @@ export default class ChatScreen extends React.Component {
       console.log("This is the message", message);
     });
   }
+
   onSend(messages = []) {
     //me sending a message
     socket.emit("send message", messages);
@@ -29,6 +33,7 @@ export default class ChatScreen extends React.Component {
       };
     });
   }
+
   render() {
     return (
       <GiftedChat

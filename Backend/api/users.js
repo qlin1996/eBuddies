@@ -29,7 +29,10 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 //GET --> /API/USERS/:USERID
 router.get("/:userId", async (req, res, next) => {
   try {
-    const user = await User.findOne({ where: { id: req.params.userId } });
+    const user = await User.findOne({
+      where: { id: req.params.userId },
+      include: { all: true },
+    });
     res.json(user);
   } catch (error) {
     next(error);

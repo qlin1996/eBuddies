@@ -30,7 +30,12 @@ class AllEvents extends React.Component {
             <Button
               style={Style.eventButton}
               title="View Event"
-              onPress={this.handleEventClick}
+              // onPress={this.handleEventClick}
+              onPress={() => {
+                this.props.navigation.navigate("SINGLEEVENT", {
+                  id: event.id,
+                });
+              }}
             />
           </View>
         );

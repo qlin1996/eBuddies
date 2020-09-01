@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
-import AllEventsScreen from "../containers/AllEvents/AllEventsScreen";
-import SingleEventScreen from "../containers/SingleEvent/SingleEventScreen";
+import MyCalendarScreen from "../containers/MyCalendar/MyCalendarScreen";
 import HeaderScreen from "../containers/Header/HeaderScreen";
+import SingleEventScreen from "../containers/SingleEvent/SingleEventScreen";
 
 const screens = {
-  AllEventsScreen: {
-    screen: AllEventsScreen,
+  MyCalendarScreen: {
+    screen: MyCalendarScreen,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => <HeaderScreen navigation={navigation} />,
@@ -21,6 +21,6 @@ const screens = {
   },
 };
 
-const AllEventsStack = createStackNavigator(screens);
+const MyCalendarStack = createStackNavigator(screens);
 
-export default AllEventsStack;
+export default MyCalendarStack;

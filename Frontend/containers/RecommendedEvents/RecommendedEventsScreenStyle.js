@@ -14,6 +14,8 @@ export default StyleSheet.create({
     textAlign: "center",
     marginTop: 20,
     marginBottom: 50,
+    position: "absolute",
+    top: "30%",
     marginHorizontal: 50,
   },
   eventFooter: {
@@ -50,11 +52,18 @@ export default StyleSheet.create({
     fontWeight: "bold",
     ...Metrics.bottomMargin,
   },
+  welcomeText: {
+    fontSize: 24,
+    textAlign: "center",
+    letterSpacing: 1,
+    margin: 3,
+    padding: 6,
+  },
   interests: {
     textAlign: "center",
-    color: Colors.blue,
+    color: "black",
     ...Fonts.normal,
-    fontWeight: "bold",
+    // fontWeight: "bold",
     ...Metrics.bottomMargin,
   },
   interestContainer: {
@@ -72,10 +81,42 @@ export default StyleSheet.create({
     marginRight: 10,
     width: 114,
   },
-  interestPt: {
-    position: "relative",
+  // interestPt: {
+  //   // position: "absolute",
+  //   // color: Colors.blue,
+  //   // top: "35%",
+  //   // left: "10%",
+  // },
+
+  rec: {
+    alignSelf: "center",
+    position: "absolute",
+    top: "-11%",
+    fontSize: 20,
+    padding: 5,
+    margin: 5,
     color: Colors.blue,
-    top: "50%",
-    left: "30%",
+    backgroundColor: "blue",
+  },
+  specificInterest: {
+    textDecorationLine: "underline",
+    textDecorationColor: Colors.blue,
+    fontSize: 16,
+  },
+
+  childrenContainer: {
+    padding: "2%",
+    margin: "2%",
+    width: "50%",
+    alignSelf: "center",
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: "white",
+    fontSize: 16,
+  },
+  interestPoints: {
+    fontSize: 16,
+    letterSpacing: 1,
+    textAlign: "center",
   },
 });

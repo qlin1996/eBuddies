@@ -22,7 +22,6 @@ class EditUserProfileScreen extends React.Component {
     this.state = {
       firstName: "",
       lastName: "",
-      email: "",
       city: "",
       state: "",
       zipCode: "",
@@ -44,7 +43,6 @@ class EditUserProfileScreen extends React.Component {
     this.setState({
       firstName: this.props.user.firstName,
       lastName: this.props.user.lastName,
-      email: this.props.user.email,
       city: this.props.user.city,
       state: this.props.user.state,
       zipCode: this.props.user.zipCode,
@@ -56,6 +54,10 @@ class EditUserProfileScreen extends React.Component {
       imgUrl: this.props.user.imgUrl,
     });
   }
+
+  isValidUSZip = (zipCode) => {
+    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
+  };
 
   updateChoice = (interest) => {
     let newState = { ...this.state };
@@ -91,46 +93,52 @@ class EditUserProfileScreen extends React.Component {
   };
 
   handleUpdate = async () => {
-    await this.props.updateUser(this.props.user.id, {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
-      email: this.state.email,
-      city: this.state.city,
-      state: this.state.state,
-      zipCode: this.state.zipCode,
-      description: this.state.description,
-      imgUrl: this.state.imgUrl,
-    });
-    await this.props.deleteAllInterests(this.props.user.id);
-    if (this.state.Food === true) {
-      await this.props.postNewInterest({
-        userId: this.props.user.id,
-        userInterest: "Food",
+    if (
+      this.state.firstName.length &&
+      this.state.lastName.length &&
+      this.state.city.length &&
+      this.state.state.length &&
+      this.isValidUSZip(this.state.zipCode)
+    ) {
+      await this.props.updateUser(this.props.user.id, {
+        firstName: this.state.firstName,
+        lastName: this.state.lastName,
+        city: this.state.city,
+        state: this.state.state,
+        zipCode: this.state.zipCode,
+        description: this.state.description,
+        imgUrl: this.state.imgUrl,
       });
+      await this.props.deleteAllInterests(this.props.user.id);
+      if (this.state.Food === true) {
+        await this.props.postNewInterest({
+          userId: this.props.user.id,
+          userInterest: "Food",
+        });
+      }
+      if (this.state.Education === true) {
+        await this.props.postNewInterest({
+          userId: this.props.user.id,
+          userInterest: "Education",
+        });
+      }
+      if (this.state.Fitness === true) {
+        await this.props.postNewInterest({
+          userId: this.props.user.id,
+          userInterest: "Fitness",
+        });
+      }
+      if (this.state.Entertainment === true) {
+        await this.props.postNewInterest({
+          userId: this.props.user.id,
+          userInterest: "Entertainment",
+        });
+      }
+      this.props.navigation.navigate("PROFILE");
     }
-    if (this.state.Education === true) {
-      await this.props.postNewInterest({
-        userId: this.props.user.id,
-        userInterest: "Education",
-      });
-    }
-    if (this.state.Fitness === true) {
-      await this.props.postNewInterest({
-        userId: this.props.user.id,
-        userInterest: "Fitness",
-      });
-    }
-    if (this.state.Entertainment === true) {
-      await this.props.postNewInterest({
-        userId: this.props.user.id,
-        userInterest: "Entertainment",
-      });
-    }
-    this.props.navigation.navigate("PROFILE");
   };
 
   render() {
-    console.log("IMAGE URL FROM PROPS", this.props.user.imgUrl);
     console.log("STATE", this.state);
     return (
       <ScrollView>
@@ -146,6 +154,9 @@ class EditUserProfileScreen extends React.Component {
             <Button title="Take Picture" onPress={this.takePicture} />
           </View>
           <View style={Style.profileContainer}>
+            {this.state.firstName.length === 0 && (
+              <Text style={{ color: "red" }}>First Name is Required</Text>
+            )}
             <Text>First Name</Text>
             <TextInput
               value={this.state.firstName}
@@ -155,6 +166,10 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
+
+            {this.state.lastName.length === 0 && (
+              <Text style={{ color: "red" }}>Last Name is Required</Text>
+            )}
             <Text>Last Name</Text>
             <TextInput
               style={Style.text}
@@ -164,15 +179,10 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
-            <Text>Email</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.email}
-              onChangeText={(email) => this.setState({ email })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
+
+            {this.state.city.length === 0 && (
+              <Text style={{ color: "red" }}>City is Required</Text>
+            )}
             <Text>City</Text>
             <TextInput
               style={Style.text}
@@ -182,6 +192,10 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
+
+            {this.state.state.length === 0 && (
+              <Text style={{ color: "red" }}>State is Required</Text>
+            )}
             <Text>State</Text>
             <TextInput
               style={Style.text}
@@ -191,6 +205,11 @@ class EditUserProfileScreen extends React.Component {
                 this.textInput = input;
               }}
             />
+            {!this.isValidUSZip(this.state.zipCode) && (
+              <Text style={{ color: "red" }}>
+                Valid US Zip Code is Required
+              </Text>
+            )}
             <Text>Zip Code</Text>
             <TextInput
               style={Style.text}

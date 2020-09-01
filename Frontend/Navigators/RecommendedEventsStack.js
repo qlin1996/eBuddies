@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation-stack";
-import MyEventsScreen from "../containers/MyEvents/MyEventsScreen";
+import RecommendedEventsScreen from "../containers/RecommendedEvents/RecommendedEventsScreen";
 import SingleEventScreen from "../containers/SingleEvent/SingleEventScreen";
 import HeaderScreen from "../containers/Header/HeaderScreen";
 
 const screens = {
-  MyEventsScreen: {
-    screen: MyEventsScreen,
+  RECOMMENDEDEVENTS: {
+    screen: RecommendedEventsScreen,
     navigationOptions: ({ navigation }) => {
       return {
         headerTitle: () => <HeaderScreen navigation={navigation} />,

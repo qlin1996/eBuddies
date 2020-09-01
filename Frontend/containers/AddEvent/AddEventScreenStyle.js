@@ -8,16 +8,20 @@ export default StyleSheet.create({
   name: {
     ...Fonts.normal,
     textAlign: "center",
+    position: "relative",
+    top: "20%",
   },
   address: {
     ...Fonts.normal,
     textAlign: "center",
+    position: "relative",
+    top: "-10%",
   },
   city: {
     ...Fonts.normal,
     textAlign: "center",
     position: "relative",
-    top: "25%",
+    top: "37%",
   },
 
   state: {
@@ -31,7 +35,7 @@ export default StyleSheet.create({
     ...Fonts.normal,
     textAlign: "center",
     position: "relative",
-    top: "30%",
+    top: "12%",
   },
 
   date: {
@@ -54,15 +58,15 @@ export default StyleSheet.create({
     textAlign: "left",
     textAlign: "center",
     position: "relative",
-    top: "70%",
+    top: "12%",
   },
   eventImg: {
     alignSelf: "center",
     position: "relative",
-    top: "-38%",
-    height: 170,
-    borderRadius: 150,
-    width: "50%",
+    top: "-39%",
+    height: "16%",
+    borderRadius: 190,
+    width: "45%",
     alignSelf: "center",
     // marginTop: 20,
     marginBottom: 0,
@@ -109,7 +113,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: "rgba(38,153,251,1)",
     position: "relative",
-    bottom: "30%",
+    bottom: "28.5%",
   },
   camera: {
     position: "relative",
@@ -120,7 +124,7 @@ export default StyleSheet.create({
   },
   selectPic: {
     position: "relative",
-    top: "-35%",
+    top: "-37%",
     left: "-25%",
   },
   takePic: {

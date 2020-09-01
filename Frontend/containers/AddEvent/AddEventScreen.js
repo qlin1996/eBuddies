@@ -102,7 +102,7 @@ class AddEventScreen extends React.Component {
           <View style={Style.addForm}>
             <View style={Style.field1}>
               {this.state.name.length === 0 && (
-                <Text style={{ color: "red" }}>Event Name is Required</Text>
+                <Text style={{ color: "black" }}>Event Name is Required</Text>
               )}
               <TextInput
                 style={Style.name}
@@ -117,7 +117,9 @@ class AddEventScreen extends React.Component {
             </View>
             <View style={Style.field2}>
               {this.state.address.length === 0 && (
-                <Text style={{ color: "red" }}>
+                <Text
+                  style={{ color: "black", position: "relative", top: "-20%" }}
+                >
                   Event Street Address is Required
                 </Text>
               )}
@@ -132,7 +134,7 @@ class AddEventScreen extends React.Component {
             </View>
             <View style={Style.field3}>
               {this.state.city.length === 0 && (
-                <Text style={{ color: "red" }}>Event City is Required</Text>
+                <Text style={{ color: "black" }}>Event City is Required</Text>
               )}
               <TextInput
                 style={Style.city}
@@ -146,7 +148,7 @@ class AddEventScreen extends React.Component {
 
             <View style={Style.field4}>
               {this.state.state.length === 0 && (
-                <Text style={{ color: "red" }}>Event State is Required</Text>
+                <Text style={{ color: "black" }}>Event State is Required</Text>
               )}
               <TextInput
                 style={Style.state}
@@ -160,7 +162,7 @@ class AddEventScreen extends React.Component {
 
             <View style={Style.field5}>
               {!this.isValidUSZip(this.state.zipcode) && (
-                <Text style={{ color: "red" }}>
+                <Text style={{ color: "black" }}>
                   Valid US Zip Code is Required
                 </Text>
               )}
@@ -176,7 +178,7 @@ class AddEventScreen extends React.Component {
 
             <View style={Style.field6}>
               {this.state.date.length === 0 && (
-                <Text style={{ color: "red" }}>Event Date is Required</Text>
+                <Text style={{ color: "black" }}>Event Date is Required</Text>
               )}
               <TextInput
                 style={Style.date}
@@ -189,7 +191,7 @@ class AddEventScreen extends React.Component {
             </View>
             <View style={Style.field7}>
               {this.state.time.length === 0 && (
-                <Text style={{ color: "red" }}>Event Time is Required</Text>
+                <Text style={{ color: "black" }}>Event Time is Required</Text>
               )}
               <TextInput
                 style={Style.time}
@@ -203,7 +205,7 @@ class AddEventScreen extends React.Component {
             <View style={Style.field8}>
               <ScrollView>
                 {this.state.description.length === 0 && (
-                  <Text style={{ color: "red" }}>
+                  <Text style={{ color: "black" }}>
                     Event Description is Required
                   </Text>
                 )}
@@ -219,7 +221,9 @@ class AddEventScreen extends React.Component {
             </View>
             <View style={Style.field9}>
               {this.state.category.length === 0 && (
-                <Text style={{ color: "red" }}>Event category is Required</Text>
+                <Text style={{ color: "black" }}>
+                  Event category is Required
+                </Text>
               )}
               <TextInput
                 style={Style.category}

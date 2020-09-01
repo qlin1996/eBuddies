@@ -126,6 +126,7 @@ async function seed() {
     zipCode: "10003",
     date: "09/04/2020",
     time: "08:00 AM",
+    category: "Fitness",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
     userId: 101,

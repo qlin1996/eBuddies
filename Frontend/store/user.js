@@ -98,7 +98,7 @@ export const auth2 = (
 export const getUserInfo = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:8081/api/users/${id}`);
-
+    console.log("user in thunk", data);
     return dispatch(getUser(data));
   } catch (err) {
     console.error(err);

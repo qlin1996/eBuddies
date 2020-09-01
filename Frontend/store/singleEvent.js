@@ -10,7 +10,6 @@ export const getSingleEvent = (event) => ({
 export const fetchSingleEvent = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:8081/api/events/${id}`);
-    console.log("DATA >> ", data);
     return dispatch(getSingleEvent(data));
   } catch (err) {
     console.error(err);

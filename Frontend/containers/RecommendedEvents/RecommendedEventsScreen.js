@@ -1,13 +1,13 @@
 import React from "react";
-import { View, Text, ScrollView, Button } from "react-native";
+import { View, Text, ScrollView, Button, Image } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import { me } from "../../store/user";
-import Style from "./MyEventsScreenStyle";
+import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 
-class MyEvents extends React.Component {
+class RecommendedEvents extends React.Component {
   constructor() {
     super();
   }
@@ -46,6 +46,9 @@ class MyEvents extends React.Component {
                   </Text>
                 </View>
                 <Text style={Style.interests}>Based on your Interests</Text>
+                {interests.length === 0 && (
+                  <Text>You have not selected any interests</Text>
+                )}
                 <View
                   style={{
                     flex: 1,
@@ -56,7 +59,7 @@ class MyEvents extends React.Component {
                   {interests.map((interest) => (
                     <View key={interest.id}>
                       <View style={Style.childInterest}>
-                        <Text style={Style.interestPt}>✯</Text>
+                        {/* <Text style={Style.interestPt}>✯</Text> */}
                         <Text style={Style.interest}>
                           {interest.userInterest}
                         </Text>
@@ -68,16 +71,19 @@ class MyEvents extends React.Component {
                   return (
                     <View key={event.id}>
                       <View style={Style.childContainer}>
-                        <Text style={Style.interestPoints}>
-                          Because off your Interest in{" "}
-                          <Text style={Style.specificInterest}>
-                            {event.category}{" "}
+                        <View style={Style.childrenContainer}>
+                          <Text style={Style.interestPoints}>
+                            Because on your Interest in{" "}
+                            <Text style={Style.specificInterest}>
+                              {event.category}{" "}
+                            </Text>
                           </Text>
-                        </Text>
+                        </View>
+
                         <Event event={event} />
 
                         <Button
-                          style={Style.eventButton}
+                          style={{ position: "absolute", top: "10%" }}
                           title="View Event"
                           onPress={this.handleEventClick}
                         />
@@ -124,4 +130,4 @@ const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyEvents);
+export default connect(mapStateToProps, mapDispatchToProps)(RecommendedEvents);

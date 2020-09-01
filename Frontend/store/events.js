@@ -17,6 +17,7 @@ export const getAllEvents = () => async (dispatch) => {
   try {
     // const { data } = await axios.get("http://localhost:8080/api/events");
     const { data } = await axios.get("http://192.168.1.3:8081/api/events");
+    // const { data } = await axios.get("http://192.168.1.126:8080/api/events");
 
     return dispatch(getEvents(data));
   } catch (err) {

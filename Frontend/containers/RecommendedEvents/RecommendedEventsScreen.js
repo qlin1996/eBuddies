@@ -16,9 +16,9 @@ class RecommendedEvents extends React.Component {
   componentDidMount() {
     this.props.getUser(this.props.user.id);
   }
-//   handleEventClick = () => {
-//     this.props.navigation.navigate("SINGLEEVENT");
-//   };
+  //   handleEventClick = () => {
+  //     this.props.navigation.navigate("SINGLEEVENT");
+  //   };
 
   render() {
     const user = this.props.user;
@@ -126,6 +126,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
+  getUser: (id) => dispatch(getUserInfo(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecommendedEvents);

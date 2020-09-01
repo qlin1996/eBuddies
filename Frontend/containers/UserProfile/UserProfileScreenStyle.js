@@ -54,18 +54,15 @@ export default StyleSheet.create({
     left: "-20%",
   },
   edit: {
-    position: "relative",
     top: "3%",
-    left: "-14%",
+    alignSelf: "center",
   },
   logoutbutton: {
-    position: "relative",
-    top: "-6%",
-    left: "18%",
+    alignSelf: "center",
   },
   separator: {
     position: "relative",
-    top: "-1.4%",
+    top: "1.5%",
     left: "45.5%",
   },
   interests: {

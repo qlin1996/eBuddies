@@ -66,16 +66,15 @@ class SingleEvent extends React.Component {
         <View>
           <View
             style={{
-              position: "relative",
-              margin: 4,
-              padding: 4,
-              backgroundColor: "white",
-              borderRadius: 9,
-              borderWidth: 3,
-              borderColor: "white",
-              width: "40%",
-              top: "52%",
+              backgroundColor: "rgba(255, 255, 255, 0.6)",
+              width: "29%",
               alignSelf: "center",
+              borderRadius: "10%",
+              // padding: 2,
+              // margin: 1,
+              position: "relative",
+              top: "-38%",
+              color: "white",
             }}
           >
             <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>

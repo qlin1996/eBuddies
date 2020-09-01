@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Style from "./MyCalendarScreenStyle";
 import Event from "../Event/EventScreen";
 import { getAllEvents } from "../../store/events";
+import { getUserInfo } from "../../store/user";
 
 class MyCalendar extends React.Component {
   constructor() {
@@ -15,8 +16,8 @@ class MyCalendar extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getAllEvents();
+  async componentDidMount() {
+    await this.props.getAllEvents();
   }
 
   eventsIHost = () => {
@@ -31,7 +32,8 @@ class MyCalendar extends React.Component {
     });
   };
 
-  eventsIAttend = () => {
+  eventsIAttend = async () => {
+    await this.props.getUserInfo(this.props.user.id);
     const events = this.props.user.events;
     this.setState({
       events: events,
@@ -40,25 +42,26 @@ class MyCalendar extends React.Component {
     });
   };
 
-  handleEventClick = () => {
-    this.props.navigation.navigate("SINGLEEVENT");
-  };
-
   render() {
+    const events = this.state.events || [];
     return (
       <>
         <ScrollView>
           <Button title="Events I Host" onPress={this.eventsIHost} />
           <Button title="Events I Attend" onPress={this.eventsIAttend} />
 
-          {this.state.events.map((event) => {
+          {events.map((event) => {
             return (
               <View key={event.id}>
                 <Event event={event} />
                 <Button
                   style={Style.eventButton}
                   title="View Event"
-                  onPress={this.handleEventClick}
+                  onPress={() =>
+                    this.props.navigation.navigate("SINGLEEVENT", {
+                      id: event.id,
+                    })
+                  }
                 />
               </View>
             );
@@ -76,6 +79,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
+  getUserInfo: (id) => dispatch(getUserInfo(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyCalendar);

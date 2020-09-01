@@ -64,7 +64,6 @@ class Signup extends React.Component {
   };
 
   render() {
-    console.log("all users", this.props.users);
     return (
       <View style={styles.container}>
         <View style={styles.background}>

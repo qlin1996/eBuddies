@@ -57,6 +57,7 @@ class MyCalendar extends React.Component {
                 <Button
                   style={Style.eventButton}
                   title="View Event"
+
                   onPress={() =>
                     this.props.navigation.navigate("SINGLEEVENT", {
                       id: event.id,
@@ -75,11 +76,18 @@ class MyCalendar extends React.Component {
 const mapStateToProps = (state) => ({
   user: state.user,
   events: state.events,
+  activity: state.activity,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
+
+  postNewActivity: (id, updateData) => {
+    return dispatch(postNewActivity(id, updateData));
+  },
+
   getUserInfo: (id) => dispatch(getUserInfo(id)),
+
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyCalendar);

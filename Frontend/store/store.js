@@ -6,6 +6,7 @@ import usersReducer from "./users";
 import eventReducer from "./events";
 import singleEventReducer from "./singleEvent";
 import interestReducer from "./interest";
+import activityReducer from "./activity";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   events: eventReducer,
   singleEvent: singleEventReducer,
   interests: interestReducer,
+  activities: activityReducer,
 });
 const configureStore = () => {
   return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

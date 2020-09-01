@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
+import Recaptcha from "react-grecaptcha";
 
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
@@ -100,6 +101,10 @@ class Login extends React.Component {
         return { error: true };
       }
     }
+  };
+  verifyCallback = (response) => console.log(response);
+  expiredCallback = () => {
+    console.log("hi");
   };
 
   render() {

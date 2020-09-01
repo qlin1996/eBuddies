@@ -8,11 +8,17 @@ import { getAllEvents } from "../../store/events";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
+    // this.state = {
+    //   filter: 'All'
+    // }
   }
 
-  handleEventClick = () => {
-    this.props.navigation.navigate("SINGLEEVENT");
-  };
+  componentDidMount() {
+    this.props.getUser(this.props.user.id);
+  }
+//   handleEventClick = () => {
+//     this.props.navigation.navigate("SINGLEEVENT");
+//   };
 
   render() {
     const user = this.props.user;
@@ -77,7 +83,11 @@ class RecommendedEvents extends React.Component {
                         <Button
                           style={{ position: "absolute", top: "10%" }}
                           title="View Event"
-                          onPress={this.handleEventClick}
+                          onPress={() => {
+                            this.props.navigation.navigate("SINGLEEVENT", {
+                              id: event.id,
+                            });
+                          }}
                         />
                       </View>
                     </View>

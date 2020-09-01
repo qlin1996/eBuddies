@@ -33,7 +33,7 @@ class AllEvents extends React.Component {
               // onPress={this.handleEventClick}
               onPress={() => {
                 this.props.navigation.navigate("SINGLEEVENT", {
-                  eventId: this.props.event.id,
+                  id: event.id,
                 });
               }}
             />

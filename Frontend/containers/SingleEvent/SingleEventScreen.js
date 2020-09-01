@@ -7,28 +7,37 @@ import Style from "./SingleEventScreenStyle";
 class SingleEvent extends React.Component {
   componentDidMount() {
     try {
-      const eventId = this.props.route.params.eventId;
+      const eventId = this.props.navigation.getParam("id");
       this.props.fetchSingleEvent(eventId);
+      console.log("ID >> ", eventId);
     } catch (error) {
       console.log(error);
     }
   }
 
   render() {
+    console.log("PROPS >> ", this.props);
     return (
       <>
         <View>
-          <Image style={Style.eventImg} source={{ uri: eventId.imgUrl }} />
+          <Image
+            style={Style.eventImg}
+            source={{ uri: this.props.event.imgUrl }}
+          />
 
           <View style={Style.eventDetailsWrapper}>
-            <Text style={Style.eventDetails}>Event Name: {eventId.name}</Text>
             <Text style={Style.eventDetails}>
-              Event Address: {eventId.address}
+              Event Name: {this.props.event.name}
             </Text>
-            <Text style={Style.eventDetails}>Event Date: {eventId.date}</Text>
+            <Text style={Style.eventDetails}>
+              Event Address: {this.props.event.address}
+            </Text>
+            <Text style={Style.eventDetails}>
+              Event Date: {this.props.event.date}
+            </Text>
 
             <Text style={Style.eventDetails}>
-              Event Description: {eventId.description}
+              Event Description: {this.props.event.description}
             </Text>
           </View>
         </View>

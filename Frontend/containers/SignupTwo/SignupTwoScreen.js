@@ -2,10 +2,8 @@ import React from "react";
 import { View, Button, TextInput, Image, ScrollView, Text } from "react-native";
 import styles from "./SignupTwoScreenStyle";
 import { Fonts } from "../../themes";
-import { connect } from "react-redux";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
-import { updateUser, getUserInfo } from "../../store/user";
 
 class SignupTwo extends React.Component {
   constructor() {
@@ -16,11 +14,25 @@ class SignupTwo extends React.Component {
       city: "",
       state: "",
       zipCode: "",
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
     };
   }
 
   componentDidMount() {
-    this.props.getUser(this.props.user.id);
+    this.setState({
+      description: "",
+      imgUrl: "",
+      city: "",
+      state: "",
+      zipCode: "",
+      firstName: this.props.navigation.getParam("firstName"),
+      lastName: this.props.navigation.getParam("lastName"),
+      email: this.props.navigation.getParam("email"),
+      password: this.props.navigation.getParam("password"),
+    });
   }
 
   isValidUSZip = (zipCode) => {
@@ -33,13 +45,7 @@ class SignupTwo extends React.Component {
       this.state.state.length &&
       this.isValidUSZip(this.state.zipCode)
     ) {
-      await this.props.updateUser(this.props.user.id, {
-        city: this.state.city,
-        state: this.state.state,
-        zipCode: this.state.zipCode,
-        description: this.state.description,
-        imgUrl: this.state.imgUrl,
-      });
+      this.props.navigation.navigate("INTERESTS", this.state);
       this.setState({
         description: "",
         imgUrl: "",
@@ -47,7 +53,6 @@ class SignupTwo extends React.Component {
         state: "",
         zipCode: "",
       });
-      this.props.navigation.navigate("INTERESTS");
     }
   };
 
@@ -212,19 +217,4 @@ class SignupTwo extends React.Component {
   }
 }
 
-const mapToState = (state) => ({
-  user: state.user,
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    updateUser: (id, updateData) => {
-      return dispatch(updateUser(id, updateData));
-    },
-    getUser: (id) => {
-      return dispatch(getUserInfo(id));
-    },
-  };
-};
-
-export default connect(mapToState, mapDispatchToProps)(SignupTwo);
+export default SignupTwo;

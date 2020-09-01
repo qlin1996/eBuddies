@@ -59,7 +59,7 @@ export default StyleSheet.create({
   eventImg: {
     alignSelf: "center",
     position: "relative",
-    top: "-36%",
+    top: "-38%",
     height: 170,
     borderRadius: 150,
     width: "50%",
@@ -109,7 +109,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: "rgba(38,153,251,1)",
     position: "relative",
-    bottom: "22%",
+    bottom: "30%",
   },
   camera: {
     position: "relative",

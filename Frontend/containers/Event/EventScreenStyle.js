@@ -2,22 +2,6 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
-  // eventAvatar: {
-  //   ...Helpers.fullWidth,
-  //   height: 50,
-  //   width: 50,
-  //   borderRadius: 50,
-  //   backgroundColor: Colors.primary,
-  //   padding: Metrics.medium,
-  // },
-
-  // eventButton: {
-  //   ...Fonts.normal,
-  //   textAlign: "center",
-  //   marginTop: 20,
-  //   marginBottom: 50,
-  //   marginHorizontal: 50,
-  // },
   text: {
     ...Fonts.normal,
     color: Colors.text,
@@ -34,24 +18,22 @@ export default StyleSheet.create({
     top: "20%",
     textAlign: "center",
     // text-transform: uppercase;
-    // font-family: 'Lucida Console', Monaco, monospace;
     letterSpacing: 2,
-    // fontFamily: "lucida grande",
     textTransform: "uppercase",
   },
 
   headerBackground: {
     backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: 60,
-    width: 361,
+    height: "17%",
+    width: "100%",
     position: "absolute",
     top: "0.3%",
   },
 
   informationDiv: {
     backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: 102,
-    width: 372,
+    height: "28%",
+    width: "100%",
     position: "absolute",
     // left: "-4%",
     top: "72.5%",
@@ -81,7 +63,7 @@ export default StyleSheet.create({
     position: "absolute",
     bottom: "14%",
     right: "-10%",
-    width: 140,
+    width: "35%",
   },
 
   eventImg: {
@@ -98,9 +80,10 @@ export default StyleSheet.create({
     borderBottomColor: Colors.grey,
   },
   wholeCardDiv: {
-    width: 380,
-    position: "relative",
-    left: "1%",
+    width: "89.1%",
+    // position: "relative",
+    // left: "1%",
+    alignSelf: "center",
     borderColor: "lightblue",
     borderWidth: 4,
     shadowColor: "black",

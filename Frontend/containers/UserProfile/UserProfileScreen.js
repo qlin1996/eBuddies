@@ -47,17 +47,30 @@ class UserProfileScreen extends React.Component {
               </Text>
             ))}
           </View>
+          {/* <Button
+            title="HOST"
+            onPress={() => this.props.navigation.navigate("HOST")}
+          >
+            HOSTED EVENTS
+          </Button> */}
         </View>
-        <Button
-          title="Edit"
-          onPress={() => this.props.navigation.navigate("EDIT")}
-        >
-          Edit
-        </Button>
+        <View style={Style.edit}>
+          <Button
+            title="EDIT"
+            onPress={() => this.props.navigation.navigate("EDIT")}
+          >
+            Edit
+          </Button>
+        </View>
+        <View style={Style.separator}>
+          <Text style={{ fontSize: 36, color: "blue" }}>⟶</Text>
+        </View>
+        <View style={Style.logoutbutton}>
+          <Button title="LOGOUT" onPress={this.handleLogout}>
+            Logout
+          </Button>
 
-        <Button title="Logout" onPress={this.handleLogout}>
-          Logout
-        </Button>
+        </View>
       </View>
     );
   }

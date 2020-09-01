@@ -46,14 +46,14 @@ export default StyleSheet.create({
 
   loginBtn: {
     backgroundColor: "#4267b2",
-    height: 35,
+    height: 42,
     alignSelf: "center",
     position: "relative",
     top: 50,
     alignItems: "center",
 
-    right: 80,
-    width: 160,
+    right: 90,
+    width: 165,
     borderRadius: 20,
   },
 
@@ -67,12 +67,12 @@ export default StyleSheet.create({
     backgroundColor: "white",
     alignItems: "center",
 
-    height: 35,
+    height: 42,
     alignSelf: "center",
     position: "relative",
     top: 50,
-    left: 80,
-    width: 160,
+    left: 90,
+    width: 165,
     borderRadius: 20,
   },
   login: {

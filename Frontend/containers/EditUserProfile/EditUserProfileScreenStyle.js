@@ -4,12 +4,17 @@ import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   imageContainer: {
     ...Helpers.crossCenter,
-    backgroundColor: Colors.mediumBlue,
+    // backgroundColor: Colors.mediumBlue,
     ...Metrics.verticalPadding,
+    borderRadius: 150,
+    width: "70%",
+    alignSelf: "center",
   },
   image: {
-    width: 200,
     height: 200,
+    borderRadius: 150,
+    width: "70%",
+    alignSelf: "center",
   },
   profileContainer: {
     ...Metrics.mediumVerticalMargin,
@@ -21,7 +26,7 @@ export default StyleSheet.create({
     color: Colors.blue,
   },
   interestsContainer: {
-    backgroundColor: Colors.lightBlue,
+    // backgroundColor: Colors.lightBlue,
     ...Metrics.mediumHorizontalPadding,
     ...Metrics.mediumVerticalPadding,
   },

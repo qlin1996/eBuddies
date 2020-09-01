@@ -184,14 +184,9 @@ class SignupTwo extends React.Component {
               keyboardType="name-phone-pad"
             />
             <View style={styles.selectPic}>
-              <Button title="Select Picture" onPress={this.selectPicture} />
-              <View style={styles.camera}>
-                <Text>📸</Text>
-              </View>
+              <Text>📸</Text>
             </View>
-            <View style={styles.takePic}>
-              <Button title="Take Picture" onPress={this.takePicture} />
-            </View>
+
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}

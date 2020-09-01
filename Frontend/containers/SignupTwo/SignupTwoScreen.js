@@ -82,6 +82,7 @@ class SignupTwo extends React.Component {
   };
 
   render() {
+    console.log("PARAMS", this.props.navigation.getParam("firstName"));
     return (
       <ScrollView>
         <View style={styles.container}>

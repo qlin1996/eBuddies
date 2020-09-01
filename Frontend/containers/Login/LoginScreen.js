@@ -12,7 +12,6 @@ import {
 } from "react-native";
 
 import { connect } from "react-redux";
-// import { View, Image, Button, TextInput } from "react-native";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
@@ -34,8 +33,7 @@ class Login extends React.Component {
       password: "",
     };
   }
-  handleLogin = async (event) => {
-    event.preventDefault();
+  handleLogin = async () => {
     await this.props.auth1(this.state.email, this.state.password);
     await this.props.me();
     await this.props.getAllInterests(this.props.user.id);

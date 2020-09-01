@@ -38,7 +38,7 @@ class Signup extends React.Component {
         this.state.password
       );
       const waitForSignUp = () => {
-        this.props.navigation.navigate("ADDRESS");
+        this.props.navigation.navigate("ADDRESS", this.state);
         this.setState({
           firstName: "",
           lastName: "",

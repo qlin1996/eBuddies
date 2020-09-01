@@ -15,8 +15,8 @@ export const postEvent = (event) => ({
 
 export const getAllEvents = () => async (dispatch) => {
   try {
-    // const { data } = await axios.get("http://localhost:8080/api/events");
-    const { data } = await axios.get("http://192.168.1.3:8081/api/events");
+    const { data } = await axios.get("http://localhost:8080/api/events");
+    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     // const { data } = await axios.get("http://192.168.1.126:8080/api/events");
 
     return dispatch(getEvents(data));
@@ -27,10 +27,10 @@ export const getAllEvents = () => async (dispatch) => {
 
 export const getUserEvents = (userId) => async (dispatch) => {
   try {
-    // const { data } = await axios.get(
-    //   `http://localhost:8080/api/events/${userId}`
-    // );
-    const { data } = await axios.get("http://192.168.1.3:8081/api/events");
+    const { data } = await axios.get(
+      `http://localhost:8080/api/events/${userId}`
+    );
+    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     return dispatch(getEvents(data));
   } catch (error) {}
 };
@@ -38,8 +38,8 @@ export const getUserEvents = (userId) => async (dispatch) => {
 export const postNewEvent = (addEventForm) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      // "http://localhost:8080/api/events",
-      "http://192.168.1.3:8081/api/events",
+      "http://localhost:8080/api/events",
+      // "http://192.168.1.3:8081/api/events",
       addEventForm
     );
     return dispatch(postEvent(data));

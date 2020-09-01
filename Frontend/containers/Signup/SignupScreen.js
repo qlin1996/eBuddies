@@ -1,7 +1,5 @@
 import React from "react";
 import { View, Button, TextInput, Text } from "react-native";
-import { auth2 } from "../../store/user";
-import { connect } from "react-redux";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
 
@@ -23,7 +21,7 @@ class Signup extends React.Component {
     } else return false;
   };
 
-  handleSignup = async () => {
+  handleSignup = () => {
     if (
       this.state.firstName.length &&
       this.state.lastName.length &&
@@ -31,14 +29,8 @@ class Signup extends React.Component {
       this.validateEmail(this.state.email) &&
       this.state.password.length
     ) {
-      this.props.auth2(
-        this.state.firstName,
-        this.state.lastName,
-        this.state.email,
-        this.state.password
-      );
       const waitForSignUp = () => {
-        this.props.navigation.navigate("ADDRESS");
+        this.props.navigation.navigate("ADDRESS", this.state);
         this.setState({
           firstName: "",
           lastName: "",
@@ -190,13 +182,5 @@ class Signup extends React.Component {
     );
   }
 }
-const mapToState = (state) => ({
-  user: state.user,
-});
 
-const mapDispatchToProps = (dispatch) => ({
-  auth2: (firstName, lastName, email, password) =>
-    dispatch(auth2(firstName, lastName, email, password)),
-});
-
-export default connect(mapToState, mapDispatchToProps)(Signup);
+export default Signup;

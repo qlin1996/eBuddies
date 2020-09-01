@@ -33,8 +33,7 @@ class Login extends React.Component {
       password: "",
     };
   }
-  handleLogin = async (event) => {
-    event.preventDefault();
+  handleLogin = async () => {
     await this.props.auth1(this.state.email, this.state.password);
     await this.props.me();
     await this.props.getAllInterests(this.props.user.id);

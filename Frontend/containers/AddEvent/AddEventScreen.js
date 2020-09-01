@@ -33,32 +33,47 @@ class AddEventScreen extends React.Component {
     this.setState({ hostId: this.props.user.id });
   }
 
-  handleSubmit = (evt) => {
-    evt.preventDefault();
-    this.setState({ isModalVisible: true });
-    this.setState({ hostId: this.props.user.id });
-    this.props.postNewEvent(this.state);
+  isValidUSZip = (zipCode) => {
+    return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
+  };
 
-    this.setState({
-      // name: "",
-      address: "",
-      city: "",
-      state: "",
-      zipcode: "",
-      date: "",
-      time: "",
-      description: "",
-      eventId: "",
-      // imgUrl: "",
-      hostId: "",
-    });
-    const waitForModal = () => {
-      this.props.navigation.navigate("EVENTS");
+  handleSubmit = () => {
+    if (
+      this.state.name.length &&
+      this.state.address.length &&
+      this.state.city.length &&
+      this.state.state.length &&
+      this.state.zipcode.length &&
+      this.state.date.length &&
+      this.state.time.length &&
+      this.state.category.length &&
+      this.state.description.length
+    ) {
+      this.setState({ isModalVisible: true });
+      this.setState({ hostId: this.props.user.id });
+      this.props.postNewEvent(this.state);
+
       this.setState({
-        isModalVisible: false,
+        name: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        date: "",
+        time: "",
+        description: "",
+        eventId: "",
+        imgUrl: "",
+        hostId: "",
       });
-    };
-    setTimeout(waitForModal, 2000);
+      const waitForModal = () => {
+        this.props.navigation.navigate("EVENTS");
+        this.setState({
+          isModalVisible: false,
+        });
+      };
+      setTimeout(waitForModal, 2000);
+    }
   };
 
   handleChange = (event) => {
@@ -86,6 +101,9 @@ class AddEventScreen extends React.Component {
         <ScrollView>
           <View style={Style.addForm}>
             <View style={Style.field1}>
+              {this.state.name.length === 0 && (
+                <Text style={{ color: "red" }}>Event Name is Required</Text>
+              )}
               <TextInput
                 style={Style.name}
                 name="name"
@@ -98,6 +116,11 @@ class AddEventScreen extends React.Component {
               />
             </View>
             <View style={Style.field2}>
+              {this.state.address.length === 0 && (
+                <Text style={{ color: "red" }}>
+                  Event Street Address is Required
+                </Text>
+              )}
               <TextInput
                 style={Style.address}
                 placeholder="Street Address"
@@ -108,6 +131,9 @@ class AddEventScreen extends React.Component {
               />
             </View>
             <View style={Style.field3}>
+              {this.state.city.length === 0 && (
+                <Text style={{ color: "red" }}>Event City is Required</Text>
+              )}
               <TextInput
                 style={Style.city}
                 placeholder="City"
@@ -119,6 +145,9 @@ class AddEventScreen extends React.Component {
             </View>
 
             <View style={Style.field4}>
+              {this.state.state.length === 0 && (
+                <Text style={{ color: "red" }}>Event State is Required</Text>
+              )}
               <TextInput
                 style={Style.state}
                 placeholder="State"
@@ -130,6 +159,11 @@ class AddEventScreen extends React.Component {
             </View>
 
             <View style={Style.field5}>
+              {!this.isValidUSZip(this.state.zipcode) && (
+                <Text style={{ color: "red" }}>
+                  Valid US Zip Code is Required
+                </Text>
+              )}
               <TextInput
                 style={Style.zip}
                 placeholder="Zipcode"
@@ -141,6 +175,9 @@ class AddEventScreen extends React.Component {
             </View>
 
             <View style={Style.field6}>
+              {this.state.date.length === 0 && (
+                <Text style={{ color: "red" }}>Event Date is Required</Text>
+              )}
               <TextInput
                 style={Style.date}
                 placeholder="Date"
@@ -151,6 +188,9 @@ class AddEventScreen extends React.Component {
               />
             </View>
             <View style={Style.field7}>
+              {this.state.time.length === 0 && (
+                <Text style={{ color: "red" }}>Event Time is Required</Text>
+              )}
               <TextInput
                 style={Style.time}
                 placeholder="Time"
@@ -162,6 +202,11 @@ class AddEventScreen extends React.Component {
             </View>
             <View style={Style.field8}>
               <ScrollView>
+                {this.state.description.length === 0 && (
+                  <Text style={{ color: "red" }}>
+                    Event Description is Required
+                  </Text>
+                )}
                 <TextInput
                   style={Style.description}
                   placeholder="Description"
@@ -173,6 +218,9 @@ class AddEventScreen extends React.Component {
               </ScrollView>
             </View>
             <View style={Style.field9}>
+              {this.state.category.length === 0 && (
+                <Text style={{ color: "red" }}>Event category is Required</Text>
+              )}
               <TextInput
                 style={Style.category}
                 placeholder="Interest Type"

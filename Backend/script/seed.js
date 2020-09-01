@@ -30,7 +30,7 @@ async function seed() {
       password: "1234",
       city: faker.address.city(),
       state: faker.address.state(),
-      zipCode: 12345,
+      zipCode: "12345",
     });
     users.push(user.dataValues);
   }
@@ -44,7 +44,7 @@ async function seed() {
     email: "Cgiordano1@gmail.com",
     city: "New York",
     state: "New York",
-    zipCode: 10019,
+    zipCode: "10019",
     password: "Claire",
     imgUrl:
       "https://media-exp1.licdn.com/dms/image/C4D03AQFXsmj2gUhdBA/profile-displayphoto-shrink_400_400/0?e=1603929600&v=beta&t=ehdUywqM6iY3w3AG96LflI_5_1Mjdzux3BaZRh3toHM",
@@ -59,7 +59,7 @@ async function seed() {
     email: "Q1@gmail.com",
     city: "New York",
     state: "New York",
-    zipCode: 10019,
+    zipCode: "10019",
     password: "Qi",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U015BBESASE-affe9133d7a4-512",
     isGuest: "no",
@@ -75,7 +75,7 @@ async function seed() {
     email: "Blake1@gmail.com",
     city: "New York",
     state: "New York",
-    zipCode: 10019,
+    zipCode: "10019",
     password: "Blake",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U01223LJ6TC-2a445d981f58-512",
     isGuest: "no",
@@ -91,7 +91,7 @@ async function seed() {
     email: "Anderson1@gmail.com",
     city: "New York",
     state: "New York",
-    zipCode: 10019,
+    zipCode: "10019",
     password: "Anderson",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UVDH49WAZ-2755e5ff7bb7-512",
     isGuest: "no",
@@ -126,6 +126,7 @@ async function seed() {
     zipCode: "10003",
     date: "09/04/2020",
     time: "08:00 AM",
+    category: "Fitness",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
     userId: 101,

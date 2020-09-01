@@ -2,36 +2,16 @@ import { createDrawerNavigator } from "react-navigation-drawer";
 import { createAppContainer } from "react-navigation";
 import UserProfileScreen from "./UserProfileStack";
 import AllEventsScreen from "./AllEventsStack";
-import LoginScreen from "./LoginStack";
-import SignUpScreen from "./SignUpStack";
 import RecommendedEventsScreen from "./RecommendedEventsStack";
 import AddEventScreen from "./AddEventStack";
 import ChatScreen from "./ChatStack";
 import MyCalendarScreen from "./MyCalendarStack";
 
-const RootDrawerNavigator = createDrawerNavigator({
+const UserDrawerNavigator = createDrawerNavigator({
   EVENTS: {
     screen: AllEventsScreen,
     navigationOptions: {
-      title: "Events",
-    },
-  },
-  PROFILE: {
-    screen: UserProfileScreen,
-    navigationOptions: {
-      title: "User Profile",
-    },
-  },
-  LOGIN: {
-    screen: LoginScreen,
-    navigationOptions: {
-      title: "Login",
-    },
-  },
-  SIGNUP: {
-    screen: SignUpScreen,
-    navigationOptions: {
-      title: "Sign Up",
+      title: "All Events",
     },
   },
   RECOMMENDEDEVENTS: {
@@ -46,18 +26,24 @@ const RootDrawerNavigator = createDrawerNavigator({
       title: "Add Event",
     },
   },
-  CHAT: {
-    screen: ChatScreen,
-    navigationOptions: {
-      title: "Chat",
-    },
-  },
   MYCALENDAR: {
     screen: MyCalendarScreen,
     navigationOptions: {
       title: "My Calendar",
     },
   },
+  PROFILE: {
+    screen: UserProfileScreen,
+    navigationOptions: {
+      title: "User Profile",
+    },
+  },
+  CHAT: {
+    screen: ChatScreen,
+    navigationOptions: {
+      title: "Chat",
+    },
+  },
 });
 
-export default createAppContainer(RootDrawerNavigator);
+export default createAppContainer(UserDrawerNavigator);

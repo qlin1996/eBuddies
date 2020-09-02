@@ -8,7 +8,7 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "rgb(235, 233, 233)",
     position: "relative",
-    top: 120,
+    top: 30,
   },
   button: {
     backgroundColor: "rgba(38,153,251,1)",

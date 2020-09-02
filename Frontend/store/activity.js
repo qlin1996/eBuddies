@@ -43,6 +43,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
       `http://${localHost}/api/activities/`,
       activityObject
     );
+    console.log("avitivity", data);
     return dispatch(postActivity(data));
   } catch (error) {
     console.log(error);

@@ -7,6 +7,10 @@ import { postUserEvent } from "../../store/events";
 import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+import io from "socket.io-client";
+const socket = io("http://localhost:8081", {
+  transports: ["websocket"],
+});
 class SingleEvent extends React.Component {
   constructor() {
     super();
@@ -25,6 +29,8 @@ class SingleEvent extends React.Component {
 
   handleJoin = async () => {
     try {
+      socket.emit("create", this.props.event.id);
+      console.log("this is the room ", this.props.event.id);
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,

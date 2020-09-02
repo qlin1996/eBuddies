@@ -3,7 +3,6 @@ import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
-import { postUserEvent } from "../../store/events";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
@@ -115,12 +114,11 @@ const mapStateToProps = (state) => ({
   event: state.singleEvent,
   user: state.user,
   activity: state.activity,
-  // events: state.events,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
-  // postUserEvent: (id, event) => dispatch(postUserEvent(id, event)),
+
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },

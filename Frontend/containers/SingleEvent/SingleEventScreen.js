@@ -3,7 +3,6 @@ import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
-import { postUserEvent } from "../../store/events";
 import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
@@ -18,10 +17,10 @@ class SingleEvent extends React.Component {
       isModalVisible: false,
     };
   }
-  componentDidMount() {
+  async componentDidMount() {
     try {
       const eventId = this.props.navigation.getParam("id");
-      this.props.fetchSingleEvent(eventId);
+      await this.props.fetchSingleEvent(eventId);
     } catch (error) {
       console.log(error);
     }
@@ -51,6 +50,7 @@ class SingleEvent extends React.Component {
   };
 
   render() {
+    console.log("SINGLE EVENT", this.props.event);
     return (
       <>
         <View style={Style.wholeCardDiv}>
@@ -114,12 +114,10 @@ const mapStateToProps = (state) => ({
   event: state.singleEvent,
   user: state.user,
   activity: state.activity,
-  // events: state.events,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
-  // postUserEvent: (id, event) => dispatch(postUserEvent(id, event)),
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },

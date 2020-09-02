@@ -3,7 +3,6 @@ import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
-import { postUserEvent } from "../../store/events";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
@@ -66,16 +65,16 @@ class JoinedEvent extends React.Component {
         <View>
           <View
             style={{
+              backgroundColor: "rgba(255, 255, 255, 0.6)",
+              width: "35%",
+              height: "22%",
+              alignSelf: "center",
+              borderRadius: "10%",
+              // padding: 2,
+              // margin: 1,
               position: "relative",
-              margin: 4,
-              padding: 4,
-              backgroundColor: "white",
-              borderRadius: 9,
-              // borderWidth: 3,
-              // borderColor: "",
-              width: "40%",
-              top: "59.5%",
-              left: "29%",
+              top: "-12%",
+              color: "white",
             }}
           >
             <Button title="JOIN THE CHAT" onPress={this.handleJoin}></Button>
@@ -115,17 +114,16 @@ const mapStateToProps = (state) => ({
   event: state.singleEvent,
   user: state.user,
   activity: state.activity,
-  // events: state.events,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
-  // postUserEvent: (id, event) => dispatch(postUserEvent(id, event)),
+
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
-  postNewActivity: (id, updateData) => {
-    return dispatch(postNewActivity(id, updateData));
+  postNewActivity: (activityObject) => {
+    return dispatch(postNewActivity(activityObject));
   },
 });
 

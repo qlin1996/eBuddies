@@ -1,22 +1,19 @@
 import React from "react";
-import { GiftedChat } from "react-native-gifted-chat";
+import { Text, View, TextInput } from "react-native";
 import io from "socket.io-client";
-
+import createMesssageThunk from "../../store/message";
+import { connect } from "react-redux";
 const socket = io("http://515fb4e4adc9.ngrok.io", {
   transports: ["websocket"],
 });
-const room = 1;
-export default class ChatScreen extends React.Component {
+
+class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [],
-      userId: null,
+      chatMessage: "",
+      chatMessages: [],
     };
-    // socket.on("message", this.onReceivedMessage);
-    // socket.on("userId", (userId) => this.setState({ userId }));
-    // this.onReceivedMessage = this.onReceivedMessage.bind(this);
-    this.onSend = this.onSend.bind(this);
   }
 
   componentDidMount() {
@@ -27,29 +24,39 @@ export default class ChatScreen extends React.Component {
     socket.on("recieve message", (message) => {
       console.log("This is the message", message);
     });
-
-    socket.on("message", function (data) {
-      console.log("Incoming message:", data);
+    socket.on("chat message", (msg) => {
+      console.log("front end recieving messages", msg);
+      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
     });
   }
-
-  // onReceivedMessage(message) {
-  //   this.onSend([message]);
-  // }
-
-  onSend(messages = []) {
-    //me sending a message
-    socket.emit("send message", messages);
-    socket.emit("room", room);
-    // socket.emit("message", messages[0]);
-    this.setState((previousState) => {
-      return {
-        messages: GiftedChat.append(previousState.messages, messages),
-      };
-    });
-  }
+  submitChatMessage = () => {
+    console.log("STATE OF THE CHAT", this.state.chatMessage);
+    socket.emit("chat message", this.state.chatMessage);
+    this.setState({ chatMessage: "" });
+  };
 
   render() {
-    return <GiftedChat messages={this.state.messages} onSend={this.onSend} />;
+    const chatMessages = this.state.chatMessages.map((chatMessage) => (
+      <Text style={{ borderWidth: 2, top: 500 }}>{chatMessage}</Text>
+    ));
+    return (
+      <View>
+        {chatMessages}
+        <TextInput
+          style={{ height: 40, borderWidth: 2, top: 600 }}
+          autoCorrect={false}
+          value={this.state.chatMessage}
+          onSubmitEditing={() => this.submitChatMessage()}
+          onChangeText={(chatMessage) => {
+            this.setState({ chatMessage });
+          }}
+        />
+      </View>
+    );
   }
 }
+// const mapDispatchToProps = (dispatch) => ({
+//   createMessage: () => dispatch(createMesssageThunk()),
+// });
+//connect(mapDispatchToProps)
+export default ChatScreen;

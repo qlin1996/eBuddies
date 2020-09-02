@@ -117,7 +117,16 @@ class Login extends React.Component {
 
         <View style={styles.background}>
           {this.state.email.length === 0 && (
-            <Text style={{ color: "red" }}>Email is Required</Text>
+            <Text
+              style={{
+                color: "black",
+                position: "relative",
+                left: "40%",
+                top: "6%",
+              }}
+            >
+              Email is Required
+            </Text>
           )}
           <TextInput
             style={{
@@ -142,7 +151,16 @@ class Login extends React.Component {
             keyboardType="email-address"
           />
           {this.state.password.length === 0 && (
-            <Text style={{ color: "red" }}>Password is Required</Text>
+            <Text
+              style={{
+                color: "black",
+                position: "relative",
+                left: "40%",
+                top: "6%",
+              }}
+            >
+              Password is Required
+            </Text>
           )}
           <TextInput
             style={{

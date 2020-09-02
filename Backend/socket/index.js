@@ -13,6 +13,11 @@ module.exports = (io) => {
       io.emit("recieve message", message);
     });
 
+    socket.on("chat message", function (msg) {
+      console.log("THIS IS FROM THE SERVER ", msg);
+      io.emit("chat message", msg);
+    });
+
     socket.on("room", function (room) {
       console.log("this is the room ", room);
       socket.join(room);

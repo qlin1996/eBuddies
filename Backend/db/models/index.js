@@ -2,12 +2,14 @@ const User = require("./user");
 const Event = require("./event");
 const Activity = require("./activity");
 const Interest = require("./interest");
-const Messages = require("./messages");
+const Message = require("./message");
 
 User.belongsToMany(Event, { through: Activity });
 Event.belongsToMany(User, { through: Activity });
-User.hasMany(Messages);
-Messages.belongsTo(User);
+Message.belongsTo(Event);
+Message.belongsTo(User, { as: "sender" });
+User.hasMany(Message, { as: "sender" });
+Event.hasMany(Message);
 // Event.belongsToMany(User);
 //alias as host
 User.hasMany(Event, { as: "host" });
@@ -18,6 +20,6 @@ module.exports = {
   User,
   Event,
   Activity,
-  Messages,
+  Message,
   Interest,
 };

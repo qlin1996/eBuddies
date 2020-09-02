@@ -122,8 +122,10 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
-  postNewActivity: (obj) => {
-    return dispatch(postNewActivity(obj));
+
+  postNewActivity: (activityObject) => {
+    return dispatch(postNewActivity(activityObject));
+
   },
 });
 

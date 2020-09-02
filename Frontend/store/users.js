@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import { serverLink } from "./serverLink";
 // ACTION TYPES
 const GET_ALL_USERS = "GET_ALL_USERS";
 
@@ -9,7 +9,7 @@ const getAllUsers = (users) => ({ type: GET_ALL_USERS, users });
 // THUNK
 export const getUsersInfo = () => async (dispatch) => {
   try {
-    const { data } = await axios.get("http://localhost:8081/api/users");
+    const { data } = await axios.get(`${serverLink}/api/users`);
     dispatch(getAllUsers(data));
   } catch (error) {
     console.log(error);

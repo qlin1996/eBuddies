@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Event } = require("../db/models");
+const { User, Event, Message } = require("../db/models");
 
 //GET --> /API/EVENTS
 router.get("/", async (req, res, next) => {
@@ -18,6 +18,7 @@ router.get("/:eventId", async (req, res, next) => {
       where: {
         id: req.params.eventId,
       },
+      include: Message,
     });
     res.json(event);
   } catch (error) {
@@ -34,6 +35,19 @@ router.get("/:userId", async (req, res, next) => {
       },
     });
     res.json(events);
+  } catch (error) {
+    next(error);
+  }
+});
+// GET --> API/EVENTS/:EVENTID/MESSAGES
+router.get("/:eventId/messages", async (req, res, next) => {
+  try {
+    const eventMessages = await Message.findAll({
+      where: {
+        eventId: req.params.eventId,
+      },
+    });
+    res.json(eventMessages);
   } catch (error) {
     next(error);
   }

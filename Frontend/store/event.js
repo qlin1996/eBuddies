@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import serverLink from "./serverLink";
 const SET_EVENT = "EVENT";
 
 export const setEvent = (event) => ({
@@ -9,7 +9,7 @@ export const setEvent = (event) => ({
 
 export const fetchEvent = (id) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:8081/api/events/${id}`);
+    const { data } = await axios.get(`${serverLink}/api/events/${id}`);
     dispatch(setEvent(data));
   } catch (error) {
     console.error(error);

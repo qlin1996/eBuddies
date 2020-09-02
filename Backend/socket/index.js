@@ -8,13 +8,8 @@ module.exports = (io) => {
     socket.on("disconnect", () => {
       console.log(`Connection ${socket.id} has left the building`);
     });
-    socket.on("send message", function (message) {
-      console.log(message);
-      io.emit("recieve message", message);
-    });
 
     socket.on("chat message", function (msg) {
-      console.log("THIS IS FROM THE SERVER ", msg);
       io.emit("chat message", msg);
     });
 

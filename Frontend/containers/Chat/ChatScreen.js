@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, TextInput } from "react-native";
 import io from "socket.io-client";
-import createMesssageThunk from "../../store/message";
+import { createMesssageThunk } from "../../store/message";
 import { connect } from "react-redux";
 const socket = io("http://515fb4e4adc9.ngrok.io", {
   transports: ["websocket"],
@@ -20,24 +20,27 @@ class ChatScreen extends React.Component {
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
     });
-    //person send me a message
-    socket.on("recieve message", (message) => {
-      console.log("This is the message", message);
-    });
     socket.on("chat message", (msg) => {
       console.log("front end recieving messages", msg);
       this.setState({ chatMessages: [...this.state.chatMessages, msg] });
     });
   }
   submitChatMessage = () => {
-    console.log("STATE OF THE CHAT", this.state.chatMessage);
     socket.emit("chat message", this.state.chatMessage);
+    this.props.createMessage({
+      message: this.state.chatMessage,
+      eventId: 1,
+      senderId: 104,
+    });
+    console.log("this is CHAT MESSAGE", this.state.chatMessage);
     this.setState({ chatMessage: "" });
   };
 
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage) => (
-      <Text style={{ borderWidth: 2, top: 500 }}>{chatMessage}</Text>
+      <Text key={chatMessage.id} style={{ borderWidth: 2, top: 500 }}>
+        {chatMessage}
+      </Text>
     ));
     return (
       <View>
@@ -55,8 +58,13 @@ class ChatScreen extends React.Component {
     );
   }
 }
-// const mapDispatchToProps = (dispatch) => ({
-//   createMessage: () => dispatch(createMesssageThunk()),
-// });
-//connect(mapDispatchToProps)
-export default ChatScreen;
+const mapToState = (state) => ({
+  message: state.message,
+  user: state.user,
+  event: state.event,
+});
+const mapDispatchToProps = (dispatch) => ({
+  createMessage: (message) => dispatch(createMesssageThunk(message)),
+});
+
+export default connect(mapToState, mapDispatchToProps)(ChatScreen);

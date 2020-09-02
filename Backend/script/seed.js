@@ -1,6 +1,6 @@
 "use strict";
 const db = require("../db");
-const { User, Event, Activity, Messages, Interest } = require("../db/models");
+const { User, Event, Activity, Message, Interest } = require("../db/models");
 const faker = require("faker");
 
 async function seed() {
@@ -432,18 +432,18 @@ async function seed() {
   events.push(entertainment3);
   events.push(entertainment4);
 
-  const mesagge = await Messages.create({
+  const message = await Message.create({
     message: "Hey",
     senderId: 104,
     eventId: 1,
   });
-  const mesagge2 = await Messages.create({
+  const message2 = await Message.create({
     message: "Gang",
     senderId: 104,
     eventId: 1,
   });
-  messages.push(mesagge);
-  messages.push(mesagge2);
+  messages.push(message);
+  messages.push(message2);
   await Promise.all(
     activities.map((activity) => {
       return Activity.create(activity);

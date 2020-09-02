@@ -7,7 +7,7 @@ import eventReducer from "./events";
 import singleEventReducer from "./singleEvent";
 import interestReducer from "./interest";
 import activityReducer from "./activity";
-
+import createMessageReducer from "./message";
 const rootReducer = combineReducers({
   user: userReducer,
   users: usersReducer,
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   singleEvent: singleEventReducer,
   interests: interestReducer,
   activities: activityReducer,
+  message: createMessageReducer,
 });
 const configureStore = () => {
   return createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));

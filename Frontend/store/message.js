@@ -11,10 +11,7 @@ export const createMesssage = (message) => {
 
 export const createMesssageThunk = (message) => async (dispatch) => {
   try {
-    const { data } = await axios.post(
-      "http://localhost:8081/api/messages",
-      message
-    );
+    const { data } = await axios.post(`${serverLink}/api/messages`, message);
     return dispatch(createMesssage(data));
   } catch (error) {
     console.log(error);

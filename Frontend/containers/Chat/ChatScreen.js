@@ -2,14 +2,20 @@ import React from "react";
 import { GiftedChat } from "react-native-gifted-chat";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:8081", {
+const socket = io("http://515fb4e4adc9.ngrok.io", {
   transports: ["websocket"],
 });
-
+const room = 1;
 export default class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { messages: [] };
+    this.state = {
+      messages: [],
+      userId: null,
+    };
+    // socket.on("message", this.onReceivedMessage);
+    // socket.on("userId", (userId) => this.setState({ userId }));
+    // this.onReceivedMessage = this.onReceivedMessage.bind(this);
     this.onSend = this.onSend.bind(this);
   }
 
@@ -21,12 +27,21 @@ export default class ChatScreen extends React.Component {
     socket.on("recieve message", (message) => {
       console.log("This is the message", message);
     });
+
+    socket.on("message", function (data) {
+      console.log("Incoming message:", data);
+    });
   }
+
+  // onReceivedMessage(message) {
+  //   this.onSend([message]);
+  // }
 
   onSend(messages = []) {
     //me sending a message
     socket.emit("send message", messages);
-
+    socket.emit("room", room);
+    // socket.emit("message", messages[0]);
     this.setState((previousState) => {
       return {
         messages: GiftedChat.append(previousState.messages, messages),
@@ -35,14 +50,6 @@ export default class ChatScreen extends React.Component {
   }
 
   render() {
-    return (
-      <GiftedChat
-        messages={this.state.messages}
-        onSend={this.onSend}
-        user={{
-          _id: 1,
-        }}
-      />
-    );
+    return <GiftedChat messages={this.state.messages} onSend={this.onSend} />;
   }
 }

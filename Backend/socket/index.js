@@ -13,7 +13,8 @@ module.exports = (io) => {
       io.emit("recieve message", message);
     });
 
-    socket.on("create", function (room) {
+    socket.on("room", function (room) {
+      console.log("this is the room ", room);
       socket.join(room);
     });
     io.sockets.in(room).emit("event", "we are here");

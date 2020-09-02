@@ -22,9 +22,7 @@ export const deleteInterests = () => ({
 
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      `http://localhost:8081/api/interests/${userId}`
-    );
+    const { data } = await axios.get(`${serverLink}/api/interests/${userId}`);
     return dispatch(getInterests(data));
   } catch (error) {}
 };
@@ -32,7 +30,7 @@ export const getAllInterests = (userId) => async (dispatch) => {
 export const postNewInterest = (interestObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8081/api/interests/",
+      `${serverLink}/api/interests/`,
       interestObject
     );
     return dispatch(postInterest(data));
@@ -44,7 +42,7 @@ export const postNewInterest = (interestObject) => async (dispatch) => {
 export const deleteAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://localhost:8081/api/interests/${userId}`
+      `${serverLink}/api/interests/${userId}`
     );
     return dispatch(deleteInterests(data));
   } catch (error) {

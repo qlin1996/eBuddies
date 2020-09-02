@@ -112,7 +112,7 @@ export default StyleSheet.create({
   },
   wholeCardDiv: {
     width: "89.1%",
-    height: "55%",
+    height: "50%",
     position: "relative",
     left: "1%",
     top: "5%",

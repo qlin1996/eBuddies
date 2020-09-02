@@ -66,16 +66,16 @@ class JoinedEvent extends React.Component {
         <View>
           <View
             style={{
+              backgroundColor: "rgba(255, 255, 255, 0.6)",
+              width: "35%",
+              height: "22%",
+              alignSelf: "center",
+              borderRadius: "10%",
+              // padding: 2,
+              // margin: 1,
               position: "relative",
-              margin: 4,
-              padding: 4,
-              backgroundColor: "white",
-              borderRadius: 9,
-              // borderWidth: 3,
-              // borderColor: "",
-              width: "40%",
-              top: "59.5%",
-              left: "29%",
+              top: "-12%",
+              color: "white",
             }}
           >
             <Button title="JOIN THE CHAT" onPress={this.handleJoin}></Button>

@@ -20,7 +20,6 @@ router.get("/:eventId", async (req, res, next) => {
       },
       include: Message,
     });
-    console.log("single event", event);
     res.json(event);
   } catch (error) {
     next(error);

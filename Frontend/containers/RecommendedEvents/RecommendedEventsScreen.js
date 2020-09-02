@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
+import { getUserInfo } from "../../store/user";
 
 class RecommendedEvents extends React.Component {
   constructor() {

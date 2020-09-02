@@ -101,7 +101,7 @@ class JoinedEvent extends React.Component {
                   top: "20%",
                 }}
               >
-                💬💬
+                💬💬💬
               </Text>
             </View>
           </View>
@@ -124,8 +124,8 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
-  postNewActivity: (id, updateData) => {
-    return dispatch(postNewActivity(id, updateData));
+  postNewActivity: (obj) => {
+    return dispatch(postNewActivity(obj));
   },
 });
 

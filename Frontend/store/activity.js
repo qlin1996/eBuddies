@@ -36,6 +36,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
       "http://localhost:8081/api/activities/",
       activityObject
     );
+    console.log("avitivity", data);
     return dispatch(postActivity(data));
   } catch (error) {
     console.log(error);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import serverLink from "./serverLink";
+import { serverLink } from "./serverLink";
 const GET_ACTIVITIES = "GET_ACTIVITIES";
 const POST_ACTIVITY = "POST_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
@@ -34,7 +34,6 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
       `${serverLink}/api/activities/`,
       activityObject
     );
-    console.log("avitivity", data);
     return dispatch(postActivity(data));
   } catch (error) {
     console.log(error);

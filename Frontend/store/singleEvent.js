@@ -9,10 +9,7 @@ export const getSingleEvent = (event) => ({
 
 export const fetchSingleEvent = (id) => async (dispatch) => {
   try {
-    console.log("id sent to thunk", id);
-    console.log("serverLink", serverLink);
     const { data } = await axios.get(`${serverLink}/api/events/${id}`);
-    console.log("data", data);
     return dispatch(getSingleEvent(data));
   } catch (err) {
     console.error(err);

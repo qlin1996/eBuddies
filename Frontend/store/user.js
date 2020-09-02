@@ -89,7 +89,6 @@ export const auth2 = (
 export const getUserInfo = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/users/${id}`);
-    console.log("user in thunk", data);
     return dispatch(getUser(data));
   } catch (err) {
     console.error(err);

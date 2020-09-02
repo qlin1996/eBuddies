@@ -125,7 +125,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   postNewActivity: (activityObject) => {
     return dispatch(postNewActivity(activityObject));
-
   },
 });
 

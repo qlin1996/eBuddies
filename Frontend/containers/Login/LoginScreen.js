@@ -11,7 +11,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
@@ -108,7 +107,7 @@ class Login extends React.Component {
   };
 
   render() {
-    console.log("STATE", this.state);
+    // console.log("STATE", this.state);
     return (
       <View style={styles.container}>
         {this.state.error ? (

@@ -28,8 +28,8 @@ class SingleEvent extends React.Component {
 
   handleJoin = async () => {
     try {
-      socket.emit("create", this.props.event.id);
-      console.log("this is the room ", this.props.event.id);
+      // socket.emit("create", this.props.event.id);
+      // console.log("this is the room ", this.props.event.id);
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,
@@ -50,7 +50,6 @@ class SingleEvent extends React.Component {
   };
 
   render() {
-    console.log("SINGLE EVENT", this.props.event);
     return (
       <>
         <View style={Style.wholeCardDiv}>
@@ -83,7 +82,9 @@ class SingleEvent extends React.Component {
               color: "white",
             }}
           >
-            <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+            {this.props.user.id && (
+              <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+            )}
           </View>
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
@@ -121,8 +122,8 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
-  postNewActivity: (id, updateData) => {
-    return dispatch(postNewActivity(id, updateData));
+  postNewActivity: (activityObj) => {
+    return dispatch(postNewActivity(activityObj));
   },
 });
 

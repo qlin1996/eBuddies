@@ -56,16 +56,16 @@ class MyCalendar extends React.Component {
                 <Event event={event} />
                 <View
                   style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.6)",
+                    width: "29%",
+                    alignSelf: "center",
+                    height: "8%",
+                    borderRadius: "10%",
+                    // padding: 2,
+                    // margin: 1,
                     position: "relative",
-                    margin: 4,
-                    padding: 4,
-                    backgroundColor: "white",
-                    borderRadius: 9,
-                    // borderWidth: 3,
-                    // borderColor: "",
-                    width: "40%",
-                    top: "-1%",
-                    left: "29%",
+                    top: "-13%",
+                    color: "white",
                   }}
                 >
                   <Button

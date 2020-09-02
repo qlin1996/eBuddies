@@ -30,11 +30,25 @@ class HostScreen extends React.Component {
         return (
           <View key={event.id}>
             <Event event={event} />
-            <Button
-              style={Style.eventButton}
-              title="View Event"
-              onPress={this.handleEventClick}
-            />
+            <View
+              style={{
+                backgroundColor: "rgba(255, 255, 255, 0.6)",
+                width: "29%",
+                alignSelf: "center",
+                borderRadius: "10%",
+                // padding: 2,
+                // margin: 1,
+                position: "relative",
+                top: "-28%",
+                color: "white",
+              }}
+            >
+              <Button
+                style={Style.eventButton}
+                title="VIEW EVENT"
+                onPress={this.handleEventClick}
+              />
+            </View>
           </View>
         );
       }

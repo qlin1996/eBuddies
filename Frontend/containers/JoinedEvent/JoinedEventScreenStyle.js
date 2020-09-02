@@ -32,11 +32,10 @@ export default StyleSheet.create({
 
   informationDiv: {
     backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: "20%",
+    height: "25%",
     width: "100%",
     position: "absolute",
-    // left: "-4%",
-    top: "80.5%",
+    top: "75%",
   },
 
   fonts: {
@@ -113,7 +112,7 @@ export default StyleSheet.create({
   },
   wholeCardDiv: {
     width: "89.5%",
-    height: "55%",
+    height: "58%",
     position: "relative",
     // left: "%",
     top: "5%",

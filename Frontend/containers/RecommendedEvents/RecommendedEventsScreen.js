@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
-
+import { getUserInfo } from "../../store/user";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
@@ -79,16 +79,26 @@ class RecommendedEvents extends React.Component {
                         </View>
 
                         <Event event={event} />
-
-                        <Button
-                          style={{ position: "absolute", top: "10%" }}
-                          title="View Event"
-                          onPress={() => {
-                            this.props.navigation.navigate("SINGLEEVENT", {
-                              id: event.id,
-                            });
+                        <View
+                          style={{
+                            backgroundColor: "rgba(255, 255, 255, 0.6)",
+                            width: "27%",
+                            alignSelf: "center",
+                            borderRadius: "10%",
+                            position: "relative",
+                            top: "-12%",
+                            color: "white",
                           }}
-                        />
+                        >
+                          <Button
+                            title="View Event"
+                            onPress={() => {
+                              this.props.navigation.navigate("SINGLEEVENT", {
+                                id: event.id,
+                              });
+                            }}
+                          />
+                        </View>
                       </View>
                     </View>
                   );

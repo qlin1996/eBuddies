@@ -74,16 +74,24 @@ class Signup extends React.Component {
             </Text>
           )}
           {this.state.firstName.length === 0 && (
-            <Text>First Name is Required</Text>
+            <Text style={{ color: "rgb(233, 233, 233)" }}>
+              First Name is Required
+            </Text>
           )}
           {this.state.lastName.length === 0 && (
-            <Text>Last Name is Required</Text>
+            <Text style={{ color: "rgb(233, 233, 233)" }}>
+              Last Name is Required
+            </Text>
           )}
           {!this.validateEmail(this.state.email) && (
-            <Text>Valid Email is Required</Text>
+            <Text style={{ color: "rgb(233, 233, 233)" }}>
+              Valid Email is Required
+            </Text>
           )}
           {this.state.password.length === 0 && (
-            <Text>Password is Required</Text>
+            <Text style={{ color: "rgb(233, 233, 233)" }}>
+              Password is Required
+            </Text>
           )}
 
           <TextInput

@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// network urls
+// mac OS
+// const localHost = "localhost:8081";
+
+// android
+const localHost = "192.168.1.3:8081";
+
 const GET_ACTIVITIES = "GET_ACTIVITIES";
 const POST_ACTIVITY = "POST_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
@@ -23,7 +30,7 @@ export const deleteActivity = () => ({
 export const getAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:8081/api/activities/${userId}`
+      `http://${localHost}/api/activities/${userId}`
     );
     // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     return dispatch(getActivities(data));
@@ -33,7 +40,7 @@ export const getAllActivities = (userId) => async (dispatch) => {
 export const postNewActivity = (activityObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8081/api/activities/",
+      `http://${localHost}/api/activities/`,
       activityObject
     );
     return dispatch(postActivity(data));
@@ -45,7 +52,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
 export const deleteAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://localhost:8081/api/activities/${userId}`
+      `http://${localHost}/api/activities/${userId}`
     );
     return dispatch(deleteActivities(data));
   } catch (error) {

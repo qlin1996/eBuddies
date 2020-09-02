@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// network urls
+// mac OS
+// const localHost = "localhost:8081";
+
+// android
+const localHost = "192.168.1.3:8081";
+
 const SET_EVENT = "EVENT";
 
 export const setEvent = (event) => ({
@@ -9,10 +16,7 @@ export const setEvent = (event) => ({
 
 export const fetchEvent = (id) => async (dispatch) => {
   try {
-    // const { data } = await axios.get(`http://localhost:8081/api/events/${id}`);
-    const { data } = await axios.get(
-      `http://192.168.1.3:8081/api/events/${id}`
-    );
+    const { data } = await axios.get(`http://${localHost}/api/events/${id}`);
     dispatch(setEvent(data));
   } catch (error) {
     console.error(error);

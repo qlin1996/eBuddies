@@ -1,5 +1,12 @@
 import axios from "axios";
 
+// network urls
+// mac OS
+// const localHost = "${localHost}";
+
+// android
+const localHost = "192.168.1.3:8081";
+
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
 const DELETE_INTERESTS = "DELETE_INTERESTS";
@@ -23,7 +30,7 @@ export const deleteInterests = () => ({
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(
-      `http://localhost:8081/api/interests/${userId}`
+      `http://${localHost}/api/interests/${userId}`
     );
     return dispatch(getInterests(data));
   } catch (error) {}
@@ -32,7 +39,7 @@ export const getAllInterests = (userId) => async (dispatch) => {
 export const postNewInterest = (interestObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      "http://localhost:8081/api/interests/",
+      `http://${localHost}/api/interests/`,
       interestObject
     );
     return dispatch(postInterest(data));
@@ -44,7 +51,7 @@ export const postNewInterest = (interestObject) => async (dispatch) => {
 export const deleteAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://localhost:8081/api/interests/${userId}`
+      `http://${localHost}/api/interests/${userId}`
     );
     return dispatch(deleteInterests(data));
   } catch (error) {

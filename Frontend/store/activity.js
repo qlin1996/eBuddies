@@ -34,6 +34,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
       `${serverLink}/api/activities/`,
       activityObject
     );
+    console.log("avitivity", data);
     return dispatch(postActivity(data));
   } catch (error) {
     console.log(error);

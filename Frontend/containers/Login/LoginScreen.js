@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   ActivityIndicator,
 } from "react-native";
-import Recaptcha from "react-grecaptcha";
+// import Recaptcha from "react-grecaptcha";
 
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";

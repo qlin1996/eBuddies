@@ -51,10 +51,6 @@ export const deleteAllActivities = (userId) => async (dispatch) => {
   }
 };
 
-const initialState = {
-  activities: [],
-};
-
 export default function activityReducer(state = [], action) {
   switch (action.type) {
     case GET_ACTIVITIES:

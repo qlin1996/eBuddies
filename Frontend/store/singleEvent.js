@@ -1,5 +1,4 @@
 import axios from "axios";
-<<<<<<< HEAD
 
 // network urls
 // mac OS
@@ -8,9 +7,6 @@ import axios from "axios";
 // android
 const localHost = "192.168.1.3:8081";
 
-=======
-import { serverLink } from "./serverLink";
->>>>>>> master
 const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
 
 export const getSingleEvent = (event) => ({

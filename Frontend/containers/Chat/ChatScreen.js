@@ -63,11 +63,6 @@ class ChatScreen extends React.Component {
           style={Style.userImage}
         />
       </View>
-    console.log("STATE", this.state);
-    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-      <Text key={index} style={{ borderWidth: 2, top: 500 }}>
-        {chatMessage}
-      </Text>
     ));
     return (
       <ScrollView>

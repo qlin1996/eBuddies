@@ -5,6 +5,7 @@ import { createMesssageThunk } from "../../store/message";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
+import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
 import { serverLink } from "../../store/serverLink";
 const socket = io(serverLink, {
@@ -22,11 +23,17 @@ class ChatScreen extends React.Component {
     });
   }
   async componentDidMount() {
-    console.log("STATE WHEN FIRST MOUNTED", this.state);
-    this.setState({ chatMessage: "", chatMessages: [] });
-
     await this.props.getUser(this.props.user.id);
     await this.props.fetchSingleEvent(this.props.event.id);
+    await this.props.getMessages(this.props.event.id);
+
+    this.setState((prevState) => {
+      const { chatMessages } = prevState;
+      this.props.messages.map((msg) => {
+        return chatMessages.push(msg);
+      });
+    });
+    console.log("THIS IS THE STATE", this.state);
     // 1. join room
     socket.emit(
       "join-room",
@@ -98,6 +105,7 @@ const mapToState = (state) => ({
   message: state.message,
   user: state.user,
   event: state.singleEvent,
+  messages: state.messages,
 });
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),
@@ -105,5 +113,6 @@ const mapDispatchToProps = (dispatch) => ({
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
+  getMessages: (eventId) => dispatch(getMesssagesThunk(eventId)),
 });
 export default connect(mapToState, mapDispatchToProps)(ChatScreen);

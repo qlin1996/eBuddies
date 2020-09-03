@@ -7,7 +7,8 @@ import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
-const socket = io("http://515fb4e4adc9.ngrok.io", {
+import { serverLink } from "../../store/serverLink";
+const socket = io(serverLink, {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {
@@ -16,6 +17,7 @@ class ChatScreen extends React.Component {
     this.state = {
       chatMessage: "",
       chatMessages: [],
+      imgUrl: "",
     };
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
@@ -25,24 +27,21 @@ class ChatScreen extends React.Component {
     await this.props.getUser(this.props.user.id);
     await this.props.fetchSingleEvent(this.props.event.id);
     await this.props.getMessages(this.props.event.id);
+    this.setState({ chatMessages: this.props.messages });
 
-    this.setState((prevState) => {
-      const { chatMessages } = prevState;
-      this.props.messages.map((msg) => {
-        return chatMessages.push(msg);
-      });
-    });
-    console.log("THIS IS THE STATE", this.state);
     // 1. join room
-    socket.emit(
-      "join-room",
-      `${this.props.user.firstName} has joined ${this.props.event.name}`,
-      this.props.event.id
-    );
+    socket.emit("join-room", {
+      message: `${this.props.user.firstName} has joined ${this.props.event.name}`,
+      room: this.props.event.id,
+      imgUrl: this.props.user.imgUrl,
+    });
 
     // 4. listens for new joiner
-    socket.on("room-joined", (message) => {
-      this.setState({ chatMessages: [...this.state.chatMessages, message] });
+    socket.on("room-joined", (message, imgUrl) => {
+      this.setState({
+        chatMessages: [...this.state.chatMessages, message],
+        imgUrl: imgUrl,
+      });
     });
 
     // 8. show other messages
@@ -62,12 +61,11 @@ class ChatScreen extends React.Component {
       senderId: this.props.user.id,
     });
   };
+
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View key={index}>
-        <Text style={Style.chatMessage} key={chatMessage.id}>
-          {chatMessage}
-        </Text>
+        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Image
           source={{
             uri: this.props.user.imgUrl,
@@ -76,6 +74,7 @@ class ChatScreen extends React.Component {
         />
       </View>
     ));
+
     return (
       <ScrollView>
         <View>
@@ -100,12 +99,14 @@ class ChatScreen extends React.Component {
     );
   }
 }
+
 const mapToState = (state) => ({
   message: state.message,
   user: state.user,
   event: state.singleEvent,
   messages: state.messages,
 });
+
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
@@ -114,4 +115,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getMessages: (eventId) => dispatch(getMesssagesThunk(eventId)),
 });
+
 export default connect(mapToState, mapDispatchToProps)(ChatScreen);

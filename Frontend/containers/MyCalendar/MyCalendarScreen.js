@@ -60,7 +60,7 @@ class MyCalendar extends React.Component {
                     width: "28%",
                     alignSelf: "center",
                     height: "6.5%",
-                    borderRadius: "10%",
+                    // borderRadius: "10%",
                     // padding: 2,
                     // margin: 1,
                     position: "relative",

@@ -17,7 +17,6 @@ class ChatScreen extends React.Component {
     this.state = {
       chatMessage: "",
       chatMessages: [],
-      imgUrl: "",
     };
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
@@ -40,14 +39,11 @@ class ChatScreen extends React.Component {
     socket.on("room-joined", (message, imgUrl) => {
       this.setState({
         chatMessages: [...this.state.chatMessages, message],
-        imgUrl: imgUrl,
       });
     });
 
     // 8. show other messages
     socket.on("send-message", (message) => {
-      console.log("message sent back", message);
-      console.log("THIS IS STATE", this.state);
       this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
   }
@@ -89,7 +85,7 @@ class ChatScreen extends React.Component {
           value={this.state.chatMessage}
           onSubmitEditing={() => this.submitChatMessage()}
           onChangeText={(chatMessage) => {
-            this.setState({ chatMessage });
+            this.setState({ chatMessage: { message: chatMessage } });
           }}
         />
         <View style={Style.sendMessageButton}>

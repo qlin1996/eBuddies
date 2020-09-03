@@ -29,7 +29,6 @@ class JoinedEvent extends React.Component {
       this.setState({ isModalVisible: true });
 
       let eventId = this.props.event.id;
-      console.log("eventId in joined", eventId);
 
       const waitForModal = () => {
         this.props.navigation.navigate("CHAT", {

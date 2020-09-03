@@ -63,19 +63,19 @@ class ChatScreen extends React.Component {
     console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View style={Style.chatMessages} key={index}>
-        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Image
           source={{
             uri: this.props.user.imgUrl,
           }}
           style={Style.userImage}
         />
+        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
       </View>
     ));
 
     return (
       <ScrollView>
-        <View style={Style.chatWrapper}>
+        <View style={Style.screenWrapper}>
           <Text style={Style.welcomeChat}>
             Welcome to the Groupchat for {this.props.event.name}!
           </Text>

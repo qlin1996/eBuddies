@@ -9,14 +9,18 @@ module.exports = (io) => {
       console.log(`Connection ${socket.id} has left the building`);
     });
 
-    socket.on("chat message", function (msg) {
-      io.emit("chat message", msg);
-    });
-
+    // socket.on("chat message", function (msg) {
+    //   io.emit("chat message", msg);
+    // });
     socket.on("room", function (room) {
-      console.log("this is the room ", room);
       socket.join(room);
     });
-    io.sockets.in(room).emit("event", "we are here");
+    // socket.on("room", function (room) {
+    //   if (socket.room) socket.leave(socket.room);
+
+    //   socket.room = room;
+    //   socket.join(room);
+    // });
+    io.sockets.in(room).emit("chat message", "we are here");
   });
 };

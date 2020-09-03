@@ -1,11 +1,10 @@
 import React from "react";
-import { Text, View, TextInput } from "react-native";
+import { Text, View, TextInput, ScrollView, Button } from "react-native";
 import io from "socket.io-client";
 import { createMesssageThunk } from "../../store/message";
-import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
-
-const socket = io("http://b769eafcc7af.ngrok.io", {
+import { connect } from "react-redux";
+const socket = io("http://3d5938c9e2ae.ngrok.io", {
   transports: ["websocket"],
 });
 
@@ -19,18 +18,12 @@ class ChatScreen extends React.Component {
   }
 
   async componentDidMount() {
-    // const eventId = this.props.navigation.getParam("id");
-    // console.log("eventID", eventId);
-
-    // await this.props.fetchSingleEvent(this.props.event.id);
-
-    console.log("EVENT PLEASE", this.props.event);
-
+    await this.props.fetchSingleEvent(this.props.event.id);
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
+      socket.emit("room", this.props.event.id);
     });
     socket.on("chat message", (msg) => {
-      console.log("front end recieving messages", msg);
       this.setState({ chatMessages: [...this.state.chatMessages, msg] });
     });
   }
@@ -38,11 +31,9 @@ class ChatScreen extends React.Component {
     socket.emit("chat message", this.state.chatMessage);
     this.props.createMessage({
       message: this.state.chatMessage,
-      eventId: this.props.navigation.getParam("id"),
+      eventId: this.props.event.id,
       senderId: this.props.user.id,
     });
-    console.log("this is CHAT MESSAGE", this.state.chatMessage);
-    this.setState({ chatMessage: "" });
   };
 
   render() {
@@ -52,13 +43,21 @@ class ChatScreen extends React.Component {
       </Text>
     ));
     return (
-      <View>
+      <ScrollView>
         <View>
-          <Text>Welcome to Event {this.props.event.name}</Text>
+          <Text style={{ fontSize: 22, textAlign: "center" }}>
+            Welcome to the Groupchat for {this.props.event.name}!
+          </Text>
         </View>
         {chatMessages}
         <TextInput
-          style={{ height: 40, borderWidth: 2, top: 600 }}
+          style={{
+            height: 40,
+            borderWidth: 2,
+            position: "relative",
+            top: 500,
+            backgroundColor: "lightblue",
+          }}
           autoCorrect={false}
           value={this.state.chatMessage}
           onSubmitEditing={() => this.submitChatMessage()}
@@ -66,14 +65,15 @@ class ChatScreen extends React.Component {
             this.setState({ chatMessage });
           }}
         />
-      </View>
+        <Button title="SEND" onPress={this.submitChatMessage}></Button>
+      </ScrollView>
     );
   }
 }
 const mapToState = (state) => ({
   message: state.message,
   user: state.user,
-  event: state.event,
+  event: state.singleEvent,
 });
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),

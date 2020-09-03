@@ -70,7 +70,7 @@ class JoinedEvent extends React.Component {
               width: "35%",
               height: "22%",
               alignSelf: "center",
-              borderRadius: "10%",
+              // borderRadius: "10%",
               // padding: 2,
               // margin: 1,
               position: "relative",

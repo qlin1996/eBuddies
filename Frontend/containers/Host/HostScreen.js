@@ -35,7 +35,7 @@ class HostScreen extends React.Component {
                 backgroundColor: "rgba(255, 255, 255, 0.6)",
                 width: "29%",
                 alignSelf: "center",
-                borderRadius: "10%",
+                // borderRadius: "10%",
                 // padding: 2,
                 // margin: 1,
                 position: "relative",

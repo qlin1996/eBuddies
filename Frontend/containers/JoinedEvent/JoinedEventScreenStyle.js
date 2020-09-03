@@ -44,6 +44,8 @@ export default StyleSheet.create({
     position: "relative",
     top: "-16%",
     color: "white",
+    borderColor: "lightblue",
+    borderWidth: 1,
   },
   headerText: {
     color: "white",

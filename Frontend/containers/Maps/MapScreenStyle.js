@@ -13,7 +13,8 @@ export default StyleSheet.create({
     height: "91%",
   },
   eventName: {
-    fontSize: 18,
+    fontSize: 15,
+    width: 100,
     left: -130,
     top: 2,
   },
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     borderRadius: 15,
     padding: 2,
     margin: 1,
-    top: -20,
+    top: -40,
     color: "white",
     backgroundColor: "white",
     borderColor: "black",

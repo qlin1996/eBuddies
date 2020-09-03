@@ -6,6 +6,7 @@ import Modal from "react-native-modal";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+
 class JoinedEvent extends React.Component {
   constructor() {
     super();
@@ -26,8 +27,14 @@ class JoinedEvent extends React.Component {
     try {
       await this.props.getUser(this.props.user.id);
       this.setState({ isModalVisible: true });
+
+      let eventId = this.props.event.id;
+      console.log("eventId in joined", eventId);
+
       const waitForModal = () => {
-        this.props.navigation.navigate("CHAT", { id: this.props.event.id });
+        this.props.navigation.navigate("CHAT", {
+          id: eventId,
+        });
         this.setState({
           isModalVisible: false,
         });

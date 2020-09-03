@@ -3,7 +3,7 @@ import { Text, View, TextInput } from "react-native";
 import io from "socket.io-client";
 import { createMesssageThunk } from "../../store/message";
 import { connect } from "react-redux";
-const socket = io("http://d71470611e8f.ngrok.io", {
+const socket = io("http://3d5938c9e2ae.ngrok.io", {
   transports: ["websocket"],
 });
 

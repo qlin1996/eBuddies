@@ -7,7 +7,7 @@ import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import Style from "./ChatScreenStyle";
 // const socket = io("http://04090154a8d1.ngrok.io", {
-const socket = io("http://2bade06f66f5.ngrok.io", {
+const socket = io("http://04090154a8d1.ngrok.io", {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {
@@ -63,11 +63,6 @@ class ChatScreen extends React.Component {
           style={Style.userImage}
         />
       </View>
-    console.log("STATE", this.state);
-    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-      <Text key={index} style={{ borderWidth: 2, top: 500 }}>
-        {chatMessage}
-      </Text>
     ));
     return (
       <ScrollView>

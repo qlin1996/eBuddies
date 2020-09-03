@@ -99,6 +99,22 @@ async function seed() {
   });
   users.push(anderson);
 
+  //USER ACCOUNT FOR DAN
+  const dan = await User.create({
+    firstName: "Dan",
+    lastName: "S",
+    description:
+      "A fordham student looking to find fun workout classes in nyc & quiet coffee shops for studying ",
+    email: "D1@gmail.com",
+    city: "New York",
+    state: "New York",
+    zipCode: "10019",
+    password: "Dan",
+    imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UUNC6D6KF-ead95d00d503-512",
+    isGuest: "no",
+  });
+  users.push(dan);
+
   //INTERESTS
   const CGinterest1 = await Interest.create({
     userInterest: "Food",

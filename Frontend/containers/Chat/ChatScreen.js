@@ -63,25 +63,30 @@ class ChatScreen extends React.Component {
     console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View style={Style.chatMessages} key={index}>
-        <Image
-          source={{
-            uri: this.props.user.imgUrl,
-          }}
-          style={Style.userImage}
-        />
-        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        <ScrollView
+          showsHorizontalScrollIndicator={false}
+          horizontal={true}
+          showsVerticalScrollIndicator={false}
+        >
+          <Image
+            source={{
+              uri: this.props.user.imgUrl,
+            }}
+            style={Style.userImage}
+          />
+          <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        </ScrollView>
       </View>
     ));
 
     return (
-      <ScrollView>
+      <ScrollView nestedScrollEnabled>
         <View style={Style.screenWrapper}>
           <Text style={Style.welcomeChat}>
-            Welcome to the Groupchat for {this.props.event.name}!
+            {this.props.event.name} Groupchat
           </Text>
 
-          <View style={Style.chatMessagesWrapper}>
-            {chatMessages}
+          <View style={Style.textInputWrapper}>
             <TextInput
               style={Style.textInput}
               autoCorrect={false}
@@ -91,10 +96,13 @@ class ChatScreen extends React.Component {
                 this.setState({ chatMessage: { message: chatMessage } });
               }}
             />
+
             <View style={Style.sendMessageButton}>
               <Button title="SEND" onPress={this.submitChatMessage}></Button>
             </View>
           </View>
+
+          {chatMessages}
         </View>
       </ScrollView>
     );
@@ -103,9 +111,9 @@ class ChatScreen extends React.Component {
 
 const mapToState = (state) => ({
   message: state.message,
+  messages: state.messages,
   user: state.user,
   event: state.singleEvent,
-  messages: state.messages,
 });
 
 const mapDispatchToProps = (dispatch) => ({

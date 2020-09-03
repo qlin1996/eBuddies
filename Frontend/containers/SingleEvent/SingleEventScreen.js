@@ -3,7 +3,6 @@ import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
-import { postUserEvent } from "../../store/events";
 import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
@@ -18,10 +17,10 @@ class SingleEvent extends React.Component {
       isModalVisible: false,
     };
   }
-  componentDidMount() {
+  async componentDidMount() {
     try {
       const eventId = this.props.navigation.getParam("id");
-      this.props.fetchSingleEvent(eventId);
+      await this.props.fetchSingleEvent(eventId);
     } catch (error) {
       console.log(error);
     }
@@ -29,8 +28,8 @@ class SingleEvent extends React.Component {
 
   handleJoin = async () => {
     try {
-      socket.emit("create", this.props.event.id);
-      console.log("this is the room ", this.props.event.id);
+      // socket.emit("create", this.props.event.id);
+      // console.log("this is the room ", this.props.event.id);
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,
@@ -79,11 +78,13 @@ class SingleEvent extends React.Component {
               // padding: 2,
               // margin: 1,
               position: "relative",
-              top: "-55%",
+              top: "-70%",
               color: "white",
             }}
           >
-            <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+            {this.props.user.id && (
+              <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+            )}
           </View>
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
@@ -114,17 +115,15 @@ const mapStateToProps = (state) => ({
   event: state.singleEvent,
   user: state.user,
   activity: state.activity,
-  // events: state.events,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
-  // postUserEvent: (id, event) => dispatch(postUserEvent(id, event)),
   getUser: (id) => {
     return dispatch(getUserInfo(id));
   },
-  postNewActivity: (id, updateData) => {
-    return dispatch(postNewActivity(id, updateData));
+  postNewActivity: (activityObj) => {
+    return dispatch(postNewActivity(activityObj));
   },
 });
 

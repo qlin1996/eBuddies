@@ -32,7 +32,6 @@ export const getAllActivities = (userId) => async (dispatch) => {
     const { data } = await axios.get(
       `http://${localHost}/api/activities/${userId}`
     );
-    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     return dispatch(getActivities(data));
   } catch (error) {}
 };
@@ -43,7 +42,6 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
       `http://${localHost}/api/activities/`,
       activityObject
     );
-    console.log("avitivity", data);
     return dispatch(postActivity(data));
   } catch (error) {
     console.log(error);
@@ -59,10 +57,6 @@ export const deleteAllActivities = (userId) => async (dispatch) => {
   } catch (error) {
     console.log(error);
   }
-};
-
-const initialState = {
-  activities: [],
 };
 
 export default function activityReducer(state = [], action) {

@@ -6,6 +6,7 @@ import Modal from "react-native-modal";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+
 class JoinedEvent extends React.Component {
   constructor() {
     super();
@@ -22,17 +23,17 @@ class JoinedEvent extends React.Component {
     }
   }
 
-  handleJoin = async () => {
+  handleChat = async () => {
     try {
       await this.props.getUser(this.props.user.id);
-      await this.props.postNewActivity({
-        userId: this.props.user.id,
-        eventId: this.props.event.id,
-      });
       this.setState({ isModalVisible: true });
 
+      let eventId = this.props.event.id;
+
       const waitForModal = () => {
-        this.props.navigation.navigate("CHAT");
+        this.props.navigation.navigate("CHAT", {
+          id: eventId,
+        });
         this.setState({
           isModalVisible: false,
         });
@@ -73,11 +74,11 @@ class JoinedEvent extends React.Component {
               // padding: 2,
               // margin: 1,
               position: "relative",
-              top: "-12%",
+              top: "-16%",
               color: "white",
             }}
           >
-            <Button title="JOIN THE CHAT" onPress={this.handleJoin}></Button>
+            <Button title="JOIN THE CHAT" onPress={this.handleChat}></Button>
           </View>
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
@@ -125,7 +126,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   postNewActivity: (activityObject) => {
     return dispatch(postNewActivity(activityObject));
-
   },
 });
 

@@ -26,19 +26,6 @@ router.get("/:eventId", async (req, res, next) => {
   }
 });
 
-//GET --> /API/EVENTS/:USERID
-router.get("/:userId", async (req, res, next) => {
-  try {
-    const events = await Event.findAll({
-      where: {
-        userId: req.params.userId,
-      },
-    });
-    res.json(events);
-  } catch (error) {
-    next(error);
-  }
-});
 // GET --> API/EVENTS/:EVENTID/MESSAGES
 router.get("/:eventId/messages", async (req, res, next) => {
   try {

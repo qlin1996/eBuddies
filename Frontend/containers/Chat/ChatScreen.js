@@ -1,12 +1,12 @@
 import React from "react";
-import { Text, View, TextInput } from "react-native";
+import { Text, View, TextInput, ScrollView, Button } from "react-native";
 import io from "socket.io-client";
 import { createMesssageThunk } from "../../store/message";
 import { connect } from "react-redux";
-const socket = io("http://515fb4e4adc9.ngrok.io", {
+import { fetchSingleEvent } from "../../store/singleEvent";
+const socket = io("http://2bade06f66f5.ngrok.io", {
   transports: ["websocket"],
 });
-
 class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -14,39 +14,61 @@ class ChatScreen extends React.Component {
       chatMessage: "",
       chatMessages: [],
     };
-  }
-
-  componentDidMount() {
     socket.on("connect", function () {
       console.log("a Socket connection has been made");
     });
-    socket.on("chat message", (msg) => {
-      console.log("front end recieving messages", msg);
-      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
+  }
+  async componentDidMount() {
+    await this.props.fetchSingleEvent(this.props.event.id);
+    // 1. join room
+    socket.emit(
+      "join room",
+      `a new person has joined ${this.props.event.name}`,
+      this.props.event.id
+    );
+
+    // 4. listens for new joiner
+    socket.on("room joined", (message) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, message] });
+    });
+
+    // 8. show other messages
+    socket.on("send message", (message) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
   }
   submitChatMessage = () => {
-    socket.emit("chat message", this.state.chatMessage);
+    // 5. send message
+    socket.emit("chat message", this.state.chatMessage, this.props.event.id);
     this.props.createMessage({
       message: this.state.chatMessage,
-      eventId: 1,
-      senderId: 104,
+      eventId: this.props.event.id,
+      senderId: this.props.user.id,
     });
-    console.log("this is CHAT MESSAGE", this.state.chatMessage);
-    this.setState({ chatMessage: "" });
   };
-
   render() {
-    const chatMessages = this.state.chatMessages.map((chatMessage) => (
-      <Text key={chatMessage.id} style={{ borderWidth: 2, top: 500 }}>
+    console.log("STATE", this.state);
+    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
+      <Text key={index} style={{ borderWidth: 2, top: 500 }}>
         {chatMessage}
       </Text>
     ));
     return (
-      <View>
+      <ScrollView>
+        <View>
+          <Text style={{ fontSize: 22, textAlign: "center" }}>
+            Welcome to the Groupchat for {this.props.event.name}!
+          </Text>
+        </View>
         {chatMessages}
         <TextInput
-          style={{ height: 40, borderWidth: 2, top: 600 }}
+          style={{
+            height: 40,
+            borderWidth: 2,
+            // position: "relative",
+            top: 500,
+            backgroundColor: "lightblue",
+          }}
           autoCorrect={false}
           value={this.state.chatMessage}
           onSubmitEditing={() => this.submitChatMessage()}
@@ -54,17 +76,29 @@ class ChatScreen extends React.Component {
             this.setState({ chatMessage });
           }}
         />
-      </View>
+        <View
+          style={{
+            position: "relative",
+            top: "480%",
+            left: "80%",
+            backgroundColor: "lightblue",
+            width: "20%",
+            borderRadius: "10%",
+          }}
+        >
+          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+        </View>
+      </ScrollView>
     );
   }
 }
 const mapToState = (state) => ({
   message: state.message,
   user: state.user,
-  event: state.event,
+  event: state.singleEvent,
 });
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),
+  fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
 });
-
 export default connect(mapToState, mapDispatchToProps)(ChatScreen);

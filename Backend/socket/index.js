@@ -1,22 +1,26 @@
 module.exports = (io) => {
-  const room = 1;
   io.on("connection", (socket) => {
     console.log(
       `A socket connection to the server has been made: ${socket.id}`
     );
 
+    // 2. listens for new joiner
+    socket.on("join room", (message, room) => {
+      socket.join(room);
+      // 3. let other knows of new joiner
+      // io.in(room).emit("room joined", message);
+      socket.to(room).broadcast.emit("uroom joined", message);
+    });
+
+    // 6. listens for message
+    socket.on("chat message", (message, room) => {
+      console.log("MESSAGE AND ROOM", message, room);
+      // 7. let others know of message
+      io.in(room).emit("send message", message);
+    });
+
     socket.on("disconnect", () => {
       console.log(`Connection ${socket.id} has left the building`);
     });
-
-    socket.on("chat message", function (msg) {
-      io.emit("chat message", msg);
-    });
-
-    socket.on("room", function (room) {
-      console.log("this is the room ", room);
-      socket.join(room);
-    });
-    io.sockets.in(room).emit("event", "we are here");
   });
 };

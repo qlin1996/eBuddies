@@ -107,13 +107,16 @@ export default StyleSheet.create({
   childrenContainer: {
     padding: "2%",
     margin: "2%",
-    width: "50%",
+    width: "80%",
+    position: "relative",
+    top: "2%",
     alignSelf: "center",
     borderRadius: 8,
     borderWidth: 2,
     borderColor: "white",
     fontSize: 16,
   },
+
   interestPoints: {
     fontSize: 16,
     letterSpacing: 1,

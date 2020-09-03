@@ -15,6 +15,7 @@ class SingleEvent extends React.Component {
     super();
     this.state = {
       isModalVisible: false,
+      isModal2Visible: false,
     };
   }
   async componentDidMount() {
@@ -41,6 +42,26 @@ class SingleEvent extends React.Component {
         this.props.navigation.navigate("MYCALENDAR");
         this.setState({
           isModalVisible: false,
+        });
+      };
+      setTimeout(waitForModal, 2500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  handleMap = async () => {
+    try {
+      await this.props.getUser(this.props.user.id);
+      this.setState({ isModal2Visible: true });
+
+      let eventId = this.props.event.id;
+
+      const waitForModal = () => {
+        this.props.navigation.navigate("MAPS", {
+          id: eventId,
+        });
+        this.setState({
+          isModal2Visible: false,
         });
       };
       setTimeout(waitForModal, 2500);
@@ -92,6 +113,26 @@ class SingleEvent extends React.Component {
                 uri: this.props.event.imgUrl,
               }}
             />
+          </View>
+        </Modal>
+        <View style={Style.mapButton}>
+          <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+        </View>
+        <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={Style.logo}
+            />
+            <View style={Style.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Directing you to Maps to view {this.props.event.name}'s
+                Location!
+              </Text>
+            </View>
+            <View>
+              <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
+            </View>
           </View>
         </Modal>
       </>

@@ -11,7 +11,21 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
   chatWrapper: {
-    height: 50,
+    height: 600,
+    width: 420,
+    flex: 1,
+    backgroundColor: Colors.lightBlue,
+  },
+  chatMessages: {
+    top: 20,
+    height: 150,
+    width: 395,
+    paddingBottom: 20,
+    paddingTop: 20,
+  },
+  chatMessageWrapper: {
+    top: 20,
+    height: 150,
     width: 395,
   },
   textInput: {
@@ -21,7 +35,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     borderColor: "lightblue",
     position: "absolute",
-    top: 100,
+    top: 400,
     left: 10,
     backgroundColor: Colors.lightBlue,
   },
@@ -57,7 +71,7 @@ export default StyleSheet.create({
     margin: 2,
   },
   sendMessageButton: {
-    top: 105,
+    top: 370,
     left: 300,
     width: 100,
     borderWidth: 2,

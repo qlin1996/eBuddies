@@ -62,7 +62,7 @@ class ChatScreen extends React.Component {
   render() {
     console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-      <View key={index}>
+      <View style={Style.chatMessages} key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Image
           source={{
@@ -80,18 +80,20 @@ class ChatScreen extends React.Component {
             Welcome to the Groupchat for {this.props.event.name}!
           </Text>
 
-          {chatMessages}
-          <TextInput
-            style={Style.textInput}
-            autoCorrect={false}
-            value={this.state.chatMessage}
-            onSubmitEditing={() => this.submitChatMessage()}
-            onChangeText={(chatMessage) => {
-              this.setState({ chatMessage: { message: chatMessage } });
-            }}
-          />
-          <View style={Style.sendMessageButton}>
-            <Button title="SEND" onPress={this.submitChatMessage}></Button>
+          <View style={Style.chatMessagesWrapper}>
+            {chatMessages}
+            <TextInput
+              style={Style.textInput}
+              autoCorrect={false}
+              value={this.state.chatMessage}
+              onSubmitEditing={() => this.submitChatMessage()}
+              onChangeText={(chatMessage) => {
+                this.setState({ chatMessage: { message: chatMessage } });
+              }}
+            />
+            <View style={Style.sendMessageButton}>
+              <Button title="SEND" onPress={this.submitChatMessage}></Button>
+            </View>
           </View>
         </View>
       </ScrollView>

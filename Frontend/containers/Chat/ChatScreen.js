@@ -2,12 +2,11 @@ import React from "react";
 import { Text, View, TextInput, ScrollView, Button } from "react-native";
 import io from "socket.io-client";
 import { createMesssageThunk } from "../../store/message";
-import { fetchSingleEvent } from "../../store/singleEvent";
 import { connect } from "react-redux";
-const socket = io("http://3d5938c9e2ae.ngrok.io", {
+import { fetchSingleEvent } from "../../store/singleEvent";
+const socket = io("http://515fb4e4adc9.ngrok.io", {
   transports: ["websocket"],
 });
-
 class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +15,6 @@ class ChatScreen extends React.Component {
       chatMessages: [],
     };
   }
-
   async componentDidMount() {
     await this.props.fetchSingleEvent(this.props.event.id);
     socket.on("connect", function () {
@@ -35,7 +33,6 @@ class ChatScreen extends React.Component {
       senderId: this.props.user.id,
     });
   };
-
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage) => (
       <Text key={chatMessage.id} style={{ borderWidth: 2, top: 500 }}>
@@ -54,7 +51,7 @@ class ChatScreen extends React.Component {
           style={{
             height: 40,
             borderWidth: 2,
-            position: "relative",
+            // position: "relative",
             top: 500,
             backgroundColor: "lightblue",
           }}
@@ -65,7 +62,18 @@ class ChatScreen extends React.Component {
             this.setState({ chatMessage });
           }}
         />
-        <Button title="SEND" onPress={this.submitChatMessage}></Button>
+        <View
+          style={{
+            position: "relative",
+            top: "480%",
+            left: "80%",
+            backgroundColor: "lightblue",
+            width: "20%",
+            borderRadius: "10%",
+          }}
+        >
+          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+        </View>
       </ScrollView>
     );
   }
@@ -79,5 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
 });
-
 export default connect(mapToState, mapDispatchToProps)(ChatScreen);

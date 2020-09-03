@@ -57,14 +57,14 @@ class MyCalendar extends React.Component {
                 <View
                   style={{
                     backgroundColor: "rgba(255, 255, 255, 0.6)",
-                    width: "29%",
+                    width: "28%",
                     alignSelf: "center",
-                    height: "8%",
+                    height: "6.5%",
                     borderRadius: "10%",
                     // padding: 2,
                     // margin: 1,
                     position: "relative",
-                    top: "-13%",
+                    top: "-10.9%",
                     color: "white",
                   }}
                 >

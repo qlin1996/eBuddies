@@ -5,18 +5,18 @@ module.exports = (io) => {
     );
 
     // 2. listens for new joiner
-    socket.on("join room", (message, room) => {
+    socket.on("join-room", (message, room) => {
       socket.join(room);
       // 3. let other knows of new joiner
       // io.in(room).emit("room joined", message);
-      socket.to(room).broadcast.emit("uroom joined", message);
+      socket.to(room).broadcast.emit("room-joined", message);
     });
 
     // 6. listens for message
-    socket.on("chat message", (message, room) => {
+    socket.on("chat-message", (message, room) => {
       console.log("MESSAGE AND ROOM", message, room);
       // 7. let others know of message
-      io.in(room).emit("send message", message);
+      io.in(room).emit("send-message", message);
     });
 
     socket.on("disconnect", () => {

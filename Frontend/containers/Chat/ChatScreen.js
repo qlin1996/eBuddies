@@ -22,24 +22,24 @@ class ChatScreen extends React.Component {
     await this.props.fetchSingleEvent(this.props.event.id);
     // 1. join room
     socket.emit(
-      "join room",
+      "join-room",
       `a new person has joined ${this.props.event.name}`,
       this.props.event.id
     );
 
     // 4. listens for new joiner
-    socket.on("room joined", (message) => {
+    socket.on("room-joined", (message) => {
       this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
 
     // 8. show other messages
-    socket.on("send message", (message) => {
+    socket.on("send-message", (message) => {
       this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
   }
   submitChatMessage = () => {
     // 5. send message
-    socket.emit("chat message", this.state.chatMessage, this.props.event.id);
+    socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
     this.props.createMessage({
       message: this.state.chatMessage,
       eventId: this.props.event.id,

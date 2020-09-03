@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
-import Style from "../AllEvents/AllEventsScreenStyle";
+import styles from "./HostScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 
@@ -30,19 +30,7 @@ class HostScreen extends React.Component {
         return (
           <View key={event.id}>
             <Event event={event} />
-            <View
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.6)",
-                width: "29%",
-                alignSelf: "center",
-                borderRadius: "10%",
-                // padding: 2,
-                // margin: 1,
-                position: "relative",
-                top: "-28%",
-                color: "white",
-              }}
-            >
+            <View style={styles.hostEvents}>
               <Button
                 style={Style.eventButton}
                 title="VIEW EVENT"

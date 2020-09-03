@@ -15,7 +15,11 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.example.eBuddies",
+      "config": {
+        "googleMapsApiKey": "AIzaSyC9lymu4XWgp-EgAU33l3XxWJmNbtRwvxc"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

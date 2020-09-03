@@ -76,6 +76,12 @@ const Event = db.define("event", {
       notEmpty: true,
     },
   },
+  latitude: {
+    type: Sequelize.FLOAT(11, 10),
+  },
+  longitude: {
+    type: Sequelize.FLOAT(11, 10),
+  },
 });
 
 module.exports = Event;

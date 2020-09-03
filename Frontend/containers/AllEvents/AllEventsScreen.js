@@ -28,6 +28,7 @@ class AllEvents extends React.Component {
           <View key={event.id}>
             <Event event={event} />
             <View style={Style.eventMap}>
+
               <Button
                 style={Style.eventButton}
                 title="View Event"

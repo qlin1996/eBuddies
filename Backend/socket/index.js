@@ -8,8 +8,8 @@ module.exports = (io) => {
     socket.on("join-room", (message, room) => {
       socket.join(room);
       // 3. let other knows of new joiner
-      // io.in(room).emit("room joined", message);
-      socket.to(room).emit("room-joined", message);
+      // io.in(room).emit("room-joined", message);
+      socket.to(room).broadcast.emit("room-joined", message);
     });
 
     // 6. listens for message
@@ -18,7 +18,7 @@ module.exports = (io) => {
       // 7. let others know of message
       // .to all clients except for the sender
       // .in to all clients + sender
-      socket.in(room).emit("send-message", message);
+      io.in(room).emit("send-message", message);
     });
 
     socket.on("disconnect", () => {

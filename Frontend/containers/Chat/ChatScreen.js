@@ -6,8 +6,7 @@ import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import Style from "./ChatScreenStyle";
-// const socket = io("http://04090154a8d1.ngrok.io", {
-const socket = io("http://04090154a8d1.ngrok.io", {
+const socket = io("http://2bade06f66f5.ngrok.io", {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {
@@ -22,12 +21,15 @@ class ChatScreen extends React.Component {
     });
   }
   async componentDidMount() {
+    console.log("STATE WHEN FIRST MOUNTED", this.state);
+    this.setState({ chatMessage: "", chatMessages: [] });
+
     await this.props.getUser(this.props.user.id);
     await this.props.fetchSingleEvent(this.props.event.id);
     // 1. join room
     socket.emit(
       "join-room",
-      `a new person has joined ${this.props.event.name}`,
+      `${this.props.user.firstName} has joined ${this.props.event.name}`,
       this.props.event.id
     );
 
@@ -38,9 +40,12 @@ class ChatScreen extends React.Component {
 
     // 8. show other messages
     socket.on("send-message", (message) => {
+      console.log("message sent back", message);
+      console.log("THIS IS STATE", this.state);
       this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
   }
+
   submitChatMessage = () => {
     // 5. send message
     socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
@@ -51,8 +56,8 @@ class ChatScreen extends React.Component {
     });
   };
   render() {
-    const chatMessages = this.state.chatMessages.map((chatMessage) => (
-      <View>
+    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
+      <View key={index}>
         <Text style={Style.chatMessage} key={chatMessage.id}>
           {chatMessage}
         </Text>

@@ -19,12 +19,11 @@ const screens = {
     navigationOptions: {
       title: "My Events",
     },
-
-    CHAT: {
-      screen: ChatScreen,
-      navigationOptions: {
-        title: "Chat",
-      },
+  },
+  CHAT: {
+    screen: ChatScreen,
+    navigationOptions: {
+      title: "Chat",
     },
   },
 };

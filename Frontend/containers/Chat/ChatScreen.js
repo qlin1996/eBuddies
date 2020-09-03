@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import Style from "./ChatScreenStyle";
-const socket = io("http://04090154a8d1.ngrok.io", {
+// const socket = io("http://04090154a8d1.ngrok.io", {
+const socket = io("http://2bade06f66f5.ngrok.io", {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {
@@ -16,20 +17,33 @@ class ChatScreen extends React.Component {
       chatMessage: "",
       chatMessages: [],
     };
+    socket.on("connect", function () {
+      console.log("a Socket connection has been made");
+    });
   }
   async componentDidMount() {
     await this.props.getUser(this.props.user.id);
     await this.props.fetchSingleEvent(this.props.event.id);
-    socket.on("connect", function () {
-      console.log("a Socket connection has been made");
-      socket.emit("room", this.props.event.id);
+    // 1. join room
+    socket.emit(
+      "join-room",
+      `a new person has joined ${this.props.event.name}`,
+      this.props.event.id
+    );
+
+    // 4. listens for new joiner
+    socket.on("room-joined", (message) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
-    socket.on("chat message", (msg) => {
-      this.setState({ chatMessages: [...this.state.chatMessages, msg] });
+
+    // 8. show other messages
+    socket.on("send-message", (message) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, message] });
     });
   }
   submitChatMessage = () => {
-    socket.emit("chat message", this.state.chatMessage);
+    // 5. send message
+    socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
     this.props.createMessage({
       message: this.state.chatMessage,
       eventId: this.props.event.id,
@@ -49,6 +63,11 @@ class ChatScreen extends React.Component {
           style={Style.userImage}
         />
       </View>
+    console.log("STATE", this.state);
+    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
+      <Text key={index} style={{ borderWidth: 2, top: 500 }}>
+        {chatMessage}
+      </Text>
     ));
     return (
       <ScrollView>

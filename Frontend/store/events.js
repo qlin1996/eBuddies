@@ -4,16 +4,6 @@ import { serverLink } from "./serverLink";
 const GET_EVENTS = "GET_EVENTS";
 const POST_NEW_EVENT = "POST_NEW_EVENT";
 
-// network urls
-// mac OS
-// const localHost = "localhost:8081";
-
-// android
-// const localHost = "192.168.1.3:8081";
-
-//ngrok
-// const serverLink = "http://41f2a4a1c6a8.ngrok.io";
-
 export const getEvents = (events) => ({
   type: GET_EVENTS,
   events,

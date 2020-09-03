@@ -1,13 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
-// network urls
-// mac OS
-// const localHost = "${localHost}";
-
-// android
-// const localHost = "192.168.1.3:8081";
-
 /**
  * ACTION TYPES
  */

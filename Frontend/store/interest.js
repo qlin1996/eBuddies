@@ -1,16 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
-// network urls
-// mac OS
-// const localHost = "${localHost}";
-
-// android
-// const localHost = "192.168.1.3:8081";
-
-// ngrok
-// const localHost = "http://41f2a4a1c6a8.ngrok.io";
-
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
 const DELETE_INTERESTS = "DELETE_INTERESTS";

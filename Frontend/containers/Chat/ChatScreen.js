@@ -29,7 +29,7 @@ class ChatScreen extends React.Component {
     socket.emit("chat message", this.state.chatMessage);
     this.props.createMessage({
       message: this.state.chatMessage,
-      eventId: 1,
+      eventId: this.props.navigation.getParam("id"),
       senderId: 104,
     });
     console.log("this is CHAT MESSAGE", this.state.chatMessage);
@@ -61,7 +61,6 @@ class ChatScreen extends React.Component {
 const mapToState = (state) => ({
   message: state.message,
   user: state.user,
-  event: state.event,
 });
 const mapDispatchToProps = (dispatch) => ({
   createMessage: (message) => dispatch(createMesssageThunk(message)),

@@ -9,14 +9,16 @@ module.exports = (io) => {
       socket.join(room);
       // 3. let other knows of new joiner
       // io.in(room).emit("room joined", message);
-      socket.to(room).broadcast.emit("room-joined", message);
+      socket.to(room).emit("room-joined", message);
     });
 
     // 6. listens for message
     socket.on("chat-message", (message, room) => {
       console.log("MESSAGE AND ROOM", message, room);
       // 7. let others know of message
-      io.in(room).emit("send-message", message);
+      // .to all clients except for the sender
+      // .in to all clients + sender
+      socket.in(room).emit("send-message", message);
     });
 
     socket.on("disconnect", () => {

@@ -7,7 +7,7 @@ import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import Style from "./ChatScreenStyle";
 // const socket = io("http://04090154a8d1.ngrok.io", {
-const socket = io("http://2bade06f66f5.ngrok.io", {
+const socket = io("http://04090154a8d1.ngrok.io", {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {

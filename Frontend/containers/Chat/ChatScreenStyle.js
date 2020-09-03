@@ -10,24 +10,25 @@ export default StyleSheet.create({
     width: "70%",
     alignSelf: "center",
   },
-
+  chatWrapper: {
+    height: 50,
+    width: 395,
+  },
   textInput: {
     height: 50,
     width: 395,
     borderWidth: 2,
-    // borderRadius: 10,
+    borderRadius: 10,
     borderColor: "lightblue",
-    // position: "absolute",
-    top: 500,
+    position: "absolute",
+    top: 100,
     left: 10,
     backgroundColor: Colors.lightBlue,
   },
-
   welcomeChat: {
     fontSize: 22,
     textAlign: "center",
   },
-
   userImage: {
     resizeMode: "cover",
     width: "8%",
@@ -55,15 +56,14 @@ export default StyleSheet.create({
     padding: 2,
     margin: 2,
   },
-
   sendMessageButton: {
-    top: 505,
+    top: 105,
     left: 300,
-    width: 20,
+    width: 100,
     borderWidth: 2,
     borderColor: "white",
-    // position: "absolute",
+    position: "absolute",
     backgroundColor: "white",
-    // borderRadius: 10,
+    borderRadius: 10,
   },
 });

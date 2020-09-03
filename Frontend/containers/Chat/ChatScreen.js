@@ -74,24 +74,24 @@ class ChatScreen extends React.Component {
 
     return (
       <ScrollView>
-        <View>
+        <View style={Style.chatWrapper}>
           <Text style={Style.welcomeChat}>
             Welcome to the Groupchat for {this.props.event.name}!
           </Text>
-        </View>
-        {chatMessages}
-        <TextInput
-          style={Style.welcomeChat}
-          autoCorrect={false}
-          value={this.state.chatMessage}
-          placeholder="TEXT BOX"
-          onSubmitEditing={() => this.submitChatMessage()}
-          onChangeText={(chatMessage) => {
-            this.setState({ chatMessage: { message: chatMessage } });
-          }}
-        />
-        <View style={Style.sendMessageButton}>
-          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+
+          {chatMessages}
+          <TextInput
+            style={Style.textInput}
+            autoCorrect={false}
+            value={this.state.chatMessage}
+            onSubmitEditing={() => this.submitChatMessage()}
+            onChangeText={(chatMessage) => {
+              this.setState({ chatMessage: { message: chatMessage } });
+            }}
+          />
+          <View style={Style.sendMessageButton}>
+            <Button title="SEND" onPress={this.submitChatMessage}></Button>
+          </View>
         </View>
       </ScrollView>
     );

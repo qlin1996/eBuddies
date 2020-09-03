@@ -66,9 +66,7 @@ class ChatScreen extends React.Component {
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View key={index}>
-        <Text style={Style.chatMessage} key={chatMessage.id}>
-          {chatMessage}
-        </Text>
+        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Image
           source={{
             uri: this.props.user.imgUrl,

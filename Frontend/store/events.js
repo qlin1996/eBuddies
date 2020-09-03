@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 const GET_EVENTS = "GET_EVENTS";
 const POST_NEW_EVENT = "POST_NEW_EVENT";
 
@@ -8,7 +9,10 @@ const POST_NEW_EVENT = "POST_NEW_EVENT";
 // const localHost = "localhost:8081";
 
 // android
-const localHost = "192.168.1.3:8081";
+// const localHost = "192.168.1.3:8081";
+
+//ngrok
+// const serverLink = "http://41f2a4a1c6a8.ngrok.io";
 
 export const getEvents = (events) => ({
   type: GET_EVENTS,
@@ -22,7 +26,7 @@ export const postEvent = (event) => ({
 
 export const getAllEvents = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://${localHost}/api/events`);
+    const { data } = await axios.get(`${serverLink}/api/events`);
     return dispatch(getEvents(data));
   } catch (err) {
     console.error(err);
@@ -31,19 +35,14 @@ export const getAllEvents = () => async (dispatch) => {
 
 export const getUserEvents = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      `http://${localHost}/api/events/${userId}`
-    );
+    const { data } = await axios.get(`${serverLink}/api/events/${userId}`);
     return dispatch(getEvents(data));
   } catch (error) {}
 };
 
 export const postNewEvent = (addEventForm) => async (dispatch) => {
   try {
-    const { data } = await axios.post(
-      `http://${localHost}/api/events`,
-      addEventForm
-    );
+    const { data } = await axios.post(`${serverLink}/api/events`, addEventForm);
     return dispatch(postEvent(data));
   } catch (error) {
     console.log(error);

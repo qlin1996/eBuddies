@@ -1,11 +1,15 @@
 import axios from "axios";
+import { serverLink } from "./serverLink";
 
 // network urls
 // mac OS
 // const localHost = "localhost:8081";
 
 // android
-const localHost = "192.168.1.3:8081";
+// const localHost = "192.168.1.3:8081";
+
+//ngrok
+// const localHost = "http://41f2a4a1c6a8.ngrok.io";
 
 const GET_ACTIVITIES = "GET_ACTIVITIES";
 const POST_ACTIVITY = "POST_ACTIVITY";
@@ -29,9 +33,7 @@ export const deleteActivity = () => ({
 
 export const getAllActivities = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      `http://${localHost}/api/activities/${userId}`
-    );
+    const { data } = await axios.get(`${serverLink}/api/activities/${userId}`);
     return dispatch(getActivities(data));
   } catch (error) {}
 };
@@ -39,7 +41,7 @@ export const getAllActivities = (userId) => async (dispatch) => {
 export const postNewActivity = (activityObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      `http://${localHost}/api/activities/`,
+      `${serverLink}/api/activities/`,
       activityObject
     );
     return dispatch(postActivity(data));
@@ -51,7 +53,7 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
 export const deleteAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://${localHost}/api/activities/${userId}`
+      `${serverLink}/api/activities/${userId}`
     );
     return dispatch(deleteActivities(data));
   } catch (error) {

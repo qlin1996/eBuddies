@@ -1,11 +1,15 @@
 import axios from "axios";
+import { serverLink } from "./serverLink";
 
 // network urls
 // mac OS
 // const localHost = "${localHost}";
 
 // android
-const localHost = "192.168.1.3:8081";
+// const localHost = "192.168.1.3:8081";
+
+// ngrok
+// const localHost = "http://41f2a4a1c6a8.ngrok.io";
 
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
@@ -29,9 +33,7 @@ export const deleteInterests = () => ({
 
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(
-      `http://${localHost}/api/interests/${userId}`
-    );
+    const { data } = await axios.get(`${serverLink}/api/interests/${userId}`);
     return dispatch(getInterests(data));
   } catch (error) {}
 };
@@ -39,7 +41,7 @@ export const getAllInterests = (userId) => async (dispatch) => {
 export const postNewInterest = (interestObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
-      `http://${localHost}/api/interests/`,
+      `${serverLink}/api/interests/`,
       interestObject
     );
     return dispatch(postInterest(data));
@@ -51,7 +53,7 @@ export const postNewInterest = (interestObject) => async (dispatch) => {
 export const deleteAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.delete(
-      `http://${localHost}/api/interests/${userId}`
+      `${serverLink}/api/interests/${userId}`
     );
     return dispatch(deleteInterests(data));
   } catch (error) {

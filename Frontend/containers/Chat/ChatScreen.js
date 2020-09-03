@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { getUserInfo } from "../../store/user";
 import Style from "./ChatScreenStyle";
-const socket = io("http://2bade06f66f5.ngrok.io", {
+
+const socket = io("http://41f2a4a1c6a8.ngrok.io", {
   transports: ["websocket"],
 });
 class ChatScreen extends React.Component {

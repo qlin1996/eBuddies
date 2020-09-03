@@ -75,7 +75,7 @@ class JoinedEvent extends React.Component {
               // padding: 2,
               // margin: 1,
               position: "relative",
-              top: "-12%",
+              top: "-16%",
               color: "white",
             }}
           >

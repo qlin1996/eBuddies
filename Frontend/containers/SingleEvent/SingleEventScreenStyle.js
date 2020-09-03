@@ -81,7 +81,7 @@ export default StyleSheet.create({
   },
   logo: {
     position: "absolute",
-    top: "-40%",
+    top: "-29%",
     left: "22%",
   },
   image2: {
@@ -96,7 +96,7 @@ export default StyleSheet.create({
     backgroundColor: Colors.lightBlue,
   },
   eventImg: {
-    width: 360,
+    width: 336,
     height: 250,
     flex: 1,
   },
@@ -110,10 +110,10 @@ export default StyleSheet.create({
     height: "82%",
   },
   wholeCardDiv: {
-    width: "89.1%",
+    width: "83.1%",
     height: "53%",
     position: "relative",
-    left: "1%",
+    left: "-0.5%",
     top: "5%",
     alignSelf: "center",
     borderColor: "lightblue",

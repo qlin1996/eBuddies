@@ -81,7 +81,7 @@ export default StyleSheet.create({
   },
   logo: {
     position: "absolute",
-    top: "-80%",
+    top: "-130%",
     left: "22%",
   },
   image2: {

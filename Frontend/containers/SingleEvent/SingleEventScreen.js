@@ -78,7 +78,7 @@ class SingleEvent extends React.Component {
               // padding: 2,
               // margin: 1,
               position: "relative",
-              top: "-55%",
+              top: "-70%",
               color: "white",
             }}
           >

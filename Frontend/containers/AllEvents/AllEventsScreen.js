@@ -27,19 +27,8 @@ class AllEvents extends React.Component {
         return (
           <View key={event.id}>
             <Event event={event} />
-            <View
-              style={{
-                backgroundColor: "rgba(255, 255, 255, 0.6)",
-                width: "27%",
-                alignSelf: "center",
-                // borderRadius: "10%",
-                // padding: 2,
-                // margin: 1,
-                position: "relative",
-                top: "-13%",
-                color: "white",
-              }}
-            >
+            <View style={Style.eventMap}>
+
               <Button
                 style={Style.eventButton}
                 title="View Event"

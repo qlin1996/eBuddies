@@ -80,17 +80,7 @@ class RecommendedEvents extends React.Component {
                         </View>
 
                         <Event event={event} />
-                        <View
-                          style={{
-                            backgroundColor: "rgba(255, 255, 255, 0.6)",
-                            width: "27%",
-                            alignSelf: "center",
-                            // borderRadius: "10%",
-                            position: "relative",
-                            top: "-12%",
-                            color: "white",
-                          }}
-                        >
+                        <View style={Style.recEvents}>
                           <Button
                             title="View Event"
                             onPress={() => {

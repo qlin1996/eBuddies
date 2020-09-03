@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import AllEventsScreen from "./AllEventsStack";
 import LoginScreen from "./LoginStack";
 import SignUpScreen from "./SignUpStack";
+import MapScreen from "./MapStack";
 
 const GuestDrawerNavigator = createDrawerNavigator({
   EVENTS: {
@@ -21,6 +22,12 @@ const GuestDrawerNavigator = createDrawerNavigator({
     screen: SignUpScreen,
     navigationOptions: {
       title: "Sign Up",
+    },
+  },
+  MAPS: {
+    screen: MapScreen,
+    navigationOptions: {
+      title: "View Map",
     },
   },
 });

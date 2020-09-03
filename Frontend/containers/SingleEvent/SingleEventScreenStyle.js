@@ -123,9 +123,21 @@ export default StyleSheet.create({
       width: 10,
       height: 5,
     },
+
     shadowOpacity: 10.7,
     shadowRadius: 8.65,
     margin: 15,
     elevation: 6,
+  },
+  singleEvent: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: "29%",
+    alignSelf: "center",
+    borderRadius: 10,
+    // padding: 2,
+    // margin: 1,
+    position: "relative",
+    top: "-70%",
+    color: "white",
   },
 });

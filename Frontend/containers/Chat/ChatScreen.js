@@ -52,13 +52,14 @@ class ChatScreen extends React.Component {
     // 5. send message
     socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
     this.props.createMessage({
-      message: this.state.chatMessage,
+      message: this.state.chatMessage.message,
       eventId: this.props.event.id,
       senderId: this.props.user.id,
     });
   };
 
   render() {
+    console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>

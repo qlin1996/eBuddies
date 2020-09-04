@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 const GET_ACTIVITIES = "GET_ACTIVITIES";
 const POST_ACTIVITY = "POST_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
@@ -23,7 +24,6 @@ export const deleteActivity = () => ({
 export const getAllActivities = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/activities/${userId}`);
-    // const { data } = await axios.get("http://192.168.1.3:8081/api/events");
     return dispatch(getActivities(data));
   } catch (error) {}
 };

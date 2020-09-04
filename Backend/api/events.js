@@ -18,7 +18,7 @@ router.get("/:eventId", async (req, res, next) => {
       where: {
         id: req.params.eventId,
       },
-      include: Message,
+      include: { all: true },
     });
     res.json(event);
   } catch (error) {
@@ -95,6 +95,20 @@ router.patch("/:eventId/users/:userId", async (req, res, next) => {
       },
     });
     res.json(eventActivity);
+  } catch (error) {
+    next(error);
+  }
+});
+//GET --> /API/CAMPUSES/:ID
+router.get("/:id", async (req, res, next) => {
+  try {
+    const campuses = await Campus.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: Student,
+    });
+    res.json(campuses);
   } catch (error) {
     next(error);
   }

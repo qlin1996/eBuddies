@@ -13,7 +13,8 @@ class Maps extends React.Component {
     super();
 
     this.state = {
-      location: {},
+      userLocation: {},
+      eventLocation: {},
     };
   }
 
@@ -21,16 +22,28 @@ class Maps extends React.Component {
     await this.props.fetchSingleEvent(this.props.event.id);
     let { status } = await Location.requestPermissionsAsync();
     if (status === "granted") {
-      let location = await Location.getCurrentPositionAsync({});
+      let userLocation = await Location.getCurrentPositionAsync({});
       this.setState({
-        location: location,
+        userLocation: userLocation,
       });
     }
-    console.log("LOCATION ON STATE", this.state.location.coords);
+    let eventAddress =
+      this.props.event.address +
+      " " +
+      this.props.event.city +
+      " " +
+      this.props.event.state +
+      " " +
+      this.props.event.zipCode;
+
+    let result = await Location.geocodeAsync(eventAddress);
+    result[0]["latitudeDelta"] = 0.02;
+    result[0]["longitudeDelta"] = 0.045;
+    this.setState({
+      eventLocation: result,
+    });
   }
   handleAttendance = async () => {
-    //IF USER IN I MILE RADIUS OF LONG & LAT
-    console.log(this.props.event.id, "EVENT ID", this.props.user.id, "USER ID");
     await this.props.editActivityAttendance(
       this.props.event.id,
       this.props.user.id,
@@ -40,31 +53,17 @@ class Maps extends React.Component {
     );
   };
   render() {
-    let eventRegion = {
-      latitude: this.props.event.latitude,
-      longitude: this.props.event.longitude,
-      latitudeDelta: 0.02,
-      longitudeDelta: 0.045,
-    };
-
-    // let userRegion = {
-    //   latitude: this.state.location.coords.latitude,
-    //   longitude: this.state.location.coords.longitude,
-    //   latitudeDelta: 0.02,
-    //   longitudeDelta: 0.045,
-    // };
-
     return (
       <View style={styles.container}>
-        <MapView style={styles.mapStyle} region={eventRegion}>
+        <MapView style={styles.mapStyle} region={this.state.eventLocation[0]}>
           <Marker
-            coordinate={eventRegion}
+            coordinate={this.state.eventLocation[0]}
             title={this.props.event.name}
             description={this.props.event.address}
           />
           <Marker
             pinColor={"blue"}
-            coordinate={this.state.location.coords}
+            coordinate={this.state.userLocation.coords}
             title={this.props.user.firstName}
             description={this.props.user.description}
           />

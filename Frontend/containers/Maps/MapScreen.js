@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import * as Location from "expo-location";
 import MapView from "react-native-maps";
 import { Text, View, Button } from "react-native";
 import styles from "./MapScreenStyle";
@@ -10,10 +11,22 @@ import { editActivityAttendance } from "../../store/activity";
 class Maps extends React.Component {
   constructor() {
     super();
+
+    this.state = {
+      location: {},
+    };
   }
 
   async componentDidMount() {
     await this.props.fetchSingleEvent(this.props.event.id);
+    let { status } = await Location.requestPermissionsAsync();
+    if (status === "granted") {
+      let location = await Location.getCurrentPositionAsync({});
+      this.setState({
+        location: location,
+      });
+    }
+    console.log("LOCATION ON STATE", this.state.location.coords);
   }
   handleAttendance = async () => {
     //IF USER IN I MILE RADIUS OF LONG & LAT
@@ -26,32 +39,34 @@ class Maps extends React.Component {
       }
     );
   };
-
   render() {
-    let markers = [
-      {
-        latitude: this.props.event.latitude,
-        longitude: this.props.event.longitude,
-        latitudeDelta: 8.0,
-        longitudeDelta: 8.0,
-        title: this.props.event.name,
-        address: this.props.event.address,
-      },
-    ];
-    let region = {
+    let eventRegion = {
       latitude: this.props.event.latitude,
       longitude: this.props.event.longitude,
       latitudeDelta: 0.02,
       longitudeDelta: 0.045,
     };
 
+    // let userRegion = {
+    //   latitude: this.state.location.coords.latitude,
+    //   longitude: this.state.location.coords.longitude,
+    //   latitudeDelta: 0.02,
+    //   longitudeDelta: 0.045,
+    // };
+
     return (
       <View style={styles.container}>
-        <MapView style={styles.mapStyle} region={region}>
+        <MapView style={styles.mapStyle} region={eventRegion}>
           <Marker
-            coordinate={region}
-            title={markers[0].title}
-            description={markers[0].address}
+            coordinate={eventRegion}
+            title={this.props.event.name}
+            description={this.props.event.address}
+          />
+          <Marker
+            pinColor={"blue"}
+            coordinate={this.state.location.coords}
+            title={this.props.user.firstName}
+            description={this.props.user.description}
           />
         </MapView>
         <Text style={styles.eventName}>Viewing {this.props.event.name}</Text>

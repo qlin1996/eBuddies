@@ -49,7 +49,7 @@ class SingleEvent extends React.Component {
   };
   handleMap = async () => {
     try {
-      await this.props.getUser(this.props.user.id);
+      // await this.props.getUser(this.props.user.id);
       this.setState({ isModal2Visible: true });
 
       let eventId = this.props.event.id;
@@ -117,7 +117,7 @@ class SingleEvent extends React.Component {
           <View>
             <Image
               source={require("../../assets/ebuddies.gif")}
-              style={Style.logo}
+              style={Style.logo2}
             />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>

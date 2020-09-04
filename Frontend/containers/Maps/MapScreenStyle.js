@@ -21,15 +21,15 @@ export default StyleSheet.create({
   backButton: {
     backgroundColor: "rgba(255, 255, 255, 0.6)",
     width: "20%",
-    height: "5.5%",
+    height: "6.1%",
     alignSelf: "center",
     borderRadius: 15,
     padding: 2,
     margin: 1,
-    top: -40,
+    top: -20,
     color: "white",
     backgroundColor: "white",
-    borderColor: "black",
+    borderColor: "rgba(240, 237, 228, 0.6)",
     borderWidth: 2,
   },
 });

@@ -81,7 +81,7 @@ class ChatScreen extends React.Component {
 
     return (
       <ScrollView nestedScrollEnabled>
-        <View style={Style.screenWrapper}>
+        <View>
           <Text style={Style.welcomeChat}>
             {this.props.event.name} Groupchat
           </Text>

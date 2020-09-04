@@ -9,10 +9,12 @@ import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
+import RNPickerSelect from "react-native-picker-select";
 
 class AddEventScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.pickerRef = React.createRef();
     this.state = {
       name: "",
       address: "",
@@ -69,6 +71,7 @@ class AddEventScreen extends React.Component {
         eventId: "",
         imgUrl: "",
         hostId: "",
+        selectedValue: "Food",
       });
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
@@ -129,7 +132,6 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.name}
             />
-
             {this.state.address.length === 0 && (
               <Text style={{ color: "red" }}>
                 Event Street Address is Required
@@ -144,7 +146,6 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.address}
             />
-
             {this.state.city.length === 0 && (
               <Text style={{ color: "red" }}>Event City is Required</Text>
             )}
@@ -157,7 +158,6 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.city}
             />
-
             {this.state.state.length === 0 && (
               <Text style={{ color: "red" }}>Event State is Required</Text>
             )}
@@ -170,7 +170,6 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.state}
             />
-
             {!this.isValidUSZip(this.state.zipcode) && (
               <Text style={{ color: "red" }}>
                 Valid US Zip Code is Required
@@ -185,7 +184,6 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.zipcode}
             />
-
             {this.state.date.length === 0 && (
               <Text style={{ color: "red" }}>Event Date is Required</Text>
             )}
@@ -210,7 +208,6 @@ class AddEventScreen extends React.Component {
               }}
               mode="date"
             />
-
             {this.state.time.length === 0 && (
               <Text style={{ color: "red" }}>Event Time is Required</Text>
             )}
@@ -219,7 +216,7 @@ class AddEventScreen extends React.Component {
               onPress={() => {
                 this.setState({ isTimePickerVisible: true });
               }}
-              title="Select A Time"
+              title="Select Time"
             />
             <Text style={Style.text}>{this.state.time}</Text>
             <DateTimePickerModal
@@ -229,14 +226,12 @@ class AddEventScreen extends React.Component {
                   time: time.toTimeString(),
                   isTimePickerVisible: false,
                 });
-                console.log("STATE", this.state);
               }}
               onCancel={() => {
                 this.setState({ isTimePickerVisible: false });
               }}
               mode="time"
             />
-
             {this.state.description.length === 0 && (
               <Text style={{ color: "red" }}>
                 Event Description is Required
@@ -263,19 +258,26 @@ class AddEventScreen extends React.Component {
                 this.textInput = input;
               }}
             />
-
             {this.state.category.length === 0 && (
               <Text style={{ color: "red" }}>Event category is Required</Text>
             )}
             <Text>Event Category</Text>
-            <TextInput
-              style={Style.text}
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ category: text });
+            <RNPickerSelect
+              onValueChange={(category) => {
+                this.setState({ category: category });
               }}
-              value={this.state.category}
+              placeholder={{
+                label: "Select Category",
+                value: null,
+              }}
+              items={[
+                { label: "Food", value: "Food" },
+                { label: "Education", value: "Education" },
+                { label: "Fitness", value: "Fitness" },
+                { label: "Entertainment", value: "Entertainment" },
+              ]}
             />
+            <Text style={Style.text}>{this.state.category}</Text>
           </View>
 
           <Button

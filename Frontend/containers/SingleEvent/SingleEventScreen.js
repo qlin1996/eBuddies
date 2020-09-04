@@ -29,9 +29,7 @@ class SingleEvent extends React.Component {
 
   handleJoin = async () => {
     try {
-      // socket.emit("create", this.props.event.id);
-      // console.log("this is the room ", this.props.event.id);
-      // await this.props.getUser(this.props.user.id);
+      await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,
         eventId: this.props.event.id,
@@ -78,7 +76,6 @@ class SingleEvent extends React.Component {
   };
 
   render() {
-    console.log("TIME", this.props.event.time);
     return (
       <>
         <View style={Style.wholeCardDiv}>

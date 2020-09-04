@@ -21,6 +21,7 @@
     "expo-location": "~8.2.1",
     "expo-permissions": "~9.0.1",
     "expo-status-bar": "^1.0.2",
+    "geolib": "^3.3.1",
     "global": "^4.4.0",
     "history": "^5.0.0",
     "material-ui-form": "^1.0.0-alpha.26",

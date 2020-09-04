@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as Location from "expo-location";
+import * as geolib from "geolib";
 import MapView from "react-native-maps";
 import { Text, View, Button } from "react-native";
 import styles from "./MapScreenStyle";
@@ -44,6 +45,12 @@ class Maps extends React.Component {
     });
   }
   handleAttendance = async () => {
+    let metersDistance = geolib.getDistance(
+      this.state.eventLocation[0],
+      this.state.userLocation.coords
+    );
+    let miles = Math.floor(metersDistance / 1609);
+    console.log(miles, "USERS DISTANCE");
     await this.props.editActivityAttendance(
       this.props.event.id,
       this.props.user.id,

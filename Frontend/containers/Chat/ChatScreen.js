@@ -50,8 +50,14 @@ class ChatScreen extends React.Component {
 
     // 8. show other messages
     socket.on("send-message", (messageObj) => {
+      console.log("THIS MESSAGE WAS SENT", messageObj);
       this.setState({ chatMessages: [...this.state.chatMessages, messageObj] });
     });
+  }
+
+  componentWillUnmount() {
+    console.log("DOES IT UNMOUNT?");
+    socket.emit("leave-room", this.props.event.id);
   }
 
   submitChatMessage = () => {

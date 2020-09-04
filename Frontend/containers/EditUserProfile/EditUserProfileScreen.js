@@ -142,7 +142,7 @@ class EditUserProfileScreen extends React.Component {
     console.log("STATE", this.state);
     return (
       <ScrollView>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginBottom: 100 }}>
           <View style={Style.imageContainer}>
             <Image
               style={Style.image}

@@ -15,7 +15,7 @@ class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chatMessage: "",
+      chatMessage: {},
       chatMessages: [],
     };
     socket.on("connect", function () {
@@ -31,31 +31,40 @@ class ChatScreen extends React.Component {
     // 1. join room
     socket.emit("join-room", {
       message: `${this.props.user.firstName} has joined ${this.props.event.name}`,
-      room: this.props.event.id,
-      imgUrl: this.props.user.imgUrl,
+      eventId: this.props.event.id,
+      senderId: this.props.user.id,
     });
 
     // 4. listens for new joiner
-    socket.on("room-joined", (message, imgUrl) => {
+    socket.on("room-joined", (messageObj) => {
       this.setState({
-        chatMessages: [...this.state.chatMessages, message],
+        chatMessages: [...this.state.chatMessages, messageObj],
       });
     });
 
     // 8. show other messages
-    socket.on("send-message", (message) => {
-      this.setState({ chatMessages: [...this.state.chatMessages, message] });
+    socket.on("send-message", (messageObj) => {
+      this.setState({ chatMessages: [...this.state.chatMessages, messageObj] });
     });
   }
 
   submitChatMessage = () => {
     // 5. send message
-    socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
+    socket.emit(
+      "chat-message",
+      {
+        message: this.state.chatMessage.message,
+        eventId: this.props.event.id,
+        senderId: this.props.user.id,
+      },
+      this.props.event.id
+    );
     this.props.createMessage({
       message: this.state.chatMessage.message,
       eventId: this.props.event.id,
       senderId: this.props.user.id,
     });
+    this.setState({ chatMessage: {} });
   };
 
   render() {
@@ -83,7 +92,7 @@ class ChatScreen extends React.Component {
         <TextInput
           style={Style.textInput}
           autoCorrect={false}
-          value={this.state.chatMessage}
+          value={this.state.chatMessage.message}
           onSubmitEditing={() => this.submitChatMessage()}
           onChangeText={(chatMessage) => {
             this.setState({ chatMessage: { message: chatMessage } });

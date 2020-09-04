@@ -70,7 +70,15 @@ class SingleEvent extends React.Component {
     }
   };
 
+  convertTime = (timeString) => {
+    const hour = timeString.substr(0, 2);
+    var h = hour % 12 || 12;
+    var ampm = hour < 12 || hour === 24 ? "AM" : "PM";
+    return h + timeString.substr(2, 3) + ampm;
+  };
+
   render() {
+    console.log("TIME", this.props.event.time);
     return (
       <>
         <View style={Style.wholeCardDiv}>
@@ -86,7 +94,19 @@ class SingleEvent extends React.Component {
           <View style={Style.informationDiv}>
             <Text style={Style.fonts}>{this.props.event.description}</Text>
             <Text style={Style.addressFonts}>{this.props.event.address}</Text>
-            <Text style={Style.dateFonts}>{this.props.event.date}</Text>
+            <Text style={Style.dateFonts}>
+              {this.props.event.date
+                ? this.props.event.date.slice(0, 16)
+                : null}
+            </Text>
+            <View>
+              <Text style={Style.dateFonts}>
+                Time:{" "}
+                {this.props.event.time
+                  ? this.convertTime(this.props.event.time)
+                  : null}
+              </Text>
+            </View>
           </View>
         </View>
         <View>

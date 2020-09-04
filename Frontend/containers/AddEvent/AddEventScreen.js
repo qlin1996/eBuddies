@@ -204,7 +204,6 @@ class AddEventScreen extends React.Component {
                   date: date.toUTCString(),
                   isDatePickerVisible: false,
                 });
-                console.log("STATE", this.state);
               }}
               onCancel={() => {
                 this.setState({ isDatePickerVisible: false });

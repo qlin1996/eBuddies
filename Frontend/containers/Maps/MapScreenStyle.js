@@ -32,4 +32,18 @@ export default StyleSheet.create({
     borderColor: "rgba(240, 237, 228, 0.6)",
     borderWidth: 2,
   },
+  hereButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: "20%",
+    height: "6.1%",
+    alignSelf: "center",
+    borderRadius: 15,
+    padding: 2,
+    margin: 1,
+    top: -35,
+    color: "white",
+    backgroundColor: "white",
+    borderColor: "rgba(240, 237, 228, 0.6)",
+    borderWidth: 2,
+  },
 });

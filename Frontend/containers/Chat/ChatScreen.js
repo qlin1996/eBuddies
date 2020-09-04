@@ -77,7 +77,6 @@ class ChatScreen extends React.Component {
   };
 
   render() {
-    console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>

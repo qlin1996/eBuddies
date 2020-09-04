@@ -6,6 +6,7 @@ import Modal from "react-native-modal";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+import { editActivityAttendance } from "../../store/activity";
 
 class JoinedEvent extends React.Component {
   constructor() {
@@ -66,6 +67,13 @@ class JoinedEvent extends React.Component {
     }
   };
 
+  convertTime = (timeString) => {
+    const hour = timeString.substr(0, 2);
+    var h = hour % 12 || 12;
+    var ampm = hour < 12 || hour === 24 ? "AM" : "PM";
+    return h + timeString.substr(2, 3) + ampm;
+  };
+
   render() {
     return (
       <>
@@ -82,7 +90,19 @@ class JoinedEvent extends React.Component {
           <View style={Style.informationDiv}>
             <Text style={Style.fonts}>{this.props.event.description}</Text>
             <Text style={Style.addressFonts}>{this.props.event.address}</Text>
-            <Text style={Style.dateFonts}>{this.props.event.date}</Text>
+            <Text style={Style.dateFonts}>
+              {this.props.event.date
+                ? this.props.event.date.slice(0, 16)
+                : null}
+            </Text>
+            <View>
+              <Text style={Style.dateFonts}>
+                Time:{" "}
+                {this.props.event.time
+                  ? this.convertTime(this.props.event.time)
+                  : null}
+              </Text>
+            </View>
           </View>
         </View>
         <View>
@@ -108,6 +128,16 @@ class JoinedEvent extends React.Component {
         </Modal>
         <View style={Style.mapButton}>
           <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+        </View>
+        <View>
+          <Button
+            title="VIEW ATTENDEES"
+            onPress={() => {
+              this.props.navigation.navigate("ATTENDEES", {
+                id: this.props.event.id,
+              });
+            }}
+          ></Button>
         </View>
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>

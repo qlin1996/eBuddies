@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Event, Message } = require("../db/models");
+const { User, Event, Message, Activity } = require("../db/models");
 
 //GET --> /API/EVENTS
 router.get("/", async (req, res, next) => {
@@ -76,6 +76,27 @@ router.delete("/:eventId", async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+  }
+});
+
+//PATCH --> /API/EVENTS/:USERID
+router.patch("/:eventId/users/:userId", async (req, res, next) => {
+  try {
+    await Activity.update(req.body, {
+      where: {
+        eventId: req.params.eventId,
+        userId: req.params.userId,
+      },
+    });
+    const eventActivity = await Activity.findOne({
+      where: {
+        eventId: req.params.eventId,
+        userId: req.params.userId,
+      },
+    });
+    res.json(eventActivity);
+  } catch (error) {
+    next(error);
   }
 });
 

@@ -47,7 +47,7 @@ class Maps extends React.Component {
           <Button
             title="BACK"
             onPress={() => {
-              this.props.navigation.navigate("JOINEDEVENT", {
+              this.props.navigation.navigate("SINGLEEVENT", {
                 id: this.props.event.id,
               });
             }}

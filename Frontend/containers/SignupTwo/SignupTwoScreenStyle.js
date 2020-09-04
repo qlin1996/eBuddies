@@ -8,8 +8,36 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "rgb(235, 233, 233)",
     position: "relative",
-    top: 80,
+    top: 30,
   },
+  picOption: {
+    flex: 2,
+  },
+  textInput: {
+    ...Fonts.normal,
+    height: 50,
+    backgroundColor: "rgb(235, 233, 233)",
+    borderBottomWidth: 0.5,
+    borderBottomColor: "rgba(38,153,251,1)",
+    marginHorizontal: 40,
+    marginBottom: 20,
+    color: "rgba(38,153,251,1)",
+    paddingHorizontal: 10,
+  },
+  picOption1: {
+    position: "relative",
+    top: -17,
+    left: -111,
+    color: "rgba(38,153,251,1)",
+  },
+  picOption2: {
+    position: "relative",
+    top: -52,
+    left: 245,
+    width: 160,
+    color: "rgba(38,153,251,1)",
+  },
+
   button: {
     backgroundColor: "rgba(38,153,251,1)",
     borderWidth: 0.5,
@@ -19,18 +47,21 @@ export default StyleSheet.create({
     paddingBottom: 10,
     margin: 10,
     borderColor: "rgba(38,153,251,1)",
-    position: "relative",
-    top: "-13%",
+    position: "absolute",
+    top: "96%",
     width: 342,
     height: 60,
   },
   imageContainer: {
     position: "relative",
-    top: "-3%",
-    width: 180,
-    height: 180,
+    top: "-7.5%",
+    width: 120,
+    height: 120,
     alignSelf: "center",
-    // backgroundColor: "rgba(38,153,251,1)",
+    borderRadius: 50,
+    borderWidth: 0.2,
+    borderColor: "white",
+    backgroundColor: "white",
   },
   camera: {
     position: "relative",
@@ -42,7 +73,7 @@ export default StyleSheet.create({
   selectPic: {
     position: "relative",
     top: "1%",
-    left: "20%",
+    left: "12%",
   },
   takePic: {
     position: "relative",
@@ -52,10 +83,17 @@ export default StyleSheet.create({
   },
   image: {
     position: "relative",
-    top: "-13%",
+    top: "-1%",
     width: 130,
     height: 130,
     alignSelf: "center",
+
+    width: 120,
+    height: 120,
+    borderRadius: 50,
+    borderWidth: 0.2,
+    borderColor: "white",
+    backgroundColor: "white",
   },
   login: {
     width: 550,

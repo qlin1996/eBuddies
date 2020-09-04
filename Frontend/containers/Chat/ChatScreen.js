@@ -79,7 +79,6 @@ class ChatScreen extends React.Component {
 
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-
       <View style={Style.chatMessages} key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Text>{chatMessage.sender.firstName}</Text>
@@ -100,23 +99,23 @@ class ChatScreen extends React.Component {
           <Text style={Style.welcomeChat}>
             {this.props.event.name} Groupchat
           </Text>
-        
         </View>
 
         {chatMessages}
 
-      <View style={Style.textInputWrapper}>
-        <TextInput
-          style={Style.textInput}
-          autoCorrect={false}
-          value={this.state.chatMessage.message}
-          onSubmitEditing={() => this.submitChatMessage()}
-          onChangeText={(chatMessage) => {
-            this.setState({ chatMessage: { message: chatMessage } });
-          }}
-        />
-        <View style={Style.sendMessageButton}>
-          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+        <View style={Style.textInputWrapper}>
+          <TextInput
+            style={Style.textInput}
+            autoCorrect={false}
+            value={this.state.chatMessage.message}
+            onSubmitEditing={() => this.submitChatMessage()}
+            onChangeText={(chatMessage) => {
+              this.setState({ chatMessage: { message: chatMessage } });
+            }}
+          />
+          <View style={Style.sendMessageButton}>
+            <Button title="SEND" onPress={this.submitChatMessage}></Button>
+          </View>
         </View>
       </ScrollView>
     );

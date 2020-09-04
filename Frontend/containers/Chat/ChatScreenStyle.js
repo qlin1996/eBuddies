@@ -4,8 +4,6 @@ import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   screenWrapper: {
     display: "flex",
-    height: 600,
-    width: 420,
     flex: 1,
     backgroundColor: Colors.lightBlue,
     paddingVertical: 10,
@@ -34,16 +32,13 @@ export default StyleSheet.create({
   },
   chatMessages: {
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    top: 50,
+    top: 70,
     paddingBottom: 20,
     flexDirection: "row",
   },
   chatMessage: {
-    display: "flex",
+    alignItems: "center",
     backgroundColor: "white",
-    height: "100%",
     width: 100,
     borderWidth: 1,
     borderColor: "lightblue",

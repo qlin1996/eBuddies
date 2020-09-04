@@ -17,7 +17,7 @@ export const createMesssageThunk = (message) => async (dispatch) => {
     console.log(error);
   }
 };
-export default function createMessageReducer(state = {}, action) {
+export default function messageReducer(state = {}, action) {
   switch (action.type) {
     case CREATE_MESSAGE:
       return { ...state, message: action.message };

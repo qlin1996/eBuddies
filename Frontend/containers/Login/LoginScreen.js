@@ -107,7 +107,6 @@ class Login extends React.Component {
   };
 
   render() {
-    // console.log("STATE", this.state);
     return (
       <View style={styles.container}>
         {this.state.error ? (

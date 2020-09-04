@@ -4,6 +4,7 @@ import styles from "./SignupTwoScreenStyle";
 import { Fonts } from "../../themes";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
+import RNPickerSelect from "react-native-picker-select";
 
 class SignupTwo extends React.Component {
   constructor() {
@@ -95,10 +96,20 @@ class SignupTwo extends React.Component {
             style={styles.logo}
           />
           <View style={styles.background}>
-            {this.state.city.length === 0 && <Text>City is Required</Text>}
-            {this.state.state.length === 0 && <Text>State is Required</Text>}
+            {this.state.city.length === 0 && (
+              <Text style={{ color: "rgb(233, 233, 233)" }}>
+                City is Required
+              </Text>
+            )}
+            {this.state.state.length === 0 && (
+              <Text style={{ color: "rgb(233, 233, 233)" }}>
+                State is Required
+              </Text>
+            )}
             {!this.isValidUSZip(this.state.zipCode) && (
-              <Text>Valid US Zip Code is Required</Text>
+              <Text style={{ color: "rgb(233, 233, 233)" }}>
+                Valid US Zip Code is Required
+              </Text>
             )}
             <TextInput
               style={{
@@ -122,28 +133,62 @@ class SignupTwo extends React.Component {
               placeholderTextColor="rgba(38,153,251,1)"
               keyboardType="name-phone-pad"
             />
-            <TextInput
-              style={{
-                ...Fonts.normal,
-                height: 50,
-                backgroundColor: "rgb(235, 233, 233)",
-                borderBottomWidth: 0.5,
-                borderBottomColor: "rgba(38,153,251,1)",
-                marginHorizontal: 40,
-                marginBottom: 20,
-                color: "rgba(38,153,251,1)",
-                paddingHorizontal: 10,
+
+            <RNPickerSelect
+              onValueChange={(state) => {
+                this.setState({ state: state });
               }}
-              value={this.state.state}
-              onChangeText={(state) => this.setState({ state })}
-              ref={(input) => {
-                this.textInput = input;
+              placeholder={{
+                label: "Select State",
+                value: null,
               }}
-              returnKeyType="go"
-              placeholder="State"
-              placeholderTextColor="rgba(38,153,251,1)"
-              keyboardType="name-phone-pad"
+              items={[
+                { label: "Alabama", value: "Alabama" },
+                { label: "Alaska", value: "Alaska" },
+                { label: " Arizona", value: " Arizona" },
+                { label: "Arkansas", value: "Arkansas" },
+                { label: "California", value: "California" },
+                { label: "Colorado", value: "Colorado" },
+                { label: "Connecticut", value: "Connecticut" },
+                { label: "Delaware", value: "Delaware" },
+                { label: "Florida", value: "Florida" },
+                { label: "Georgia", value: "Georgia" },
+
+                { label: "Hawaii", value: "Hawaii" },
+                { label: "Idaho", value: "Idaho" },
+                { label: "Illinois", value: "Illinois" },
+                { label: "Indiana", value: "Indiana" },
+                { label: "Iowa", value: "Iowa" },
+                { label: "Kansas", value: "Kansas" },
+                { label: "Kentucky", value: "Kentucky" },
+                { label: "Louisiana", value: "Louisiana" },
+                { label: "Maine", value: "Maine" },
+                { label: "Maryland", value: "Maryland" },
+
+                { label: "Massachusetts", value: "Massachusetts" },
+                { label: "Michigan", value: "Michigan" },
+                { label: "Minnesota", value: "Minnesota" },
+                { label: "Mississippi", value: "Mississippi" },
+                { label: "Missouri", value: "Missouri" },
+                { label: "Montana", value: "Montana" },
+                { label: "Nebraska", value: "Nebraska" },
+                { label: "Nevada", value: "Nevada" },
+                { label: "New Hampshire", value: "New Hampshire" },
+                { label: "New Jersey", value: "New Jersey" },
+
+                { label: "New Mexico", value: "New Mexico" },
+                { label: "New York", value: "New York" },
+                { label: "North Carolina", value: "North Carolina" },
+                { label: "North Dakota", value: "North Dakota" },
+                { label: "Ohio", value: "Ohio" },
+                { label: "Oklahoma", value: "Oklahoma" },
+                { label: "Oregon", value: "Oregon" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "South Carolina", value: "South Carolina" },
+              ]}
             />
+
             <TextInput
               style={{
                 ...Fonts.normal,
@@ -166,18 +211,9 @@ class SignupTwo extends React.Component {
               placeholderTextColor="rgba(38,153,251,1)"
               keyboardType="name-phone-pad"
             />
+
             <TextInput
-              style={{
-                ...Fonts.normal,
-                height: 50,
-                backgroundColor: "rgb(235, 233, 233)",
-                borderBottomWidth: 0.5,
-                borderBottomColor: "rgba(38,153,251,1)",
-                marginHorizontal: 40,
-                marginBottom: 20,
-                color: "rgba(38,153,251,1)",
-                paddingHorizontal: 10,
-              }}
+              style={styles.textInput}
               value={this.state.description}
               onChangeText={(description) => this.setState({ description })}
               ref={(input) => {
@@ -188,10 +224,15 @@ class SignupTwo extends React.Component {
               placeholderTextColor="rgba(38,153,251,1)"
               keyboardType="name-phone-pad"
             />
-            <View style={styles.selectPic}>
-              <Text>📸</Text>
-            </View>
 
+            <View style={styles.picOption}>
+              <View style={styles.picOption1}>
+                <Button title="Select Picture" onPress={this.selectPicture} />
+              </View>
+              <View style={styles.picOption2}>
+                <Button title="Take Picture" onPress={this.takePicture} />
+              </View>
+            </View>
             <View style={styles.imageContainer}>
               <Image
                 style={styles.image}

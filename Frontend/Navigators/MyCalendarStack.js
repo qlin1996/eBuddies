@@ -4,6 +4,7 @@ import MyCalendarScreen from "../containers/MyCalendar/MyCalendarScreen";
 import HeaderScreen from "../containers/Header/HeaderScreen";
 import ChatScreen from "../containers/Chat/ChatScreen";
 import JoinedEventScreen from "../containers/JoinedEvent/JoinedEventScreen";
+import MapScreen from "../containers/Maps/MapScreen";
 
 const screens = {
   MyCalendarScreen: {
@@ -24,6 +25,12 @@ const screens = {
     screen: ChatScreen,
     navigationOptions: {
       title: "Chat",
+    },
+    MAPS: {
+      screen: MapScreen,
+      navigationOptions: {
+        title: "View Map",
+      },
     },
   },
 };

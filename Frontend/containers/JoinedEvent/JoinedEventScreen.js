@@ -12,6 +12,7 @@ class JoinedEvent extends React.Component {
     super();
     this.state = {
       isModalVisible: false,
+      isModal2Visible: false,
     };
   }
   componentDidMount() {
@@ -44,6 +45,34 @@ class JoinedEvent extends React.Component {
     }
   };
 
+  handleMap = async () => {
+    try {
+      await this.props.getUser(this.props.user.id);
+      this.setState({ isModal2Visible: true });
+
+      let eventId = this.props.event.id;
+
+      const waitForModal = () => {
+        this.props.navigation.navigate("MAPS", {
+          id: eventId,
+        });
+        this.setState({
+          isModal2Visible: false,
+        });
+      };
+      setTimeout(waitForModal, 2500);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  convertTime = (timeString) => {
+    const hour = timeString.substr(0, 2);
+    var h = hour % 12 || 12;
+    var ampm = hour < 12 || hour === 24 ? "AM" : "PM";
+    return h + timeString.substr(2, 3) + ampm;
+  };
+
   render() {
     return (
       <>
@@ -60,24 +89,23 @@ class JoinedEvent extends React.Component {
           <View style={Style.informationDiv}>
             <Text style={Style.fonts}>{this.props.event.description}</Text>
             <Text style={Style.addressFonts}>{this.props.event.address}</Text>
-            <Text style={Style.dateFonts}>{this.props.event.date}</Text>
+            <Text style={Style.dateFonts}>
+              {this.props.event.date
+                ? this.props.event.date.slice(0, 16)
+                : null}
+            </Text>
+            <View>
+              <Text style={Style.dateFonts}>
+                Time:{" "}
+                {this.props.event.time
+                  ? this.convertTime(this.props.event.time)
+                  : null}
+              </Text>
+            </View>
           </View>
         </View>
         <View>
-          <View
-            style={{
-              backgroundColor: "rgba(255, 255, 255, 0.6)",
-              width: "35%",
-              height: "22%",
-              alignSelf: "center",
-              // borderRadius: "10%",
-              // padding: 2,
-              // margin: 1,
-              position: "relative",
-              top: "-16%",
-              color: "white",
-            }}
-          >
+          <View style={Style.joinChatButton}>
             <Button title="JOIN THE CHAT" onPress={this.handleChat}></Button>
           </View>
         </View>
@@ -93,16 +121,27 @@ class JoinedEvent extends React.Component {
               </Text>
             </View>
             <View>
-              <Text
-                style={{
-                  textAlign: "center",
-                  fontSize: 60,
-                  position: "relative",
-                  top: "20%",
-                }}
-              >
-                💬💬💬
+              <Text style={Style.modalChatMessage}>💬💬💬</Text>
+            </View>
+          </View>
+        </Modal>
+        <View style={Style.mapButton}>
+          <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+        </View>
+        <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={Style.logo}
+            />
+            <View style={Style.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Directing you to Maps to view {this.props.event.name}'s
+                Location!
               </Text>
+            </View>
+            <View>
+              <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
             </View>
           </View>
         </Modal>

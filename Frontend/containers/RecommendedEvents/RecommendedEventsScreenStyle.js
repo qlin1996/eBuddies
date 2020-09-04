@@ -76,10 +76,11 @@ export default StyleSheet.create({
     borderColor: Colors.blue,
     borderWidth: 1,
     borderRadius: 8,
-    ...Metrics.smallVerticalPadding,
-    ...Metrics.smallHorizontalPadding,
+    height: 50,
+    padding: 8,
+    // ...Metrics.smallVerticalPadding,
     marginRight: 10,
-    width: 114,
+    width: 110,
   },
   // interestPt: {
   //   // position: "absolute",
@@ -104,10 +105,20 @@ export default StyleSheet.create({
     fontSize: 16,
   },
 
+  recEvents: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: "27%",
+    alignSelf: "center",
+    borderRadius: 10,
+    position: "relative",
+    top: "-12%",
+    color: "white",
+  },
+
   childrenContainer: {
     padding: "2%",
     margin: "2%",
-    width: "80%",
+    width: "75%",
     position: "relative",
     top: "2%",
     alignSelf: "center",

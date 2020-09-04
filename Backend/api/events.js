@@ -33,6 +33,7 @@ router.get("/:eventId/messages", async (req, res, next) => {
       where: {
         eventId: req.params.eventId,
       },
+      include: { model: User, as: "sender" },
     });
     res.json(eventMessages);
   } catch (error) {
@@ -42,7 +43,6 @@ router.get("/:eventId/messages", async (req, res, next) => {
 
 //POST --> /API/EVENTS
 router.post("/", async (req, res, next) => {
-  /* etc */
   try {
     const event = await Event.create(req.body);
     res.json(event);
@@ -53,7 +53,6 @@ router.post("/", async (req, res, next) => {
 
 //PUT --> /PUT/EVENTS/:EVENTID
 router.put("/:eventId", async (req, res, next) => {
-  /* etc */
   try {
     const event = await Event.findOne({
       where: {
@@ -69,7 +68,6 @@ router.put("/:eventId", async (req, res, next) => {
 
 //DELETE --> /DELETE/EVENTS/:EVENTID
 router.delete("/:eventId", async (req, res, next) => {
-  /* etc */
   try {
     await Event.destroy({
       where: {

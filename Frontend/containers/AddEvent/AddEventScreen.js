@@ -32,7 +32,6 @@ class AddEventScreen extends React.Component {
       isDatePickerVisible: false,
       isTimePickerVisible: false,
       height: 0,
-      isCategoryPickerVisible: false,
     };
   }
 
@@ -217,7 +216,7 @@ class AddEventScreen extends React.Component {
               onPress={() => {
                 this.setState({ isTimePickerVisible: true });
               }}
-              title="Select A Time"
+              title="Select Time"
             />
             <Text style={Style.text}>{this.state.time}</Text>
             <DateTimePickerModal
@@ -227,7 +226,6 @@ class AddEventScreen extends React.Component {
                   time: time.toTimeString(),
                   isTimePickerVisible: false,
                 });
-                console.log("STATE", this.state);
               }}
               onCancel={() => {
                 this.setState({ isTimePickerVisible: false });
@@ -269,7 +267,7 @@ class AddEventScreen extends React.Component {
                 this.setState({ category: category });
               }}
               placeholder={{
-                label: "Select A Category",
+                label: "Select Category",
                 value: null,
               }}
               items={[

@@ -19,6 +19,11 @@ module.exports = (io) => {
       io.in(messageObj.eventId).emit("send-message", messageObj);
     });
 
+    socket.on("leave-room", function (eventId) {
+      console.log("user left the room:", eventId);
+      socket.leave(eventId);
+    });
+
     socket.on("disconnect", () => {
       console.log(`Connection ${socket.id} has left the building`);
     });

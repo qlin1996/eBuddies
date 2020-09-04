@@ -28,6 +28,7 @@ class AddEventScreen extends React.Component {
       isModalVisible: false,
       hostId: "",
       isDatePickerVisible: false,
+      isTimePickerVisible: false,
       height: 0,
     };
   }
@@ -117,75 +118,85 @@ class AddEventScreen extends React.Component {
             {this.state.name.length === 0 && (
               <Text style={{ color: "red" }}>Event Name is Required</Text>
             )}
+            <Text>Event Name</Text>
             <TextInput
               style={Style.text}
               name="name"
               type="text"
-              placeholder="Event Name"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ name: text });
               }}
               value={this.state.name}
             />
+
             {this.state.address.length === 0 && (
               <Text style={{ color: "red" }}>
                 Event Street Address is Required
               </Text>
             )}
+            <Text>Event Street Address</Text>
             <TextInput
               style={Style.text}
-              placeholder="Street Address"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ address: text });
               }}
               value={this.state.address}
             />
+
             {this.state.city.length === 0 && (
               <Text style={{ color: "red" }}>Event City is Required</Text>
             )}
+            <Text>Event City</Text>
             <TextInput
               style={Style.text}
-              placeholder="City"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ city: text });
               }}
               value={this.state.city}
             />
+
             {this.state.state.length === 0 && (
               <Text style={{ color: "red" }}>Event State is Required</Text>
             )}
+            <Text>Event State</Text>
             <TextInput
               style={Style.text}
-              placeholder="State"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ state: text });
               }}
               value={this.state.state}
             />
+
             {!this.isValidUSZip(this.state.zipcode) && (
               <Text style={{ color: "red" }}>
                 Valid US Zip Code is Required
               </Text>
             )}
+            <Text>Event Zip Code</Text>
             <TextInput
               style={Style.text}
-              placeholder="Zipcode"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ zipcode: text });
               }}
               value={this.state.zipcode}
             />
-            {/* {this.state.date.length === 0 && (
-                <Text style={{ color: "red" }}>Event Date is Required</Text>
-              )} */}
+
+            {this.state.date.length === 0 && (
+              <Text style={{ color: "red" }}>Event Date is Required</Text>
+            )}
+            <Text>Event Date</Text>
             <Button
               onPress={() => {
                 this.setState({ isDatePickerVisible: true });
               }}
               title="Select A Date"
             />
-            <Text>{this.state.date}</Text>
-
+            <Text style={Style.text}>{this.state.date}</Text>
             <DateTimePickerModal
               isVisible={this.state.isDatePickerVisible}
               onConfirm={(date) => {
@@ -204,19 +215,35 @@ class AddEventScreen extends React.Component {
             {this.state.time.length === 0 && (
               <Text style={{ color: "red" }}>Event Time is Required</Text>
             )}
-            <TextInput
-              style={Style.text}
-              placeholder="Time"
-              onChangeText={(text) => {
-                this.setState({ time: text });
+            <Text>Event Time</Text>
+            <Button
+              onPress={() => {
+                this.setState({ isTimePickerVisible: true });
               }}
-              value={this.state.time}
+              title="Select A Time"
             />
+            <Text style={Style.text}>{this.state.time}</Text>
+            <DateTimePickerModal
+              isVisible={this.state.isTimePickerVisible}
+              onConfirm={(time) => {
+                this.setState({
+                  time: time.toTimeString(),
+                  isTimePickerVisible: false,
+                });
+                console.log("STATE", this.state);
+              }}
+              onCancel={() => {
+                this.setState({ isTimePickerVisible: false });
+              }}
+              mode="time"
+            />
+
             {this.state.description.length === 0 && (
               <Text style={{ color: "red" }}>
                 Event Description is Required
               </Text>
             )}
+            <Text>Event Description</Text>
             <TextInput
               multiline={true}
               style={{
@@ -228,7 +255,7 @@ class AddEventScreen extends React.Component {
               onContentSizeChange={(event) => {
                 this.setState({ height: event.nativeEvent.contentSize.height });
               }}
-              placeholder="Description"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ description: text });
               }}
@@ -237,12 +264,14 @@ class AddEventScreen extends React.Component {
                 this.textInput = input;
               }}
             />
+
             {this.state.category.length === 0 && (
               <Text style={{ color: "red" }}>Event category is Required</Text>
             )}
+            <Text>Event Category</Text>
             <TextInput
               style={Style.text}
-              placeholder="Interest Type"
+              placeholder="Type Here"
               onChangeText={(text) => {
                 this.setState({ category: text });
               }}

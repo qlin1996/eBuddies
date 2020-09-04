@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
 const DELETE_INTERESTS = "DELETE_INTERESTS";

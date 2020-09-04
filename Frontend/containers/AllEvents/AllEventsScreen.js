@@ -20,6 +20,7 @@ class AllEvents extends React.Component {
 
   render() {
     let { events } = this.props || [];
+
     let eventList;
 
     if (events.length >= 1) {

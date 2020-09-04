@@ -11,6 +11,7 @@ import { serverLink } from "../../store/serverLink";
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
+
 class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -32,7 +33,11 @@ class ChatScreen extends React.Component {
     socket.emit("join-room", {
       message: `${this.props.user.firstName} has joined ${this.props.event.name}`,
       eventId: this.props.event.id,
-      senderId: this.props.user.id,
+      sender: {
+        id: this.props.user.id,
+        firstName: this.props.user.firstName,
+        imgUrl: this.props.user.imgUrl,
+      },
     });
 
     // 4. listens for new joiner
@@ -55,7 +60,11 @@ class ChatScreen extends React.Component {
       {
         message: this.state.chatMessage.message,
         eventId: this.props.event.id,
-        senderId: this.props.user.id,
+        sender: {
+          id: this.props.user.id,
+          firstName: this.props.user.firstName,
+          imgUrl: this.props.user.imgUrl,
+        },
       },
       this.props.event.id
     );
@@ -72,9 +81,10 @@ class ChatScreen extends React.Component {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        <Text>{chatMessage.sender.firstName}</Text>
         <Image
           source={{
-            uri: this.props.user.imgUrl,
+            uri: chatMessage.sender.imgUrl,
           }}
           style={Style.userImage}
         />

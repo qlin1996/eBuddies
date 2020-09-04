@@ -171,9 +171,15 @@ export default StyleSheet.create({
     alignSelf: "center",
     fontSize: 50,
   },
+
   logo: {
     position: "absolute",
     top: "-130%",
+    left: "22%",
+  },
+  logo2: {
+    position: "relative",
+    top: -46,
     left: "22%",
   },
 });

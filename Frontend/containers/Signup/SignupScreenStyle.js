@@ -8,7 +8,7 @@ export default StyleSheet.create({
   background: {
     backgroundColor: "rgb(235, 233, 233)",
     position: "relative",
-    top: 30,
+    top: 10,
   },
   button: {
     backgroundColor: "rgba(38,153,251,1)",
@@ -20,14 +20,14 @@ export default StyleSheet.create({
     margin: 10,
     borderColor: "rgba(38,153,251,1)",
     position: "relative",
-    top: 60,
+    top: 30,
     width: 342,
     height: 60,
   },
   login: {
     width: 550,
     position: "relative",
-    top: 145,
+    top: 105,
     height: 60,
     alignSelf: "center",
     backgroundColor: "rgba(188, 224, 253, 1)",
@@ -42,7 +42,7 @@ export default StyleSheet.create({
     ...Fonts.small,
     color: "black",
     position: "relative",
-    top: 140,
+    top: 110,
   },
   arrow: {
     width: 30,

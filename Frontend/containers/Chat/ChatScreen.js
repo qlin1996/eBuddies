@@ -60,7 +60,6 @@ class ChatScreen extends React.Component {
   };
 
   render() {
-    console.log("STATE", this.state);
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View style={Style.chatMessages} key={index}>
         <Image
@@ -70,6 +69,7 @@ class ChatScreen extends React.Component {
           style={Style.userImage}
         />
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        {/* <Text>{chatMessage.sender.firstName}</Text> */}
       </View>
     ));
 

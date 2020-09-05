@@ -6,6 +6,7 @@ import Modal from "react-native-modal";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+import { editActivityAttendance } from "../../store/activity";
 
 class JoinedEvent extends React.Component {
   constructor() {
@@ -127,6 +128,16 @@ class JoinedEvent extends React.Component {
         </Modal>
         <View style={Style.mapButton}>
           <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+        </View>
+        <View>
+          <Button
+            title="VIEW ATTENDEES"
+            onPress={() => {
+              this.props.navigation.navigate("ATTENDEES", {
+                id: this.props.event.id,
+              });
+            }}
+          ></Button>
         </View>
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>

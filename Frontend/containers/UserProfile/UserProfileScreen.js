@@ -3,8 +3,14 @@ import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 import { logout } from "../../store/user";
+import { getAllInterests } from "../../store/interest";
 
 class UserProfileScreen extends React.Component {
+  async componentDidMount() {
+    await this.props.getAllEvents();
+    await this.props.getAllInterests(this.props.user.id);
+  }
+
   handleLogout = async () => {
     try {
       await this.props.logout();
@@ -17,7 +23,7 @@ class UserProfileScreen extends React.Component {
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
-
+    console.log("INTERnnSTS", interests);
     return (
       <View style={{ flex: 1 }}>
         <View style={Style.imageContainer}>
@@ -76,6 +82,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   logout: () => dispatch(logout()),
+  getAllInterests: (id) => dispatch(getAllInterests(id)),
 });
 
 export default connect(mapStateToProps, mapDispatch)(UserProfileScreen);

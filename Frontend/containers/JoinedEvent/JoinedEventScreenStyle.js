@@ -114,6 +114,8 @@ export default StyleSheet.create({
   modalText: {
     alignSelf: "center",
     fontSize: 50,
+    width: "75%",
+    textAlign: "center",
   },
   logo: {
     position: "absolute",

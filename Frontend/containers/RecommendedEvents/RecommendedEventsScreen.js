@@ -5,7 +5,7 @@ import Event from "../Event/EventScreen";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
-
+import { getAllInterests } from "../../store/interest";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
@@ -14,8 +14,9 @@ class RecommendedEvents extends React.Component {
     };
   }
 
-  componentDidMount() {
-    this.props.getUser(this.props.user.id);
+  async componentDidMount() {
+    await this.props.getUser(this.props.user.id);
+    await this.props.getAllInterests(this.props.user.id);
   }
 
   handleClick = (event) => {
@@ -38,7 +39,6 @@ class RecommendedEvents extends React.Component {
     interests.forEach((interest) => {
       interestArray.push(interest.userInterest);
     });
-
     const events = eventsFilter.filter((event) => {
       return interestArray.includes(event.category);
     });
@@ -143,6 +143,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
   getUser: (id) => dispatch(getUserInfo(id)),
+  getAllInterests: (id) => dispatch(getAllInterests(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecommendedEvents);

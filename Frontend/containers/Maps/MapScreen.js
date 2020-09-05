@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import * as Location from "expo-location";
 import * as geolib from "geolib";
 import MapView from "react-native-maps";
-import { Text, View, Button } from "react-native";
+import { Text, View, Button, Image } from "react-native";
 import styles from "./MapScreenStyle";
 import { Marker } from "react-native-maps";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { editActivityAttendance } from "../../store/activity";
-
+import Modal from "react-native-modal";
 class Maps extends React.Component {
   constructor() {
     super();
@@ -16,6 +16,9 @@ class Maps extends React.Component {
     this.state = {
       userLocation: {},
       eventLocation: {},
+      isModalVisible: false,
+      isModal2Visible: false,
+      miles: 0,
     };
   }
 
@@ -38,8 +41,8 @@ class Maps extends React.Component {
       this.props.event.zipCode;
 
     let result = await Location.geocodeAsync(eventAddress);
-    result[0]["latitudeDelta"] = 0.02;
-    result[0]["longitudeDelta"] = 0.045;
+    result[0]["latitudeDelta"] = 0.05;
+    result[0]["longitudeDelta"] = 0.065;
     this.setState({
       eventLocation: result,
     });
@@ -49,15 +52,43 @@ class Maps extends React.Component {
       this.state.eventLocation[0],
       this.state.userLocation.coords
     );
-    let miles = Math.floor(metersDistance / 1609);
-    console.log(miles, "USERS DISTANCE");
-    await this.props.editActivityAttendance(
-      this.props.event.id,
-      this.props.user.id,
-      {
-        attended: true,
-      }
-    );
+    this.setState({ miles: Math.floor(metersDistance / 1609) });
+
+    if (this.state.miles <= 20) {
+      await this.props.editActivityAttendance(
+        this.props.event.id,
+        this.props.user.id,
+        {
+          attended: true,
+        }
+      );
+      this.setState({ isModalVisible: true });
+
+      let eventId = this.props.event.id;
+
+      const waitForModal = () => {
+        this.props.navigation.navigate("JOINEDEVENT", {
+          id: eventId,
+        });
+        this.setState({
+          isModalVisible: false,
+        });
+      };
+      setTimeout(waitForModal, 2500);
+    } else {
+      this.setState({ isModal2Visible: true });
+
+      let eventId = this.props.event.id;
+      const waitForModal = () => {
+        this.props.navigation.navigate("JOINEDEVENT", {
+          id: eventId,
+        });
+        this.setState({
+          isModal2Visible: false,
+        });
+      };
+      setTimeout(waitForModal, 5000);
+    }
   };
   render() {
     return (
@@ -86,9 +117,45 @@ class Maps extends React.Component {
             }}
           ></Button>
         </View>
-        <View style={styles.hereButton}>
-          <Button title="IM HERE" onPress={this.handleAttendance}></Button>
+        <View>
+          <View style={styles.hereButton}>
+            <Button title="IM HERE" onPress={this.handleAttendance}></Button>
+          </View>
         </View>
+        <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={styles.logo}
+            />
+            <View style={styles.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Thanks for checking in. We're excited to meet you,{" "}
+                {this.props.user.firstName}!
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.modalChatMessage}>🤩🥳💫</Text>
+            </View>
+          </View>
+        </Modal>
+        <Modal isVisible={this.state.isModal2Visible} style={styles.modal2}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={styles.logo}
+            />
+            <View style={styles.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Sorry, looks like you have not yet reached the destination. You
+                are still {this.state.miles} miles away.
+              </Text>
+            </View>
+            <View>
+              <Text style={styles.mapModalEmojis}>🚖🚕✈️</Text>
+            </View>
+          </View>
+        </Modal>
       </View>
     );
   }

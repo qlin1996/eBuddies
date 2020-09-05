@@ -9,6 +9,7 @@ router.get("/:userId", async (req, res, next) => {
         userId: req.params.userId,
       },
     });
+    console.log("USER INT", interests);
     res.json(interests);
   } catch (error) {
     next(error);

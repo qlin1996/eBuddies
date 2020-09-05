@@ -100,10 +100,10 @@ class Signup extends React.Component {
               height: 50,
               backgroundColor: "rgb(235, 233, 233)",
               borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
+              borderBottomColor: "#BEBEBE",
               marginHorizontal: 40,
               marginBottom: 20,
-              color: "rgba(38,153,251,1)",
+              color: "#BEBEBE",
               paddingHorizontal: 10,
             }}
             value={this.state.firstName}
@@ -113,7 +113,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="John"
-            placeholderTextColor="rgba(38,153,251,1)"
+            placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
           <TextInput
@@ -122,10 +122,10 @@ class Signup extends React.Component {
               height: 50,
               backgroundColor: "rgb(235, 233, 233)",
               borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
+              borderBottomColor: "#BEBEBE",
               marginHorizontal: 40,
               marginBottom: 20,
-              color: "rgba(38,153,251,1)",
+              color: "#BEBEBE",
               paddingHorizontal: 10,
             }}
             value={this.state.lastName}
@@ -135,7 +135,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Doe"
-            placeholderTextColor="rgba(38,153,251,1)"
+            placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
           <TextInput
@@ -144,10 +144,10 @@ class Signup extends React.Component {
               height: 50,
               backgroundColor: "rgb(235, 233, 233)",
               borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
+              borderBottomColor: "#BEBEBE",
               marginHorizontal: 40,
               marginBottom: 20,
-              color: "rgba(38,153,251,1)",
+              color: "#BEBEBE",
               paddingHorizontal: 10,
             }}
             value={this.state.email}
@@ -157,7 +157,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="jdoe@gmail.com"
-            placeholderTextColor="rgba(38,153,251,1)"
+            placeholderTextColor="#BEBEBE"
             keyboardType="email-address"
           />
           <TextInput
@@ -166,10 +166,10 @@ class Signup extends React.Component {
               height: 50,
               backgroundColor: "rgb(235, 233, 233)",
               borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
+              borderBottomColor: "#BEBEBE",
               marginHorizontal: 40,
               marginBottom: 20,
-              color: "rgba(38,153,251,1)",
+              color: "#BEBEBE",
               paddingHorizontal: 10,
             }}
             value={this.state.password}
@@ -179,7 +179,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Create Password"
-            placeholderTextColor="rgba(38,153,251,1)"
+            placeholderTextColor="#BEBEBE"
             secureTextEntry
           />
           <View style={styles.button}>

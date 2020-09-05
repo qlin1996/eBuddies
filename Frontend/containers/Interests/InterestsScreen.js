@@ -30,6 +30,7 @@ class Interests extends React.Component {
       lastName: "",
       email: "",
       password: "",
+      pushToken: "",
     };
   }
 
@@ -70,7 +71,6 @@ class Interests extends React.Component {
   };
 
   askPermissions = async () => {
-    let token;
     if (Constants.isDevice) {
       const { status: existingStatus } = await Permissions.getAsync(
         Permissions.NOTIFICATIONS
@@ -83,25 +83,17 @@ class Interests extends React.Component {
         finalStatus = status;
       }
       if (finalStatus !== "granted") {
-        alert("Failed to get push token for push notification!");
+        alert("Please allow notifications in your settings");
         return;
       }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
+      let token = await Notifications.getExpoPushTokenAsync();
       console.log(token);
+      this.setState({
+        pushToken: token.data,
+      });
     } else {
       alert("Must use physical device for Push Notifications");
     }
-
-    if (Platform.OS === "android") {
-      Notifications.setNotificationChannelAsync("default", {
-        name: "default",
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: "#FF231F7C",
-      });
-    }
-    console.log("TOKEN", token);
-    return token;
   };
   handleSignup = async () => {
     await this.askPermissions();
@@ -114,7 +106,8 @@ class Interests extends React.Component {
       this.state.imgUrl,
       this.state.city,
       this.state.state,
-      this.state.zipCode
+      this.state.zipCode,
+      this.state.pushToken
     );
     if (this.state.food === true) {
       await this.props.postNewInterest({
@@ -259,7 +252,8 @@ const mapDispatchToProps = (dispatch) => {
       imgUrl,
       city,
       state,
-      zipCode
+      zipCode,
+      pushToken
     ) => {
       return dispatch(
         auth2(
@@ -271,7 +265,8 @@ const mapDispatchToProps = (dispatch) => {
           imgUrl,
           city,
           state,
-          zipCode
+          zipCode,
+          pushToken
         )
       );
     },

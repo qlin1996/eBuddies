@@ -6,9 +6,17 @@ import Modal from "react-native-modal";
 import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
+import * as Notifications from "expo-notifications";
 import io from "socket.io-client";
 const socket = io("http://localhost:8081", {
   transports: ["websocket"],
+});
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: false,
+  }),
 });
 class SingleEvent extends React.Component {
   constructor() {
@@ -27,8 +35,27 @@ class SingleEvent extends React.Component {
     }
   }
 
+  //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
+  sendPushNotification = async (pushToken) => {
+    // const trigger2 = new Date(Date.now());
+    // console.log(trigger2)
+    const trigger = new Date(this.props.event.date + 1140 * 30000);
+    trigger.setSeconds(2);
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "You've got mail! 📬",
+        body: "Here is the notification body",
+        data: { data: "goes here" },
+      },
+      trigger,
+    });
+  };
+
   handleJoin = async () => {
     try {
+      await this.sendPushNotification(
+        "ExponentPushToken[dabO9ZPLfka - RC76mIsTWs]"
+      );
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,

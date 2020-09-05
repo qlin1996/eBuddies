@@ -26,7 +26,7 @@ const Event = db.define("event", {
   },
 
   date: {
-    type: Sequelize.TEXT,
+    type: Sequelize.DATE,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -77,10 +77,10 @@ const Event = db.define("event", {
     },
   },
   latitude: {
-    type: Sequelize.FLOAT(11, 10),
+    type: Sequelize.FLOAT,
   },
   longitude: {
-    type: Sequelize.FLOAT(11, 10),
+    type: Sequelize.FLOAT,
   },
 });
 

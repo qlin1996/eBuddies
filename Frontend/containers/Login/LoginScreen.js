@@ -141,7 +141,7 @@ class Login extends React.Component {
                 style={{
                   color: "#BEBEBE",
                   position: "relative",
-                  top: "17%",
+                  top: "20%",
                 }}
               >
                 Email is Required
@@ -166,7 +166,7 @@ class Login extends React.Component {
                 style={{
                   color: "#BEBEBE",
                   position: "relative",
-                  top: "17%",
+                  top: "20%",
                 }}
               >
                 Password is Required

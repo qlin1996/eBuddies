@@ -67,7 +67,8 @@ export const auth2 = (
   imgUrl,
   city,
   state,
-  zipCode
+  zipCode,
+  pushToken
 ) => async (dispatch) => {
   let res;
   try {
@@ -81,6 +82,7 @@ export const auth2 = (
       city,
       state,
       zipCode,
+      pushToken,
     });
     return dispatch(getUser(res.data));
   } catch (error) {
@@ -90,7 +92,6 @@ export const auth2 = (
 export const getUserInfo = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/users/${id}`);
-    console.log("user in thunk", data);
     return dispatch(getUser(data));
   } catch (err) {
     console.error(err);

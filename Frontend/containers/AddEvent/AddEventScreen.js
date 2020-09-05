@@ -20,7 +20,7 @@ class AddEventScreen extends React.Component {
       address: "",
       city: "",
       state: "",
-      zipcode: "",
+      zipCode: "",
       date: "",
       time: "",
       category: "",
@@ -44,39 +44,38 @@ class AddEventScreen extends React.Component {
   };
 
   handleSubmit = () => {
+    console.log(this.state);
+
     if (
       this.state.name.length &&
       this.state.address.length &&
       this.state.city.length &&
       this.state.state.length &&
-      this.state.zipcode.length &&
+      this.state.zipCode.length &&
       this.state.date.length &&
       this.state.time.length &&
       this.state.category.length &&
       this.state.description.length
     ) {
-      this.setState({ isModalVisible: true });
-      this.setState({ hostId: this.props.user.id });
+      this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
 
-      this.setState({
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: "",
-        date: "",
-        time: "",
-        description: "",
-        eventId: "",
-        imgUrl: "",
-        hostId: "",
-        selectedValue: "Food",
-      });
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({
           isModalVisible: false,
+          name: "",
+          address: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          date: "",
+          time: "",
+          description: "",
+          eventId: "",
+          imgUrl: "",
+          hostId: "",
+          selectedValue: "Food",
         });
       };
       setTimeout(waitForModal, 2000);
@@ -170,7 +169,7 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.state}
             />
-            {!this.isValidUSZip(this.state.zipcode) && (
+            {!this.isValidUSZip(this.state.zipCode) && (
               <Text style={{ color: "red" }}>
                 Valid US Zip Code is Required
               </Text>
@@ -180,9 +179,9 @@ class AddEventScreen extends React.Component {
               style={Style.text}
               placeholder="Type Here"
               onChangeText={(text) => {
-                this.setState({ zipcode: text });
+                this.setState({ zipCode: text });
               }}
-              value={this.state.zipcode}
+              value={this.state.zipCode}
             />
             {this.state.date.length === 0 && (
               <Text style={{ color: "red" }}>Event Date is Required</Text>
@@ -198,8 +197,9 @@ class AddEventScreen extends React.Component {
             <DateTimePickerModal
               isVisible={this.state.isDatePickerVisible}
               onConfirm={(date) => {
+                console.log("DATE TO DATE STRING", date.toDateString());
                 this.setState({
-                  date: date.toUTCString(),
+                  date: date.toDateString(),
                   isDatePickerVisible: false,
                 });
               }}
@@ -280,10 +280,7 @@ class AddEventScreen extends React.Component {
             <Text style={Style.text}>{this.state.category}</Text>
           </View>
 
-          <Button
-            title="Update My Profile"
-            onPress={this.handleUpdate}
-          ></Button>
+          <Button title="Add Event" onPress={this.handleSubmit}></Button>
 
           <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
             <View>

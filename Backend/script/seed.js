@@ -33,6 +33,7 @@ async function seed() {
     password: "Claire",
     imgUrl:
       "https://media-exp1.licdn.com/dms/image/C4D03AQFXsmj2gUhdBA/profile-displayphoto-shrink_400_400/0?e=1603929600&v=beta&t=ehdUywqM6iY3w3AG96LflI_5_1Mjdzux3BaZRh3toHM",
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
   });
   users.push(claire);
 
@@ -47,6 +48,7 @@ async function seed() {
     zipCode: "10019",
     password: "Qi",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U015BBESASE-affe9133d7a4-512",
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
   });
   users.push(qi);
 
@@ -61,6 +63,7 @@ async function seed() {
     zipCode: "10019",
     password: "b",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U01223LJ6TC-2a445d981f58-512",
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
   });
   users.push(blake);
 
@@ -75,6 +78,7 @@ async function seed() {
     zipCode: "10019",
     password: "a",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UVDH49WAZ-2755e5ff7bb7-512",
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
   });
   users.push(anderson);
 
@@ -90,6 +94,7 @@ async function seed() {
     zipCode: "10019",
     password: "Dan",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UUNC6D6KF-ead95d00d503-512",
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
   });
   users.push(dan);
 
@@ -118,7 +123,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Fri, 11 Sep 2020 04:32:20 GMT",
+    date: "Sat 05 Sep 2020",
     time: "08:32:20 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:
@@ -137,7 +142,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Mon, 07 Sep 2020 04:32:20 GMT",
+    date: "Mon 07 Sep 2020",
     time: "08:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSefez5wycJVaPtrsiM4CMTCc7h2kjLhrOiog&usqp=CAU",
@@ -155,7 +160,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10010",
-    date: "Mon, 14 Sep 2020 04:32:20 GMT",
+    date: "Mon 14 Sep 2020",
     time: "10:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRixe22DVpUZ9KzMpA6zVVR67p8jarPQIUMLQ&usqp=CAU",
@@ -173,7 +178,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10013",
-    date: "Sat, 17 Oct 2020 04:32:20 GM",
+    date: "Sat 17 Oct 2020",
     time: "11:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://s2.r29static.com/bin/entry/191/720x600,85/1828213/image.webp",
@@ -191,7 +196,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    date: "Sat, 10 Oct 2020 04:32:20 GM",
+    date: "Sat 10 Oct 2020",
     time: "7:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.exhalespa.com/sites/exhale-spa/files/fitness_classes/classcard-exhalehiit30.classesWidget.jpg",
@@ -209,7 +214,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10018",
-    date: "Mon, 02 Nov 2020 05:32:20 GMT",
+    date: "Mon 02 Nov 2020",
     time: "08:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.washingtonian.com/wp-content/uploads/2014/11/2014-11-13.soulcycle2.jpg",
@@ -228,7 +233,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10001",
-    date: "Tue, 13 Oct 2020 04:32:20 GMT",
+    date: "Tue 13 Oct 2020",
     time: "18:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://cdn.vox-cdn.com/thumbor/9LzonUzPK8rmiDNaDFwbX4Vt-Yk=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/15961271/Kawi_5.jpg",
@@ -246,7 +251,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10010",
-    date: "Tue, 06 Oct 2020 04:32:20 GMT",
+    date: "Tue 06 Oct 2020",
     time: "22:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://images.ctfassets.net/7m90b3o5uk7x/nO9VBVHWoKeE6YQYK6ymY/071c2374fe487abd3dfe0d310d44d092/intersitial-three.jpg",
@@ -264,7 +269,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10002",
-    date: "Mon, 16 Nov 2020 05:32:20 GMT",
+    date: "Mon 16 Nov 2020",
     time: "13:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://cdn.vox-cdn.com/thumbor/OYm9rG5J6SJM_Cd3p8ebHiIXuTY=/0x0:5823x3890/1400x1400/filters:focal(2446x1480:3376x2410):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47518355/Pizza_Beach_LES-10.0.0.jpg",
@@ -282,7 +287,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Mon, 23 Nov 2020 05:32:20 GMT",
+    date: "Mon 23 Nov 2020",
     time: "21:00:00 GMT-0400 (EDT)",
     imgUrl: "https://media.timeout.com/images/105442066/image.jpg",
     userId: 1,
@@ -297,7 +302,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10053",
-    date: "Mon, 16 Nov 2020 05:32:20 GMT",
+    date: "Mon 16 Nov 2020",
     time: "22:00:00 GMT-0400 (EDT)",
     imgUrl: "https://media.timeout.com/images/105451946/630/472/image.jpg",
     userId: 3,
@@ -315,7 +320,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10001",
-    date: "Fri, 04 Dec 2020 05:32:20 GMT",
+    date: "Fri 04 Dec 2020",
     time: "12:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.tun.com/blog/wp-content/uploads/2016/03/NY-Public-Library-NewYorkMania-9072.jpg",
@@ -333,7 +338,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    date: "Sat, 19 Dec 2020 05:32:20 GMT",
+    date: "Sat 19 Dec 2020",
     time: "07:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://static1.squarespace.com/static/ta/58ee7cf9db29d6de1df46651/189/assets/img/photos/gc5/003.jpg",
@@ -351,7 +356,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10023",
-    date: "Sat, 12 Dec 2020 05:32:20 GMT",
+    date: "Sat 12 Dec 2020",
     time: "09:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://news.fordham.edu/wp-content/uploads/2019/09/Lincoln-Center-fall-1078.jpg",
@@ -371,7 +376,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    date: "Mon, 09 Nov 2020 05:32:20 GMT",
+    date: "Mon 09 Nov 2020",
     time: "20:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_t8batvNXd4ERMcJl1h0G3Cfhe_aqXqmzTg&usqp=CAU",
@@ -389,7 +394,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Tue, 15 Sep 2020 04:32:20 GMT",
+    date: "Tue 15 Sep 2020",
     time: "23:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://static.billboard.com/files/media/Kanye-West-forum-calif-2016-nov-billboard-1548-1024x677.jpg",
@@ -407,7 +412,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    date: "Tue, 15 Sep 2020 04:32:20 GMT",
+    date: "Tue 15 Sep 2020",
     time: "12:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSAMnxkkcMA63Bm8CD5JgV223nOzRfw-kgyQA&usqp=CAU",
@@ -424,12 +429,13 @@ async function seed() {
     city: "Sea Girt",
     state: "NJ",
     zipCode: "08750",
-    date: "Fri, 04 Sep 2020 05:32:20 GMT",
+    date: "Fri 04 Sep 2020",
     time: "22:00:00 GMT-0400 (EDT)",
     imgUrl:
       "https://i.insider.com/5d2798f9a17d6c45e50f623a?width=1100&format=jpeg&auto=webp",
     userId: 3,
     hostId: 4,
+    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
     latitude: 50.073193,
     longitude: 14.351719,
   });

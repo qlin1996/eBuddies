@@ -31,18 +31,18 @@ export default StyleSheet.create({
 
   email: {
     position: "relative",
-    top: "-11.2%",
+    top: "-12.2%",
     left: "89.5%",
-    width: "10.5%",
+    width: "10%",
     height: "4.3%",
   },
 
   password: {
     position: "relative",
-    top: "-12.2%",
-    left: "89%",
-    width: "11%",
-    height: "4.3%",
+    top: "-13.6%",
+    left: "89.5%",
+    width: "10%",
+    height: "5.3%",
   },
 
   logo1: {
@@ -89,12 +89,12 @@ export default StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
 
-    marginTop: 10,
+    marginTop: -10,
     paddingVertical: 12,
   },
   account: {
     ...Fonts.small,
-    marginTop: "45%",
+    marginTop: "28%",
     marginBottom: "-7%",
     color: "black",
   },
@@ -139,7 +139,7 @@ export default StyleSheet.create({
     ...Fonts.normal,
     paddingBottom: 10,
     margin: 10,
-    marginTop: "7%",
-    marginBottom: "-25%",
+    marginTop: "2%",
+    marginBottom: "-19%",
   },
 });

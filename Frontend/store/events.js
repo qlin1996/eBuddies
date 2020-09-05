@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 const GET_EVENTS = "GET_EVENTS";
 const POST_NEW_EVENT = "POST_NEW_EVENT";
 

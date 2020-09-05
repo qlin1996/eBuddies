@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 const GET_SINGLE_EVENT = "GET_SINGLE_EVENT";
 
 export const getSingleEvent = (event) => ({

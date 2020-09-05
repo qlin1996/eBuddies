@@ -1,5 +1,6 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
+
 // ACTION TYPES
 const GET_ALL_USERS = "GET_ALL_USERS";
 

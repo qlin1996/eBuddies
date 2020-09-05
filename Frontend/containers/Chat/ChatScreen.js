@@ -8,6 +8,7 @@ import { getUserInfo } from "../../store/user";
 import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
 import { serverLink } from "../../store/serverLink";
+
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
@@ -49,8 +50,14 @@ class ChatScreen extends React.Component {
 
     // 8. show other messages
     socket.on("send-message", (messageObj) => {
+      console.log("THIS MESSAGE WAS SENT", messageObj);
       this.setState({ chatMessages: [...this.state.chatMessages, messageObj] });
     });
+  }
+
+  componentWillUnmount() {
+    console.log("DOES IT UNMOUNT?");
+    socket.emit("leave-room", this.props.event.id);
   }
 
   submitChatMessage = () => {
@@ -78,37 +85,43 @@ class ChatScreen extends React.Component {
 
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-      <View key={index}>
+      <View style={Style.chatMessages} key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
         <Text>{chatMessage.sender.firstName}</Text>
+
         <Image
           source={{
             uri: chatMessage.sender.imgUrl,
           }}
           style={Style.userImage}
         />
+        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
       </View>
     ));
 
     return (
-      <ScrollView>
+      <ScrollView nestedScrollEnabled>
         <View>
           <Text style={Style.welcomeChat}>
-            Welcome to the Groupchat for {this.props.event.name}!
+            {this.props.event.name} Groupchat
           </Text>
         </View>
+
         {chatMessages}
-        <TextInput
-          style={Style.textInput}
-          autoCorrect={false}
-          value={this.state.chatMessage.message}
-          onSubmitEditing={() => this.submitChatMessage()}
-          onChangeText={(chatMessage) => {
-            this.setState({ chatMessage: { message: chatMessage } });
-          }}
-        />
-        <View style={Style.sendMessageButton}>
-          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+
+        <View style={Style.textInputWrapper}>
+          <TextInput
+            style={Style.textInput}
+            autoCorrect={false}
+            value={this.state.chatMessage.message}
+            onSubmitEditing={() => this.submitChatMessage()}
+            onChangeText={(chatMessage) => {
+              this.setState({ chatMessage: { message: chatMessage } });
+            }}
+          />
+          <View style={Style.sendMessageButton}>
+            <Button title="SEND" onPress={this.submitChatMessage}></Button>
+          </View>
         </View>
       </ScrollView>
     );
@@ -117,9 +130,9 @@ class ChatScreen extends React.Component {
 
 const mapToState = (state) => ({
   message: state.message,
+  messages: state.messages,
   user: state.user,
   event: state.singleEvent,
-  messages: state.messages,
 });
 
 const mapDispatchToProps = (dispatch) => ({

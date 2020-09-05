@@ -55,11 +55,11 @@ async function seed() {
     firstName: "Blake",
     lastName: "Ferm",
     description: "Blakes's description here",
-    email: "Blake1@gmail.com",
+    email: "b@gmail.com",
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    password: "Blake",
+    password: "b",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-U01223LJ6TC-2a445d981f58-512",
   });
   users.push(blake);
@@ -69,11 +69,11 @@ async function seed() {
     firstName: "Anderson",
     lastName: "Quiñones",
     description: "Anderson's description here",
-    email: "Anderson1@gmail.com",
+    email: "a@gmail.com",
     city: "New York",
     state: "NY",
     zipCode: "10019",
-    password: "Anderson",
+    password: "a",
     imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UVDH49WAZ-2755e5ff7bb7-512",
   });
   users.push(anderson);

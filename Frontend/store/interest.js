@@ -23,7 +23,6 @@ export const deleteInterests = () => ({
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/interests/${userId}`);
-    console.log("USER INT", data);
     return dispatch(getInterests(data));
   } catch (error) {}
 };

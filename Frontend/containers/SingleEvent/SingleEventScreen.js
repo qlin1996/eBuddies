@@ -39,8 +39,12 @@ class SingleEvent extends React.Component {
   sendPushNotification = async (pushToken) => {
     // const trigger2 = new Date(Date.now());
     // console.log(trigger2)
-    const trigger = new Date(this.props.event.date + 1140 * 30000);
-    trigger.setSeconds(2);
+    const eventHour = Number(this.props.event.time.slice(0, 2));
+    const eventMinute = Number(this.props.event.time.slice(3, 5));
+
+    const trigger = new Date(
+      this.props.event.date + eventHour - 1 * eventMinute * 1000
+    );
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "You've got mail! 📬",
@@ -120,7 +124,9 @@ class SingleEvent extends React.Component {
             <Text style={Style.addressFonts}>{this.props.event.address}</Text>
             <Text style={Style.dateFonts}>
               {this.props.event.date
-                ? this.props.event.date.slice(0, 16)
+                ? this.props.event.date.slice(5, 10) +
+                  "-" +
+                  this.props.event.date.slice(0, 4)
                 : null}
             </Text>
             <View>

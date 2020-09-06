@@ -6,8 +6,8 @@ const Event = (props) => {
   const { event } = props;
   function convertTime(timeString) {
     const hour = timeString.substr(0, 2);
-    var h = hour % 12 || 12;
-    var ampm = hour < 12 || hour === 24 ? "AM" : "PM";
+    let h = hour % 12 || 12;
+    let ampm = hour < 12 || hour === 24 ? "AM" : "PM";
     return h + timeString.substr(2, 3) + ampm;
   }
 
@@ -24,7 +24,9 @@ const Event = (props) => {
           <Text style={Style.fonts}>{event.description}</Text>
           <Text style={Style.addressFonts}>{event.address}</Text>
           <Text style={Style.dateFonts}>
-            {event.date ? event.date.slice(0, 16) : null}
+            {event.date
+              ? event.date.slice(5, 10) + "-" + event.date.slice(0, 4)
+              : null}
           </Text>
           <View>
             <Text style={Style.dateFonts}>

@@ -10,6 +10,14 @@ import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
+import * as Notifications from "expo-notifications";
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 class AddEventScreen extends React.Component {
   constructor(props) {
@@ -38,12 +46,29 @@ class AddEventScreen extends React.Component {
   componentDidMount() {
     this.setState({ hostId: this.props.user.id });
   }
+  sendPushNotification = async (pushToken) => {
+    const eventHour = Number(this.props.event.time.slice(0, 2));
+    const eventMinute = Number(this.props.event.time.slice(3, 5));
+
+    const trigger = new Date(
+      this.props.event.date + eventHour * (eventMinute - 30) * 1000
+    );
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "eBuddies",
+        body: "Attendee List is ready ",
+        data: { data: "goes here" },
+        sound: "default",
+      },
+      trigger,
+    });
+  };
 
   isValidUSZip = (zipCode) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
-
-  handleSubmit = () => {
+  c;
+  handleSubmit = async () => {
     console.log(this.state);
 
     if (
@@ -60,6 +85,7 @@ class AddEventScreen extends React.Component {
       this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
 
+      await this.sendPushNotification(this.props.user.pushToken);
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({

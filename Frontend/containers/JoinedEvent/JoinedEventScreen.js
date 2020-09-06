@@ -92,7 +92,9 @@ class JoinedEvent extends React.Component {
             <Text style={Style.addressFonts}>{this.props.event.address}</Text>
             <Text style={Style.dateFonts}>
               {this.props.event.date
-                ? this.props.event.date.slice(0, 16)
+                ? this.props.event.date.slice(5, 10) +
+                  "-" +
+                  this.props.event.date.slice(0, 4)
                 : null}
             </Text>
             <View>

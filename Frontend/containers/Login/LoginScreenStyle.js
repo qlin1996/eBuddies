@@ -15,7 +15,6 @@ export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
     marginTop: 40,
-    marginBottom: 20,
     marginLeft: 18,
     marginRight: 18,
     borderWidth: 1,
@@ -137,14 +136,14 @@ export default StyleSheet.create({
     borderRadius: 20,
   },
   login: {
-    width: "130%",
-    height: "13.1%",
+    width: "180%",
+    // height: "13.1%",
     alignSelf: "center",
     paddingTop: 10,
     ...Fonts.normal,
     paddingBottom: 10,
     margin: 10,
     marginTop: "-2%",
-    marginBottom: "-25%",
+    marginBottom: "-10%",
   },
 });

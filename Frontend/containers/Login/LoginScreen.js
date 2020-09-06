@@ -124,7 +124,7 @@ class Login extends React.Component {
                   width: 30,
                   height: 30,
                   marginTop: -32.5,
-                  marginLeft: 145,
+                  marginLeft: 139,
                 }}
               />
             </TouchableOpacity>

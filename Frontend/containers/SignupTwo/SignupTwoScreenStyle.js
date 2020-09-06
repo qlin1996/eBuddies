@@ -3,8 +3,8 @@ import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
-    marginTop: 40,
-    marginBottom: "10%",
+    marginTop: 30,
+    marginBottom: "6%",
     marginLeft: 18,
     marginRight: 18,
     borderWidth: 1,
@@ -13,15 +13,15 @@ export default StyleSheet.create({
   },
   containerBox: {
     marginRight: "20%",
-    marginLeft: "13.5%",
+    marginLeft: "20.5%",
     position: "relative",
-    top: "-4.5%",
+    top: "-4%",
     backgroundColor: "rgba(38,153,251,0.6)",
     borderRadius: 4,
     borderWidth: 2,
     borderColor: "rgba(38,153,251,0.1)",
-    width: "72%",
-    height: "19.5%",
+    width: "55%",
+    height: "16.5%",
   },
   loginBox: {
     fontSize: 23,
@@ -32,12 +32,12 @@ export default StyleSheet.create({
   picOption: {
     flex: 2,
     marginTop: "-6%",
-    marginLeft: "3%",
+    marginLeft: "-2%",
     marginRight: "-3%",
   },
   textInput: {
     ...Fonts.normal,
-    height: 50,
+    height: 40,
     backgroundColor: "rgb(235, 233, 233)",
     borderBottomWidth: 0.5,
     borderBottomColor: "rgba(38,153,251,1)",
@@ -64,13 +64,13 @@ export default StyleSheet.create({
     alignSelf: "center",
     ...Fonts.small,
     margin: 10,
-    marginTop: "-9%",
+    marginTop: "-15%",
     marginBottom: "14%",
   },
 
   imageContainer: {
     position: "relative",
-    top: "-7.5%",
+    top: "-11%",
     width: 120,
     height: 120,
     alignSelf: "center",
@@ -139,7 +139,7 @@ export default StyleSheet.create({
     position: "relative",
     top: "-9.3%",
     left: "85%",
-    width: "8.7%",
+    width: "8%",
     height: "3.8%",
   },
   zip: {

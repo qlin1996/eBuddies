@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
+import { Text, View, Image, Button, Vibration } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
@@ -14,8 +14,8 @@ const socket = io("http://localhost:8081", {
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 });
 class SingleEvent extends React.Component {
@@ -30,20 +30,25 @@ class SingleEvent extends React.Component {
     try {
       const eventId = this.props.navigation.getParam("id");
       await this.props.fetchSingleEvent(eventId);
+      await Notifications.addListener(    this.props.navigation.navigate("MAPS"));
     } catch (error) {
       console.log(error);
     }
   }
 
+  // handleNotification = (notification) => {
+  //   console.log(notification);
+  //   Vibration.vibrate();
+  //   this.props.navigation.navigate("MAPS");
+  // };
+
   //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
   sendPushNotification = async (pushToken) => {
-    // const trigger2 = new Date(Date.now());
-    // console.log(trigger2)
     const eventHour = Number(this.props.event.time.slice(0, 2));
     const eventMinute = Number(this.props.event.time.slice(3, 5));
 
     const trigger = new Date(
-      this.props.event.date + eventHour * eventMinute * 1000
+      this.props.event.date + eventHour * (eventMinute - 1) * 1000
     );
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -51,6 +56,7 @@ class SingleEvent extends React.Component {
         body:
           "We look forward to seeing you in an hour. Please remember to check in on the maps within your calendar.",
         data: { data: "goes here" },
+        sound: "default",
       },
       trigger,
     });
@@ -58,9 +64,7 @@ class SingleEvent extends React.Component {
 
   handleJoin = async () => {
     try {
-      await this.sendPushNotification(
-        "ExponentPushToken[dabO9ZPLfka - RC76mIsTWs]"
-      );
+      await this.sendPushNotification(this.props.user.pushToken);
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,

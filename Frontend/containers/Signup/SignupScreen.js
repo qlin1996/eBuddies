@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Button, TextInput, Text } from "react-native";
+import { View, Button, TextInput, Text, Image } from "react-native";
 import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
 import { connect } from "react-redux";
@@ -65,148 +65,103 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.background}>
-          {/* validations */}
-          {this.state.uniqueEmail === false && (
-            <Text style={{ color: "red" }}>
-              There is already an account with this email. Please try to login.
-            </Text>
-          )}
-          {this.state.firstName.length === 0 && (
-            <Text style={{ color: "rgb(233, 233, 233)" }}>
-              First Name is Required
-            </Text>
-          )}
-          {this.state.lastName.length === 0 && (
-            <Text style={{ color: "rgb(233, 233, 233)" }}>
-              Last Name is Required
-            </Text>
-          )}
-          {!this.validateEmail(this.state.email) && (
-            <Text style={{ color: "rgb(233, 233, 233)" }}>
-              Valid Email is Required
-            </Text>
-          )}
-          {this.state.password.length === 0 && (
-            <Text style={{ color: "rgb(233, 233, 233)" }}>
-              Password is Required
-            </Text>
-          )}
+      <View style={styles.container1}>
+        <View style={styles.containerBox}>
+          <Text style={styles.loginBox}>Signup</Text>
+        </View>
+        {/* validations */}
+        {this.state.uniqueEmail === false && (
+          <Text style={{ color: "red" }}>
+            There is already an account with this email. Please try to login.
+          </Text>
+        )}
+        <TextInput
+          style={styles.textInput}
+          value={this.state.firstName}
+          onChangeText={(firstName) => this.setState({ firstName })}
+          ref={(input) => {
+            this.textInput = input;
+          }}
+          returnKeyType="go"
+          placeholder="First Name..."
+          placeholderTextColor="#BEBEBE"
+          keyboardType="name-phone-pad"
+        />
+        <Image style={styles.firstname} source={require("./lastname.png")} />
+        {this.state.firstName.length === 0 && (
+          <Text style={styles.validators}>First Name is Required</Text>
+        )}
+        <TextInput
+          style={styles.textInput}
+          value={this.state.lastName}
+          onChangeText={(lastName) => this.setState({ lastName })}
+          ref={(input) => {
+            this.textInput = input;
+          }}
+          returnKeyType="go"
+          placeholder="Last Name..."
+          placeholderTextColor="#BEBEBE"
+          keyboardType="name-phone-pad"
+        />
+        <Image style={styles.lastname} source={require("./name.png")} />
+        {this.state.lastName.length === 0 && (
+          <Text style={styles.validators}>Last Name is Required</Text>
+        )}
 
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "#BEBEBE",
-              marginHorizontal: 40,
-              marginBottom: 20,
-              color: "#BEBEBE",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.firstName}
-            onChangeText={(firstName) => this.setState({ firstName })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="John"
-            placeholderTextColor="#BEBEBE"
-            keyboardType="name-phone-pad"
+        <TextInput
+          style={styles.textInput}
+          value={this.state.email}
+          onChangeText={(email) => this.setState({ email })}
+          ref={(input) => {
+            this.textInput = input;
+          }}
+          returnKeyType="go"
+          placeholder="Email..."
+          placeholderTextColor="#BEBEBE"
+          keyboardType="email-address"
+        />
+        <Image style={styles.email} source={require("./email.png")} />
+        {!this.validateEmail(this.state.email) && (
+          <Text style={styles.validators}>Valid Email is Required</Text>
+        )}
+        <TextInput
+          style={styles.textInput}
+          value={this.state.password}
+          onChangeText={(password) => this.setState({ password })}
+          ref={(input) => {
+            this.textInput = input;
+          }}
+          returnKeyType="go"
+          placeholder="Password..."
+          placeholderTextColor="#BEBEBE"
+          secureTextEntry
+        />
+        <Image style={styles.password} source={require("./password.png")} />
+        {this.state.password.length === 0 && (
+          <Text style={styles.validators}>Password is Required</Text>
+        )}
+        <View style={styles.button}>
+          <Button
+            color="rgba(38,153,251,1)"
+            style={{ ...Fonts.normal, textAlign: "center" }}
+            title="CONTINUE"
+            onPress={this.handleSignup}
+          ></Button>
+        </View>
+        <View style={styles.account}>
+          <Button
+            color="rgba(38,153,251,1)"
+            style={{ ...Fonts.small }}
+            title="Already have an account?"
           />
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "#BEBEBE",
-              marginHorizontal: 40,
-              marginBottom: 20,
-              color: "#BEBEBE",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.lastName}
-            onChangeText={(lastName) => this.setState({ lastName })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="Doe"
-            placeholderTextColor="#BEBEBE"
-            keyboardType="name-phone-pad"
+        </View>
+        <View style={styles.login}>
+          <Button
+            color="rgba(38,153,251,1)"
+            style={{ ...Fonts.small }}
+            title="LOGIN"
+            onPress={this.handleLogin}
           />
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "#BEBEBE",
-              marginHorizontal: 40,
-              marginBottom: 20,
-              color: "#BEBEBE",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.email}
-            onChangeText={(email) => this.setState({ email })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="jdoe@gmail.com"
-            placeholderTextColor="#BEBEBE"
-            keyboardType="email-address"
-          />
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "#BEBEBE",
-              marginHorizontal: 40,
-              marginBottom: 20,
-              color: "#BEBEBE",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.password}
-            onChangeText={(password) => this.setState({ password })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="Create Password"
-            placeholderTextColor="#BEBEBE"
-            secureTextEntry
-          />
-          <View style={styles.button}>
-            <Button
-              color="white"
-              style={{ ...Fonts.normal, textAlign: "center" }}
-              title="CONTINUE"
-              onPress={this.handleSignup}
-            >
-              CONTINUE
-            </Button>
-          </View>
-          <View style={styles.account}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="Already have an account?"
-            />
-          </View>
-          <View style={styles.login}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="LOGIN"
-              onPress={this.handleLogin}
-            />
-          </View>
         </View>
       </View>
     );

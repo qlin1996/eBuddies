@@ -69,6 +69,11 @@ export default StyleSheet.create({
     width: "72%",
     height: "19.5%",
   },
+  validators: {
+    color: "#BEBEBE",
+    position: "relative",
+    top: "20%",
+  },
   textInput: {
     height: 40,
     marginTop: 20,
@@ -94,8 +99,8 @@ export default StyleSheet.create({
   },
   account: {
     ...Fonts.small,
-    marginTop: "28%",
-    marginBottom: "-7%",
+    marginTop: "48%",
+    marginBottom: "-5%",
     color: "black",
   },
   containerFb: {
@@ -140,6 +145,6 @@ export default StyleSheet.create({
     paddingBottom: 10,
     margin: 10,
     marginTop: "2%",
-    marginBottom: "-19%",
+    marginBottom: "-25%",
   },
 });

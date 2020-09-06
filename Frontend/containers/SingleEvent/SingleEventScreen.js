@@ -39,8 +39,12 @@ class SingleEvent extends React.Component {
   sendPushNotification = async (pushToken) => {
     // const trigger2 = new Date(Date.now());
     // console.log(trigger2)
-    const trigger = new Date(this.props.event.date + 1140 * 30000);
-    trigger.setSeconds(2);
+    const eventHour = Number(this.props.event.time.slice(0, 2));
+    const eventMinute = Number(this.props.event.time.slice(3, 5));
+
+    const trigger = new Date(
+      this.props.event.date + eventHour - 1 * eventMinute * 1000
+    );
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "You've got mail! 📬",

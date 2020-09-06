@@ -57,7 +57,7 @@ export default StyleSheet.create({
 
   password: {
     position: "relative",
-    top: "-10.6%",
+    top: "-10%",
     left: "86.3%",
     width: "8%",
     height: "4.7%",
@@ -81,7 +81,19 @@ export default StyleSheet.create({
     marginLeft: 30,
     color: "#BEBEBE",
     position: "relative",
-    top: "-7.6%",
+    top: "-8.3%",
+  },
+  validatorsName: {
+    marginLeft: 30,
+    color: "#BEBEBE",
+    position: "relative",
+    top: "-7%",
+  },
+  validatorsPassword: {
+    marginLeft: 30,
+    color: "#BEBEBE",
+    position: "relative",
+    top: "-9%",
   },
   button: {
     alignSelf: "center",
@@ -91,11 +103,11 @@ export default StyleSheet.create({
   login: {
     alignSelf: "center",
     ...Fonts.normal,
-    marginBottom: "7%",
+    marginBottom: "15%",
     marginTop: "-3%",
   },
   account: {
-    marginTop: 15,
+    marginTop: 19,
     ...Fonts.small,
     color: "#BEBEBE",
   },

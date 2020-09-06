@@ -43,12 +43,13 @@ class SingleEvent extends React.Component {
     const eventMinute = Number(this.props.event.time.slice(3, 5));
 
     const trigger = new Date(
-      this.props.event.date + eventHour - 1 * eventMinute * 1000
+      this.props.event.date + eventHour * eventMinute * 1000
     );
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "You've got mail! 📬",
-        body: "Here is the notification body",
+        title: "eBuddies",
+        body:
+          "We look forward to seeing you in an hour. Please remember to check in on the maps within your calendar.",
         data: { data: "goes here" },
       },
       trigger,

@@ -90,57 +90,46 @@ class SignupTwo extends React.Component {
   render() {
     return (
       <ScrollView>
-        <View style={styles.container}>
-          <Image
-            source={require("../../assets/ebuddies.gif")}
-            style={styles.logo}
+        <View style={styles.container1}>
+          <View style={styles.containerBox}>
+            <Text style={styles.loginBox}>Location </Text>
+          </View>
+          <TextInput
+            style={styles.textInput}
+            value={this.state.city}
+            onChangeText={(city) => this.setState({ city })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="City..."
+            placeholderTextColor="#BEBEBE"
+            keyboardType="name-phone-pad"
           />
-          <View style={styles.background}>
-            {this.state.city.length === 0 && (
-              <Text style={{ color: "rgb(233, 233, 233)" }}>
-                City is Required
-              </Text>
-            )}
-            {this.state.state.length === 0 && (
-              <Text style={{ color: "rgb(233, 233, 233)" }}>
-                State is Required
-              </Text>
-            )}
-            {!this.isValidUSZip(this.state.zipCode) && (
-              <Text style={{ color: "rgb(233, 233, 233)" }}>
-                Valid US Zip Code is Required
-              </Text>
-            )}
-            <TextInput
-              style={{
-                ...Fonts.normal,
-                height: 50,
-                backgroundColor: "rgb(235, 233, 233)",
-                borderBottomWidth: 0.5,
-                borderBottomColor: "rgba(38,153,251,1)",
-                marginHorizontal: 40,
-                marginBottom: 20,
-                color: "rgba(38,153,251,1)",
-                paddingHorizontal: 10,
-              }}
-              value={this.state.city}
-              onChangeText={(city) => this.setState({ city })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-              returnKeyType="go"
-              placeholder="City"
-              placeholderTextColor="rgba(38,153,251,1)"
-              keyboardType="name-phone-pad"
-            />
-
+          <Image style={styles.city} source={require("./city.png")} />
+          {this.state.city.length === 0 && (
+            <Text style={styles.validators}>City is Required</Text>
+          )}
+          <View style={styles.textInput}>
             <RNPickerSelect
               onValueChange={(state) => {
                 this.setState({ state: state });
               }}
               placeholder={{
-                label: "Select State",
+                label: "State...",
                 value: null,
+              }}
+              style={{
+                inputIOS: {
+                  placeholderColor: "#BEBEBE",
+                  fontSize: 16,
+                  color: "#BEBEBE",
+                },
+                inputAndroid: {
+                  placeholderColor: "#BEBEBE",
+                  fontSize: 16,
+                  color: "#BEBEBE",
+                },
               }}
               items={[
                 { label: "Alabama", value: "Alabama" },
@@ -188,69 +177,79 @@ class SignupTwo extends React.Component {
                 { label: "South Carolina", value: "South Carolina" },
               ]}
             />
+          </View>
+          <Image style={styles.state} source={require("./state.png")} />
+          {this.state.state.length === 0 && (
+            <Text style={styles.validators}>State is Required</Text>
+          )}
 
-            <TextInput
-              style={{
-                ...Fonts.normal,
-                height: 50,
-                backgroundColor: "rgb(235, 233, 233)",
-                borderBottomWidth: 0.5,
-                borderBottomColor: "rgba(38,153,251,1)",
-                marginHorizontal: 40,
-                marginBottom: 20,
-                color: "rgba(38,153,251,1)",
-                paddingHorizontal: 10,
-              }}
-              value={this.state.zipCode}
-              onChangeText={(zipCode) => this.setState({ zipCode })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-              returnKeyType="go"
-              placeholder="ZipCode"
-              placeholderTextColor="rgba(38,153,251,1)"
-              keyboardType="name-phone-pad"
-            />
+          <TextInput
+            style={styles.textInput}
+            value={this.state.zipCode}
+            onChangeText={(zipCode) => this.setState({ zipCode })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="Zip Code..."
+            placeholderTextColor="#BEBEBE"
+            keyboardType="name-phone-pad"
+          />
+          <Image style={styles.zip} source={require("./zip.png")} />
+          {!this.isValidUSZip(this.state.zipCode) && (
+            <Text style={styles.validators}>Valid US Zip Code is Required</Text>
+          )}
 
-            <TextInput
-              style={styles.textInput}
-              value={this.state.description}
-              onChangeText={(description) => this.setState({ description })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-              returnKeyType="go"
-              placeholder="Short Description"
-              placeholderTextColor="rgba(38,153,251,1)"
-              keyboardType="name-phone-pad"
-            />
+          <TextInput
+            style={styles.textInput}
+            value={this.state.description}
+            onChangeText={(description) => this.setState({ description })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="Description..."
+            placeholderTextColor="#BEBEBE"
+            keyboardType="name-phone-pad"
+          />
+          <Image
+            style={styles.description}
+            source={require("./description.png")}
+          />
 
-            <View style={styles.picOption}>
-              <View style={styles.picOption1}>
-                <Button title="Select Picture" onPress={this.selectPicture} />
-              </View>
-              <View style={styles.picOption2}>
-                <Button title="Take Picture" onPress={this.takePicture} />
-              </View>
-            </View>
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                source={{
-                  uri: this.state.imgUrl,
-                }}
+          <View style={styles.picOption}>
+            <View style={styles.picOption1}>
+              <Button
+                title="Select Picture"
+                color="#BEBEBE"
+                onPress={this.selectPicture}
               />
             </View>
-            <View style={styles.button}>
+            <View style={styles.picOption2}>
               <Button
-                color="white"
-                style={{ ...Fonts.normal, textAlign: "center" }}
-                title="CONTINUE"
-                onPress={this.handleSignup2}
-              >
-                CONTINUE
-              </Button>
+                title="Take Picture"
+                color="#BEBEBE"
+                onPress={this.takePicture}
+              />
             </View>
+          </View>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.image}
+              source={{
+                uri: this.state.imgUrl,
+              }}
+            />
+          </View>
+          <View style={styles.button}>
+            <Button
+              color="rgba(38,153,251,1)"
+              style={{ ...Fonts.normal, textAlign: "center" }}
+              title="CONTINUE"
+              onPress={this.handleSignup2}
+            >
+              CONTINUE
+            </Button>
           </View>
         </View>
       </ScrollView>

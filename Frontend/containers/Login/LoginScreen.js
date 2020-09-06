@@ -124,7 +124,7 @@ class Login extends React.Component {
                   width: 30,
                   height: 30,
                   marginTop: -32.5,
-                  marginLeft: 145,
+                  marginLeft: 139,
                 }}
               />
             </TouchableOpacity>
@@ -137,15 +137,7 @@ class Login extends React.Component {
 
           <View>
             {this.state.email.length === 0 && (
-              <Text
-                style={{
-                  color: "#BEBEBE",
-                  position: "relative",
-                  top: "20%",
-                }}
-              >
-                Email is Required
-              </Text>
+              <Text style={styles.validators}>Email is Required</Text>
             )}
             <TextInput
               style={styles.textInput}
@@ -162,15 +154,7 @@ class Login extends React.Component {
             />
             <Image style={styles.email} source={require("./email.png")} />
             {this.state.password.length === 0 && (
-              <Text
-                style={{
-                  color: "#BEBEBE",
-                  position: "relative",
-                  top: "20%",
-                }}
-              >
-                Password is Required
-              </Text>
+              <Text style={styles.validators}>Password is Required</Text>
             )}
             <TextInput
               style={styles.textInput}

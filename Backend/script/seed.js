@@ -123,8 +123,8 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Sat 06 Sep 2020",
-    time: "17:23:20 GMT-0400 (EDT)",
+    date: "Sun 06 Sep 2020",
+    time: "19:54:20 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",

@@ -47,12 +47,14 @@ class AddEventScreen extends React.Component {
     this.setState({ hostId: this.props.user.id });
   }
   sendPushNotification = async (pushToken) => {
-    const eventHour = Number(this.props.event.time.slice(0, 2));
-    const eventMinute = Number(this.props.event.time.slice(3, 5));
+    const eventHour = Number(this.state.time.slice(0, 2));
+    const eventMinute = Number(this.state.time.slice(3, 5));
+    const milliseconds = eventHour * (eventMinute - 1) * 1000;
+    let triggerDate = new Date(this.state.date) + milliseconds;
+    const trigger = new Date(triggerDate.slice(0, 15) + " " + this.state.time);
 
-    const trigger = new Date(
-      this.props.event.date + eventHour * (eventMinute - 30) * 1000
-    );
+    console.log("trigger!!!!", trigger);
+
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "eBuddies",
@@ -67,10 +69,10 @@ class AddEventScreen extends React.Component {
   isValidUSZip = (zipCode) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
-  c;
   handleSubmit = async () => {
-    console.log(this.state);
-
+    console.log("before");
+    await this.sendPushNotification(this.props.user.pushToken);
+    console.log("after");
     if (
       this.state.name.length &&
       this.state.address.length &&
@@ -84,8 +86,10 @@ class AddEventScreen extends React.Component {
     ) {
       this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
-
+      console.log("before");
       await this.sendPushNotification(this.props.user.pushToken);
+      console.log("after");
+
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({

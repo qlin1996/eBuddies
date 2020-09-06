@@ -7,6 +7,7 @@ import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import * as Notifications from "expo-notifications";
+
 import io from "socket.io-client";
 const socket = io("http://localhost:8081", {
   transports: ["websocket"],
@@ -30,25 +31,29 @@ class SingleEvent extends React.Component {
     try {
       const eventId = this.props.navigation.getParam("id");
       await this.props.fetchSingleEvent(eventId);
-      await Notifications.addListener(    this.props.navigation.navigate("MAPS"));
+      // await Notifications.addListener((notification) => {
+      //   console.log(notification);
+      //   // this.props.navigation.navigate("MAPS");
+      // });
+      const subscription = Notifications.addNotificationResponseReceivedListener(
+        (response) => {
+          const url = response.notification.request.content.data.url;
+          Linking.openUrl(url);
+        }
+      );
+      return () => subscription.remove();
     } catch (error) {
       console.log(error);
     }
   }
-
-  // handleNotification = (notification) => {
-  //   console.log(notification);
-  //   Vibration.vibrate();
-  //   this.props.navigation.navigate("MAPS");
-  // };
-
   //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
   sendPushNotification = async (pushToken) => {
     const eventHour = Number(this.props.event.time.slice(0, 2));
     const eventMinute = Number(this.props.event.time.slice(3, 5));
-
+    const milliseconds = eventHour * (eventMinute - 1) * 1000;
+    let triggerDate = new Date(this.props.event.date) + milliseconds;
     const trigger = new Date(
-      this.props.event.date + eventHour * (eventMinute - 1) * 1000
+      triggerDate.slice(0, 15) + " " + this.props.event.time
     );
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -61,7 +66,6 @@ class SingleEvent extends React.Component {
       trigger,
     });
   };
-
   handleJoin = async () => {
     try {
       await this.sendPushNotification(this.props.user.pushToken);

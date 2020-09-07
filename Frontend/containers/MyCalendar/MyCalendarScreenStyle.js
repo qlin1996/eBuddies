@@ -9,16 +9,17 @@ export default StyleSheet.create({
     marginBottom: 50,
     marginHorizontal: 50,
   },
-  myEvents: {
-    backgroundColor: "rgba(255, 255, 255, 0.6)",
-    width: "28%",
+  surface: {
+    marginTop: -60,
     alignSelf: "center",
-    height: "7.5%",
-    borderRadius: 10,
-    // padding: 2,
-    // margin: 1,
-    position: "relative",
-    top: "-12.9%",
-    color: "white",
+    width: "30%",
+    height: 40,
+    marginBottom: 35,
+  },
+  appHeader: {
+    backgroundColor: "rgba(66, 135, 245, 1)",
+    height: 60,
+    marginTop: 5,
+    marginBottom: 5,
   },
 });

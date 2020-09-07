@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
-  // background: {
-  //   backgroundColor: "white",
-  // },
   container1: {
     backgroundColor: "white",
     marginTop: 10,
@@ -14,7 +11,6 @@ export default StyleSheet.create({
     borderColor: "white",
     borderRadius: 10,
   },
-
   loginBox: {
     fontSize: 23,
     marginTop: 20,
@@ -35,7 +31,6 @@ export default StyleSheet.create({
     width: "10.5%",
     height: "4.2%",
   },
-
   email: {
     position: "relative",
     top: "-9.5%",
@@ -43,7 +38,6 @@ export default StyleSheet.create({
     width: "8.7%",
     height: "4%",
   },
-
   password: {
     position: "relative",
     top: "-10%",
@@ -54,7 +48,6 @@ export default StyleSheet.create({
   textInputName: {
     height: 26.5,
     marginTop: 40,
-    marginLeft: 0,
     color: "#BEBEBE",
     marginLeft: 30,
     marginRight: 30,
@@ -69,7 +62,6 @@ export default StyleSheet.create({
   textInput: {
     height: 26.5,
     marginTop: 10,
-    marginLeft: 0,
     color: "#BEBEBE",
     marginLeft: 30,
     marginRight: 30,

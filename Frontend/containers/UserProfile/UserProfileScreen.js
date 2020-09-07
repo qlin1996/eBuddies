@@ -1,9 +1,10 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
+import { View, Image } from "react-native";
 import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 import { logout } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
+import { Appbar, Card, Text, Button, Surface } from "react-native-paper";
 
 class UserProfileScreen extends React.Component {
   async componentDidMount() {
@@ -23,16 +24,18 @@ class UserProfileScreen extends React.Component {
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
+
     return (
       <View style={{ flex: 1 }}>
-        <View style={Style.imageContainer}>
+        {/* <View style={Style.imageContainer}></View> */}
+        <Surface style={Style.surface}>
           <Image
             style={Style.image}
             source={{
               uri: user.imgUrl,
             }}
           />
-        </View>
+        </Surface>
         <View style={Style.profileContainer}>
           <Text style={Style.name}>
             {user.firstName} {}
@@ -53,22 +56,28 @@ class UserProfileScreen extends React.Component {
             ))}
           </View>
         </View>
-        <View style={Style.edit}>
+        <Surface style={Style.buttons}>
           <Button
+            // mode="contained"
+            color="#000095"
+            style={Style.button}
             title="EDIT"
             onPress={() => this.props.navigation.navigate("EDIT")}
           >
             Edit
           </Button>
-        </View>
-        <View style={Style.separator}>
-          <Text style={{ fontSize: 36, color: "blue" }}>⟶</Text>
-        </View>
-        <View style={Style.logoutbutton}>
-          <Button title="LOGOUT" onPress={this.handleLogout}>
+
+          <Button
+            // mode="contained"
+            color="#000095"
+            style={Style.button}
+            title="LOGOUT"
+            onPress={this.handleLogout}
+          >
             Logout
           </Button>
-        </View>
+        </Surface>
+        <View style={Style.logoutbutton}></View>
       </View>
     );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
+import { Text, View, Image, Button, TextPropTypes } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
@@ -8,12 +8,23 @@ import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import { editActivityAttendance } from "../../store/activity";
 import updateEvent from "../../containers/UpdateEvent/UpdateEvent";
+import {
+  Card,
+  Title,
+  Paragraph,
+  Surface,
+  Appbar,
+  Menu,
+  Divider,
+  Provider,
+} from "react-native-paper";
 class JoinedEvent extends React.Component {
   constructor() {
     super();
     this.state = {
       isModalVisible: false,
       isModal2Visible: false,
+      visible: false,
     };
   }
   componentDidMount() {
@@ -24,10 +35,21 @@ class JoinedEvent extends React.Component {
       console.log(error);
     }
   }
-
+  openMenu = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+  closeMenu = () => {
+    this.setState({
+      visible: false,
+    });
+  };
   handleChat = async () => {
     try {
       await this.props.getUser(this.props.user.id);
+      this.setState({ visible: false });
+
       this.setState({ isModalVisible: true });
 
       let eventId = this.props.event.id;
@@ -49,6 +71,7 @@ class JoinedEvent extends React.Component {
   handleMap = async () => {
     try {
       await this.props.getUser(this.props.user.id);
+      this.setState({ visible: false });
       this.setState({ isModal2Visible: true });
 
       let eventId = this.props.event.id;
@@ -77,41 +100,50 @@ class JoinedEvent extends React.Component {
   render() {
     return (
       <>
-        <View style={Style.wholeCardDiv}>
-          <View style={Style.imageDiv}>
-            <Image
-              style={Style.eventImg}
-              source={{ uri: this.props.event.imgUrl }}
-            />
-          </View>
-          <View style={Style.headerBackground}>
-            <Text style={Style.headerText}>{this.props.event.name}</Text>
-          </View>
-          <View style={Style.informationDiv}>
-            <Text style={Style.fonts}>{this.props.event.description}</Text>
-            <Text style={Style.addressFonts}>{this.props.event.address}</Text>
-            <Text style={Style.dateFonts}>
-              {this.props.event.date
-                ? this.props.event.date.slice(5, 10) +
-                  "-" +
-                  this.props.event.date.slice(0, 4)
-                : null}
-            </Text>
-            <View>
-              <Text style={Style.dateFonts}>
-                Time:{" "}
-                {this.props.event.time
-                  ? this.convertTime(this.props.event.time)
-                  : null}
-              </Text>
-            </View>
-          </View>
-        </View>
-        <View>
-          <View style={Style.joinChatButton}>
-            <Button title="JOIN THE CHAT" onPress={this.handleChat}></Button>
-          </View>
-        </View>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title={`Viewing ${this.props.event.name}...`}
+            subtitle={`We think you'll love this  ${
+              this.props.user.firstName ? this.props.user.firstName : ""
+            } `}
+            color="white"
+          />
+        </Appbar.Header>
+        <Card style={Style.card}>
+          <Card.Title title={`${this.props.event.name}`} />
+          <Paragraph style={Style.cardAddress}>
+            Location: {this.props.event.address}
+          </Paragraph>
+          <Paragraph style={Style.cardDate}>
+            Date:{" "}
+            {this.props.event.date
+              ? this.props.event.date.slice(5, 10) +
+                "-" +
+                this.props.event.date.slice(0, 4)
+              : null}
+          </Paragraph>
+          <Paragraph style={Style.cardTime}>
+            {" "}
+            Time:{" "}
+            {this.props.event.time
+              ? this.convertTime(this.props.event.time)
+              : null}
+          </Paragraph>
+          <Card.Cover
+            style={Style.cardImg}
+            source={{ uri: this.props.event.imgUrl }}
+          />
+          <Card.Content>
+            <Paragraph style={Style.cardDescription}>
+              {this.props.event.description}
+            </Paragraph>
+          </Card.Content>
+
+          <Card.Actions>
+            <Button title="">Cancel</Button>
+            <Button title="">Ok</Button>
+          </Card.Actions>
+        </Card>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
             <Image
@@ -128,29 +160,47 @@ class JoinedEvent extends React.Component {
             </View>
           </View>
         </Modal>
-        <View style={Style.mapButton}>
-          <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
-          <Button
-            title="EDIT EVENT"
-            onPress={() => {
-              this.props.navigation.navigate("EDITEVENT", {
-                id: this.props.event.id,
-              });
-            }}
-          >
-            {" "}
-          </Button>
-        </View>
-        <View>
-          <Button
-            title="VIEW ATTENDEES"
-            onPress={() => {
-              this.props.navigation.navigate("ATTENDEES", {
-                id: this.props.event.id,
-              });
-            }}
-          ></Button>
-        </View>
+        <Surface style={Style.surface}>
+          <View style={Style.menu}>
+            <Menu
+              visible={this.state.visible}
+              onDismiss={this.closeMenu}
+              anchor={
+                <Button onPress={this.openMenu} title="Show menu">
+                  Show menu
+                </Button>
+              }
+            >
+              <Menu.Item title="Join the chat" onPress={this.handleChat} />
+              <Menu.Item title="View on map" onPress={this.handleMap} />
+              <Divider />
+              <Menu.Item
+                title="Edit Event"
+                onPress={() => {
+                  this.props.navigation.navigate(
+                    "EDITEVENT",
+                    {
+                      id: this.props.event.id,
+                    },
+                    this.setState({ visible: false })
+                  );
+                }}
+              />
+              <Menu.Item
+                title="View Attendees"
+                onPress={() => {
+                  this.props.navigation.navigate(
+                    "ATTENDEES",
+                    {
+                      id: this.props.event.id,
+                    },
+                    this.setState({ visible: false })
+                  );
+                }}
+              />
+            </Menu>
+          </View>
+        </Surface>
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
             <Image

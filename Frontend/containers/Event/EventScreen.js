@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, View, Image, Button } from "react-native";
-import { Card, Title, Paragraph } from "react-native-paper";
+import { Card, Title, Paragraph, Appbar } from "react-native-paper";
 
 import Style from "./EventScreenStyle";
 
@@ -17,14 +17,11 @@ const Event = (props) => {
     <>
       <Card style={Style.card}>
         <Card.Title title={`${event.name}`} />
-        <Paragraph style={Style.cardAddress}>{event.address}</Paragraph>
-        <Card.Content>
-          <Paragraph style={Style.cardDescription}>
-            {event.description}
-          </Paragraph>
-        </Card.Content>
-        <Card.Cover style={Style.cardImg} source={{ uri: event.imgUrl }} />
+        <Paragraph style={Style.cardAddress}>
+          Location: {event.address}
+        </Paragraph>
         <Paragraph style={Style.cardDate}>
+          Date:{" "}
           {event.date
             ? event.date.slice(5, 10) + "-" + event.date.slice(0, 4)
             : null}
@@ -33,6 +30,12 @@ const Event = (props) => {
           {" "}
           Time: {event.time ? convertTime(event.time) : null}
         </Paragraph>
+        <Card.Cover style={Style.cardImg} source={{ uri: event.imgUrl }} />
+        <Card.Content>
+          <Paragraph style={Style.cardDescription}>
+            {event.description}
+          </Paragraph>
+        </Card.Content>
 
         <Card.Actions>
           <Button title="">Cancel</Button>

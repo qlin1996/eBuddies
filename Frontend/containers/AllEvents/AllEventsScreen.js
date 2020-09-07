@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import Style from "./AllEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
-import { Appbar } from "react-native-paper";
+import { Appbar, Surface } from "react-native-paper";
 
 class AllEvents extends React.Component {
   constructor() {
@@ -30,16 +30,17 @@ class AllEvents extends React.Component {
           <View key={event.id}>
             <Event event={event} />
             <View style={Style.eventMap}>
-              <Button
-                style={Style.eventButton}
-                title="View Event"
-                // onPress={this.handleEventClick}
-                onPress={() => {
-                  this.props.navigation.navigate("SINGLEEVENT", {
-                    id: event.id,
-                  });
-                }}
-              />
+              <Surface style={Style.surface}>
+                <Button
+                  title="View Event"
+                  // onPress={this.handleEventClick}
+                  onPress={() => {
+                    this.props.navigation.navigate("SINGLEEVENT", {
+                      id: event.id,
+                    });
+                  }}
+                />
+              </Surface>
             </View>
           </View>
         );
@@ -48,6 +49,13 @@ class AllEvents extends React.Component {
 
     return (
       <>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title="Viewing All Events...."
+            subtitle="eBuddies"
+            color="white"
+          />
+        </Appbar.Header>
         <ScrollView>
           {events.length >= 1 ? (
             eventList

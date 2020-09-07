@@ -9,6 +9,7 @@ import { Marker } from "react-native-maps";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import { editActivityAttendance } from "../../store/activity";
 import Modal from "react-native-modal";
+import { Appbar, Surface } from "react-native-paper";
 class Maps extends React.Component {
   constructor() {
     super();
@@ -47,6 +48,7 @@ class Maps extends React.Component {
       eventLocation: result,
     });
   }
+
   handleAttendance = async () => {
     let metersDistance = geolib.getDistance(
       this.state.eventLocation[0],
@@ -92,71 +94,80 @@ class Maps extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <MapView style={styles.mapStyle} region={this.state.eventLocation[0]}>
-          <Marker
-            coordinate={this.state.eventLocation[0]}
-            title={this.props.event.name}
-            description={this.props.event.address}
+      <>
+        <Appbar.Header style={styles.appHeader}>
+          <Appbar.Content
+            title={`Locating ${
+              this.props.user.firstName ? this.props.user.firstName : "you"
+            } to ${this.props.event.name}...`}
+            subtitle="eBuddies"
+            color="white"
           />
-          <Marker
-            pinColor={"blue"}
-            coordinate={this.state.userLocation.coords}
-            title={this.props.user.firstName}
-            description={this.props.user.description}
-          />
-        </MapView>
-        <Text style={styles.eventName}>Viewing {this.props.event.name}</Text>
-        <View style={styles.backButton}>
-          <Button
-            title="BACK"
-            onPress={() => {
-              this.props.navigation.navigate("SINGLEEVENT", {
-                id: this.props.event.id,
-              });
-            }}
-          ></Button>
-        </View>
-        <View>
-          <View style={styles.hereButton}>
+        </Appbar.Header>
+
+        <View style={styles.container}>
+          <MapView style={styles.mapStyle} region={this.state.eventLocation[0]}>
+            <Marker
+              coordinate={this.state.eventLocation[0]}
+              title={this.props.event.name}
+              description={this.props.event.address}
+            />
+            <Marker
+              pinColor={"blue"}
+              coordinate={this.state.userLocation.coords}
+              title={this.props.user.firstName}
+              description={this.props.user.description}
+            />
+          </MapView>
+          <Surface style={styles.surface}>
+            <Button
+              title="BACK"
+              onPress={() => {
+                this.props.navigation.navigate("SINGLEEVENT", {
+                  id: this.props.event.id,
+                });
+              }}
+            ></Button>
+          </Surface>
+          <Surface style={styles.surfaceHere}>
             <Button title="IM HERE" onPress={this.handleAttendance}></Button>
-          </View>
+          </Surface>
+          <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
+            <View>
+              <Image
+                source={require("../../assets/ebuddies.gif")}
+                style={styles.logo}
+              />
+              <View style={styles.modalText}>
+                <Text style={{ fontSize: 20 }}>
+                  Thanks for checking in. We're excited to meet you,{" "}
+                  {this.props.user.firstName}!
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.modalChatMessage}>🤩🥳💫</Text>
+              </View>
+            </View>
+          </Modal>
+          <Modal isVisible={this.state.isModal2Visible} style={styles.modal2}>
+            <View>
+              <Image
+                source={require("../../assets/ebuddies.gif")}
+                style={styles.logo}
+              />
+              <View style={styles.modalText}>
+                <Text style={{ fontSize: 20 }}>
+                  Sorry, looks like you have not yet reached the destination.
+                  You are still {this.state.miles} miles away.
+                </Text>
+              </View>
+              <View>
+                <Text style={styles.mapModalEmojis}>🚖🚕✈️</Text>
+              </View>
+            </View>
+          </Modal>
         </View>
-        <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
-          <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={styles.logo}
-            />
-            <View style={styles.modalText}>
-              <Text style={{ fontSize: 20 }}>
-                Thanks for checking in. We're excited to meet you,{" "}
-                {this.props.user.firstName}!
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.modalChatMessage}>🤩🥳💫</Text>
-            </View>
-          </View>
-        </Modal>
-        <Modal isVisible={this.state.isModal2Visible} style={styles.modal2}>
-          <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={styles.logo}
-            />
-            <View style={styles.modalText}>
-              <Text style={{ fontSize: 20 }}>
-                Sorry, looks like you have not yet reached the destination. You
-                are still {this.state.miles} miles away.
-              </Text>
-            </View>
-            <View>
-              <Text style={styles.mapModalEmojis}>🚖🚕✈️</Text>
-            </View>
-          </View>
-        </Modal>
-      </View>
+      </>
     );
   }
 }

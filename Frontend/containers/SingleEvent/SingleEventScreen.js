@@ -7,6 +7,7 @@ import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import * as Notifications from "expo-notifications";
+import { Card, Title, Paragraph, Surface, Appbar } from "react-native-paper";
 
 import io from "socket.io-client";
 const socket = io("http://localhost:8081", {
@@ -125,42 +126,56 @@ class SingleEvent extends React.Component {
   render() {
     return (
       <>
-        <View style={Style.wholeCardDiv}>
-          <View style={Style.imageDiv}>
-            <Image
-              style={Style.eventImg}
-              source={{ uri: this.props.event.imgUrl }}
-            />
-          </View>
-          <View style={Style.headerBackground}>
-            <Text style={Style.headerText}>{this.props.event.name}</Text>
-          </View>
-          <View style={Style.informationDiv}>
-            <Text style={Style.fonts}>{this.props.event.description}</Text>
-            <Text style={Style.addressFonts}>{this.props.event.address}</Text>
-            <Text style={Style.dateFonts}>
-              {this.props.event.date
-                ? this.props.event.date.slice(5, 10) +
-                  "-" +
-                  this.props.event.date.slice(0, 4)
-                : null}
-            </Text>
-            <View>
-              <Text style={Style.dateFonts}>
-                Time:{" "}
-                {this.props.event.time
-                  ? this.convertTime(this.props.event.time)
-                  : null}
-              </Text>
-            </View>
-          </View>
-        </View>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title={`Viewing ${this.props.event.name}...`}
+            subtitle={`We think you'll love this  ${
+              this.props.user.firstName ? this.props.user.firstName : ""
+            } `}
+            color="white"
+          />
+        </Appbar.Header>
+        <Card style={Style.card}>
+          <Card.Title title={`${this.props.event.name}`} />
+          <Paragraph style={Style.cardAddress}>
+            Location: {this.props.event.address}
+          </Paragraph>
+          <Paragraph style={Style.cardDate}>
+            Date:{" "}
+            {this.props.event.date
+              ? this.props.event.date.slice(5, 10) +
+                "-" +
+                this.props.event.date.slice(0, 4)
+              : null}
+          </Paragraph>
+          <Paragraph style={Style.cardTime}>
+            {" "}
+            Time:{" "}
+            {this.props.event.time
+              ? this.convertTime(this.props.event.time)
+              : null}
+          </Paragraph>
+          <Card.Cover
+            style={Style.cardImg}
+            source={{ uri: this.props.event.imgUrl }}
+          />
+          <Card.Content>
+            <Paragraph style={Style.cardDescription}>
+              {this.props.event.description}
+            </Paragraph>
+          </Card.Content>
+
+          <Card.Actions>
+            <Button title="">Cancel</Button>
+            <Button title="">Ok</Button>
+          </Card.Actions>
+        </Card>
         <View>
-          <View style={Style.singleEvent}>
-            {this.props.user.id && (
+          {this.props.user.id && (
+            <Surface style={Style.surface}>
               <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
-            )}
-          </View>
+            </Surface>
+          )}
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
@@ -170,7 +185,7 @@ class SingleEvent extends React.Component {
             />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
-                Event, {this.props.event.name} has been added!
+                Event {this.props.event.name} has been added!
               </Text>
             </View>
             <Image
@@ -181,9 +196,10 @@ class SingleEvent extends React.Component {
             />
           </View>
         </Modal>
-        <View style={Style.mapButton}>
+        <Surface style={Style.surfaceMap}>
           <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
-        </View>
+        </Surface>
+
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
             <Image

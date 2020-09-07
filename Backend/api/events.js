@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User, Event, Message } = require("../db/models");
+const { User, Event, Message, Activity } = require("../db/models");
 
 //GET --> /API/EVENTS
 router.get("/", async (req, res, next) => {
@@ -18,7 +18,7 @@ router.get("/:eventId", async (req, res, next) => {
       where: {
         id: req.params.eventId,
       },
-      include: Message,
+      include: { all: true },
     });
     res.json(event);
   } catch (error) {
@@ -33,6 +33,7 @@ router.get("/:eventId/messages", async (req, res, next) => {
       where: {
         eventId: req.params.eventId,
       },
+      include: { model: User, as: "sender" },
     });
     res.json(eventMessages);
   } catch (error) {
@@ -42,7 +43,6 @@ router.get("/:eventId/messages", async (req, res, next) => {
 
 //POST --> /API/EVENTS
 router.post("/", async (req, res, next) => {
-  /* etc */
   try {
     const event = await Event.create(req.body);
     res.json(event);
@@ -53,7 +53,6 @@ router.post("/", async (req, res, next) => {
 
 //PUT --> /PUT/EVENTS/:EVENTID
 router.put("/:eventId", async (req, res, next) => {
-  /* etc */
   try {
     const event = await Event.findOne({
       where: {
@@ -69,7 +68,6 @@ router.put("/:eventId", async (req, res, next) => {
 
 //DELETE --> /DELETE/EVENTS/:EVENTID
 router.delete("/:eventId", async (req, res, next) => {
-  /* etc */
   try {
     await Event.destroy({
       where: {
@@ -78,6 +76,41 @@ router.delete("/:eventId", async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+  }
+});
+
+//PATCH --> /API/EVENTS/:USERID
+router.patch("/:eventId/users/:userId", async (req, res, next) => {
+  try {
+    await Activity.update(req.body, {
+      where: {
+        eventId: req.params.eventId,
+        userId: req.params.userId,
+      },
+    });
+    const eventActivity = await Activity.findOne({
+      where: {
+        eventId: req.params.eventId,
+        userId: req.params.userId,
+      },
+    });
+    res.json(eventActivity);
+  } catch (error) {
+    next(error);
+  }
+});
+//GET --> /API/CAMPUSES/:ID
+router.get("/:id", async (req, res, next) => {
+  try {
+    const campuses = await Campus.findOne({
+      where: {
+        id: req.params.id,
+      },
+      include: Student,
+    });
+    res.json(campuses);
+  } catch (error) {
+    next(error);
   }
 });
 

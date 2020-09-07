@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import { Fonts } from "../../themes";
 import { auth2 } from "../../store/user";
 import { postNewInterest } from "../../store/interest";
+import * as Notifications from "expo-notifications";
+import * as Permissions from "expo-permissions";
+import Constants from "expo-constants";
 
 class Interests extends React.Component {
   constructor() {
@@ -27,6 +30,7 @@ class Interests extends React.Component {
       lastName: "",
       email: "",
       password: "",
+      pushToken: "",
     };
   }
 
@@ -66,7 +70,33 @@ class Interests extends React.Component {
     this.setState(newState);
   };
 
+  askPermissions = async () => {
+    if (Constants.isDevice) {
+      const { status: existingStatus } = await Permissions.getAsync(
+        Permissions.NOTIFICATIONS
+      );
+      let finalStatus = existingStatus;
+      if (existingStatus !== "granted") {
+        const { status } = await Permissions.askAsync(
+          Permissions.NOTIFICATIONS
+        );
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        alert("Please allow notifications in your settings");
+        return;
+      }
+      let token = await Notifications.getExpoPushTokenAsync();
+      console.log(token);
+      this.setState({
+        pushToken: token.data,
+      });
+    } else {
+      alert("Must use physical device for Push Notifications");
+    }
+  };
   handleSignup = async () => {
+    await this.askPermissions();
     await this.props.auth2(
       this.state.firstName,
       this.state.lastName,
@@ -76,7 +106,8 @@ class Interests extends React.Component {
       this.state.imgUrl,
       this.state.city,
       this.state.state,
-      this.state.zipCode
+      this.state.zipCode,
+      this.state.pushToken
     );
     if (this.state.food === true) {
       await this.props.postNewInterest({
@@ -221,7 +252,8 @@ const mapDispatchToProps = (dispatch) => {
       imgUrl,
       city,
       state,
-      zipCode
+      zipCode,
+      pushToken
     ) => {
       return dispatch(
         auth2(
@@ -233,7 +265,8 @@ const mapDispatchToProps = (dispatch) => {
           imgUrl,
           city,
           state,
-          zipCode
+          zipCode,
+          pushToken
         )
       );
     },

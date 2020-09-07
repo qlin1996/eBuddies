@@ -73,6 +73,9 @@ const User = db.define("user", {
   googleId: {
     type: Sequelize.STRING,
   },
+  pushToken: {
+    type: Sequelize.STRING,
+  },
 });
 
 /**

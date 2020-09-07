@@ -10,7 +10,43 @@ export default StyleSheet.create({
     marginBottom: 20,
     marginHorizontal: 20,
   },
+  modalChatMessage: {
+    textAlign: "center",
+    fontSize: 60,
+    position: "relative",
+    top: "20%",
+  },
+  joinChatButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: "35%",
+    height: "22%",
+    alignSelf: "center",
+    borderRadius: 10,
+    // padding: 2,
+    // margin: 1,
+    position: "relative",
+    top: "-16%",
+    color: "white",
+  },
+  mapModalEmojis: {
+    textAlign: "center",
+    fontSize: 60,
+    position: "relative",
+    top: "20%",
+  },
+  mapButton: {
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    width: "35%",
+    height: "6%",
+    alignSelf: "center",
+    borderRadius: 12,
 
+    position: "relative",
+    top: "-16%",
+    color: "white",
+    borderColor: "lightblue",
+    borderWidth: 1,
+  },
   headerText: {
     color: "white",
     ...Fonts.h4,
@@ -78,6 +114,8 @@ export default StyleSheet.create({
   modalText: {
     alignSelf: "center",
     fontSize: 50,
+    width: "75%",
+    textAlign: "center",
   },
   logo: {
     position: "absolute",

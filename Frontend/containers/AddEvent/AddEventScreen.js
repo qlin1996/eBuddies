@@ -1,23 +1,42 @@
 import React from "react";
-import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
+import {
+  TextInput,
+  View,
+  Button,
+  ScrollView,
+  Text,
+  Image,
+  Vibration,
+} from "react-native";
 import TextField from "@material-ui/core/TextField";
-
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
 import Style from "./AddEventScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
-import { Fonts } from "../../themes";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import { Metrics, Fonts, Colors } from "../../themes";
+import RNPickerSelect from "react-native-picker-select";
+import * as Notifications from "expo-notifications";
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
+
 class AddEventScreen extends React.Component {
   constructor(props) {
     super(props);
+    this.pickerRef = React.createRef();
     this.state = {
       name: "",
       address: "",
       city: "",
       state: "",
-      zipcode: "",
+      zipCode: "",
       date: "",
       time: "",
       category: "",
@@ -26,50 +45,84 @@ class AddEventScreen extends React.Component {
       imgUrl: "",
       isModalVisible: false,
       hostId: "",
+      isDatePickerVisible: false,
+      isTimePickerVisible: false,
+      height: 0,
     };
   }
 
   componentDidMount() {
     this.setState({ hostId: this.props.user.id });
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      () => {
+        this.props.navigation.navigate("ATTENDEES");
+      }
+    );
+    return () => subscription.remove();
   }
+  sendPushNotification = async (pushToken) => {
+    Vibration.vibrate(10 * 3000);
+    const eventHour = Number(this.state.time.slice(0, 2));
+    const eventMinute = Number(this.state.time.slice(3, 5) - 1);
+
+    let gmt = this.state.time.slice(8);
+
+    let trigger = new Date(
+      this.state.date.slice(0, 15) +
+        " " +
+        eventHour +
+        ": " +
+        eventMinute +
+        ":00" +
+        gmt
+    );
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "eBuddies",
+        body: "Your event will start soon. Please review the atendee list!",
+        data: { data: "goes here" },
+        sound: "default",
+      },
+      trigger,
+    });
+  };
 
   isValidUSZip = (zipCode) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
-
-  handleSubmit = () => {
+  handleSubmit = async () => {
     if (
       this.state.name.length &&
       this.state.address.length &&
       this.state.city.length &&
       this.state.state.length &&
-      this.state.zipcode.length &&
+      this.state.zipCode.length &&
       this.state.date.length &&
       this.state.time.length &&
       this.state.category.length &&
       this.state.description.length
     ) {
-      this.setState({ isModalVisible: true });
-      this.setState({ hostId: this.props.user.id });
+      this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
+      await this.sendPushNotification(this.props.user.pushToken);
 
-      this.setState({
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: "",
-        date: "",
-        time: "",
-        description: "",
-        eventId: "",
-        imgUrl: "",
-        hostId: "",
-      });
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({
           isModalVisible: false,
+          name: "",
+          address: "",
+          city: "",
+          state: "",
+          zipCode: "",
+          date: "",
+          time: "",
+          description: "",
+          eventId: "",
+          imgUrl: "",
+          hostId: "",
+          selectedValue: "Food",
         });
       };
       setTimeout(waitForModal, 2000);
@@ -97,158 +150,233 @@ class AddEventScreen extends React.Component {
 
   render() {
     return (
-      <>
-        <ScrollView>
-          <View style={Style.addForm}>
-            <View style={Style.field1}>
-              {this.state.name.length === 0 && (
-                <Text style={{ color: "white" }}>Event Name is Required</Text>
-              )}
-              <TextInput
-                style={Style.name}
-                name="name"
-                type="text"
-                placeholder="Event Name"
-                onChangeText={(text) => {
-                  this.setState({ name: text });
-                }}
-                value={this.state.name}
-              />
-            </View>
-            <View style={Style.field2}>
-              {this.state.address.length === 0 && (
-                <Text
-                  style={{ color: "white", position: "relative", top: "-20%" }}
-                >
-                  Event Street Address is Required
-                </Text>
-              )}
-              <TextInput
-                style={Style.address}
-                placeholder="Street Address"
-                onChangeText={(text) => {
-                  this.setState({ address: text });
-                }}
-                value={this.state.address}
-              />
-            </View>
-            <View style={Style.field3}>
-              {this.state.city.length === 0 && (
-                <Text style={{ color: "white" }}>Event City is Required</Text>
-              )}
-              <TextInput
-                style={Style.city}
-                placeholder="City"
-                onChangeText={(text) => {
-                  this.setState({ city: text });
-                }}
-                value={this.state.city}
-              />
-            </View>
-
-            <View style={Style.field4}>
-              {this.state.state.length === 0 && (
-                <Text style={{ color: "white" }}>Event State is Required</Text>
-              )}
-              <TextInput
-                style={Style.state}
-                placeholder="State"
-                onChangeText={(text) => {
-                  this.setState({ state: text });
-                }}
-                value={this.state.state}
-              />
-            </View>
-
-            <View style={Style.field5}>
-              {!this.isValidUSZip(this.state.zipcode) && (
-                <Text style={{ color: "white" }}>
-                  Valid US Zip Code is Required
-                </Text>
-              )}
-              <TextInput
-                style={Style.zip}
-                placeholder="Zipcode"
-                onChangeText={(text) => {
-                  this.setState({ zipcode: text });
-                }}
-                value={this.state.zipcode}
-              />
-            </View>
-
-            <View style={Style.field6}>
-              {this.state.date.length === 0 && (
-                <Text style={{ color: "white" }}>Event Date is Required</Text>
-              )}
-              <TextInput
-                style={Style.date}
-                placeholder="Date"
-                onChangeText={(text) => {
-                  this.setState({ date: text });
-                }}
-                value={this.state.date}
-              />
-            </View>
-            <View style={Style.field7}>
-              {this.state.time.length === 0 && (
-                <Text style={{ color: "white" }}>Event Time is Required</Text>
-              )}
-              <TextInput
-                style={Style.time}
-                placeholder="Time"
-                onChangeText={(text) => {
-                  this.setState({ time: text });
-                }}
-                value={this.state.time}
-              />
-            </View>
-            <View style={Style.field8}>
-              <ScrollView>
-                {this.state.description.length === 0 && (
-                  <Text style={{ color: "white" }}>
-                    Event Description is Required
-                  </Text>
-                )}
-                <TextInput
-                  style={Style.description}
-                  placeholder="Description"
-                  onChangeText={(text) => {
-                    this.setState({ description: text });
-                  }}
-                  value={this.state.description}
-                />
-              </ScrollView>
-            </View>
-            <View style={Style.field9}>
-              {this.state.category.length === 0 && (
-                <Text style={{ color: "white" }}>
-                  Event category is Required
-                </Text>
-              )}
-              <TextInput
-                style={Style.category}
-                placeholder="Interest Type"
-                onChangeText={(text) => {
-                  this.setState({ category: text });
-                }}
-                value={this.state.category}
-              />
-            </View>
-          </View>
-          <View style={Style.selectPic}>
-            <Button title="Select Picture" onPress={this.selectPicture} />
-            <View style={Style.camera}>
-              <Text>📸</Text>
-            </View>
-          </View>
-          <View style={Style.eventImg}>
+      <ScrollView>
+        <View style={{ flex: 1, marginBottom: 100 }}>
+          <View style={Style.imageContainer}>
             <Image
               style={Style.image}
               source={{
                 uri: this.state.imgUrl,
               }}
             />
+            <Button title="Select Picture" onPress={this.selectPicture} />
+            <Button title="Take Picture" onPress={this.takePicture} />
           </View>
+
+          <View style={Style.eventContainer}>
+            {this.state.name.length === 0 && (
+              <Text style={{ color: "red" }}>Event Name is Required</Text>
+            )}
+            <Text>Event Name</Text>
+            <TextInput
+              style={Style.text}
+              name="name"
+              type="text"
+              placeholder="Type Here"
+              onChangeText={(text) => {
+                this.setState({ name: text });
+              }}
+              value={this.state.name}
+            />
+            {this.state.address.length === 0 && (
+              <Text style={{ color: "red" }}>
+                Event Street Address is Required
+              </Text>
+            )}
+            <Text>Event Street Address</Text>
+            <TextInput
+              style={Style.text}
+              placeholder="Type Here"
+              onChangeText={(text) => {
+                this.setState({ address: text });
+              }}
+              value={this.state.address}
+            />
+            {this.state.city.length === 0 && (
+              <Text style={{ color: "red" }}>Event City is Required</Text>
+            )}
+            <Text>Event City</Text>
+            <TextInput
+              style={Style.text}
+              placeholder="Type Here"
+              onChangeText={(text) => {
+                this.setState({ city: text });
+              }}
+              value={this.state.city}
+            />
+
+            {this.state.state.length === 0 && (
+              <Text style={{ color: "red" }}>Event State is Required</Text>
+            )}
+            <Text>Event State</Text>
+            <RNPickerSelect
+              onValueChange={(state) => {
+                this.setState({ state: state });
+              }}
+              placeholder={{
+                label: "Select State",
+                value: null,
+              }}
+              items={[
+                { label: "Alabama", value: "Alabama" },
+                { label: "Alaska", value: "Alaska" },
+                { label: " Arizona", value: " Arizona" },
+                { label: "Arkansas", value: "Arkansas" },
+                { label: "California", value: "California" },
+                { label: "Colorado", value: "Colorado" },
+                { label: "Connecticut", value: "Connecticut" },
+                { label: "Delaware", value: "Delaware" },
+                { label: "Florida", value: "Florida" },
+                { label: "Georgia", value: "Georgia" },
+
+                { label: "Hawaii", value: "Hawaii" },
+                { label: "Idaho", value: "Idaho" },
+                { label: "Illinois", value: "Illinois" },
+                { label: "Indiana", value: "Indiana" },
+                { label: "Iowa", value: "Iowa" },
+                { label: "Kansas", value: "Kansas" },
+                { label: "Kentucky", value: "Kentucky" },
+                { label: "Louisiana", value: "Louisiana" },
+                { label: "Maine", value: "Maine" },
+                { label: "Maryland", value: "Maryland" },
+
+                { label: "Massachusetts", value: "Massachusetts" },
+                { label: "Michigan", value: "Michigan" },
+                { label: "Minnesota", value: "Minnesota" },
+                { label: "Mississippi", value: "Mississippi" },
+                { label: "Missouri", value: "Missouri" },
+                { label: "Montana", value: "Montana" },
+                { label: "Nebraska", value: "Nebraska" },
+                { label: "Nevada", value: "Nevada" },
+                { label: "New Hampshire", value: "New Hampshire" },
+                { label: "New Jersey", value: "New Jersey" },
+
+                { label: "New Mexico", value: "New Mexico" },
+                { label: "New York", value: "New York" },
+                { label: "North Carolina", value: "North Carolina" },
+                { label: "North Dakota", value: "North Dakota" },
+                { label: "Ohio", value: "Ohio" },
+                { label: "Oklahoma", value: "Oklahoma" },
+                { label: "Oregon", value: "Oregon" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "South Carolina", value: "South Carolina" },
+              ]}
+            />
+
+            {!this.isValidUSZip(this.state.zipCode) && (
+              <Text style={{ color: "red" }}>
+                Valid US Zip Code is Required
+              </Text>
+            )}
+            <Text>Event Zip Code</Text>
+            <TextInput
+              style={Style.text}
+              placeholder="Type Here"
+              onChangeText={(text) => {
+                this.setState({ zipCode: text });
+              }}
+              value={this.state.zipCode}
+            />
+            {this.state.date.length === 0 && (
+              <Text style={{ color: "red" }}>Event Date is Required</Text>
+            )}
+            <Text>Event Date</Text>
+            <Button
+              onPress={() => {
+                this.setState({ isDatePickerVisible: true });
+              }}
+              title="Select A Date"
+            />
+            <Text style={Style.text}>{this.state.date}</Text>
+            <DateTimePickerModal
+              isVisible={this.state.isDatePickerVisible}
+              onConfirm={(date) => {
+                console.log("DATE TO DATE STRING", date.toDateString());
+                this.setState({
+                  date: date.toDateString(),
+                  isDatePickerVisible: false,
+                });
+              }}
+              onCancel={() => {
+                this.setState({ isDatePickerVisible: false });
+              }}
+              mode="date"
+            />
+            {this.state.time.length === 0 && (
+              <Text style={{ color: "red" }}>Event Time is Required</Text>
+            )}
+            <Text>Event Time</Text>
+            <Button
+              onPress={() => {
+                this.setState({ isTimePickerVisible: true });
+              }}
+              title="Select Time"
+            />
+            <Text style={Style.text}>{this.state.time}</Text>
+            <DateTimePickerModal
+              isVisible={this.state.isTimePickerVisible}
+              onConfirm={(time) => {
+                this.setState({
+                  time: time.toTimeString(),
+                  isTimePickerVisible: false,
+                });
+              }}
+              onCancel={() => {
+                this.setState({ isTimePickerVisible: false });
+              }}
+              mode="time"
+            />
+            {this.state.description.length === 0 && (
+              <Text style={{ color: "red" }}>
+                Event Description is Required
+              </Text>
+            )}
+            <Text>Event Description</Text>
+            <TextInput
+              multiline={true}
+              style={{
+                height: Math.max(35, this.state.height),
+                ...Fonts.normal,
+                ...Metrics.bottomMargin,
+                color: Colors.blue,
+              }}
+              onContentSizeChange={(event) => {
+                this.setState({ height: event.nativeEvent.contentSize.height });
+              }}
+              placeholder="Type Here"
+              onChangeText={(text) => {
+                this.setState({ description: text });
+              }}
+              value={this.state.description}
+              ref={(input) => {
+                this.textInput = input;
+              }}
+            />
+            {this.state.category.length === 0 && (
+              <Text style={{ color: "red" }}>Event category is Required</Text>
+            )}
+            <Text>Event Category</Text>
+            <RNPickerSelect
+              onValueChange={(category) => {
+                this.setState({ category: category });
+              }}
+              placeholder={{
+                label: "Select Category",
+                value: null,
+              }}
+              items={[
+                { label: "Food", value: "Food" },
+                { label: "Education", value: "Education" },
+                { label: "Fitness", value: "Fitness" },
+                { label: "Entertainment", value: "Entertainment" },
+              ]}
+            />
+            <Text style={Style.text}>{this.state.category}</Text>
+          </View>
+
+          <Button title="Add Event" onPress={this.handleSubmit}></Button>
+
           <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
             <View>
               <Image
@@ -268,16 +396,8 @@ class AddEventScreen extends React.Component {
               />
             </View>
           </Modal>
-
-          <View style={Style.addEvent}>
-            <Button
-              title="Add Event"
-              color="white"
-              onPress={this.handleSubmit}
-            />
-          </View>
-        </ScrollView>
-      </>
+        </View>
+      </ScrollView>
     );
   }
 }

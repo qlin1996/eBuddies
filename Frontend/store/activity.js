@@ -4,6 +4,7 @@ import { serverLink } from "./serverLink";
 const GET_ACTIVITIES = "GET_ACTIVITIES";
 const POST_ACTIVITY = "POST_ACTIVITY";
 const DELETE_ACTIVITY = "DELETE_ACTIVITY";
+const EDIT_ATTENDANCE = "EDIT_ATTENDANCE";
 
 export const getActivities = (activities) => {
   return {
@@ -15,6 +16,11 @@ export const getActivities = (activities) => {
 export const postActivity = (activity) => ({
   type: POST_ACTIVITY,
   activity,
+});
+
+export const editAttendance = (attendance) => ({
+  type: EDIT_ATTENDANCE,
+  attendance,
 });
 
 export const deleteActivity = () => ({
@@ -50,6 +56,20 @@ export const deleteAllActivities = (userId) => async (dispatch) => {
     console.log(error);
   }
 };
+export const editActivityAttendance = (eventId, userId, attendance) => async (
+  dispatch
+) => {
+  try {
+    const { data } = await axios.patch(
+      `${serverLink}/api/events/${eventId}/users/${userId}`,
+      attendance
+    );
+    console.log(data, "CHECK ATTENDANCE");
+    return dispatch(editAttendance(data));
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 export default function activityReducer(state = [], action) {
   switch (action.type) {
@@ -59,6 +79,8 @@ export default function activityReducer(state = [], action) {
       return [];
     case POST_ACTIVITY:
       return [...state, action.activity];
+    case EDIT_ATTENDANCE:
+      return action.attendance;
     default:
       return state;
   }

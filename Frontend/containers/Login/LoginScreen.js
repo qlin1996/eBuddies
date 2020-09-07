@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -107,140 +108,100 @@ class Login extends React.Component {
   };
 
   render() {
-    // console.log("STATE", this.state);
     return (
-      <View style={styles.container}>
-        {this.state.error ? (
-          <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
-        ) : null}
+      <ScrollView>
+        <View style={styles.container1}>
+          <View style={styles.containerBox}>
+            <Text style={styles.loginBox}>Login</Text>
+            <View>
+              <TouchableOpacity onPress={() => this.signInWithGoogle()}>
+                <Image source={require("./google.png")} style={styles.logo1} />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity onPress={this.logInFb}>
+                <Image
+                  source={require("./fb.png")}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    marginTop: -32.5,
+                    marginLeft: 139,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.container2}>
+            {this.state.error ? (
+              <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
+            ) : null}
 
-        <View style={styles.background}>
-          {this.state.email.length === 0 && (
-            <Text
-              style={{
-                color: "black",
-                position: "relative",
-                left: "40%",
-                top: "6%",
-              }}
-            >
-              Email is Required
-            </Text>
-          )}
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
-              marginHorizontal: 40,
-              marginBottom: 40,
-              color: "rgba(38,153,251,1)",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.email}
-            onChangeText={(email) => this.setState({ email })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="Email Address"
-            placeholderTextColor="rgba(38,153,251,1)"
-            keyboardType="email-address"
-          />
-          {this.state.password.length === 0 && (
-            <Text
-              style={{
-                color: "black",
-                position: "relative",
-                left: "40%",
-                top: "6%",
-              }}
-            >
-              Password is Required
-            </Text>
-          )}
-          <TextInput
-            style={{
-              ...Fonts.normal,
-              height: 50,
-              backgroundColor: "rgb(235, 233, 233)",
-              borderBottomWidth: 0.5,
-              borderBottomColor: "rgba(38,153,251,1)",
-              marginHorizontal: 40,
-              marginBottom: 40,
-              color: "rgba(38,153,251,1)",
-              paddingHorizontal: 10,
-            }}
-            value={this.state.password}
-            onChangeText={(password) => this.setState({ password })}
-            ref={(input) => {
-              this.textInput = input;
-            }}
-            returnKeyType="go"
-            placeholder="Enter Password"
-            placeholderTextColor="rgba(38,153,251,1)"
-            secureTextEntry
-          />
-          <View style={styles.button}>
-            <Button
-              onPress={this.handleLogin}
-              color="white"
-              style={{ ...Fonts.normal, textAlign: "center" }}
-              title="CONTINUE"
-            >
-              CONTINUE
-            </Button>
-          </View>
-          <View style={styles.containerFb}>
-            <TouchableOpacity style={styles.loginBtn} onPress={this.logInFb}>
-              <Text
-                style={{
-                  position: "relative",
-                  top: "20%",
-                  color: "#fff",
-                  fontSize: 16,
+            <View>
+              {this.state.email.length === 0 && (
+                <Text style={styles.validators}>Email is Required</Text>
+              )}
+              <TextInput
+                style={styles.textInput}
+                selectionColor="#428AF8"
+                value={this.state.email}
+                onChangeText={(email) => this.setState({ email })}
+                ref={(input) => {
+                  this.textInput = input;
                 }}
-              >
-                Login with Facebook
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.containerG}>
-            <TouchableOpacity
-              style={styles.loginBtn2}
-              onPress={() => this.signInWithGoogle()}
-            >
-              <Text
-                style={{
-                  position: "relative",
-                  top: "20%",
-                  color: "red",
-                  fontSize: 16,
+                returnKeyType="go"
+                placeholder="Email..."
+                placeholderTextColor="#BEBEBE"
+                keyboardType="email-address"
+              />
+              <Image style={styles.email} source={require("./email.png")} />
+              {this.state.password.length === 0 && (
+                <Text style={styles.validators}>Password is Required</Text>
+              )}
+              <TextInput
+                style={styles.textInput}
+                value={this.state.password}
+                onChangeText={(password) => this.setState({ password })}
+                ref={(input) => {
+                  this.textInput = input;
                 }}
-              >
-                Login with Google
-              </Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.account}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="Don't have an account?"
-            />
-          </View>
-          <View style={styles.login}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="SIGN UP"
-              onPress={this.handleSignup}
-            />
+                returnKeyType="go"
+                placeholder="Password..."
+                placeholderTextColor="#BEBEBE"
+                secureTextEntry
+              />
+              <Image
+                style={styles.password}
+                source={require("./password.png")}
+              />
+              <View style={styles.button}>
+                <Button
+                  onPress={this.handleLogin}
+                  color="rgba(38,153,251,1)"
+                  title="CONTINUE"
+                >
+                  CONTINUE
+                </Button>
+              </View>
+              <View style={styles.account}>
+                <Button
+                  color="rgba(38,153,251,1)"
+                  style={{ ...Fonts.small }}
+                  title="Don't have an account?"
+                />
+              </View>
+              <View style={styles.login}>
+                <Button
+                  color="rgba(38,153,251,1)"
+                  style={{ ...Fonts.small }}
+                  title="SIGN UP"
+                  onPress={this.handleSignup}
+                />
+              </View>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

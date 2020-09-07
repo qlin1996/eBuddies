@@ -12,11 +12,12 @@ import { serverLink } from "../../store/serverLink";
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
+
 class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chatMessage: "",
+      chatMessage: {},
       chatMessages: [],
     };
     socket.on("connect", function () {
@@ -32,39 +33,65 @@ class ChatScreen extends React.Component {
     // 1. join room
     socket.emit("join-room", {
       message: `${this.props.user.firstName} has joined ${this.props.event.name}`,
-      room: this.props.event.id,
-      imgUrl: this.props.user.imgUrl,
+      eventId: this.props.event.id,
+      sender: {
+        id: this.props.user.id,
+        firstName: this.props.user.firstName,
+        imgUrl: this.props.user.imgUrl,
+      },
     });
 
     // 4. listens for new joiner
-    socket.on("room-joined", (message, imgUrl) => {
+    socket.on("room-joined", (messageObj) => {
       this.setState({
-        chatMessages: [...this.state.chatMessages, message],
+        chatMessages: [...this.state.chatMessages, messageObj],
       });
     });
 
     // 8. show other messages
-    socket.on("send-message", (message) => {
-      this.setState({ chatMessages: [...this.state.chatMessages, message] });
+    socket.on("send-message", (messageObj) => {
+      console.log("THIS MESSAGE WAS SENT", messageObj);
+      this.setState({ chatMessages: [...this.state.chatMessages, messageObj] });
     });
+  }
+
+  componentWillUnmount() {
+    console.log("DOES IT UNMOUNT?");
+    socket.emit("leave-room", this.props.event.id);
   }
 
   submitChatMessage = () => {
     // 5. send message
-    socket.emit("chat-message", this.state.chatMessage, this.props.event.id);
+    socket.emit(
+      "chat-message",
+      {
+        message: this.state.chatMessage.message,
+        eventId: this.props.event.id,
+        sender: {
+          id: this.props.user.id,
+          firstName: this.props.user.firstName,
+          imgUrl: this.props.user.imgUrl,
+        },
+      },
+      this.props.event.id
+    );
     this.props.createMessage({
       message: this.state.chatMessage.message,
       eventId: this.props.event.id,
       senderId: this.props.user.id,
     });
+    this.setState({ chatMessage: {} });
   };
 
   render() {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View style={Style.chatMessages} key={index}>
+        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        <Text>{chatMessage.sender.firstName}</Text>
+
         <Image
           source={{
-            uri: this.props.user.imgUrl,
+            uri: chatMessage.sender.imgUrl,
           }}
           style={Style.userImage}
         />
@@ -79,24 +106,23 @@ class ChatScreen extends React.Component {
           <Text style={Style.welcomeChat}>
             {this.props.event.name} Groupchat
           </Text>
+        </View>
 
-          <View style={Style.textInputWrapper}>
-            <TextInput
-              style={Style.textInput}
-              autoCorrect={false}
-              value={this.state.chatMessage}
-              onSubmitEditing={() => this.submitChatMessage()}
-              onChangeText={(chatMessage) => {
-                this.setState({ chatMessage: { message: chatMessage } });
-              }}
-            />
+        {chatMessages}
 
-            <View style={Style.sendMessageButton}>
-              <Button title="SEND" onPress={this.submitChatMessage}></Button>
-            </View>
+        <View style={Style.textInputWrapper}>
+          <TextInput
+            style={Style.textInput}
+            autoCorrect={false}
+            value={this.state.chatMessage.message}
+            onSubmitEditing={() => this.submitChatMessage()}
+            onChangeText={(chatMessage) => {
+              this.setState({ chatMessage: { message: chatMessage } });
+            }}
+          />
+          <View style={Style.sendMessageButton}>
+            <Button title="SEND" onPress={this.submitChatMessage}></Button>
           </View>
-
-          {chatMessages}
         </View>
       </ScrollView>
     );

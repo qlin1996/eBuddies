@@ -5,23 +5,33 @@ import Event from "../Event/EventScreen";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
-
+import { getAllInterests } from "../../store/interest";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
-    // this.state = {
-    //   filter: 'All'
-    // }
+    this.state = {
+      filter: "All",
+    };
   }
 
-  componentDidMount() {
-    this.props.getUser(this.props.user.id);
+  async componentDidMount() {
+    await this.props.getUser(this.props.user.id);
+    await this.props.getAllInterests(this.props.user.id);
   }
-  //   handleEventClick = () => {
-  //     this.props.navigation.navigate("SINGLEEVENT");
-  //   };
+
+  handleClick = (event) => {
+    this.setState({ filter: event.target.value });
+  };
 
   render() {
+    const { filter } = this.state;
+    const eventsFilter = this.props.events.filter((event) => {
+      if (filter === "All") return event;
+      if (filter === "Food") return event.category === "Food";
+      if (filter === "Education") return event.category === "Education";
+      if (filter === "Fitness") return event.category === "Fitness";
+      if (filter === "Entertainment") return event.category === "Entertainment";
+    });
     const user = this.props.user;
     const interests = this.props.interests;
 
@@ -29,8 +39,7 @@ class RecommendedEvents extends React.Component {
     interests.forEach((interest) => {
       interestArray.push(interest.userInterest);
     });
-
-    const events = this.props.events.filter((event) => {
+    const events = eventsFilter.filter((event) => {
       return interestArray.includes(event.category);
     });
 
@@ -58,10 +67,16 @@ class RecommendedEvents extends React.Component {
                 >
                   {interests.map((interest) => (
                     <View key={interest.id}>
-                      <View style={Style.childInterest}>
-                        <Text style={Style.interest}>
-                          {interest.userInterest}
-                        </Text>
+                      <View style={Style.interest}>
+                        <View style={Style.childInterest}>
+                          <Button
+                            title={interest.userInterest}
+                            onPress={() => {
+                              this.setState({ filter: interest.userInterest });
+                            }}
+                            value={this.state.filter}
+                          />
+                        </View>
                       </View>
                     </View>
                   ))}
@@ -80,17 +95,7 @@ class RecommendedEvents extends React.Component {
                         </View>
 
                         <Event event={event} />
-                        <View
-                          style={{
-                            backgroundColor: "rgba(255, 255, 255, 0.6)",
-                            width: "27%",
-                            alignSelf: "center",
-                            // borderRadius: "10%",
-                            position: "relative",
-                            top: "-12%",
-                            color: "white",
-                          }}
-                        >
+                        <View style={Style.recEvents}>
                           <Button
                             title="View Event"
                             onPress={() => {
@@ -138,6 +143,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAllEvents: () => dispatch(getAllEvents()),
   getUser: (id) => dispatch(getUserInfo(id)),
+  getAllInterests: (id) => dispatch(getAllInterests(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecommendedEvents);

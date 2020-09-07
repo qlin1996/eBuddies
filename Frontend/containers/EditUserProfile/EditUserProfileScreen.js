@@ -14,6 +14,7 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { updateUser } from "../../store/user";
 import { deleteAllInterests, postNewInterest } from "../../store/interest";
+import RNPickerSelect from "react-native-picker-select";
 import { Metrics, Fonts, Colors } from "../../themes";
 
 class EditUserProfileScreen extends React.Component {
@@ -139,10 +140,9 @@ class EditUserProfileScreen extends React.Component {
   };
 
   render() {
-    console.log("STATE", this.state);
     return (
       <ScrollView>
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, marginBottom: 100 }}>
           <View style={Style.imageContainer}>
             <Image
               style={Style.image}
@@ -197,14 +197,61 @@ class EditUserProfileScreen extends React.Component {
               <Text style={{ color: "red" }}>State is Required</Text>
             )}
             <Text>State</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.state}
-              onChangeText={(state) => this.setState({ state })}
-              ref={(input) => {
-                this.textInput = input;
+            <RNPickerSelect
+              onValueChange={(state) => {
+                this.setState({ state: state });
               }}
+              placeholder={{
+                label: "Select State",
+                value: null,
+              }}
+              items={[
+                { label: "Alabama", value: "Alabama" },
+                { label: "Alaska", value: "Alaska" },
+                { label: " Arizona", value: " Arizona" },
+                { label: "Arkansas", value: "Arkansas" },
+                { label: "California", value: "California" },
+                { label: "Colorado", value: "Colorado" },
+                { label: "Connecticut", value: "Connecticut" },
+                { label: "Delaware", value: "Delaware" },
+                { label: "Florida", value: "Florida" },
+                { label: "Georgia", value: "Georgia" },
+
+                { label: "Hawaii", value: "Hawaii" },
+                { label: "Idaho", value: "Idaho" },
+                { label: "Illinois", value: "Illinois" },
+                { label: "Indiana", value: "Indiana" },
+                { label: "Iowa", value: "Iowa" },
+                { label: "Kansas", value: "Kansas" },
+                { label: "Kentucky", value: "Kentucky" },
+                { label: "Louisiana", value: "Louisiana" },
+                { label: "Maine", value: "Maine" },
+                { label: "Maryland", value: "Maryland" },
+
+                { label: "Massachusetts", value: "Massachusetts" },
+                { label: "Michigan", value: "Michigan" },
+                { label: "Minnesota", value: "Minnesota" },
+                { label: "Mississippi", value: "Mississippi" },
+                { label: "Missouri", value: "Missouri" },
+                { label: "Montana", value: "Montana" },
+                { label: "Nebraska", value: "Nebraska" },
+                { label: "Nevada", value: "Nevada" },
+                { label: "New Hampshire", value: "New Hampshire" },
+                { label: "New Jersey", value: "New Jersey" },
+
+                { label: "New Mexico", value: "New Mexico" },
+                { label: "New York", value: "New York" },
+                { label: "North Carolina", value: "North Carolina" },
+                { label: "North Dakota", value: "North Dakota" },
+                { label: "Ohio", value: "Ohio" },
+                { label: "Oklahoma", value: "Oklahoma" },
+                { label: "Oregon", value: "Oregon" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "Pennsylvania", value: "Pennsylvania" },
+                { label: "South Carolina", value: "South Carolina" },
+              ]}
             />
+
             {!this.isValidUSZip(this.state.zipCode) && (
               <Text style={{ color: "red" }}>
                 Valid US Zip Code is Required

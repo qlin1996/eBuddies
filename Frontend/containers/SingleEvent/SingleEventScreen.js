@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
+import { Text, View, Image, Button, Vibration } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/singleEvent";
 import Modal from "react-native-modal";
@@ -7,6 +7,7 @@ import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import * as Notifications from "expo-notifications";
+
 import io from "socket.io-client";
 const socket = io("http://localhost:8081", {
   transports: ["websocket"],
@@ -14,8 +15,8 @@ const socket = io("http://localhost:8081", {
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
   }),
 });
 class SingleEvent extends React.Component {
@@ -30,32 +31,52 @@ class SingleEvent extends React.Component {
     try {
       const eventId = this.props.navigation.getParam("id");
       await this.props.fetchSingleEvent(eventId);
+      const subscription = Notifications.addNotificationResponseReceivedListener(
+        () => {
+          console.log("hi");
+          this.props.navigation.navigate("MAPS");
+        }
+      );
+      return () => subscription.remove();
     } catch (error) {
       console.log(error);
     }
   }
-
   //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
   sendPushNotification = async (pushToken) => {
-    // const trigger2 = new Date(Date.now());
-    // console.log(trigger2)
-    const trigger = new Date(this.props.event.date + 1140 * 30000);
-    trigger.setSeconds(2);
+    let eventHour = Number(this.props.event.time.slice(0, 2));
+    let eventMinute = Number(this.props.event.time.slice(3, 5) - 1);
+    let gmt = this.props.event.time.slice(8);
+    let milliseconds = eventHour * eventMinute * 1000;
+    let triggerDate = new Date(this.props.event.date) + milliseconds;
+
+    let triggerObj = new Date(
+      triggerDate.slice(0, 15) +
+        " " +
+        eventHour +
+        ": " +
+        eventMinute +
+        ":00" +
+        gmt
+    );
+    let trigger = new Date(triggerObj);
+
+    console.log(trigger, "trigger");
+
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "You've got mail! 📬",
-        body: "Here is the notification body",
+        title: "eBuddies",
+        body:
+          "We look forward to seeing you soon! Please remember to check in.",
         data: { data: "goes here" },
+        sound: "default",
       },
       trigger,
     });
   };
-
   handleJoin = async () => {
     try {
-      await this.sendPushNotification(
-        "ExponentPushToken[dabO9ZPLfka - RC76mIsTWs]"
-      );
+      await this.sendPushNotification(this.props.user.pushToken);
       await this.props.getUser(this.props.user.id);
       await this.props.postNewActivity({
         userId: this.props.user.id,

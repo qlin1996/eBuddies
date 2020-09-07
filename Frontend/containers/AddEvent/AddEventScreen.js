@@ -1,5 +1,13 @@
 import React from "react";
-import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
+import {
+  TextInput,
+  View,
+  Button,
+  ScrollView,
+  Text,
+  Image,
+  Vibration,
+} from "react-native";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
@@ -10,6 +18,14 @@ import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
+import * as Notifications from "expo-notifications";
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: true,
+  }),
+});
 
 class AddEventScreen extends React.Component {
   constructor(props) {
@@ -37,15 +53,45 @@ class AddEventScreen extends React.Component {
 
   componentDidMount() {
     this.setState({ hostId: this.props.user.id });
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      () => {
+        this.props.navigation.navigate("ATTENDEES");
+      }
+    );
+    return () => subscription.remove();
   }
+  sendPushNotification = async (pushToken) => {
+    Vibration.vibrate(10 * 3000);
+    const eventHour = Number(this.state.time.slice(0, 2));
+    const eventMinute = Number(this.state.time.slice(3, 5) - 1);
+
+    let gmt = this.state.time.slice(8);
+
+    let trigger = new Date(
+      this.state.date.slice(0, 15) +
+        " " +
+        eventHour +
+        ": " +
+        eventMinute +
+        ":00" +
+        gmt
+    );
+
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        title: "eBuddies",
+        body: "Your event will start soon. Please review the atendee list!",
+        data: { data: "goes here" },
+        sound: "default",
+      },
+      trigger,
+    });
+  };
 
   isValidUSZip = (zipCode) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
-
-  handleSubmit = () => {
-    console.log(this.state);
-
+  handleSubmit = async () => {
     if (
       this.state.name.length &&
       this.state.address.length &&
@@ -59,6 +105,7 @@ class AddEventScreen extends React.Component {
     ) {
       this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
+      await this.sendPushNotification(this.props.user.pushToken);
 
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");

@@ -9,7 +9,7 @@ class AttendeeList extends React.Component {
   }
 
   async componentDidMount() {
-    // await this.props.fetchSingleEvent(this.props.event.id)
+    await this.props.fetchSingleEvent(this.props.event.id);
     console.log("USERS", this.props.event.users);
     //map through these users, if users.attended === true, return them
   }

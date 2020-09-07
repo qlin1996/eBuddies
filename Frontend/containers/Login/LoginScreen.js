@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  ScrollView,
 } from "react-native";
 
 import { connect } from "react-redux";
@@ -108,110 +109,99 @@ class Login extends React.Component {
 
   render() {
     return (
-      <View style={styles.container1}>
-        <View style={styles.containerBox}>
-          <Text style={styles.loginBox}>Login</Text>
-          <View>
-            <TouchableOpacity onPress={() => this.signInWithGoogle()}>
-              <Image source={require("./google.png")} style={styles.logo1} />
-            </TouchableOpacity>
+      <ScrollView>
+        <View style={styles.container1}>
+          <View style={styles.containerBox}>
+            <Text style={styles.loginBox}>Login</Text>
+            <View>
+              <TouchableOpacity onPress={() => this.signInWithGoogle()}>
+                <Image source={require("./google.png")} style={styles.logo1} />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity onPress={this.logInFb}>
+                <Image
+                  source={require("./fb.png")}
+                  style={{
+                    width: 30,
+                    height: 30,
+                    marginTop: -32.5,
+                    marginLeft: 139,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View>
-            <TouchableOpacity onPress={this.logInFb}>
-              <Image
-                source={require("./fb.png")}
-                style={{
-                  width: 30,
-                  height: 30,
-                  marginTop: -32.5,
-                  marginLeft: 145,
-                }}
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
-        <View style={styles.container2}>
-          {this.state.error ? (
-            <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
-          ) : null}
+          <View style={styles.container2}>
+            {this.state.error ? (
+              <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
+            ) : null}
 
-          <View>
-            {this.state.email.length === 0 && (
-              <Text
-                style={{
-                  color: "#BEBEBE",
-                  position: "relative",
-                  top: "20%",
+            <View>
+              {this.state.email.length === 0 && (
+                <Text style={styles.validators}>Email is Required</Text>
+              )}
+              <TextInput
+                style={styles.textInput}
+                selectionColor="#428AF8"
+                value={this.state.email}
+                onChangeText={(email) => this.setState({ email })}
+                ref={(input) => {
+                  this.textInput = input;
                 }}
-              >
-                Email is Required
-              </Text>
-            )}
-            <TextInput
-              style={styles.textInput}
-              selectionColor="#428AF8"
-              value={this.state.email}
-              onChangeText={(email) => this.setState({ email })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-              returnKeyType="go"
-              placeholder="Email..."
-              placeholderTextColor="#BEBEBE"
-              keyboardType="email-address"
-            />
-            <Image style={styles.email} source={require("./email.png")} />
-            {this.state.password.length === 0 && (
-              <Text
-                style={{
-                  color: "#BEBEBE",
-                  position: "relative",
-                  top: "20%",
+                returnKeyType="go"
+                placeholder="Email..."
+                placeholderTextColor="#BEBEBE"
+                keyboardType="email-address"
+              />
+              <Image style={styles.email} source={require("./email.png")} />
+              {this.state.password.length === 0 && (
+                <Text style={styles.validators}>Password is Required</Text>
+              )}
+              <TextInput
+                style={styles.textInput}
+                value={this.state.password}
+                onChangeText={(password) => this.setState({ password })}
+                ref={(input) => {
+                  this.textInput = input;
                 }}
-              >
-                Password is Required
-              </Text>
-            )}
-            <TextInput
-              style={styles.textInput}
-              value={this.state.password}
-              onChangeText={(password) => this.setState({ password })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-              returnKeyType="go"
-              placeholder="Password..."
-              placeholderTextColor="#BEBEBE"
-              secureTextEntry
-            />
-            <Image style={styles.password} source={require("./password.png")} />
-            <View style={styles.button}>
-              <Button
-                onPress={this.handleLogin}
-                color="rgba(38,153,251,1)"
-                title="CONTINUE"
-              >
-                CONTINUE
-              </Button>
-            </View>
-            <View style={styles.account}>
-              <Button
-                color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
-                title="Don't have an account?"
+                returnKeyType="go"
+                placeholder="Password..."
+                placeholderTextColor="#BEBEBE"
+                secureTextEntry
               />
-            </View>
-            <View style={styles.login}>
-              <Button
-                color="rgba(38,153,251,1)"
-                style={{ ...Fonts.small }}
-                title="SIGN UP"
-                onPress={this.handleSignup}
+              <Image
+                style={styles.password}
+                source={require("./password.png")}
               />
+              <View style={styles.button}>
+                <Button
+                  onPress={this.handleLogin}
+                  color="rgba(38,153,251,1)"
+                  title="CONTINUE"
+                >
+                  CONTINUE
+                </Button>
+              </View>
+              <View style={styles.account}>
+                <Button
+                  color="rgba(38,153,251,1)"
+                  style={{ ...Fonts.small }}
+                  title="Don't have an account?"
+                />
+              </View>
+              <View style={styles.login}>
+                <Button
+                  color="rgba(38,153,251,1)"
+                  style={{ ...Fonts.small }}
+                  title="SIGN UP"
+                  onPress={this.handleSignup}
+                />
+              </View>
             </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

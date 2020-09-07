@@ -1,5 +1,13 @@
 import React from "react";
-import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
+import {
+  TextInput,
+  View,
+  Button,
+  ScrollView,
+  Text,
+  Image,
+  Vibration,
+} from "react-native";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
@@ -45,18 +53,34 @@ class AddEventScreen extends React.Component {
 
   componentDidMount() {
     this.setState({ hostId: this.props.user.id });
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      () => {
+        this.props.navigation.navigate("ATTENDEES");
+      }
+    );
+    return () => subscription.remove();
   }
   sendPushNotification = async (pushToken) => {
-    const eventHour = Number(this.props.event.time.slice(0, 2));
-    const eventMinute = Number(this.props.event.time.slice(3, 5));
+    Vibration.vibrate(10 * 3000);
+    const eventHour = Number(this.state.time.slice(0, 2));
+    const eventMinute = Number(this.state.time.slice(3, 5) - 1);
 
-    const trigger = new Date(
-      this.props.event.date + eventHour * (eventMinute - 30) * 1000
+    let gmt = this.state.time.slice(8);
+
+    let trigger = new Date(
+      this.state.date.slice(0, 15) +
+        " " +
+        eventHour +
+        ": " +
+        eventMinute +
+        ":00" +
+        gmt
     );
+
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "eBuddies",
-        body: "Attendee List is ready ",
+        body: "Your event will start soon. Please review the atendee list!",
         data: { data: "goes here" },
         sound: "default",
       },
@@ -67,10 +91,7 @@ class AddEventScreen extends React.Component {
   isValidUSZip = (zipCode) => {
     return /(^\d{5}$)|(^\d{5}-\d{4}$)/.test(zipCode);
   };
-  c;
   handleSubmit = async () => {
-    console.log(this.state);
-
     if (
       this.state.name.length &&
       this.state.address.length &&
@@ -84,8 +105,8 @@ class AddEventScreen extends React.Component {
     ) {
       this.setState({ isModalVisible: true, hostId: this.props.user.id });
       this.props.postNewEvent(this.state);
-
       await this.sendPushNotification(this.props.user.pushToken);
+
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({

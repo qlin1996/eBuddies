@@ -31,14 +31,10 @@ class SingleEvent extends React.Component {
     try {
       const eventId = this.props.navigation.getParam("id");
       await this.props.fetchSingleEvent(eventId);
-      // await Notifications.addListener((notification) => {
-      //   console.log(notification);
-      //   // this.props.navigation.navigate("MAPS");
-      // });
       const subscription = Notifications.addNotificationResponseReceivedListener(
-        (response) => {
-          const url = response.notification.request.content.data.url;
-          Linking.openUrl(url);
+        () => {
+          console.log("hi");
+          this.props.navigation.navigate("MAPS");
         }
       );
       return () => subscription.remove();

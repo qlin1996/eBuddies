@@ -1,5 +1,13 @@
 import React from "react";
-import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
+import {
+  TextInput,
+  View,
+  Button,
+  ScrollView,
+  Text,
+  Image,
+  Vibration,
+} from "react-native";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
@@ -45,8 +53,15 @@ class AddEventScreen extends React.Component {
 
   componentDidMount() {
     this.setState({ hostId: this.props.user.id });
+    const subscription = Notifications.addNotificationResponseReceivedListener(
+      () => {
+        this.props.navigation.navigate("ATTENDEES");
+      }
+    );
+    return () => subscription.remove();
   }
   sendPushNotification = async (pushToken) => {
+    Vibration.vibrate(10 * 3000);
     const eventHour = Number(this.state.time.slice(0, 2));
     const eventMinute = Number(this.state.time.slice(3, 5) - 1);
 

@@ -124,7 +124,7 @@ async function seed() {
     state: "NY",
     zipCode: "10003",
     date: "Sun 06 Sep 2020",
-    time: "22:15:00 GMT-0400 (EDT)",
+    time: "22:20:00 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:
       "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",

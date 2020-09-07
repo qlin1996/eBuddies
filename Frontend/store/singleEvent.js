@@ -22,9 +22,7 @@ export const fetchSingleEvent = (id) => async (dispatch) => {
 };
 export const fetchUpdateEvent = (id, event) => async (dispatch) => {
   try {
-    console.log("THIS IS THE EVENT IN THE THUNK", event);
     const { data } = await axios.put(`${serverLink}/api/events/${id}`, event);
-    console.log("DATA", data);
     return dispatch(updateEvent(data));
   } catch (err) {
     console.error(err);

@@ -33,7 +33,6 @@ class SingleEvent extends React.Component {
       await this.props.fetchSingleEvent(eventId);
       const subscription = Notifications.addNotificationResponseReceivedListener(
         () => {
-          console.log("hi");
           this.props.navigation.navigate("MAPS");
         }
       );

@@ -39,7 +39,7 @@ export const postNewEvent = (addEventForm) => async (dispatch) => {
   }
 };
 
-export default function eventReducer(state = [], action) {
+export default function eventsReducer(state = [], action) {
   switch (action.type) {
     case GET_EVENTS:
       return action.events;

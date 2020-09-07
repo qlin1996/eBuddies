@@ -3,7 +3,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import userReducer from "./user";
 import usersReducer from "./users";
-import eventReducer from "./events";
+import eventsReducer from "./events";
 import singleEventReducer from "./singleEvent";
 import interestReducer from "./interest";
 import activityReducer from "./activity";
@@ -12,7 +12,7 @@ import messagesReducer from "./messages";
 const rootReducer = combineReducers({
   user: userReducer,
   users: usersReducer,
-  events: eventReducer,
+  events: eventsReducer,
   singleEvent: singleEventReducer,
   interests: interestReducer,
   activities: activityReducer,

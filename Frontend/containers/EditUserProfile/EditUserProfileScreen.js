@@ -53,6 +53,7 @@ class EditUserProfileScreen extends React.Component {
       Fitness: keys.includes("Fitness"),
       Entertainment: keys.includes("Entertainment"),
       imgUrl: this.props.user.imgUrl,
+      hostId: this.props.user.id,
     });
   }
 

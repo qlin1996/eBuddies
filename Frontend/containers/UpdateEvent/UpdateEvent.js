@@ -2,7 +2,11 @@ import React from "react";
 import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-import { fetchUpdateEvent } from "../../store/singleEvent";
+import {
+  fetchUpdateEvent,
+  fetchSingleEvent,
+  deleteEvent,
+} from "../../store/singleEvent";
 import Style from "./UpdateEventScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
@@ -10,7 +14,7 @@ import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
-import { fetchSingleEvent } from "../../store/singleEvent";
+
 class AddEventScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -79,6 +83,12 @@ class AddEventScreen extends React.Component {
       };
       setTimeout(waitForModal, 2000);
     }
+  };
+
+  handleDelete = async () => {
+    await this.props.deleteEvent(this.state.eventId);
+    console.log("deleted");
+    this.props.navigation.navigate("MyCalendarScreen");
   };
 
   handleChange = (event) => {
@@ -280,6 +290,8 @@ class AddEventScreen extends React.Component {
 
           <Button title="Update Event" onPress={this.handleSubmit}></Button>
 
+          <Button title="Delete Event" onPress={this.handleDelete}></Button>
+
           <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
             <View>
               <Image
@@ -311,6 +323,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatch = (dispatch) => ({
   updateEvent: (id, updateEvent) => dispatch(fetchUpdateEvent(id, updateEvent)),
+  deleteEvent: (id) => dispatch(deleteEvent(id)),
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
 });
 

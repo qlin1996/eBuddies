@@ -18,7 +18,7 @@ export default function HeaderScreen({ navigation }) {
           style={Style.burgerIcon}
         />
         <Image
-          source={require("../../assets/ebuddies.gif")}
+          source={require("../../assets/ebuddies_logo.png")}
           style={Style.logo}
         />
       </View>

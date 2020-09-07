@@ -47,6 +47,7 @@ class Maps extends React.Component {
       eventLocation: result,
     });
   }
+
   handleAttendance = async () => {
     let metersDistance = geolib.getDistance(
       this.state.eventLocation[0],

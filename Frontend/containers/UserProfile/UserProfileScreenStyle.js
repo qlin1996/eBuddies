@@ -2,47 +2,60 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
+  surface: {
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 4,
+  },
+  container1: {
+    backgroundColor: "white",
+    marginTop: 10,
+    marginBottom: "20%",
+    marginLeft: 18,
+    marginRight: 18,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 10,
+  },
   imageContainer: {
     ...Helpers.crossCenter,
-    // backgroundColor: Colors.mediumBlue,
     ...Metrics.verticalPadding,
-
     borderRadius: 150,
     width: "70%",
     alignSelf: "center",
   },
   image: {
-    // width: 200,
     height: 200,
     borderRadius: 150,
-    width: "70%",
+    width: "50%",
     alignSelf: "center",
+    margin: 10,
+    elevation: 4,
   },
   profileContainer: {
     ...Metrics.mediumVerticalMargin,
     ...Metrics.mediumHorizontalMargin,
   },
   name: {
-    color: Colors.blue,
+    color: Colors.darkBlue,
     fontWeight: "bold",
     ...Fonts.h3,
     alignSelf: "center",
     textAlign: "center",
   },
   location: {
-    color: Colors.blue,
+    color: Colors.darkBlue,
     alignSelf: "center",
     textAlign: "center",
   },
   description: {
-    color: Colors.blue,
+    color: Colors.darkBlue,
     ...Fonts.normal,
     marginTop: 30,
     alignSelf: "center",
     textAlign: "center",
   },
   interestsContainer: {
-    // backgroundColor: Colors.lightBlue,
     ...Metrics.mediumHorizontalPadding,
     ...Metrics.mediumVerticalPadding,
     alignSelf: "center",
@@ -66,7 +79,7 @@ export default StyleSheet.create({
     left: "45.5%",
   },
   interests: {
-    color: Colors.blue,
+    color: Colors.darkBlue,
     ...Fonts.normal,
     fontWeight: "bold",
     ...Metrics.bottomMargin,
@@ -77,7 +90,7 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
   interest: {
-    color: Colors.blue,
+    color: Colors.darkBlue,
     borderColor: Colors.blue,
     borderWidth: 1,
     borderRadius: 8,
@@ -86,5 +99,26 @@ export default StyleSheet.create({
     marginRight: 10,
     alignSelf: "center",
     textAlign: "center",
+  },
+  buttons: {
+    color: Colors.darkBlue,
+    display: "flex",
+    alignItems: "center",
+    flexDirection: "row",
+    padding: 8,
+    height: 80,
+    justifyContent: "space-around",
+    elevation: 4,
+  },
+  button: {
+    color: Colors.darkBlue,
+    // display: "flex",
+    // alignItems: "center",
+    // flexDirection: "row",
+    // marginRight: 280,
+    // height: 80,
+    // width: 100,
+    // justifyContent: "space-around",
+    // elevation: 4,
   },
 });

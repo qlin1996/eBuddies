@@ -6,7 +6,14 @@ import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import { Appbar, Card, Surface, Searchbar } from "react-native-paper";
+import {
+  Appbar,
+  Surface,
+  Searchbar,
+  Card,
+  Title,
+  Paragraph,
+} from "react-native-paper";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();

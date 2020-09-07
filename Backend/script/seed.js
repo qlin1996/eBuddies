@@ -181,7 +181,7 @@ async function seed() {
     date: "Sat 17 Oct 2020",
     time: "11:00:00 GMT-0400 (EDT)",
     imgUrl:
-      "https://s2.r29static.com/bin/entry/191/720x600,85/1828213/image.webp",
+      "https://d33bcppgye6mnb.cloudfront.net/users/gallery/gqnexTODjppWllkY.jpg",
     userId: 1,
     hostId: 3,
     latitude: 40.716656,

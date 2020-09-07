@@ -28,12 +28,12 @@ export const fetchUpdateEvent = (id, event) => async (dispatch) => {
     console.error(err);
   }
 };
-export default function singleEventReducer(state = [], action) {
+export default function singleEventReducer(state = {}, action) {
   switch (action.type) {
     case GET_SINGLE_EVENT:
       return action.event;
     case UPDATE_EVENT:
-      return [...state, action.event];
+      return action.event;
     default:
       return state;
   }

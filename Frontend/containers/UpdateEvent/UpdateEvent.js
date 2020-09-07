@@ -69,19 +69,7 @@ class AddEventScreen extends React.Component {
       this.state.category.length &&
       this.state.description.length
     ) {
-      await this.props.updateEvent(this.state.eventId, {
-        hostId: this.state.hostId,
-        name: this.state.name,
-        address: this.state.address,
-        city: this.state.city,
-        state: this.state.state,
-        zipCode: this.state.zipCode,
-        date: this.state.date,
-        time: this.state.time,
-        category: this.state.category,
-        description: this.state.description,
-        imgUrl: this.state.imgUrl,
-      });
+      await this.props.updateEvent(this.state.eventId, this.state);
       this.setState({ isModalVisible: true });
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");

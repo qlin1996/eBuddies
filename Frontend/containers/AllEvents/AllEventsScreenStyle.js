@@ -20,13 +20,16 @@ export default StyleSheet.create({
     top: "-13%",
     color: "white",
   },
-  eventButton: {
-    ...Fonts.normal,
-    textAlign: "center",
-    marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 50,
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 70,
   },
+  surface: {
+    marginTop: 15,
+    right: 116,
+    height: 40,
+  },
+
   eventFooter: {
     width: 300,
     alignContent: "center",

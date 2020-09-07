@@ -123,7 +123,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Sun 06 Sep 2020",
+    date: "Sun 13 Sep 2020",
     time: "22:20:00 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:

@@ -183,21 +183,7 @@ class Login extends React.Component {
                   CONTINUE
                 </Button>
               </View>
-              <View style={styles.account}>
-                <Button
-                  color="rgba(38,153,251,1)"
-                  style={{ ...Fonts.small }}
-                  title="Don't have an account?"
-                />
-              </View>
-              <View style={styles.login}>
-                <Button
-                  color="rgba(38,153,251,1)"
-                  style={{ ...Fonts.small }}
-                  title="SIGN UP"
-                  onPress={this.handleSignup}
-                />
-              </View>
+              <View style={styles.account}></View>
             </View>
           </View>
         </View>

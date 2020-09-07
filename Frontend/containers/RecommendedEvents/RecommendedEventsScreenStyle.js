@@ -9,6 +9,20 @@ export default StyleSheet.create({
     backgroundColor: Colors.white,
     overflow: "hidden",
   },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 70,
+  },
+  surface: {
+    padding: 8,
+    height: 50,
+    margin: 3,
+    marginTop: 12,
+    width: "31%",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 4,
+  },
   eventButton: {
     ...Fonts.normal,
     textAlign: "center",
@@ -40,30 +54,11 @@ export default StyleSheet.create({
     backgroundColor: Colors.lightBlue,
     fontSize: 15,
   },
-  interestsContainer: {
-    // backgroundColor: Colors.lightBlue,
-    // ...Metrics.mediumHorizontalPadding,
-    // ...Metrics.mediumVerticalPadding,
-  },
-  welcome: {
-    color: Colors.blue,
-    textAlign: "center",
-    ...Fonts.h4,
-    fontWeight: "bold",
-    ...Metrics.bottomMargin,
-  },
-  welcomeText: {
-    fontSize: 24,
-    textAlign: "center",
-    letterSpacing: 1,
-    margin: 3,
-    padding: 6,
-  },
+
   interests: {
     textAlign: "center",
     color: "black",
     ...Fonts.normal,
-    // fontWeight: "bold",
     ...Metrics.bottomMargin,
   },
   interestContainer: {
@@ -78,27 +73,10 @@ export default StyleSheet.create({
     borderRadius: 8,
     height: 50,
     padding: 8,
-    // ...Metrics.smallVerticalPadding,
     marginRight: 10,
     width: 110,
   },
-  // interestPt: {
-  //   // position: "absolute",
-  //   // color: Colors.blue,
-  //   // top: "35%",
-  //   // left: "10%",
-  // },
 
-  rec: {
-    alignSelf: "center",
-    position: "absolute",
-    top: "-11%",
-    fontSize: 20,
-    padding: 5,
-    margin: 5,
-    color: Colors.blue,
-    backgroundColor: "blue",
-  },
   specificInterest: {
     textDecorationLine: "underline",
     textDecorationColor: Colors.blue,

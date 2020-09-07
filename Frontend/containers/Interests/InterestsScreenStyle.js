@@ -23,20 +23,27 @@ export default StyleSheet.create({
     backgroundColor: "rgba(188, 224, 253, 1)",
     alignSelf: "center",
   },
+  actions: {
+    marginTop: "20%",
+  },
+  surface: {
+    padding: 8,
+    height: 55,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 4,
+  },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 70,
+  },
 
-  continueButton: {
-    backgroundColor: "rgba(38,153,251,1)",
-    borderWidth: 0.5,
-    alignSelf: "center",
-    paddingTop: 10,
-    ...Fonts.small,
-    paddingBottom: 10,
-    margin: 10,
-    borderColor: "rgba(38,153,251,1)",
-    position: "relative",
-    top: 30,
-    width: 342,
-    height: 60,
+  card: {
+    marginTop: "5%",
+    paddingTop: "11%",
+    marginLeft: "5%",
+    marginRight: "5%",
   },
 
   buttonPress: {
@@ -50,37 +57,7 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
 
-  login: {
-    width: 550,
-    position: "relative",
-    top: 65,
-    height: 60,
-    alignSelf: "center",
-    backgroundColor: "rgba(188, 224, 253, 1)",
-    borderWidth: 0.5,
-    paddingTop: 10,
-    ...Fonts.normal,
-    paddingBottom: 10,
-    margin: 10,
-    borderColor: "rgba(38,153,251,1)",
-  },
-  account: {
-    ...Fonts.small,
-    color: "black",
-    position: "relative",
-    top: 70,
-  },
-  header: {
-    ...Fonts.h3,
-    color: Colors.blue,
-    padding: 3,
-    margin: 3,
-    alignSelf: "center",
-    position: "relative",
-    top: -50,
-  },
   selectInterests: {
-    // fill: 'rgba(255,255,255,1)',
     color: Colors.blue,
     borderWidth: 0.5,
     borderColor: Colors.blue,

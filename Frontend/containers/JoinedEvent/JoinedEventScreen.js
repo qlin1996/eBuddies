@@ -7,7 +7,7 @@ import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import { editActivityAttendance } from "../../store/activity";
-
+import updateEvent from "../../containers/UpdateEvent/UpdateEvent";
 class JoinedEvent extends React.Component {
   constructor() {
     super();
@@ -130,6 +130,16 @@ class JoinedEvent extends React.Component {
         </Modal>
         <View style={Style.mapButton}>
           <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+          <Button
+            title="EDIT EVENT"
+            onPress={() => {
+              this.props.navigation.navigate("EDITEVENT", {
+                id: this.props.event.id,
+              });
+            }}
+          >
+            {" "}
+          </Button>
         </View>
         <View>
           <Button

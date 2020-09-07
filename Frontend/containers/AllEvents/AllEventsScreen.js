@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import Style from "./AllEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
+import { Appbar } from "react-native-paper";
 
 class AllEvents extends React.Component {
   constructor() {

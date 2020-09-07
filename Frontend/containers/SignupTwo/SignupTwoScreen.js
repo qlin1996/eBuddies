@@ -5,7 +5,7 @@ import { Fonts } from "../../themes";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import RNPickerSelect from "react-native-picker-select";
-
+import { Appbar, Card } from "react-native-paper";
 class SignupTwo extends React.Component {
   constructor() {
     super();
@@ -57,10 +57,6 @@ class SignupTwo extends React.Component {
     }
   };
 
-  handleLogin = () => {
-    this.props.navigation.navigate("LOGIN");
-  };
-
   selectPicture = async () => {
     try {
       await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -91,11 +87,16 @@ class SignupTwo extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container1}>
-          <View style={styles.containerBox}>
-            <Text style={styles.loginBox}>Location </Text>
-          </View>
+          <Appbar.Header style={styles.appHeader}>
+            <Appbar.Content
+              title="Location"
+              subtitle="eBuddies"
+              color="white"
+            />
+            <Appbar.Action icon="dots-vertical" color="white" />
+          </Appbar.Header>
           <TextInput
-            style={styles.textInput}
+            style={styles.textInputCity}
             value={this.state.city}
             onChangeText={(city) => this.setState({ city })}
             ref={(input) => {

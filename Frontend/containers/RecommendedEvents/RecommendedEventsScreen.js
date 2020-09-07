@@ -6,11 +6,13 @@ import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
+import { Appbar, Card, Surface, Searchbar } from "react-native-paper";
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
     this.state = {
       filter: "All",
+      search: "",
     };
   }
 
@@ -18,6 +20,12 @@ class RecommendedEvents extends React.Component {
     await this.props.getUser(this.props.user.id);
     await this.props.getAllInterests(this.props.user.id);
   }
+
+  // onChangeSearch = (query) => {
+  //   this.setState({
+  //     text: query,
+  //   });
+  // };
 
   handleClick = (event) => {
     this.setState({ filter: event.target.value });
@@ -47,14 +55,16 @@ class RecommendedEvents extends React.Component {
       <>
         <ScrollView>
           <View>
+            <Appbar.Header style={Style.appHeader}>
+              <Appbar.Content
+                title="Recommended Events"
+                subtitle={`Welcome, ${this.props.user.firstName} ${this.props.user.lastName}`}
+                color="white"
+              />
+              <Appbar.Action icon="dots-vertical" color="white" />
+            </Appbar.Header>
             {user.firstName ? (
               <View>
-                <View style={Style.welcomeDiv}>
-                  <Text style={Style.welcomeText}>
-                    Welcome, {user.firstName} {user.lastName}
-                  </Text>
-                </View>
-                <Text style={Style.interests}>Based on your Interests</Text>
                 {interests.length === 0 && (
                   <Text>You have not selected any interests</Text>
                 )}
@@ -66,21 +76,28 @@ class RecommendedEvents extends React.Component {
                   }}
                 >
                   {interests.map((interest) => (
-                    <View key={interest.id}>
-                      <View style={Style.interest}>
-                        <View style={Style.childInterest}>
-                          <Button
-                            title={interest.userInterest}
-                            onPress={() => {
-                              this.setState({ filter: interest.userInterest });
-                            }}
-                            value={this.state.filter}
-                          />
-                        </View>
+                    <Surface style={Style.surface} key={interest.id}>
+                      <View key={interest.id}>
+                        <Button
+                          title={interest.userInterest}
+                          onPress={() => {
+                            this.setState({
+                              filter: interest.userInterest,
+                            });
+                          }}
+                          value={this.state.filter}
+                        />
                       </View>
-                    </View>
+                    </Surface>
                   ))}
                 </View>
+                {/* <Searchbar
+                  placeholder="Search"
+                  onChangeText={(text) => {
+                    this.setState({ search: text });
+                  }}
+                  value={this.state.text}
+                /> */}
                 {events.map((event) => {
                   return (
                     <View key={event.id}>

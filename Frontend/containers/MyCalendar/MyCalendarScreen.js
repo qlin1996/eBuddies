@@ -20,7 +20,7 @@ class MyCalendar extends React.Component {
     await this.props.getAllEvents();
   }
 
-  eventsIHost = () => {
+  eventsIHost = async () => {
     const events = this.props.events.filter((event) => {
       return event.hostId === this.props.user.id;
     });

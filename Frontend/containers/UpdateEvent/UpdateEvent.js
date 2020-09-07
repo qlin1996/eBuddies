@@ -14,6 +14,7 @@ import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
+import { getAllEvents } from "../../store/events";
 
 class AddEventScreen extends React.Component {
   constructor(props) {
@@ -88,6 +89,8 @@ class AddEventScreen extends React.Component {
   handleDelete = async () => {
     await this.props.deleteEvent(this.state.eventId);
     console.log("deleted");
+    await this.props.getAllEvents();
+
     this.props.navigation.navigate("MyCalendarScreen");
   };
 
@@ -325,6 +328,7 @@ const mapDispatch = (dispatch) => ({
   updateEvent: (id, updateEvent) => dispatch(fetchUpdateEvent(id, updateEvent)),
   deleteEvent: (id) => dispatch(deleteEvent(id)),
   fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
+  getAllEvents: () => dispatch(getAllEvents()),
 });
 
 export default connect(mapStateToProps, mapDispatch)(AddEventScreen);

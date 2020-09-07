@@ -142,7 +142,6 @@ class Interests extends React.Component {
             subtitle="eBuddies"
             color="white"
           />
-          <Appbar.Action icon="dots-vertical" color="white" />
         </Appbar.Header>
 
         <Card style={styles.card}>

@@ -65,7 +65,6 @@ class Signup extends React.Component {
         <View style={styles.container1}>
           <Appbar.Header style={styles.appHeader}>
             <Appbar.Content title="Sign up" subtitle="eBuddies" color="white" />
-            <Appbar.Action icon="dots-vertical" color="white" />
           </Appbar.Header>
           {/* validations */}
           {this.state.uniqueEmail === false && (
@@ -85,7 +84,10 @@ class Signup extends React.Component {
             placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
-          <Image style={styles.firstname} source={require("./lastname.png")} />
+          <Image
+            style={styles.firstname}
+            source={require("../../assets/lastname.png")}
+          />
           {this.state.firstName.length === 0 && (
             <Text style={styles.validatorsName}>First Name is Required</Text>
           )}
@@ -101,7 +103,10 @@ class Signup extends React.Component {
             placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
-          <Image style={styles.lastname} source={require("./name.png")} />
+          <Image
+            style={styles.lastname}
+            source={require("../../assets/name.png")}
+          />
           {this.state.lastName.length === 0 && (
             <Text style={styles.validators}>Last Name is Required</Text>
           )}
@@ -118,7 +123,10 @@ class Signup extends React.Component {
             placeholderTextColor="#BEBEBE"
             keyboardType="email-address"
           />
-          <Image style={styles.email} source={require("./email.png")} />
+          <Image
+            style={styles.email}
+            source={require("../../assets/emailSignup.png")}
+          />
           {!this.validateEmail(this.state.email) && (
             <Text style={styles.validators}>Valid Email is Required</Text>
           )}
@@ -134,7 +142,10 @@ class Signup extends React.Component {
             placeholderTextColor="#BEBEBE"
             secureTextEntry
           />
-          <Image style={styles.password} source={require("./password.png")} />
+          <Image
+            style={styles.password}
+            source={require("../../assets/passwordSignup.png")}
+          />
           {this.state.password.length === 0 && (
             <Text style={styles.validatorsPassword}>Password is Required</Text>
           )}

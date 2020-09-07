@@ -68,7 +68,6 @@ class RecommendedEvents extends React.Component {
                 subtitle={`Welcome, ${this.props.user.firstName} ${this.props.user.lastName}`}
                 color="white"
               />
-              <Appbar.Action icon="dots-vertical" color="white" />
             </Appbar.Header>
             {user.firstName ? (
               <View>

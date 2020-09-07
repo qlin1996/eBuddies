@@ -48,18 +48,30 @@ class SingleEvent extends React.Component {
   }
   //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
   sendPushNotification = async (pushToken) => {
-    const eventHour = Number(this.props.event.time.slice(0, 2));
-    const eventMinute = Number(this.props.event.time.slice(3, 5));
-    const milliseconds = eventHour * (eventMinute - 1) * 1000;
+    let eventHour = Number(this.props.event.time.slice(0, 2));
+    let eventMinute = Number(this.props.event.time.slice(3, 5) - 1);
+    let gmt = this.props.event.time.slice(8);
+    let milliseconds = eventHour * eventMinute * 1000;
     let triggerDate = new Date(this.props.event.date) + milliseconds;
-    const trigger = new Date(
-      triggerDate.slice(0, 15) + " " + this.props.event.time
+
+    let triggerObj = new Date(
+      triggerDate.slice(0, 15) +
+        " " +
+        eventHour +
+        ": " +
+        eventMinute +
+        ":00" +
+        gmt
     );
+    let trigger = new Date(triggerObj);
+
+    console.log(trigger, "trigger");
+
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "eBuddies",
         body:
-          "We look forward to seeing you in an hour. Please remember to check in on the maps within your calendar.",
+          "We look forward to seeing you soon! Please remember to check in.",
         data: { data: "goes here" },
         sound: "default",
       },

@@ -2,11 +2,20 @@ import { StyleSheet } from "react-native";
 import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   container: {
-    backgroundColor: "rgb(233, 233, 233)",
-    flex: 1,
+    backgroundColor: "white",
+    marginTop: 15,
+    marginBottom: "6%",
+    marginLeft: 18,
+    marginRight: 18,
+    borderColor: "white",
+    borderRadius: 10,
   },
   logo: {
     alignSelf: "center",
+  },
+  surface: {
+    alignSelf: "center",
+    width: 20,
   },
   background: {
     backgroundColor: "rgb(235, 233, 233)",
@@ -15,7 +24,6 @@ export default StyleSheet.create({
   },
   button: {
     color: Colors.blue,
-    borderWidth: 0.5,
     borderColor: Colors.blue,
     width: 300,
     padding: 10,
@@ -24,12 +32,16 @@ export default StyleSheet.create({
     alignSelf: "center",
   },
   actions: {
-    marginTop: "20%",
+    marginTop: "15%",
+    width: 160,
+    alignSelf: "center",
+    marginBottom: "20%",
   },
   surface: {
     padding: 8,
     height: 55,
     width: "100%",
+    color: "blue",
     alignItems: "center",
     justifyContent: "center",
     elevation: 4,
@@ -48,8 +60,6 @@ export default StyleSheet.create({
 
   buttonPress: {
     color: Colors.blue,
-    borderWidth: 0.5,
-    borderColor: Colors.blue,
     width: 300,
     padding: 10,
     margin: 2,
@@ -59,7 +69,6 @@ export default StyleSheet.create({
 
   selectInterests: {
     color: Colors.blue,
-    borderWidth: 0.5,
     borderColor: Colors.blue,
     width: 300,
     padding: 10,

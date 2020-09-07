@@ -11,19 +11,13 @@ import {
   ActivityIndicator,
   ScrollView,
 } from "react-native";
-
+import { Appbar } from "react-native-paper";
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
 import { auth1 } from "../../store/user";
 import { me } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
-import * as Facebook from "expo-facebook";
-import * as Google from "expo-google-app-auth";
-
-const IOS_CLIENT_ID =
-  "723742203171-lvu807oei4vau5kbp3cisp8b8gb0lnmb.apps.googleusercontent.com";
-console.disableYellowBox = true;
 
 class Login extends React.Component {
   constructor() {
@@ -111,85 +105,66 @@ class Login extends React.Component {
     return (
       <ScrollView>
         <View style={styles.container1}>
-          <View style={styles.containerBox}>
-            <Text style={styles.loginBox}>Login</Text>
-            <View>
-              <TouchableOpacity onPress={() => this.signInWithGoogle()}>
-                <Image
-                  source={require("../../assets/google.png")}
-                  style={styles.logo1}
-                />
-              </TouchableOpacity>
-            </View>
-            <View>
-              <TouchableOpacity onPress={this.logInFb}>
-                <Image
-                  source={require("../../assets/fb.png")}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    marginTop: -32.5,
-                    marginLeft: 139,
-                  }}
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.container2}>
-            {this.state.error ? (
-              <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
-            ) : null}
+          <Appbar.Header style={styles.appHeader}>
+            <Appbar.Content title="Login" color="white" />
+          </Appbar.Header>
+          <View style={styles.container1}>
+            <View style={styles.container2}>
+              {this.state.error ? (
+                <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
+              ) : null}
 
-            <View>
-              {this.state.email.length === 0 && (
-                <Text style={styles.validators}>Email is Required</Text>
-              )}
-              <TextInput
-                style={styles.textInput}
-                selectionColor="#428AF8"
-                value={this.state.email}
-                onChangeText={(email) => this.setState({ email })}
-                ref={(input) => {
-                  this.textInput = input;
-                }}
-                returnKeyType="go"
-                placeholder="Email..."
-                placeholderTextColor="#BEBEBE"
-                keyboardType="email-address"
-              />
-              <Image
-                style={styles.email}
-                source={require("../../assets/email.png")}
-              />
-              {this.state.password.length === 0 && (
-                <Text style={styles.validators}>Password is Required</Text>
-              )}
-              <TextInput
-                style={styles.textInput}
-                value={this.state.password}
-                onChangeText={(password) => this.setState({ password })}
-                ref={(input) => {
-                  this.textInput = input;
-                }}
-                returnKeyType="go"
-                placeholder="Password..."
-                placeholderTextColor="#BEBEBE"
-                secureTextEntry
-              />
-              <Image
-                style={styles.password}
-                source={require("../../assets/password.png")}
-              />
-              <View style={styles.button}>
-                <Button
-                  onPress={this.handleLogin}
-                  color="rgba(38,153,251,1)"
-                  title="CONTINUE"
-                >
-                  CONTINUE
-                </Button>
+              <View>
+                {this.state.email.length === 0 && (
+                  <Text style={styles.validators}>Email is Required</Text>
+                )}
+                <TextInput
+                  style={styles.textInput}
+                  selectionColor="#428AF8"
+                  value={this.state.email}
+                  onChangeText={(email) => this.setState({ email })}
+                  ref={(input) => {
+                    this.textInput = input;
+                  }}
+                  returnKeyType="go"
+                  placeholder="Email..."
+                  placeholderTextColor="#4d4a4a"
+                  keyboardType="email-address"
+                />
+                <Image
+                  style={styles.email}
+                  source={require("../../assets/email.png")}
+                />
+                {this.state.password.length === 0 && (
+                  <Text style={styles.validators}>Password is Required</Text>
+                )}
+                <TextInput
+                  style={styles.textInput}
+                  value={this.state.password}
+                  onChangeText={(password) => this.setState({ password })}
+                  ref={(input) => {
+                    this.textInput = input;
+                  }}
+                  returnKeyType="go"
+                  placeholder="Password..."
+                  placeholderTextColor="#4d4a4a"
+                  secureTextEntry
+                />
+                <Image
+                  style={styles.password}
+                  source={require("../../assets/password.png")}
+                />
+                <View style={styles.button}>
+                  <Button
+                    onPress={this.handleLogin}
+                    color="rgba(38,153,251,1)"
+                    title="CONTINUE"
+                  >
+                    CONTINUE
+                  </Button>
+                </View>
+                <View style={styles.account}></View>
               </View>
-              <View style={styles.account}></View>
             </View>
           </View>
         </View>

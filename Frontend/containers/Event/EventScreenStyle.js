@@ -23,8 +23,7 @@ export default StyleSheet.create({
     color: "gray",
     marginBottom: 5,
     marginTop: -7,
-    fontSize: 15,
-    marginLeft: 16,
+    marginLeft: 20,
   },
   cardImg: {
     width: "92%",
@@ -33,25 +32,25 @@ export default StyleSheet.create({
     marginRight: 10,
     marginTop: 20,
     marginBottom: 10,
-    borderRadius: 8,
+    borderRadius: 3,
+  },
+  title: {
+    marginLeft: 20,
+    fontSize: 21.2,
+    textTransform: "uppercase",
+    marginBottom: 16,
+    marginTop: 35,
+    fontWeight: "500",
   },
   cardDescription: {
     color: "gray",
-    fontSize: 16.5,
     marginTop: 12,
-    marginBottom: 25,
+    marginBottom: 35,
   },
   cardDate: {
     color: "gray",
-    marginBottom: 15,
-    marginTop: 3,
-    marginLeft: 17,
-  },
-
-  cardTime: {
-    color: "gray",
     marginBottom: 0,
-    marginTop: "-9%",
-    marginLeft: "66.5%",
+    marginTop: 3,
+    marginLeft: 20,
   },
 });

@@ -137,14 +137,10 @@ class Interests extends React.Component {
     return (
       <View style={styles.container}>
         <Appbar.Header style={styles.appHeader}>
-          <Appbar.Content
-            title="Select Interests"
-            subtitle="eBuddies"
-            color="white"
-          />
+          <Appbar.Content title="Sign up" subtitle="(3/3)" color="white" />
         </Appbar.Header>
 
-        <Card style={styles.card}>
+        <View style={styles.card}>
           <View
             style={this.state.pressStatus1 ? styles.button : styles.buttonPress}
           >
@@ -197,12 +193,10 @@ class Interests extends React.Component {
               />
             </Surface>
           </View>
-
-          <Card.Actions style={styles.actions}>
-            <Button title="CANCEL" />
-            <Button onPress={this.handleSignup} title="CONTINUE" />
-          </Card.Actions>
-        </Card>
+        </View>
+        <Surface style={styles.actions}>
+          <Button onPress={this.handleSignup} title="CONTINUE" />
+        </Surface>
       </View>
     );
   }

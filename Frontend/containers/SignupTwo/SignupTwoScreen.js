@@ -5,7 +5,7 @@ import { Fonts } from "../../themes";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import RNPickerSelect from "react-native-picker-select";
-import { Appbar, Card } from "react-native-paper";
+import { Appbar, Card, Surface } from "react-native-paper";
 class SignupTwo extends React.Component {
   constructor() {
     super();
@@ -88,11 +88,7 @@ class SignupTwo extends React.Component {
       <ScrollView>
         <View style={styles.container1}>
           <Appbar.Header style={styles.appHeader}>
-            <Appbar.Content
-              title="Location"
-              subtitle="eBuddies"
-              color="white"
-            />
+            <Appbar.Content title="Sign up" subtitle="(2/3)" color="white" />
           </Appbar.Header>
           <TextInput
             style={styles.textInputCity}
@@ -103,7 +99,7 @@ class SignupTwo extends React.Component {
             }}
             returnKeyType="go"
             placeholder="City..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="name-phone-pad"
           />
           <Image
@@ -119,19 +115,20 @@ class SignupTwo extends React.Component {
                 this.setState({ state: state });
               }}
               placeholder={{
+                color: "#4d4a4a",
                 label: "State...",
                 value: null,
               }}
               style={{
                 inputIOS: {
-                  placeholderColor: "#BEBEBE",
+                  placeholderColor: "#4d4a4a",
                   fontSize: 16,
-                  color: "#BEBEBE",
+                  color: "#4d4a4a",
                 },
                 inputAndroid: {
-                  placeholderColor: "#BEBEBE",
+                  placeholderColor: "#4d4a4a",
                   fontSize: 16,
-                  color: "#BEBEBE",
+                  color: "#4d4a4a",
                 },
               }}
               items={[
@@ -198,7 +195,7 @@ class SignupTwo extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Zip Code..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="name-phone-pad"
           />
           <Image style={styles.zip} source={require("../../assets/zip.png")} />
@@ -215,7 +212,7 @@ class SignupTwo extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Description..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="name-phone-pad"
           />
           <Image
@@ -224,20 +221,20 @@ class SignupTwo extends React.Component {
           />
 
           <View style={styles.picOption}>
-            <View style={styles.picOption1}>
+            <Surface style={styles.surface1}>
               <Button
                 title="Select Picture"
-                color="#BEBEBE"
+                color="rgba(38,153,251,1)"
                 onPress={this.selectPicture}
               />
-            </View>
-            <View style={styles.picOption2}>
+            </Surface>
+            <Surface style={styles.surface2}>
               <Button
                 title="Take Picture"
-                color="#BEBEBE"
+                color="rgba(38,153,251,1)"
                 onPress={this.takePicture}
               />
-            </View>
+            </Surface>
           </View>
           <View style={styles.imageContainer}>
             <Image

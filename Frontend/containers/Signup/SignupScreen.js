@@ -64,7 +64,7 @@ class Signup extends React.Component {
       <ScrollView>
         <View style={styles.container1}>
           <Appbar.Header style={styles.appHeader}>
-            <Appbar.Content title="Sign up" subtitle="eBuddies" color="white" />
+            <Appbar.Content title="Sign up" subtitle="(1/3)" color="white" />
           </Appbar.Header>
           {/* validations */}
           {this.state.uniqueEmail === false && (
@@ -81,7 +81,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="First Name..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="name-phone-pad"
           />
           <Image
@@ -100,7 +100,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Last Name..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="name-phone-pad"
           />
           <Image
@@ -112,7 +112,7 @@ class Signup extends React.Component {
           )}
 
           <TextInput
-            style={styles.textInput}
+            style={styles.textInputEmail}
             value={this.state.email}
             onChangeText={(email) => this.setState({ email })}
             ref={(input) => {
@@ -120,7 +120,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Email..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             keyboardType="email-address"
           />
           <Image
@@ -131,7 +131,7 @@ class Signup extends React.Component {
             <Text style={styles.validators}>Valid Email is Required</Text>
           )}
           <TextInput
-            style={styles.textInput}
+            style={styles.textInputPassword}
             value={this.state.password}
             onChangeText={(password) => this.setState({ password })}
             ref={(input) => {
@@ -139,7 +139,7 @@ class Signup extends React.Component {
             }}
             returnKeyType="go"
             placeholder="Password..."
-            placeholderTextColor="#BEBEBE"
+            placeholderTextColor="#4d4a4a"
             secureTextEntry
           />
           <Image

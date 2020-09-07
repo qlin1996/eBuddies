@@ -1,5 +1,7 @@
 import React from "react";
 import { Text, View, Image, Button } from "react-native";
+import { Card, Title, Paragraph } from "react-native-paper";
+
 import Style from "./EventScreenStyle";
 
 const Event = (props) => {
@@ -13,28 +15,30 @@ const Event = (props) => {
 
   return (
     <>
-      <View style={Style.wholeCardDiv}>
-        <View style={Style.imageDiv}>
-          <Image style={Style.eventImg} source={{ uri: event.imgUrl }} />
-        </View>
-        <View style={Style.headerBackground}>
-          <Text style={Style.headerText}>{event.name}</Text>
-        </View>
-        <View style={Style.informationDiv}>
-          <Text style={Style.fonts}>{event.description}</Text>
-          <Text style={Style.addressFonts}>{event.address}</Text>
-          <Text style={Style.dateFonts}>
-            {event.date
-              ? event.date.slice(5, 10) + "-" + event.date.slice(0, 4)
-              : null}
-          </Text>
-          <View>
-            <Text style={Style.dateFonts}>
-              Time: {event.time ? convertTime(event.time) : null}
-            </Text>
-          </View>
-        </View>
-      </View>
+      <Card style={Style.card}>
+        <Card.Title title={`${event.name}`} />
+        <Paragraph style={Style.cardAddress}>{event.address}</Paragraph>
+        <Card.Content>
+          <Paragraph style={Style.cardDescription}>
+            {event.description}
+          </Paragraph>
+        </Card.Content>
+        <Card.Cover style={Style.cardImg} source={{ uri: event.imgUrl }} />
+        <Paragraph style={Style.cardDate}>
+          {event.date
+            ? event.date.slice(5, 10) + "-" + event.date.slice(0, 4)
+            : null}
+        </Paragraph>
+        <Paragraph style={Style.cardTime}>
+          {" "}
+          Time: {event.time ? convertTime(event.time) : null}
+        </Paragraph>
+
+        <Card.Actions>
+          <Button title="">Cancel</Button>
+          <Button title="">Ok</Button>
+        </Card.Actions>
+      </Card>
     </>
   );
 };

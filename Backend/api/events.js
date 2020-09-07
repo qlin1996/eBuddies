@@ -69,11 +69,13 @@ router.put("/:eventId", async (req, res, next) => {
 //DELETE --> /DELETE/EVENTS/:EVENTID
 router.delete("/:eventId", async (req, res, next) => {
   try {
-    await Event.destroy({
+    const event = await Event.destroy({
       where: {
         id: req.params.eventId,
       },
     });
+    if (!event) return res.sendStatus(404);
+    res.sendStatus(204);
   } catch (error) {
     console.log(error);
   }

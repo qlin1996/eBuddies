@@ -2,7 +2,11 @@ import React from "react";
 import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
-import { fetchUpdateEvent } from "../../store/singleEvent";
+import {
+  fetchUpdateEvent,
+  fetchSingleEvent,
+  deleteEvent,
+} from "../../store/singleEvent";
 import Style from "./UpdateEventScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
@@ -10,7 +14,8 @@ import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
-import { fetchEvent } from "../../store/event";
+import { getAllEvents } from "../../store/events";
+
 class AddEventScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +25,7 @@ class AddEventScreen extends React.Component {
       address: "",
       city: "",
       state: "",
-      zipcode: "",
+      zipCode: "",
       date: "",
       time: "",
       category: "",
@@ -36,23 +41,21 @@ class AddEventScreen extends React.Component {
   }
 
   async componentDidMount() {
-    await this.props.fetchEvent(this.props.navigation.getParam("id"));
-    console.log("THIS IS THE PROPS", this.props);
+    await this.props.fetchSingleEvent(this.props.navigation.getParam("id"));
     this.setState({
       hostId: this.props.user.id,
       name: this.props.event.name,
-      adress: this.props.event.address,
+      address: this.props.event.address,
       city: this.props.event.city,
       state: this.props.event.state,
-      zipcode: this.props.event.zipcode,
+      zipCode: this.props.event.zipCode,
       date: this.props.event.date,
       time: this.props.event.time,
       category: this.props.event.category,
-      descriptioin: this.props.event.description,
+      description: this.props.event.description,
       imgUrl: this.props.event.imgUrl,
       eventId: this.props.event.id,
     });
-    console.log("This is the current state", this.state);
   }
 
   isValidUSZip = (zipCode) => {
@@ -65,33 +68,14 @@ class AddEventScreen extends React.Component {
       this.state.address.length &&
       this.state.city.length &&
       this.state.state.length &&
-      this.state.zipcode.length &&
+      this.state.zipCode.length &&
       this.state.date.length &&
       this.state.time.length &&
       this.state.category.length &&
       this.state.description.length
     ) {
+      await this.props.updateEvent(this.state.eventId, this.state);
       this.setState({ isModalVisible: true });
-      this.setState({ hostId: this.props.user.id });
-      await this.props.updateEvent(
-        this.props.navigation.getParam("id"),
-        this.state
-      );
-
-      this.setState({
-        name: "",
-        address: "",
-        city: "",
-        state: "",
-        zipcode: "",
-        date: "",
-        time: "",
-        description: "",
-        eventId: "",
-        imgUrl: "",
-        hostId: "",
-        selectedValue: "Food",
-      });
       const waitForModal = () => {
         this.props.navigation.navigate("EVENTS");
         this.setState({
@@ -100,6 +84,14 @@ class AddEventScreen extends React.Component {
       };
       setTimeout(waitForModal, 2000);
     }
+  };
+
+  handleDelete = async () => {
+    await this.props.deleteEvent(this.state.eventId);
+    console.log("deleted");
+    await this.props.getAllEvents();
+
+    this.props.navigation.navigate("MyCalendarScreen");
   };
 
   handleChange = (event) => {
@@ -137,7 +129,9 @@ class AddEventScreen extends React.Component {
           </View>
 
           <View style={Style.eventContainer}>
-            {this.state.name.length === 0}
+            {this.state.name.length === 0 && (
+              <Text style={{ color: "red" }}>Event Name is Required</Text>
+            )}
             <Text>Event Name</Text>
             <TextInput
               style={Style.text}
@@ -149,7 +143,11 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.name}
             />
-            {this.state.address.length === 0}
+            {this.state.address.length === 0 && (
+              <Text style={{ color: "red" }}>
+                Event Street Address is Required
+              </Text>
+            )}
             <Text>Event Street Address</Text>
             <TextInput
               style={Style.text}
@@ -159,7 +157,9 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.address}
             />
-            {this.state.city.length === 0}
+            {this.state.city.length === 0 && (
+              <Text style={{ color: "red" }}>Event City is Required</Text>
+            )}
             <Text>Event City</Text>
             <TextInput
               style={Style.text}
@@ -169,7 +169,9 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.city}
             />
-            {this.state.state.length === 0}
+            {this.state.state.length === 0 && (
+              <Text style={{ color: "red" }}>Event State is Required</Text>
+            )}
             <Text>Event State</Text>
             <TextInput
               style={Style.text}
@@ -179,17 +181,23 @@ class AddEventScreen extends React.Component {
               }}
               value={this.state.state}
             />
-            {!this.isValidUSZip(this.state.zipcode)}
+            {!this.isValidUSZip(this.state.zipCode) && (
+              <Text style={{ color: "red" }}>
+                Valid US Zip Code is Required
+              </Text>
+            )}
             <Text>Event Zip Code</Text>
             <TextInput
               style={Style.text}
               placeholder="Type Here"
               onChangeText={(text) => {
-                this.setState({ zipcode: text });
+                this.setState({ zipCode: text });
               }}
-              value={this.state.zipcode}
+              value={this.state.zipCode}
             />
-            {this.state.date.length === 0}
+            {this.state.date.length === 0 && (
+              <Text style={{ color: "red" }}>Event Date is Required</Text>
+            )}
             <Text>Event Date</Text>
             <Button
               onPress={() => {
@@ -211,7 +219,9 @@ class AddEventScreen extends React.Component {
               }}
               mode="date"
             />
-            {this.state.time.length === 0}
+            {this.state.time.length === 0 && (
+              <Text style={{ color: "red" }}>Event Time is Required</Text>
+            )}
             <Text>Event Time</Text>
             <Button
               onPress={() => {
@@ -233,7 +243,11 @@ class AddEventScreen extends React.Component {
               }}
               mode="time"
             />
-            {this.state.description.length === 0}
+            {this.state.description.length === 0 && (
+              <Text style={{ color: "red" }}>
+                Event Description is Required
+              </Text>
+            )}
             <Text>Event Description</Text>
             <TextInput
               multiline={true}
@@ -255,7 +269,9 @@ class AddEventScreen extends React.Component {
                 this.textInput = input;
               }}
             />
-            {this.state.category.length === 0}
+            {this.state.category.length === 0 && (
+              <Text style={{ color: "red" }}>Event Category is Required</Text>
+            )}
             <Text>Event Category</Text>
             <RNPickerSelect
               onValueChange={(category) => {
@@ -276,6 +292,8 @@ class AddEventScreen extends React.Component {
           </View>
 
           <Button title="Update Event" onPress={this.handleSubmit}></Button>
+
+          <Button title="Delete Event" onPress={this.handleDelete}></Button>
 
           <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
             <View>
@@ -303,12 +321,14 @@ class AddEventScreen extends React.Component {
 }
 const mapStateToProps = (state) => ({
   user: state.user,
-  event: state.event,
+  event: state.singleEvent,
 });
 
 const mapDispatch = (dispatch) => ({
   updateEvent: (id, updateEvent) => dispatch(fetchUpdateEvent(id, updateEvent)),
-  fetchEvent: (id) => dispatch(fetchEvent(id)),
+  deleteEvent: (id) => dispatch(deleteEvent(id)),
+  fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
+  getAllEvents: () => dispatch(getAllEvents()),
 });
 
 export default connect(mapStateToProps, mapDispatch)(AddEventScreen);

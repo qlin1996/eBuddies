@@ -3,7 +3,6 @@ import { createStackNavigator } from "react-navigation-stack";
 import UserProfileScreen from "../containers/UserProfile/UserProfileScreen";
 import EditUserProfileScreen from "../containers/EditUserProfile/EditUserProfileScreen";
 import HeaderScreen from "../containers/Header/HeaderScreen";
-import HostScreen from "../containers/Host/HostScreen";
 import AddEventScreen from "../containers/AddEvent/AddEventScreen";
 
 const screens = {
@@ -14,9 +13,6 @@ const screens = {
         headerTitle: () => <HeaderScreen navigation={navigation} />,
       };
     },
-  },
-  HOST: {
-    screen: HostScreen,
   },
   EDIT: {
     screen: EditUserProfileScreen,

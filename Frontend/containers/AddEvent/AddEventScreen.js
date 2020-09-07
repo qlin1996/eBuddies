@@ -292,7 +292,6 @@ class AddEventScreen extends React.Component {
             <DateTimePickerModal
               isVisible={this.state.isDatePickerVisible}
               onConfirm={(date) => {
-                console.log("DATE TO DATE STRING", date.toDateString());
                 this.setState({
                   date: date.toDateString(),
                   isDatePickerVisible: false,

@@ -24,7 +24,7 @@ class UserProfileScreen extends React.Component {
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
-    console.log("INTERESTS", interests);
+
     return (
       <View style={{ flex: 1 }}>
         {/* <View style={Style.imageContainer}></View> */}

@@ -3,25 +3,13 @@ import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
-    marginTop: 30,
+    marginTop: 15,
     marginBottom: "6%",
     marginLeft: 18,
     marginRight: 18,
     borderWidth: 1,
     borderColor: "white",
     borderRadius: 10,
-  },
-  containerBox: {
-    marginRight: "20%",
-    marginLeft: "20.5%",
-    position: "relative",
-    top: "-4%",
-    backgroundColor: "rgba(38,153,251,0.6)",
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "rgba(38,153,251,0.1)",
-    width: "55%",
-    height: "16.5%",
   },
   loginBox: {
     fontSize: 23,
@@ -48,12 +36,12 @@ export default StyleSheet.create({
   },
   picOption1: {
     marginTop: -30,
-    marginLeft: -222,
+    marginLeft: -210,
     color: "rgba(38,153,251,1)",
   },
   picOption2: {
     marginTop: -37.5,
-    marginLeft: 200,
+    marginLeft: 226,
     width: 160,
     color: "rgba(38,153,251,1)",
     marginRight: "80%",
@@ -64,8 +52,8 @@ export default StyleSheet.create({
     alignSelf: "center",
     ...Fonts.small,
     margin: 10,
-    marginTop: "-15%",
-    marginBottom: "10%",
+    marginTop: "-13%",
+    marginBottom: "8%",
   },
 
   imageContainer: {
@@ -147,6 +135,25 @@ export default StyleSheet.create({
     left: "87.5%",
     width: "5.3%",
     height: "3.8%",
+  },
+  textInputCity: {
+    height: 26.5,
+    marginTop: 40,
+    marginLeft: 0,
+    color: "#BEBEBE",
+    marginLeft: 30,
+    marginRight: 30,
+    borderColor: "#BEBEBE",
+    letterSpacing: 1,
+    textAlign: "left",
+    fontSize: 16,
+    borderBottomWidth: 1,
+    width: "85%",
+    marginBottom: 30,
+  },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 70,
   },
   description: {
     position: "relative",

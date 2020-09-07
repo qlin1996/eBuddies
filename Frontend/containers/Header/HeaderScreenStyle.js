@@ -20,7 +20,7 @@ export default StyleSheet.create({
   },
   burgerIcon: {
     position: "absolute",
-    left: 16,
+    left: 0,
   },
   logo: {
     alignSelf: "center",

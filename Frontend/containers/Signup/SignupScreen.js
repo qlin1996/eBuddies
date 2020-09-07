@@ -4,7 +4,7 @@ import styles from "./SignupScreenStyle";
 import { Fonts } from "../../themes";
 import { connect } from "react-redux";
 import { getUsersInfo } from "../../store/users";
-
+import { Appbar, Card } from "react-native-paper";
 class Signup extends React.Component {
   constructor() {
     super();
@@ -59,17 +59,14 @@ class Signup extends React.Component {
     }
   };
 
-  handleLogin = () => {
-    this.props.navigation.navigate("LOGIN");
-  };
-
   render() {
     return (
       <ScrollView>
         <View style={styles.container1}>
-          <View style={styles.containerBox}>
-            <Text style={styles.loginBox}>Sign up</Text>
-          </View>
+          <Appbar.Header style={styles.appHeader}>
+            <Appbar.Content title="Sign up" subtitle="eBuddies" color="white" />
+            <Appbar.Action icon="dots-vertical" color="white" />
+          </Appbar.Header>
           {/* validations */}
           {this.state.uniqueEmail === false && (
             <Text style={{ color: "red" }}>
@@ -77,7 +74,7 @@ class Signup extends React.Component {
             </Text>
           )}
           <TextInput
-            style={styles.textInput}
+            style={styles.textInputName}
             value={this.state.firstName}
             onChangeText={(firstName) => this.setState({ firstName })}
             ref={(input) => {
@@ -148,21 +145,6 @@ class Signup extends React.Component {
               title="CONTINUE"
               onPress={this.handleSignup}
             ></Button>
-          </View>
-          <View style={styles.account}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="Already have an account?"
-            />
-          </View>
-          <View style={styles.login}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="LOGIN"
-              onPress={this.handleLogin}
-            />
           </View>
         </View>
       </ScrollView>

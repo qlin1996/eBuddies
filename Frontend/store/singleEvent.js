@@ -35,9 +35,7 @@ export const fetchUpdateEvent = (id, event) => async (dispatch) => {
 };
 export const deleteEvent = (id) => async (dispatch) => {
   try {
-    console.log("eventid", id);
     await axios.delete(`${serverLink}/api/events/${id}`);
-    console.log("it got here");
     return dispatch(deleteAEvent());
   } catch (err) {
     console.error(err);

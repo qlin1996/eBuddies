@@ -16,6 +16,7 @@ import { updateUser } from "../../store/user";
 import { deleteAllInterests, postNewInterest } from "../../store/interest";
 import RNPickerSelect from "react-native-picker-select";
 import { Metrics, Fonts, Colors } from "../../themes";
+import S3 from "aws-sdk/clients/s3";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -67,6 +68,38 @@ class EditUserProfileScreen extends React.Component {
     this.setState(newState);
   };
 
+  uploadImageOnS3 = async (file) => {
+    const s3bucket = new S3({
+      accessKeyId: "",
+      secretAccessKey: "",
+      Bucket: "ebuddies",
+      signatureVersion: "v4",
+    });
+
+    // let contentType = "image/jpeg";
+    // let contentDeposition = 'inline;filename="' + file.name + '"';
+    // const base64 = await fs.readFile(file.uri, "base64");
+    // const arrayBuffer = decode(base64);
+
+    // s3bucket.createBucket(() => {
+    //   const params = {
+    //     Bucket: "ebuddies",
+    //     Key: file.name,
+    //     Body: arrayBuffer,
+    //     ContentDisposition: contentDeposition,
+    //     ContentType: contentType,
+    //   };
+
+    //   s3bucket.upload(params, (err, data) => {
+    //     if (err) {
+    //       console.log("error in callback");
+    //     }
+    //     console.log("success");
+    //     console.log("Respomse URL : " + data.Location);
+    //   });
+    // });
+  };
+
   selectPicture = async () => {
     try {
       await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -75,7 +108,7 @@ class EditUserProfileScreen extends React.Component {
         aspect: 1,
       });
       this.setState({ imgUrl: uri });
-      // console.log("IAMGE URI", uri);
+      console.log("IAMGE URI", uri);
     } catch (error) {
       console.log(error);
     }

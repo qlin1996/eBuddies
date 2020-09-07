@@ -93,17 +93,12 @@ export default StyleSheet.create({
     color: "white",
   },
 
-  childrenContainer: {
-    padding: "2%",
-    margin: "2%",
-    width: "75%",
-    position: "relative",
-    top: "2%",
-    alignSelf: "center",
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: "white",
-    fontSize: 16,
+  surfaceEvent: {
+    marginTop: "2%",
+    marginLeft: -119,
+    width: 130,
+    left: "10%",
+    height: 45,
   },
 
   interestPoints: {

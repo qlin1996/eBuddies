@@ -108,18 +108,9 @@ class RecommendedEvents extends React.Component {
                 {events.map((event) => {
                   return (
                     <View key={event.id}>
-                      <View style={Style.childContainer}>
-                        <View style={Style.childrenContainer}>
-                          <Text style={Style.interestPoints}>
-                            Because on your Interest in{" "}
-                            <Text style={Style.specificInterest}>
-                              {event.category}{" "}
-                            </Text>
-                          </Text>
-                        </View>
-
-                        <Event event={event} />
-                        <View style={Style.recEvents}>
+                      <Event event={event} />
+                      <View style={Style.recEvents}>
+                        <Surface style={Style.surfaceEvent}>
                           <Button
                             title="View Event"
                             onPress={() => {
@@ -128,7 +119,7 @@ class RecommendedEvents extends React.Component {
                               });
                             }}
                           />
-                        </View>
+                        </Surface>
                       </View>
                     </View>
                   );

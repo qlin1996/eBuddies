@@ -12,6 +12,26 @@ export default StyleSheet.create({
     width: Dimensions.get("window").width,
     height: "91%",
   },
+  surface: {
+    marginTop: 25,
+    left: -100,
+    width: "30%",
+    height: 40,
+    marginBottom: 30,
+  },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 117,
+    marginTop: -25,
+    marginBottom: 50,
+  },
+  surfaceHere: {
+    marginTop: -69,
+    right: -104,
+    height: 40,
+    width: "30%",
+    marginBottom: 120,
+  },
   eventName: {
     fontSize: 15,
     width: 100,

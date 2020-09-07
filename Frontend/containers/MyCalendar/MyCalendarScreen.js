@@ -5,7 +5,7 @@ import Style from "./MyCalendarScreenStyle";
 import Event from "../Event/EventScreen";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
-
+import { Card, Title, Paragraph, Surface, Appbar } from "react-native-paper";
 class MyCalendar extends React.Component {
   constructor() {
     super();
@@ -46,6 +46,13 @@ class MyCalendar extends React.Component {
     const events = this.state.events || [];
     return (
       <>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title={`Viewing ${this.props.user.firstName} ${this.props.user.lastName}'s Calendar...`}
+            subtitle="eBuddies"
+            color="white"
+          />
+        </Appbar.Header>
         <ScrollView>
           <Button title="Events I Host" onPress={this.eventsIHost} />
           <Button title="Events I Attend" onPress={this.eventsIAttend} />
@@ -54,7 +61,7 @@ class MyCalendar extends React.Component {
             return (
               <View key={event.id}>
                 <Event event={event} />
-                <View style={Style.myEvents}>
+                <Surface style={Style.surface}>
                   <Button
                     title="VIEW EVENT"
                     onPress={() => {
@@ -63,7 +70,7 @@ class MyCalendar extends React.Component {
                       });
                     }}
                   ></Button>
-                </View>
+                </Surface>
               </View>
             );
           })}

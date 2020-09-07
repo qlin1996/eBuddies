@@ -96,6 +96,7 @@ class ChatScreen extends React.Component {
           style={Style.userImage}
         />
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+        {/* <Text>{chatMessage.sender.firstName}</Text> */}
       </View>
     ));
 

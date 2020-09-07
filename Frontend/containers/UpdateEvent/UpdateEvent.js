@@ -88,10 +88,8 @@ class AddEventScreen extends React.Component {
 
   handleDelete = async () => {
     await this.props.deleteEvent(this.state.eventId);
-    console.log("deleted");
     await this.props.getAllEvents();
-
-    this.props.navigation.navigate("MyCalendarScreen");
+    this.props.navigation.navigate("EVENTS");
   };
 
   handleChange = (event) => {

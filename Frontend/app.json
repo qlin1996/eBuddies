@@ -6,12 +6,13 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash_2.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "notification": {
-      "icon": "./assets/splash.png"
+      "icon": "./assets/splash.png",
+      "androidMode": "default"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -22,6 +23,23 @@
       "bundleIdentifier": "com.example.eBuddies",
       "config": {
         "googleMapsApiKey": "AIzaSyC9lymu4XWgp-EgAU33l3XxWJmNbtRwvxc"
+      }
+    },
+    "android": {
+      "package": "com.example.eBuddies",
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "READ_CALENDAR",
+        "WRITE_CALENDAR"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDf8jGJzsmyOZjfk1o59Lkq5i-OMOzNE38"
+        }
       }
     },
     "web": {

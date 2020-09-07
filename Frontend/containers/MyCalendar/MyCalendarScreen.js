@@ -5,7 +5,15 @@ import Style from "./MyCalendarScreenStyle";
 import Event from "../Event/EventScreen";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
-import { Card, Title, Paragraph, Surface, Appbar } from "react-native-paper";
+import {
+  Card,
+  Title,
+  Paragraph,
+  Surface,
+  Appbar,
+  List,
+  Colors,
+} from "react-native-paper";
 class MyCalendar extends React.Component {
   constructor() {
     super();
@@ -54,8 +62,22 @@ class MyCalendar extends React.Component {
           />
         </Appbar.Header>
         <ScrollView>
-          <Button title="Events I Host" onPress={this.eventsIHost} />
-          <Button title="Events I Attend" onPress={this.eventsIAttend} />
+          <Surface style={Style.surfaceHost}>
+            <Button title="Events I Host" onPress={this.eventsIHost} />
+            <List.Icon
+              style={Style.hostIcon}
+              color={Colors.blue500}
+              icon="folder"
+            />
+          </Surface>
+          <Surface style={Style.surfaceAttend}>
+            <Button title="Events I Attend" onPress={this.eventsIAttend} />
+            <List.Icon
+              style={Style.attendeeIcon}
+              color={Colors.blue500}
+              icon="calendar"
+            />
+          </Surface>
 
           {events.map((event) => {
             return (

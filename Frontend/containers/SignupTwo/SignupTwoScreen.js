@@ -93,7 +93,6 @@ class SignupTwo extends React.Component {
               subtitle="eBuddies"
               color="white"
             />
-            <Appbar.Action icon="dots-vertical" color="white" />
           </Appbar.Header>
           <TextInput
             style={styles.textInputCity}
@@ -107,7 +106,10 @@ class SignupTwo extends React.Component {
             placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
-          <Image style={styles.city} source={require("./city.png")} />
+          <Image
+            style={styles.city}
+            source={require("../../assets/city.png")}
+          />
           {this.state.city.length === 0 && (
             <Text style={styles.validators}>City is Required</Text>
           )}
@@ -179,7 +181,10 @@ class SignupTwo extends React.Component {
               ]}
             />
           </View>
-          <Image style={styles.state} source={require("./state.png")} />
+          <Image
+            style={styles.state}
+            source={require("../../assets/state.png")}
+          />
           {this.state.state.length === 0 && (
             <Text style={styles.validators}>State is Required</Text>
           )}
@@ -196,7 +201,7 @@ class SignupTwo extends React.Component {
             placeholderTextColor="#BEBEBE"
             keyboardType="name-phone-pad"
           />
-          <Image style={styles.zip} source={require("./zip.png")} />
+          <Image style={styles.zip} source={require("../../assets/zip.png")} />
           {!this.isValidUSZip(this.state.zipCode) && (
             <Text style={styles.validators}>Valid US Zip Code is Required</Text>
           )}
@@ -215,7 +220,7 @@ class SignupTwo extends React.Component {
           />
           <Image
             style={styles.description}
-            source={require("./description.png")}
+            source={require("../../assets/description.png")}
           />
 
           <View style={styles.picOption}>

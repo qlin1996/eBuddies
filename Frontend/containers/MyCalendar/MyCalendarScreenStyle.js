@@ -16,6 +16,30 @@ export default StyleSheet.create({
     height: 40,
     marginBottom: 35,
   },
+  attendeeIcon: {
+    marginTop: -35,
+    width: 100,
+    marginLeft: -20,
+  },
+  hostIcon: {
+    marginTop: -35,
+    width: 100,
+    marginLeft: -20,
+  },
+  surfaceHost: {
+    alignSelf: "center",
+    width: "55%",
+    marginTop: 4,
+    height: 55,
+    backgroundColor: "white",
+    marginBottom: 3,
+  },
+  surfaceAttend: {
+    alignSelf: "center",
+    backgroundColor: "white",
+    width: "55%",
+    height: 55,
+  },
   appHeader: {
     backgroundColor: "rgba(66, 135, 245, 1)",
     height: 60,

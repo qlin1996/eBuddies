@@ -115,13 +115,16 @@ class Login extends React.Component {
             <Text style={styles.loginBox}>Login</Text>
             <View>
               <TouchableOpacity onPress={() => this.signInWithGoogle()}>
-                <Image source={require("./google.png")} style={styles.logo1} />
+                <Image
+                  source={require("../../assets/google.png")}
+                  style={styles.logo1}
+                />
               </TouchableOpacity>
             </View>
             <View>
               <TouchableOpacity onPress={this.logInFb}>
                 <Image
-                  source={require("./fb.png")}
+                  source={require("../../assets/fb.png")}
                   style={{
                     width: 30,
                     height: 30,
@@ -154,7 +157,10 @@ class Login extends React.Component {
                 placeholderTextColor="#BEBEBE"
                 keyboardType="email-address"
               />
-              <Image style={styles.email} source={require("./email.png")} />
+              <Image
+                style={styles.email}
+                source={require("../../assets/email.png")}
+              />
               {this.state.password.length === 0 && (
                 <Text style={styles.validators}>Password is Required</Text>
               )}
@@ -172,7 +178,7 @@ class Login extends React.Component {
               />
               <Image
                 style={styles.password}
-                source={require("./password.png")}
+                source={require("../../assets/password.png")}
               />
               <View style={styles.button}>
                 <Button

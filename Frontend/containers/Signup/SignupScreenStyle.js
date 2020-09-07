@@ -6,7 +6,7 @@ export default StyleSheet.create({
   // },
   container1: {
     backgroundColor: "white",
-    marginTop: 35,
+    marginTop: 10,
     marginBottom: "20%",
     marginLeft: 18,
     marginRight: 18,
@@ -14,18 +14,7 @@ export default StyleSheet.create({
     borderColor: "white",
     borderRadius: 10,
   },
-  containerBox: {
-    marginRight: "20%",
-    marginLeft: "21%",
-    position: "relative",
-    top: "-4.6%",
-    backgroundColor: "rgba(38,153,251,0.6)",
-    borderRadius: 4,
-    borderWidth: 2,
-    borderColor: "rgba(38,153,251,0.1)",
-    width: "56%",
-    height: "17%",
-  },
+
   loginBox: {
     fontSize: 23,
     marginTop: 20,
@@ -62,6 +51,21 @@ export default StyleSheet.create({
     width: "8%",
     height: "4.7%",
   },
+  textInputName: {
+    height: 26.5,
+    marginTop: 40,
+    marginLeft: 0,
+    color: "#BEBEBE",
+    marginLeft: 30,
+    marginRight: 30,
+    borderColor: "#BEBEBE",
+    letterSpacing: 1,
+    textAlign: "left",
+    fontSize: 16,
+    borderBottomWidth: 1,
+    width: "85%",
+    marginBottom: 30,
+  },
   textInput: {
     height: 26.5,
     marginTop: 10,
@@ -89,6 +93,10 @@ export default StyleSheet.create({
     position: "relative",
     top: "-7%",
   },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 70,
+  },
   validatorsPassword: {
     marginLeft: 30,
     color: "#BEBEBE",
@@ -98,26 +106,10 @@ export default StyleSheet.create({
   button: {
     alignSelf: "center",
     ...Fonts.small,
-    marginTop: "-8%",
+    marginTop: "-6%",
+    marginBottom: "10%",
   },
-  login: {
-    alignSelf: "center",
-    ...Fonts.normal,
-    marginBottom: "15%",
-    marginTop: "-3%",
-  },
-  account: {
-    marginTop: 19,
-    ...Fonts.small,
-    color: "#BEBEBE",
-  },
-  arrow: {
-    width: 30,
-    height: 40,
-    position: "relative",
-    top: -50,
-    left: 15,
-  },
+
   logo: {
     alignSelf: "center",
   },

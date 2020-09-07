@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Button, Image, TouchableHighlight } from "react-native";
+import { View, Button, Text, Image, TouchableHighlight } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { connect } from "react-redux";
 import { Fonts } from "../../themes";
@@ -8,6 +8,7 @@ import { postNewInterest } from "../../store/interest";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import Constants from "expo-constants";
+import { Appbar, Card, Surface } from "react-native-paper";
 
 class Interests extends React.Component {
   constructor() {
@@ -47,10 +48,6 @@ class Interests extends React.Component {
       password: this.props.navigation.getParam("password"),
     });
   }
-
-  handleLogin = () => {
-    this.props.navigation.navigate("LOGIN");
-  };
 
   updateChoice = (event) => {
     if (event === "food") {
@@ -139,21 +136,20 @@ class Interests extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Image
-          source={require("../../assets/ebuddies.gif")}
-          style={styles.logo}
-        />
-        <View style={styles.background}>
-          <View></View>
-          <View>
-            <Text style={styles.header}>Select Interests</Text>
-          </View>
-          <View>
-            <View
-              style={
-                this.state.pressStatus1 ? styles.button : styles.buttonPress
-              }
-            >
+        <Appbar.Header style={styles.appHeader}>
+          <Appbar.Content
+            title="Select Interests"
+            subtitle="eBuddies"
+            color="white"
+          />
+          <Appbar.Action icon="dots-vertical" color="white" />
+        </Appbar.Header>
+
+        <Card style={styles.card}>
+          <View
+            style={this.state.pressStatus1 ? styles.button : styles.buttonPress}
+          >
+            <Surface style={styles.surface}>
               <Button
                 color="rgba(38,153,251,1)"
                 title="Food"
@@ -161,12 +157,12 @@ class Interests extends React.Component {
                   this.updateChoice("food");
                 }}
               />
-            </View>
-            <View
-              style={
-                this.state.pressStatus2 ? styles.button : styles.buttonPress
-              }
-            >
+            </Surface>
+          </View>
+          <View
+            style={this.state.pressStatus2 ? styles.button : styles.buttonPress}
+          >
+            <Surface style={styles.surface}>
               <Button
                 color="rgba(38,153,251,1)"
                 title="Entertainment"
@@ -174,12 +170,12 @@ class Interests extends React.Component {
                   this.updateChoice("entertainment");
                 }}
               />
-            </View>
-            <View
-              style={
-                this.state.pressStatus3 ? styles.button : styles.buttonPress
-              }
-            >
+            </Surface>
+          </View>
+          <View
+            style={this.state.pressStatus3 ? styles.button : styles.buttonPress}
+          >
+            <Surface style={styles.surface}>
               <Button
                 color="rgba(38,153,251,1)"
                 title="Fitness"
@@ -187,12 +183,12 @@ class Interests extends React.Component {
                   this.updateChoice("fitness");
                 }}
               />
-            </View>
-            <View
-              style={
-                this.state.pressStatus4 ? styles.button : styles.buttonPress
-              }
-            >
+            </Surface>
+          </View>
+          <View
+            style={this.state.pressStatus4 ? styles.button : styles.buttonPress}
+          >
+            <Surface style={styles.surface}>
               <Button
                 color="rgba(38,153,251,1)"
                 title="Education"
@@ -200,35 +196,14 @@ class Interests extends React.Component {
                   this.updateChoice("education");
                 }}
               />
-            </View>
+            </Surface>
           </View>
 
-          <View style={styles.continueButton}>
-            <Button
-              onPress={this.handleSignup}
-              color="white"
-              style={{ ...Fonts.normal, textAlign: "center" }}
-              title="CONTINUE"
-            >
-              CONTINUE
-            </Button>
-          </View>
-          <View style={styles.account}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="Already have an account?"
-            />
-          </View>
-          <View style={styles.login}>
-            <Button
-              color="rgba(38,153,251,1)"
-              style={{ ...Fonts.small }}
-              title="LOGIN"
-              onPress={this.handleLogin}
-            />
-          </View>
-        </View>
+          <Card.Actions style={styles.actions}>
+            <Button title="CANCEL" />
+            <Button onPress={this.handleSignup} title="CONTINUE" />
+          </Card.Actions>
+        </Card>
       </View>
     );
   }

@@ -16,20 +16,23 @@ const Event = (props) => {
   return (
     <>
       <Card style={Style.card}>
-        <Card.Title title={`${event.name}`} />
-        <Paragraph style={Style.cardAddress}>
-          Location: {event.address}
+        <Paragraph style={Style.title}>
+          {""}
+          {event.name}
         </Paragraph>
+        <Paragraph style={Style.cardAddress}>{event.address}</Paragraph>
+        <Paragraph style={Style.cardAddress}>
+          {event.city}, {event.state} {""}
+          {event.zipCode}
+        </Paragraph>
+
         <Paragraph style={Style.cardDate}>
-          Date:{" "}
           {event.date
             ? event.date.slice(5, 10) + "-" + event.date.slice(0, 4)
-            : null}
+            : null}{" "}
+          {"at"} {event.time ? convertTime(event.time) : null}
         </Paragraph>
-        <Paragraph style={Style.cardTime}>
-          {" "}
-          Time: {event.time ? convertTime(event.time) : null}
-        </Paragraph>
+
         <Card.Cover style={Style.cardImg} source={{ uri: event.imgUrl }} />
         <Card.Content>
           <Paragraph style={Style.cardDescription}>

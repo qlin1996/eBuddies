@@ -166,7 +166,7 @@ class JoinedEvent extends React.Component {
               visible={this.state.visible}
               onDismiss={this.closeMenu}
               anchor={
-                <Button onPress={this.openMenu} title="Show menu">
+                <Button onPress={this.openMenu} title="Show menu" color="white">
                   Show menu
                 </Button>
               }

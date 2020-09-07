@@ -127,7 +127,7 @@ async function seed() {
     time: "22:20:00 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:
-      "https://i0.wp.com/lexiholden.com/wp-content/uploads/2017/07/Barrys.jpg?fit=600%2C447&ssl=1",
+      "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
     userId: 2,
     hostId: 1,
     latitude: 40.7286,
@@ -142,7 +142,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Sun 06 Sep 2020",
+    date: "Sun 13 Sep 2020",
     time: "21:56:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSefez5wycJVaPtrsiM4CMTCc7h2kjLhrOiog&usqp=CAU",
@@ -178,8 +178,8 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10013",
-    date: "Sat 17 Oct 2020",
-    time: "11:00:00 GMT-0400 (EDT)",
+    date: "Sun 13 Sep 2020",
+    time: "21:56:00 GMT-0400 (EDT)",
     imgUrl:
       "https://d33bcppgye6mnb.cloudfront.net/users/gallery/gqnexTODjppWllkY.jpg",
     userId: 1,

@@ -14,8 +14,6 @@ export default StyleSheet.create({
     width: "27%",
     alignSelf: "center",
     borderRadius: 10,
-    // padding: 2,
-    // margin: 1,
     position: "relative",
     top: "-13%",
     color: "white",
@@ -26,8 +24,9 @@ export default StyleSheet.create({
   },
   surface: {
     marginTop: 15,
-    right: 116,
+    alignSelf: "center",
     height: 40,
+    width: 130,
   },
 
   eventFooter: {

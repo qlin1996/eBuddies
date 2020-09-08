@@ -141,14 +141,14 @@ export default StyleSheet.create({
   },
   surface: {
     marginTop: "-8.5%",
-    width: "35%",
+    width: 130,
     left: "10%",
     height: 40,
   },
   surfaceMap: {
-    marginTop: "-10.5%",
+    marginTop: "-9.4%",
     marginBottom: 10,
-    width: "35%",
+    width: 130,
     left: "55.3%",
     height: 40,
   },

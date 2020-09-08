@@ -50,11 +50,7 @@ class AllEvents extends React.Component {
     return (
       <>
         <Appbar.Header style={Style.appHeader}>
-          <Appbar.Content
-            title="Viewing All Events...."
-            subtitle="eBuddies"
-            color="white"
-          />
+          <Appbar.Content title="Viewing All Events...." color="white" />
         </Appbar.Header>
         <ScrollView>
           {events.length >= 1 ? (

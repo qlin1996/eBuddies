@@ -64,7 +64,6 @@ export const editActivityAttendance = (eventId, userId, attendance) => async (
       `${serverLink}/api/events/${eventId}/users/${userId}`,
       attendance
     );
-    console.log(data, "CHECK ATTENDANCE");
     return dispatch(editAttendance(data));
   } catch (error) {
     console.error(error);

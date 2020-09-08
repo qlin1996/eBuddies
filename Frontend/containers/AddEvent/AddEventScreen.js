@@ -18,7 +18,7 @@ import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Cors } from "../../themes";
-import RNPickerSeect from "react-native-picker-select";
+import RNPickerSelect from "react-native-picker-select";
 import * as Notifications from "expo-notifications";
 import {
   Zocial,

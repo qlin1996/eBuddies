@@ -84,6 +84,9 @@ class SignupTwo extends React.Component {
   };
 
   render() {
+    const uri =
+      this.state.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <ScrollView>
         <View style={styles.container1}>
@@ -233,7 +236,7 @@ class SignupTwo extends React.Component {
             <Image
               style={styles.image}
               source={{
-                uri: this.state.imgUrl,
+                uri: uri,
               }}
             />
           </View>

@@ -124,8 +124,12 @@ class SingleEvent extends React.Component {
   };
 
   render() {
+    const uri =
+      this.props.event.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <>
+
         <View style={Style.container1}>
           <Appbar.Header style={Style.appHeader}>
             <Appbar.Content
@@ -163,7 +167,8 @@ class SingleEvent extends React.Component {
 
             <Card.Cover
               style={Style.cardImg}
-              source={{ uri: this.props.event.imgUrl }}
+              source={{  uri: uri }}
+
             />
             <Card.Content>
               <Paragraph style={Style.cardDescription}>

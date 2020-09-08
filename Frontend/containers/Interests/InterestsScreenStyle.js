@@ -44,7 +44,6 @@ export default StyleSheet.create({
     color: "blue",
     alignItems: "center",
     justifyContent: "center",
-    elevation: 4,
   },
   appHeader: {
     backgroundColor: "rgba(38,153,251, .4)",

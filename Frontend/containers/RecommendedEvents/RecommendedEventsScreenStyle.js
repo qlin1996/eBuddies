@@ -28,7 +28,6 @@ export default StyleSheet.create({
     width: "36%",
     alignItems: "center",
     justifyContent: "center",
-    elevation: 4,
   },
   eventButton: {
     ...Fonts.normal,

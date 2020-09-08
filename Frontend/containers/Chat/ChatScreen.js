@@ -8,7 +8,16 @@ import { getUserInfo } from "../../store/user";
 import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
 import { serverLink } from "../../store/serverLink";
-
+import {
+  Card,
+  Title,
+  Paragraph,
+  Surface,
+  Appbar,
+  Menu,
+  Divider,
+  Provider,
+} from "react-native-paper";
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
@@ -87,7 +96,6 @@ class ChatScreen extends React.Component {
     const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
       <View style={Style.chatMessages} key={index}>
         <Text style={Style.chatMessage}>{chatMessage.message}</Text>
-        <Text>{chatMessage.sender.firstName}</Text>
 
         <Image
           source={{
@@ -95,22 +103,24 @@ class ChatScreen extends React.Component {
           }}
           style={Style.userImage}
         />
-        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
-        {/* <Text>{chatMessage.sender.firstName}</Text> */}
       </View>
     ));
 
     return (
       <ScrollView nestedScrollEnabled>
-        <View>
-          <Text style={Style.welcomeChat}>
-            {this.props.event.name} Groupchat
-          </Text>
+        <View style={Style.container1}>
+          <Appbar.Header style={Style.appHeader}>
+            <Appbar.Content
+              title={`${this.props.event.name} Groupchat`}
+              color="white"
+            />
+          </Appbar.Header>
+          <View>
+            <Text>{""}</Text>
+          </View>
+          {chatMessages}
         </View>
-
-        {chatMessages}
-
-        <View style={Style.textInputWrapper}>
+        <Surface style={Style.surface}>
           <TextInput
             style={Style.textInput}
             autoCorrect={false}
@@ -120,10 +130,10 @@ class ChatScreen extends React.Component {
               this.setState({ chatMessage: { message: chatMessage } });
             }}
           />
-          <View style={Style.sendMessageButton}>
-            <Button title="SEND" onPress={this.submitChatMessage}></Button>
-          </View>
-        </View>
+        </Surface>
+        <Surface style={Style.surfaceButton}>
+          <Button title="SEND" onPress={this.submitChatMessage}></Button>
+        </Surface>
       </ScrollView>
     );
   }

@@ -120,16 +120,9 @@ class SignupTwo extends React.Component {
                 value: null,
               }}
               style={{
-                inputIOS: {
-                  placeholderColor: "#4d4a4a",
-                  fontSize: 16,
-                  color: "#4d4a4a",
-                },
-                inputAndroid: {
-                  placeholderColor: "#4d4a4a",
-                  fontSize: 16,
-                  color: "#4d4a4a",
-                },
+                placeholder: { color: "#4d4a4a", fontSize: 16 },
+                inputIOS: { color: "#4d4a4a", fontSize: 16 },
+                inputAndroid: { color: "#4d4a4a", fontSize: 16 },
               }}
               items={[
                 { label: "Alabama", value: "Alabama" },

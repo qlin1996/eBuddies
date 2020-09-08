@@ -31,7 +31,7 @@ export default StyleSheet.create({
     borderBottomColor: "#BEBEBE",
     marginHorizontal: 40,
     marginBottom: 20,
-    color: "#4d4a4a",
+    color: "pink",
     paddingHorizontal: 10,
   },
   picOption1: {

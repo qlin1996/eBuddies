@@ -4,7 +4,7 @@ export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
     marginTop: 10,
-    marginBottom: "20%",
+    marginBottom: "50%",
     marginLeft: 18,
     marginRight: 18,
     borderWidth: 1,
@@ -131,6 +131,7 @@ export default StyleSheet.create({
     ...Fonts.small,
     marginTop: "-6%",
     marginBottom: "28%",
+    // marginBottom: "50%",
   },
 
   logo: {

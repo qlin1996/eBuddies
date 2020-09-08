@@ -9,10 +9,16 @@ export default StyleSheet.create({
     marginBottom: 50,
     marginHorizontal: 50,
   },
+  container1: {
+    marginTop: 15,
+    marginBottom: 20,
+    marginLeft: 18,
+    marginRight: 18,
+  },
   surface: {
     marginTop: -60,
     alignSelf: "center",
-    width: "30%",
+    width: "35%",
     height: 40,
     marginBottom: 35,
   },

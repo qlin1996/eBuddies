@@ -185,7 +185,7 @@ class SingleEvent extends React.Component {
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
             <Image
-              source={require("../../assets/ebuddies.gif")}
+              source={require("../../assets/ebuddies_logo.png")}
               style={Style.logo2}
             />
             <View style={Style.modalText}>
@@ -208,7 +208,7 @@ class SingleEvent extends React.Component {
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
             <Image
-              source={require("../../assets/ebuddies.gif")}
+              source={require("../../assets/ebuddies_logo.png")}
               style={Style.logo}
             />
             <View style={Style.modalText}>

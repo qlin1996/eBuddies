@@ -141,7 +141,7 @@ class Maps extends React.Component {
               <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
                 <View>
                   <Image
-                    source={require("../../assets/ebuddies.gif")}
+                    source={require("../../assets/ebuddies_logo.png")}
                     style={styles.logo}
                   />
                   <View style={styles.modalText}>
@@ -161,7 +161,7 @@ class Maps extends React.Component {
               >
                 <View>
                   <Image
-                    source={require("../../assets/ebuddies.gif")}
+                    source={require("../../assets/ebuddies_logo.png")}
                     style={styles.logo}
                   />
                   <View style={styles.modalText}>

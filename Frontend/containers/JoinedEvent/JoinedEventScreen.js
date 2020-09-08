@@ -105,6 +105,9 @@ class JoinedEvent extends React.Component {
   };
 
   render() {
+    const uri =
+      this.props.event.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <ScrollView>
         <Appbar.Header style={Style.appHeader}>
@@ -141,10 +144,7 @@ class JoinedEvent extends React.Component {
               : null}
           </Paragraph>
 
-          <Card.Cover
-            style={Style.cardImg}
-            source={{ uri: this.props.event.imgUrl }}
-          />
+          <Card.Cover style={Style.cardImg} source={{ uri: uri }} />
           <Card.Content>
             <Paragraph style={Style.cardDescription}>
               {this.props.event.description}

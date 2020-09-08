@@ -12,6 +12,9 @@ const Event = (props) => {
     let ampm = hour < 12 || hour === 24 ? "AM" : "PM";
     return h + timeString.substr(2, 3) + ampm;
   }
+  const uri =
+    event.imgUrl ||
+    "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
 
   return (
     <>
@@ -33,7 +36,7 @@ const Event = (props) => {
           {"at"} {event.time ? convertTime(event.time) : null}
         </Paragraph>
 
-        <Card.Cover style={Style.cardImg} source={{ uri: event.imgUrl }} />
+        <Card.Cover style={Style.cardImg} source={{ uri: uri }} />
         <Card.Content>
           <Paragraph style={Style.cardDescription}>
             {event.description}

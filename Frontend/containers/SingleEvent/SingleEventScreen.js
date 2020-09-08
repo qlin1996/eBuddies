@@ -190,7 +190,7 @@ class SingleEvent extends React.Component {
             <Image
               style={Style.image2}
               source={{
-                uri: this.props.event.imgUrl,
+                uri: uri,
               }}
             />
           </View>

@@ -1,5 +1,3 @@
-// Define color here instead of duplicating them throughout the components. Allows to change colors more easily later on.
-
 export default {
   transparent: "rgba(0,0,0,0)",
   blue: "rgba(38, 153, 251, 1)",

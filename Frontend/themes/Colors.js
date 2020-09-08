@@ -3,7 +3,7 @@
 export default {
   transparent: "rgba(0,0,0,0)",
   blue: "rgba(38, 153, 251, 1)",
-  darkBlue: "#000095",
+  darkBlue: "#208bec",
   mediumBlue: "rgba(188, 224, 253, 1)",
   white: "rgb(235, 233, 233)",
   text: "#212529",

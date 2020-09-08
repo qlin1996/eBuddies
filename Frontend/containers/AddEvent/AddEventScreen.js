@@ -264,10 +264,15 @@ class AddEventScreen extends React.Component {
                 this.setState({ state: state });
               }}
               placeholder={{
-                label: "Select State",
+                color: "#4d4a4a",
+                label: "Select State...",
                 value: null,
               }}
-              placeholderTextColor="#4d4a4a"
+              style={{
+                placeholder: { color: "#4d4a4a", fontSize: 16 },
+                inputIOS: { color: "#4d4a4a", fontSize: 16 },
+                inputAndroid: { color: "#4d4a4a", fontSize: 16 },
+              }}
               items={[
                 { label: "Alabama", value: "Alabama" },
                 { label: "Alaska", value: "Alaska" },
@@ -447,8 +452,14 @@ class AddEventScreen extends React.Component {
                 this.setState({ category: category });
               }}
               placeholder={{
-                label: "Select Category",
+                color: "#4d4a4a",
+                label: "Select Category...",
                 value: null,
+              }}
+              style={{
+                placeholder: { color: "#4d4a4a", fontSize: 16 },
+                inputIOS: { color: "#4d4a4a", fontSize: 16 },
+                inputAndroid: { color: "#4d4a4a", fontSize: 16 },
               }}
               items={[
                 { label: "Food", value: "Food" },

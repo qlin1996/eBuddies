@@ -252,7 +252,7 @@ async function seed() {
     state: "NY",
     zipCode: "10010",
     date: "Tue 06 Oct 2020",
-    time: "22:00:00 GMT-0400 (EDT)",
+    time: "22:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://images.ctfassets.net/7m90b3o5uk7x/nO9VBVHWoKeE6YQYK6ymY/071c2374fe487abd3dfe0d310d44d092/intersitial-three.jpg",
     userId: 1,
@@ -270,7 +270,7 @@ async function seed() {
     state: "NY",
     zipCode: "10002",
     date: "Mon 16 Nov 2020",
-    time: "13:00:00 GMT-0400 (EDT)",
+    time: "13:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://cdn.vox-cdn.com/thumbor/OYm9rG5J6SJM_Cd3p8ebHiIXuTY=/0x0:5823x3890/1400x1400/filters:focal(2446x1480:3376x2410):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47518355/Pizza_Beach_LES-10.0.0.jpg",
     userId: 1,
@@ -288,7 +288,7 @@ async function seed() {
     state: "NY",
     zipCode: "10003",
     date: "Mon 23 Nov 2020",
-    time: "21:00:00 GMT-0400 (EDT)",
+    time: "21:30:00 GMT-0400 (EDT)",
     imgUrl: "https://media.timeout.com/images/105442066/image.jpg",
     userId: 1,
     hostId: 3,
@@ -303,7 +303,7 @@ async function seed() {
     state: "NY",
     zipCode: "10053",
     date: "Mon 16 Nov 2020",
-    time: "22:00:00 GMT-0400 (EDT)",
+    time: "22:15:00 GMT-0400 (EDT)",
     imgUrl: "https://media.timeout.com/images/105451946/630/472/image.jpg",
     userId: 3,
     hostId: 1,
@@ -321,7 +321,7 @@ async function seed() {
     state: "NY",
     zipCode: "10001",
     date: "Fri 04 Dec 2020",
-    time: "12:00:00 GMT-0400 (EDT)",
+    time: "12:45:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.tun.com/blog/wp-content/uploads/2016/03/NY-Public-Library-NewYorkMania-9072.jpg",
     userId: 1,
@@ -339,7 +339,7 @@ async function seed() {
     state: "NY",
     zipCode: "10019",
     date: "Sat 19 Dec 2020",
-    time: "07:00:00 GMT-0400 (EDT)",
+    time: "07:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://static1.squarespace.com/static/ta/58ee7cf9db29d6de1df46651/189/assets/img/photos/gc5/003.jpg",
     userId: 2,
@@ -357,7 +357,7 @@ async function seed() {
     state: "NY",
     zipCode: "10023",
     date: "Sat 12 Dec 2020",
-    time: "09:00:00 GMT-0400 (EDT)",
+    time: "09:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://news.fordham.edu/wp-content/uploads/2019/09/Lincoln-Center-fall-1078.jpg",
     userId: 1,
@@ -377,7 +377,7 @@ async function seed() {
     state: "NY",
     zipCode: "10019",
     date: "Mon 09 Nov 2020",
-    time: "20:00:00 GMT-0400 (EDT)",
+    time: "20:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_t8batvNXd4ERMcJl1h0G3Cfhe_aqXqmzTg&usqp=CAU",
     userId: 3,
@@ -395,7 +395,7 @@ async function seed() {
     state: "NY",
     zipCode: "10003",
     date: "Tue 15 Sep 2020",
-    time: "23:00:00 GMT-0400 (EDT)",
+    time: "23:45:00 GMT-0400 (EDT)",
     imgUrl:
       "https://static.billboard.com/files/media/Kanye-West-forum-calif-2016-nov-billboard-1548-1024x677.jpg",
     userId: 1,
@@ -413,7 +413,7 @@ async function seed() {
     state: "NY",
     zipCode: "10019",
     date: "Tue 15 Sep 2020",
-    time: "12:00:00 GMT-0400 (EDT)",
+    time: "12:15:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSAMnxkkcMA63Bm8CD5JgV223nOzRfw-kgyQA&usqp=CAU",
     userId: 1,
@@ -430,7 +430,7 @@ async function seed() {
     state: "NJ",
     zipCode: "08750",
     date: "Fri 04 Sep 2020",
-    time: "22:00:00 GMT-0400 (EDT)",
+    time: "22:45:00 GMT-0400 (EDT)",
     imgUrl:
       "https://i.insider.com/5d2798f9a17d6c45e50f623a?width=1100&format=jpeg&auto=webp",
     userId: 3,

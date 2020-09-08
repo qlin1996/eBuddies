@@ -26,10 +26,11 @@ export default StyleSheet.create({
     marginBottom: 30,
   },
   surfaceHere: {
-    marginLeft: "51%",
-    height: 40,
-    marginTop: -40,
-    width: "30%",
+    marginLeft: "15%",
+    height: 150,
+    marginTop: "15%",
+    width: "70%",
+    padding: 10,
   },
   error: {
     textAlign: "center",

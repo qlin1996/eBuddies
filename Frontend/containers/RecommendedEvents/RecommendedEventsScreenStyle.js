@@ -21,11 +21,10 @@ export default StyleSheet.create({
     marginRight: "10%",
   },
   surface: {
-    padding: 6,
     height: 50,
     margin: 4,
     marginTop: 12,
-    width: "36%",
+    width: 130,
     alignItems: "center",
     justifyContent: "center",
   },

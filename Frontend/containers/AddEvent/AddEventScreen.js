@@ -12,7 +12,6 @@ import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
 import styles from "./AddEventScreenStyle";
-import Style from "./AddEventScreenStyle";
 import { Appbar, Surface } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
@@ -51,8 +50,7 @@ class AddEventScreen extends React.Component {
       category: "",
       description: "",
       eventId: "",
-      imgUrl:
-        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
+      imgUrl: "",
       isModalVisible: false,
       hostId: "",
       isDatePickerVisible: false,
@@ -130,8 +128,7 @@ class AddEventScreen extends React.Component {
           time: "",
           description: "",
           eventId: "",
-          imgUrl:
-            "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
+          imgUrl: "",
           hostId: "",
           selectedValue: "Food",
         });
@@ -182,7 +179,7 @@ class AddEventScreen extends React.Component {
 
           <View>
             <Image
-              style={Style.image}
+              style={styles.image}
               source={{
                 uri: this.state.imgUrl,
               }}
@@ -318,7 +315,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
-            style={Style.textInput}
+            style={styles.textInput}
             placeholder="Event Zip Code..."
             selectionColor="#428AF8"
             placeholderTextColor="#4d4a4a"
@@ -413,7 +410,7 @@ class AddEventScreen extends React.Component {
               textAlign: "left",
               fontSize: 16,
               borderBottomWidth: 1,
-              width: "85%",
+              width: "80%",
             }}
             selectionColor="#428AF8"
             placeholderTextColor="#4d4a4a"
@@ -468,19 +465,19 @@ class AddEventScreen extends React.Component {
             <Button title="Add Event" onPress={this.handleSubmit}></Button>
           </View>
 
-          <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
+          <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
               <Image
                 source={require("../../assets/ebuddies.gif")}
-                style={Style.logo}
+                style={styles.logo}
               />
-              <View style={Style.modalText}>
+              <View style={styles.modalText}>
                 <Text style={{ ...Fonts.h4 }}>
                   Event, {this.state.name} has been added!
                 </Text>
               </View>
               <Image
-                style={Style.image2}
+                style={styles.image2}
                 source={{
                   uri: this.state.imgUrl,
                 }}

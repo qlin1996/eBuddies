@@ -138,17 +138,6 @@ class Maps extends React.Component {
                 <Button title="IM HERE" onPress={this.handleAttendance} />
               </Surface>
 
-              <Surface style={styles.surface}>
-                <Button
-                  title="BACK"
-                  onPress={() => {
-                    this.props.navigation.navigate("SINGLEEVENT", {
-                      id: this.props.event.id,
-                    });
-                  }}
-                />
-              </Surface>
-
               <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
                 <View>
                   <Image

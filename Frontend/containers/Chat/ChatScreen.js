@@ -134,6 +134,18 @@ class ChatScreen extends React.Component {
         <Surface style={Style.surfaceButton}>
           <Button title="SEND" onPress={this.submitChatMessage}></Button>
         </Surface>
+        <View>
+          <Text>{""}</Text>
+        </View>
+        <View>
+          <Text>{""}</Text>
+        </View>
+        <View>
+          <Text>{""}</Text>
+        </View>
+        <View>
+          <Text>{""}</Text>
+        </View>
       </ScrollView>
     );
   }

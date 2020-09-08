@@ -398,7 +398,7 @@ class AddEventScreen extends React.Component {
             >
               Select Time
             </Text>
-            <Text style={styles.textInput}>{this.state.time}</Text>
+            <Text style={styles.textTime}>{this.state.time}</Text>
           </View>
           <MaterialIcons name="access-time" size={22} style={styles.pin} />
           {this.state.time.length === 0 && (

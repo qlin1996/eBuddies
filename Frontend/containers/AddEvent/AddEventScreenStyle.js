@@ -136,6 +136,16 @@ export default StyleSheet.create({
     fontSize: 16,
     color: "rgba(38,153,251,1)",
   },
+  textTime: {
+    color: "#4d4a4a",
+    marginRight: 30,
+    borderColor: "#BEBEBE",
+    letterSpacing: 1,
+    textAlign: "left",
+    fontSize: 16,
+    borderBottomWidth: 1,
+    width: "85%",
+  },
   selectTime: {
     left: 30,
     borderColor: "#BEBEBE",

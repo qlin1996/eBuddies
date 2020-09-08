@@ -16,7 +16,16 @@ export default StyleSheet.create({
     backgroundColor: "rgba(38,153,251, .4)",
     height: 70,
   },
-
+  textTime: {
+    color: "#4d4a4a",
+    marginRight: 30,
+    borderColor: "#BEBEBE",
+    letterSpacing: 1,
+    textAlign: "left",
+    fontSize: 16,
+    borderBottomWidth: 1,
+    width: "85%",
+  },
   picOption: {
     flex: 2,
     marginTop: "-6%",

@@ -38,7 +38,7 @@ export default StyleSheet.create({
   },
   password: {
     position: "relative",
-    top: "-11.5%",
+    top: "-12%",
     left: "86.5%",
     width: "5%",
     height: "5%",

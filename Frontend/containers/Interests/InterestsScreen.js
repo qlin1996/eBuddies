@@ -23,7 +23,8 @@ class Interests extends React.Component {
       pressStatus3: false,
       pressStatus4: false,
       description: "",
-      imgUrl: "",
+      imgUrl:
+        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
       city: "",
       state: "",
       zipCode: "",

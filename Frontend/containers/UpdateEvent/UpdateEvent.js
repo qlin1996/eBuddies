@@ -31,7 +31,8 @@ class AddEventScreen extends React.Component {
       category: "",
       description: "",
       eventId: "",
-      imgUrl: "",
+      imgUrl:
+        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
       isModalVisible: false,
       hostId: "",
       isDatePickerVisible: false,

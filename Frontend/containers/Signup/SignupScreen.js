@@ -66,12 +66,13 @@ class Signup extends React.Component {
           <Appbar.Header style={styles.appHeader}>
             <Appbar.Content title="Sign up" subtitle="(1/3)" color="white" />
           </Appbar.Header>
-          {/* validations */}
+
           {this.state.uniqueEmail === false && (
             <Text style={{ color: "red" }}>
               There is already an account with this email. Please try to login.
             </Text>
           )}
+
           <TextInput
             style={styles.textInputName}
             value={this.state.firstName}

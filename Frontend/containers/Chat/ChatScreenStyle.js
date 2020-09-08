@@ -9,7 +9,8 @@ export default StyleSheet.create({
     paddingVertical: 10,
   },
   appHeader: {
-    backgroundColor: "lightblue",
+    // backgroundColor: "lightblue",
+    backgroundColor: "rgb(38,153,251)",
     height: 65,
   },
   container1: {

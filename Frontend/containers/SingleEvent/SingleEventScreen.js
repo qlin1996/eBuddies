@@ -129,94 +129,106 @@ class SingleEvent extends React.Component {
       "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <>
-        <Appbar.Header style={Style.appHeader}>
-          <Appbar.Content
-            title={`Viewing ${this.props.event.name}...`}
-            subtitle={`We think you'll love this  ${
-              this.props.user.firstName ? this.props.user.firstName : ""
-            } `}
-            color="white"
-          />
-        </Appbar.Header>
-        <Card style={Style.card}>
-          <Card.Title title={`${this.props.event.name}`} />
-          <Paragraph style={Style.cardAddress}>
-            Location: {this.props.event.address}
-          </Paragraph>
-          <Paragraph style={Style.cardDate}>
-            Date:{" "}
-            {this.props.event.date
-              ? this.props.event.date.slice(5, 10) +
-                "-" +
-                this.props.event.date.slice(0, 4)
-              : null}
-          </Paragraph>
-          <Paragraph style={Style.cardTime}>
-            {" "}
-            Time:{" "}
-            {this.props.event.time
-              ? this.convertTime(this.props.event.time)
-              : null}
-          </Paragraph>
-          <Card.Cover style={Style.cardImg} source={{ uri: uri }} />
-          <Card.Content>
-            <Paragraph style={Style.cardDescription}>
-              {this.props.event.description}
+
+        <View style={Style.container1}>
+          <Appbar.Header style={Style.appHeader}>
+            <Appbar.Content
+              title={`Viewing ${this.props.event.name}...`}
+              subtitle={`We think you'll love this  ${
+                this.props.user.firstName ? this.props.user.firstName : ""
+              } `}
+              color="white"
+            />
+          </Appbar.Header>
+          <Card style={Style.card}>
+            <Paragraph style={Style.title}>
+              {""}
+              {this.props.event.name}
             </Paragraph>
-          </Card.Content>
+            <Paragraph style={Style.cardAddress}>
+              {this.props.event.address}
+            </Paragraph>
+            <Paragraph style={Style.cardAddress}>
+              {this.props.event.city}, {this.props.event.state} {""}
+              {this.props.event.zipCode}
+            </Paragraph>
 
-          <Card.Actions>
-            <Button title="">Cancel</Button>
-            <Button title="">Ok</Button>
-          </Card.Actions>
-        </Card>
-        <View>
-          {this.props.user.id && (
-            <Surface style={Style.surface}>
-              <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
-            </Surface>
-          )}
-        </View>
-        <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
+            <Paragraph style={Style.cardDate}>
+              {this.props.event.date
+                ? this.props.event.date.slice(5, 10) +
+                  "-" +
+                  this.props.event.date.slice(0, 4)
+                : null}{" "}
+              {"at"}{" "}
+              {this.props.event.time
+                ? this.convertTime(this.props.event.time)
+                : null}
+            </Paragraph>
+
+            <Card.Cover
+              style={Style.cardImg}
+              source={{  uri: uri }}
+
+            />
+            <Card.Content>
+              <Paragraph style={Style.cardDescription}>
+                {this.props.event.description}
+              </Paragraph>
+            </Card.Content>
+
+            <Card.Actions>
+              <Button title="">Cancel</Button>
+              <Button title="">Ok</Button>
+            </Card.Actions>
+          </Card>
           <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo2}
-            />
-            <View style={Style.modalText}>
-              <Text style={{ fontSize: 20 }}>
-                Event {this.props.event.name} has been added!
-              </Text>
-            </View>
-            <Image
-              style={Style.image2}
-              source={{
-                uri: uri,
-              }}
-            />
+            {this.props.user.id && (
+              <Surface style={Style.surface}>
+                <Button title="JOIN EVENT" onPress={this.handleJoin}></Button>
+              </Surface>
+            )}
           </View>
-        </Modal>
-        <Surface style={Style.surfaceMap}>
-          <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
-        </Surface>
-
-        <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
-          <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo}
-            />
-            <View style={Style.modalText}>
-              <Text style={{ fontSize: 20 }}>
-                Directing you to Maps to view {this.props.event.name}'s
-                Location!
-              </Text>
-            </View>
+          <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
             <View>
-              <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
+              <Image
+                source={require("../../assets/ebuddies.gif")}
+                style={Style.logo2}
+              />
+              <View style={Style.modalText}>
+                <Text style={{ fontSize: 20 }}>
+                  Event {this.props.event.name} has been added!
+                </Text>
+              </View>
+              <Image
+                style={Style.image2}
+                source={{
+                  uri: this.props.event.imgUrl,
+                }}
+              />
             </View>
-          </View>
-        </Modal>
+          </Modal>
+          <Surface style={Style.surfaceMap}>
+            <Button title="VIEW ON MAP" onPress={this.handleMap}></Button>
+          </Surface>
+
+          <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
+            <View>
+              <Image
+                source={require("../../assets/ebuddies.gif")}
+                style={Style.logo}
+              />
+              <View style={Style.modalText}>
+                <Text style={{ fontSize: 20 }}>
+                  Directing you to Maps to view {this.props.event.name}'s
+                  Location!
+                </Text>
+              </View>
+              <View>
+                <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
+              </View>
+            </View>
+          </Modal>
+        </View>
       </>
     );
   }

@@ -74,13 +74,7 @@ class RecommendedEvents extends React.Component {
                 {interests.length === 0 && (
                   <Text>You have not selected any interests</Text>
                 )}
-                <View
-                  style={{
-                    flex: 1,
-                    flexDirection: "row",
-                    alignSelf: "center",
-                  }}
-                >
+                <View style={Style.interestsurface}>
                   {interests.map((interest) => (
                     <Surface style={Style.surface} key={interest.id}>
                       <View key={interest.id}>
@@ -97,13 +91,7 @@ class RecommendedEvents extends React.Component {
                     </Surface>
                   ))}
                 </View>
-                {/* <Searchbar
-                  placeholder="Search"
-                  onChangeText={(text) => {
-                    this.setState({ search: text });
-                  }}
-                  value={this.state.text}
-                /> */}
+
                 {events.map((event) => {
                   return (
                     <View key={event.id}>

@@ -61,7 +61,7 @@ class UserProfileScreen extends React.Component {
         <Surface style={Style.buttons}>
           <Button
             // mode="contained"
-            color="#000095"
+            color="rgb(38,153,251)"
             style={Style.button}
             title="EDIT"
             onPress={() => this.props.navigation.navigate("EDIT")}
@@ -71,7 +71,7 @@ class UserProfileScreen extends React.Component {
 
           <Button
             // mode="contained"
-            color="#000095"
+            color="rgb(38,153,251)"
             style={Style.button}
             title="LOGOUT"
             onPress={this.handleLogout}

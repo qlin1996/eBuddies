@@ -93,18 +93,7 @@ class ChatScreen extends React.Component {
   };
 
   render() {
-    const chatMessages = this.state.chatMessages.map((chatMessage, index) => (
-      <View style={Style.chatMessages} key={index}>
-        <Text style={Style.chatMessage}>{chatMessage.message}</Text>
-
-        <Image
-          source={{
-            uri: chatMessage.sender.imgUrl,
-          }}
-          style={Style.userImage}
-        />
-      </View>
-    ));
+    // const chatMessages =
 
     return (
       <ScrollView nestedScrollEnabled>
@@ -118,7 +107,21 @@ class ChatScreen extends React.Component {
           <View>
             <Text>{""}</Text>
           </View>
-          {chatMessages}
+
+          {this.state.chatMessages.map((chatMessage, index) => (
+            <View style={Style.chatMessages} key={index}>
+              <Text style={Style.chatMessage}>{chatMessage.message}</Text>
+
+              <Image
+                source={{
+                  uri:
+                    chatMessage.sender.imgUrl ||
+                    "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
+                }}
+                style={Style.userImage}
+              />
+            </View>
+          ))}
         </View>
         <Surface style={Style.surface}>
           <TextInput

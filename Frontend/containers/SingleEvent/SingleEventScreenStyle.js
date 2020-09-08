@@ -179,7 +179,6 @@ export default StyleSheet.create({
     shadowOpacity: 10.7,
     shadowRadius: 8.65,
     margin: 15,
-    elevation: 6,
   },
   singleEvent: {
     backgroundColor: "rgba(255, 255, 255, 0.6)",

@@ -177,6 +177,9 @@ class EditUserProfileScreen extends React.Component {
   };
 
   render() {
+    const uri =
+      this.state.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <ScrollView>
         <View style={styles.container1}>
@@ -188,7 +191,7 @@ class EditUserProfileScreen extends React.Component {
             <Image
               style={styles.image}
               source={{
-                uri: this.state.imgUrl,
+                uri: uri,
               }}
             />
           </View>
@@ -367,75 +370,84 @@ class EditUserProfileScreen extends React.Component {
           />
           <MaterialIcons name="short-text" size={22} style={styles.pin} />
 
-          <View style={Style.profileContainer}>
-            <Text>INTERESTS</Text>
-            <View style={Style.interestContainer}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Food");
-                }}
+          <Text
+            style={{
+              marginLeft: 30,
+              fontSize: 16,
+              marginTop: 20,
+              color: Colors.blue,
+            }}
+          >
+            INTERESTS
+          </Text>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Food");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Food ? styles.interestSelected : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Food ? Style.interestSelected : Style.interest
-                  }
-                >
-                  Food
-                </Text>
-              </TouchableOpacity>
+                Food
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Entertainment");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Entertainment");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Entertainment
+                    ? styles.interestSelected
+                    : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Entertainment
-                      ? Style.interestSelected
-                      : Style.interest
-                  }
-                >
-                  Entertainment
-                </Text>
-              </TouchableOpacity>
+                Entertainment
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Education");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Education");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Education
+                    ? styles.interestSelected
+                    : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Education
-                      ? Style.interestSelected
-                      : Style.interest
-                  }
-                >
-                  Education
-                </Text>
-              </TouchableOpacity>
+                Education
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Fitness");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Fitness");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Fitness ? styles.interestSelected : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Fitness ? Style.interestSelected : Style.interest
-                  }
-                >
-                  Fitness
-                </Text>
-              </TouchableOpacity>
-            </View>
+                Fitness
+              </Text>
+            </TouchableOpacity>
           </View>
 
-          <Button
-            title="Update My Profile"
-            onPress={this.handleUpdate}
-          ></Button>
+          <View style={{ marginTop: 30, marginBottom: 50 }}>
+            <Button
+              title="Update My Profile"
+              onPress={this.handleUpdate}
+            ></Button>
+          </View>
         </View>
       </ScrollView>
     );

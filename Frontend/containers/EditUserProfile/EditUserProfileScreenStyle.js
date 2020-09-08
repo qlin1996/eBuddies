@@ -117,10 +117,6 @@ export default StyleSheet.create({
     paddingBottom: 5,
   },
 
-  interestsContainer: {
-    ...Metrics.mediumHorizontalPadding,
-    ...Metrics.mediumVerticalPadding,
-  },
   interests: {
     color: Colors.blue,
     ...Fonts.normal,
@@ -137,7 +133,10 @@ export default StyleSheet.create({
     borderRadius: 8,
     ...Metrics.smallVerticalPadding,
     ...Metrics.smallHorizontalPadding,
-    marginRight: 10,
+    marginLeft: 30,
+    marginRight: 30,
+    marginTop: 5,
+    marginBottom: 5,
   },
   interestSelected: {
     color: Colors.blue,
@@ -146,7 +145,10 @@ export default StyleSheet.create({
     borderRadius: 8,
     ...Metrics.smallVerticalPadding,
     ...Metrics.smallHorizontalPadding,
-    marginRight: 10,
     backgroundColor: Colors.lightBlue,
+    marginTop: 5,
+    marginBottom: 5,
+    marginLeft: 30,
+    marginRight: 30,
   },
 });

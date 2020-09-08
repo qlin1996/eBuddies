@@ -8,7 +8,6 @@ import { Appbar, Card, Text, Button, Surface } from "react-native-paper";
 
 class UserProfileScreen extends React.Component {
   async componentDidMount() {
-    await this.props.getAllEvents();
     await this.props.getAllInterests(this.props.user.id);
   }
 
@@ -24,6 +23,9 @@ class UserProfileScreen extends React.Component {
   render() {
     const user = this.props.user;
     const interests = this.props.interests;
+    const uri =
+      user.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
 
     return (
       <View style={{ flex: 1 }}>
@@ -32,7 +34,7 @@ class UserProfileScreen extends React.Component {
           <Image
             style={Style.image}
             source={{
-              uri: user.imgUrl,
+              uri: uri,
             }}
           />
         </Surface>

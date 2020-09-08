@@ -441,10 +441,6 @@ class AddEventScreen extends React.Component {
 
           <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
-              <Image
-                source={require("../../assets/ebuddies.gif")}
-                style={styles.logo}
-              />
               <View style={styles.modalText}>
                 <Text style={{ ...Fonts.h4 }}>
                   Event, {this.state.name} has been successfully updates!

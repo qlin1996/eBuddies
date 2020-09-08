@@ -17,8 +17,8 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Metrics, Fonts, Colors } from "../../themes";
-import RNPickerSelect from "react-native-picker-select";
+import { Metrics, Fonts, Cors } from "../../themes";
+import RNPickerSeect from "react-native-picker-select";
 import * as Notifications from "expo-notifications";
 import {
   Zocial,
@@ -486,10 +486,6 @@ class AddEventScreen extends React.Component {
 
           <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
-              <Image
-                source={require("../../assets/ebuddies.gif")}
-                style={styles.logo}
-              />
               <View style={styles.modalText}>
                 <Text style={{ ...Fonts.h4 }}>
                   Event, {this.state.name} has been added!

@@ -49,18 +49,4 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-//DELETE --> /DELETE/ACTIVITIES/:EVENTID
-// router.delete("/:eventId", async (req, res, next) => {
-//   /* etc */
-//   try {
-//     await Event.destroy({
-//       where: {
-//         id: req.params.eventId,
-//       },
-//     });
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
-
 module.exports = router;

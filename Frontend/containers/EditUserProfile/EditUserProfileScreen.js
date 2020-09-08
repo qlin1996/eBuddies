@@ -111,7 +111,6 @@ class EditUserProfileScreen extends React.Component {
         aspect: 1,
       });
       this.setState({ imgUrl: uri });
-      console.log("IAMGE URI", uri);
     } catch (error) {
       console.log(error);
     }

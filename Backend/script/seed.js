@@ -478,12 +478,9 @@ async function seed() {
       return Activity.create(activity);
     })
   );
-  console.log(`seeded ${users.length} users`);
-  console.log(`seeded successfully`);
 }
 
 async function runSeed() {
-  console.log("seeding...");
   try {
     await seed();
   } catch (err) {

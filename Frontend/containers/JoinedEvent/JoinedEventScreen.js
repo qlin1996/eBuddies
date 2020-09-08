@@ -158,10 +158,6 @@ class JoinedEvent extends React.Component {
         </Card>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo}
-            />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
                 Connecting you to the Group Chat for, {this.props.event.name}!
@@ -239,10 +235,6 @@ class JoinedEvent extends React.Component {
         </Surface>
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo}
-            />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
                 Directing you to Maps to view {this.props.event.name}'s

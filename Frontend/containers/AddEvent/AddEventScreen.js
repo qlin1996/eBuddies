@@ -11,7 +11,8 @@ import {
 import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
-import Style from "./AddEventScreenStyle";
+import styles from "./AddEventScreenStyle";
+import { Appbar, Surface } from "react-native-paper";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
@@ -19,6 +20,13 @@ import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
 import * as Notifications from "expo-notifications";
+import {
+  Zocial,
+  Entypo,
+  MaterialIcons,
+  SimpleLineIcons,
+} from "@expo/vector-icons";
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -148,67 +156,103 @@ class AddEventScreen extends React.Component {
     }
   };
 
+  takePicture = async () => {
+    try {
+      await Permissions.askAsync(Permissions.CAMERA);
+      const { cancelled, uri } = await ImagePicker.launchCameraAsync({
+        allowsEditing: true,
+        aspect: 1,
+      });
+      this.setState({ imgUrl: uri });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   render() {
     return (
       <ScrollView>
-        <View style={{ flex: 1, marginBottom: 100 }}>
-          <View style={Style.imageContainer}>
+        <View style={styles.container1}>
+          <Appbar.Header style={styles.appHeader}>
+            <Appbar.Content title="Add Event" color="white" />
+          </Appbar.Header>
+
+          <View>
             <Image
-              style={Style.image}
+              style={styles.image}
               source={{
                 uri: this.state.imgUrl,
               }}
             />
-            <Button title="Select Picture" onPress={this.selectPicture} />
-            <Button title="Take Picture" onPress={this.takePicture} />
           </View>
 
-          <View style={Style.eventContainer}>
-            {this.state.name.length === 0 && (
-              <Text style={{ color: "red" }}>Event Name is Required</Text>
-            )}
-            <Text>Event Name</Text>
-            <TextInput
-              style={Style.text}
-              name="name"
-              type="text"
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ name: text });
-              }}
-              value={this.state.name}
-            />
-            {this.state.address.length === 0 && (
-              <Text style={{ color: "red" }}>
-                Event Street Address is Required
-              </Text>
-            )}
-            <Text>Event Street Address</Text>
-            <TextInput
-              style={Style.text}
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ address: text });
-              }}
-              value={this.state.address}
-            />
-            {this.state.city.length === 0 && (
-              <Text style={{ color: "red" }}>Event City is Required</Text>
-            )}
-            <Text>Event City</Text>
-            <TextInput
-              style={Style.text}
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ city: text });
-              }}
-              value={this.state.city}
-            />
+          <View style={styles.picOption}>
+            <Surface style={styles.surface1}>
+              <Button
+                title="Select Picture"
+                color="rgba(38,153,251,1)"
+                onPress={this.selectPicture}
+              />
+            </Surface>
+            <Surface style={styles.surface2}>
+              <Button
+                title="Take Picture"
+                color="rgba(38,153,251,1)"
+                onPress={this.takePicture}
+              />
+            </Surface>
+          </View>
 
-            {this.state.state.length === 0 && (
-              <Text style={{ color: "red" }}>Event State is Required</Text>
-            )}
-            <Text>Event State</Text>
+          <TextInput
+            style={styles.textInputName}
+            selectionColor="#428AF8"
+            name="name"
+            type="text"
+            placeholder="Event Name..."
+            placeholderTextColor="#4d4a4a"
+            onChangeText={(text) => {
+              this.setState({ name: text });
+            }}
+            value={this.state.name}
+          />
+          <Zocial name="eventful" size={13} style={styles.name} />
+          {this.state.name.length === 0 && (
+            <Text style={styles.validatorName}>Event Name is Required</Text>
+          )}
+
+          <TextInput
+            style={styles.textInput}
+            selectionColor="#428AF8"
+            placeholder="Event Street Address..."
+            placeholderTextColor="#4d4a4a"
+            onChangeText={(text) => {
+              this.setState({ address: text });
+            }}
+            value={this.state.address}
+          />
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {this.state.address.length === 0 && (
+            <Text style={styles.validators}>
+              Event Street Address is Required
+            </Text>
+          )}
+
+          <TextInput
+            style={styles.textInput}
+            selectionColor="#428AF8"
+            placeholder="Event City..."
+            onChangeText={(text) => {
+              this.setState({ city: text });
+            }}
+            placeholderTextColor="#4d4a4a"
+            value={this.state.city}
+          />
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {this.state.city.length === 0 && (
+            <Text style={styles.validators}>Event City is Required</Text>
+          )}
+
+          <View style={styles.selectState}>
             <RNPickerSelect
               onValueChange={(state) => {
                 this.setState({ state: state });
@@ -217,6 +261,7 @@ class AddEventScreen extends React.Component {
                 label: "Select State",
                 value: null,
               }}
+              placeholderTextColor="#4d4a4a"
               items={[
                 { label: "Alabama", value: "Alabama" },
                 { label: "Alaska", value: "Alaska" },
@@ -263,99 +308,132 @@ class AddEventScreen extends React.Component {
                 { label: "South Carolina", value: "South Carolina" },
               ]}
             />
+          </View>
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {this.state.state.length === 0 && (
+            <Text style={styles.validators}>Event State is Required</Text>
+          )}
 
-            {!this.isValidUSZip(this.state.zipCode) && (
-              <Text style={{ color: "red" }}>
-                Valid US Zip Code is Required
-              </Text>
-            )}
-            <Text>Event Zip Code</Text>
-            <TextInput
-              style={Style.text}
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ zipCode: text });
-              }}
-              value={this.state.zipCode}
-            />
-            {this.state.date.length === 0 && (
-              <Text style={{ color: "red" }}>Event Date is Required</Text>
-            )}
-            <Text>Event Date</Text>
-            <Button
+          <TextInput
+            style={styles.textInput}
+            placeholder="Event Zip Code..."
+            selectionColor="#428AF8"
+            placeholderTextColor="#4d4a4a"
+            onChangeText={(text) => {
+              this.setState({ zipCode: text });
+            }}
+            value={this.state.zipCode}
+          />
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {!this.isValidUSZip(this.state.zipCode) && (
+            <Text style={styles.validators}>Valid US Zip Code is Required</Text>
+          )}
+
+          <DateTimePickerModal
+            isVisible={this.state.isDatePickerVisible}
+            onConfirm={(date) => {
+              this.setState({
+                date: date.toDateString(),
+                isDatePickerVisible: false,
+              });
+            }}
+            onCancel={() => {
+              this.setState({ isDatePickerVisible: false });
+            }}
+            mode="date"
+          />
+
+          <View style={styles.selectDate}>
+            <Text
+              style={styles.date}
               onPress={() => {
                 this.setState({ isDatePickerVisible: true });
               }}
-              title="Select A Date"
-            />
-            <Text style={Style.text}>{this.state.date}</Text>
-            <DateTimePickerModal
-              isVisible={this.state.isDatePickerVisible}
-              onConfirm={(date) => {
-                this.setState({
-                  date: date.toDateString(),
-                  isDatePickerVisible: false,
-                });
+            >
+              Select Date
+            </Text>
+            <Text
+              style={{
+                borderColor: "#BEBEBE",
+                borderBottomWidth: 1,
+                width: "85%",
+                fontSize: 16,
+                color: "#4d4a4a",
               }}
-              onCancel={() => {
-                this.setState({ isDatePickerVisible: false });
-              }}
-              mode="date"
-            />
-            {this.state.time.length === 0 && (
-              <Text style={{ color: "red" }}>Event Time is Required</Text>
-            )}
-            <Text>Event Time</Text>
-            <Button
+            >
+              {this.state.date}
+            </Text>
+          </View>
+          <MaterialIcons name="date-range" size={22} style={styles.pin} />
+          {this.state.date.length === 0 && (
+            <Text style={styles.validatorDate}>Event Date is Required</Text>
+          )}
+
+          <DateTimePickerModal
+            isVisible={this.state.isTimePickerVisible}
+            onConfirm={(time) => {
+              this.setState({
+                time: time.toTimeString(),
+                isTimePickerVisible: false,
+              });
+            }}
+            onCancel={() => {
+              this.setState({ isTimePickerVisible: false });
+            }}
+            mode="time"
+          />
+          <View style={styles.selectTime}>
+            <Text
+              style={styles.time}
               onPress={() => {
                 this.setState({ isTimePickerVisible: true });
               }}
-              title="Select Time"
-            />
-            <Text style={Style.text}>{this.state.time}</Text>
-            <DateTimePickerModal
-              isVisible={this.state.isTimePickerVisible}
-              onConfirm={(time) => {
-                this.setState({
-                  time: time.toTimeString(),
-                  isTimePickerVisible: false,
-                });
-              }}
-              onCancel={() => {
-                this.setState({ isTimePickerVisible: false });
-              }}
-              mode="time"
-            />
-            {this.state.description.length === 0 && (
-              <Text style={{ color: "red" }}>
-                Event Description is Required
-              </Text>
-            )}
-            <Text>Event Description</Text>
-            <TextInput
-              multiline={true}
-              style={{
-                height: Math.max(35, this.state.height),
-                ...Fonts.normal,
-                ...Metrics.bottomMargin,
-                color: Colors.blue,
-              }}
-              onContentSizeChange={(event) => {
-                this.setState({ height: event.nativeEvent.contentSize.height });
-              }}
-              placeholder="Type Here"
-              onChangeText={(text) => {
-                this.setState({ description: text });
-              }}
-              value={this.state.description}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
-            {this.state.category.length === 0 && (
-              <Text style={{ color: "red" }}>Event category is Required</Text>
-            )}
-            <Text>Event Category</Text>
+            >
+              Select Time
+            </Text>
+            <Text sstyle={styles.textInput}>{this.state.time}</Text>
+          </View>
+          <MaterialIcons name="access-time" size={22} style={styles.pin} />
+          {this.state.time.length === 0 && (
+            <Text style={styles.validatorTime}>Event Time is Required</Text>
+          )}
+
+          <TextInput
+            multiline={true}
+            style={{
+              height: Math.max(30, this.state.height),
+              color: "#4d4a4a",
+              marginLeft: 30,
+              marginRight: 30,
+              borderColor: "#BEBEBE",
+              letterSpacing: 1,
+              textAlign: "left",
+              fontSize: 16,
+              borderBottomWidth: 1,
+              width: "80%",
+            }}
+            selectionColor="#428AF8"
+            placeholderTextColor="#4d4a4a"
+            onContentSizeChange={(event) => {
+              this.setState({ height: event.nativeEvent.contentSize.height });
+            }}
+            placeholder="Event Description..."
+            onChangeText={(text) => {
+              this.setState({ description: text });
+            }}
+            value={this.state.description}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <MaterialIcons name="short-text" size={22} style={styles.pin} />
+          {this.state.description.length === 0 && (
+            <Text style={styles.validatorDescription}>
+              Event Description is Required
+            </Text>
+          )}
+
+          <View style={styles.selectState}>
             <RNPickerSelect
               onValueChange={(category) => {
                 this.setState({ category: category });
@@ -371,24 +449,35 @@ class AddEventScreen extends React.Component {
                 { label: "Entertainment", value: "Entertainment" },
               ]}
             />
-            <Text style={Style.text}>{this.state.category}</Text>
+          </View>
+          <SimpleLineIcons
+            name="options-vertical"
+            size={18}
+            style={styles.pin}
+          />
+          {this.state.category.length === 0 && (
+            <Text style={styles.validatorCategory}>
+              Event category is Required
+            </Text>
+          )}
+
+          <View style={{ marginBottom: 70 }}>
+            <Button title="Add Event" onPress={this.handleSubmit}></Button>
           </View>
 
-          <Button title="Add Event" onPress={this.handleSubmit}></Button>
-
-          <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
+          <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
               <Image
                 source={require("../../assets/ebuddies.gif")}
-                style={Style.logo}
+                style={styles.logo}
               />
-              <View style={Style.modalText}>
+              <View style={styles.modalText}>
                 <Text style={{ ...Fonts.h4 }}>
                   Event, {this.state.name} has been added!
                 </Text>
               </View>
               <Image
-                style={Style.image2}
+                style={styles.image2}
                 source={{
                   uri: this.state.imgUrl,
                 }}

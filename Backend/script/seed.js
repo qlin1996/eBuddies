@@ -142,8 +142,8 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Sun 13 Sep 2020",
-    time: "21:56:00 GMT-0400 (EDT)",
+    date: "Tue 22 Sep 2020",
+    time: "22:20:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSefez5wycJVaPtrsiM4CMTCc7h2kjLhrOiog&usqp=CAU",
     userId: 4,
@@ -161,7 +161,7 @@ async function seed() {
     state: "NY",
     zipCode: "10010",
     date: "Mon 14 Sep 2020",
-    time: "10:00:00 GMT-0400 (EDT)",
+    time: "10:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRixe22DVpUZ9KzMpA6zVVR67p8jarPQIUMLQ&usqp=CAU",
     userId: 1,
@@ -178,7 +178,7 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10013",
-    date: "Sun 13 Sep 2020",
+    date: "Tue 15 Sep 2020",
     time: "21:56:00 GMT-0400 (EDT)",
     imgUrl:
       "https://d33bcppgye6mnb.cloudfront.net/users/gallery/gqnexTODjppWllkY.jpg",
@@ -197,7 +197,7 @@ async function seed() {
     state: "NY",
     zipCode: "10019",
     date: "Sat 10 Oct 2020",
-    time: "7:00:00 GMT-0400 (EDT)",
+    time: "7:15:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.exhalespa.com/sites/exhale-spa/files/fitness_classes/classcard-exhalehiit30.classesWidget.jpg",
     userId: 1,
@@ -215,7 +215,7 @@ async function seed() {
     state: "NY",
     zipCode: "10018",
     date: "Mon 02 Nov 2020",
-    time: "08:00:00 GMT-0400 (EDT)",
+    time: "08:30:00 GMT-0400 (EDT)",
     imgUrl:
       "https://www.washingtonian.com/wp-content/uploads/2014/11/2014-11-13.soulcycle2.jpg",
     userId: 1,
@@ -234,7 +234,7 @@ async function seed() {
     state: "NY",
     zipCode: "10001",
     date: "Tue 13 Oct 2020",
-    time: "18:00:00 GMT-0400 (EDT)",
+    time: "18:45:00 GMT-0400 (EDT)",
     imgUrl:
       "https://cdn.vox-cdn.com/thumbor/9LzonUzPK8rmiDNaDFwbX4Vt-Yk=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/15961271/Kawi_5.jpg",
     userId: 4,

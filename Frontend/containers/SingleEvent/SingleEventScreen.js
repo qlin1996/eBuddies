@@ -46,22 +46,19 @@ class SingleEvent extends React.Component {
   sendPushNotification = async (pushToken) => {
     let eventHour = Number(this.props.event.time.slice(0, 2));
     let eventMinute = Number(this.props.event.time.slice(3, 5) - 1);
-    let gmt = this.props.event.time.slice(8);
     let milliseconds = eventHour * eventMinute * 1000;
     let triggerDate = new Date(this.props.event.date) + milliseconds;
-
-    let triggerObj = new Date(
+    let gmt = this.props.event.time.slice(8);
+    let trigger2 = new Date(
       triggerDate.slice(0, 15) +
         " " +
         eventHour +
-        ": " +
+        ":" +
         eventMinute +
         ":00" +
         gmt
     );
-    let trigger = new Date(triggerObj);
-
-    console.log(trigger, "trigger");
+    let trigger = new Date(trigger2);
 
     await Notifications.scheduleNotificationAsync({
       content: {

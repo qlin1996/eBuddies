@@ -3,7 +3,7 @@ import { View, Text, ScrollView, Button, Image } from "react-native";
 import { connect } from "react-redux";
 import Style from "./AttendeeListScreenStyle";
 import { Card, Appbar, Surface } from "react-native-paper";
-
+import { fetchSingleEvent } from "../../store/singleEvent";
 class AttendeeList extends React.Component {
   constructor() {
     super();
@@ -52,6 +52,8 @@ const mapStateToProps = (state) => ({
   event: state.singleEvent,
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  fetchSingleEvent: (id) => dispatch(fetchSingleEvent(id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AttendeeList);

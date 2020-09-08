@@ -194,9 +194,9 @@ class Interests extends React.Component {
             </Surface>
           </View>
         </View>
-        <Surface style={styles.actions}>
+        <View style={styles.actions}>
           <Button onPress={this.handleSignup} title="CONTINUE" />
-        </Surface>
+        </View>
       </View>
     );
   }

@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, ScrollView, Button } from "react-native";
+import { View, Text, ScrollView, Button, Image } from "react-native";
 import { connect } from "react-redux";
-// import Style from "./AllEventsScreenStyle";
+import Style from "./AttendeeListScreenStyle";
+import { Card, Appbar, Surface } from "react-native-paper";
 
 class AttendeeList extends React.Component {
   constructor() {
@@ -10,25 +11,37 @@ class AttendeeList extends React.Component {
 
   async componentDidMount() {
     await this.props.fetchSingleEvent(this.props.event.id);
-    //map through these users, if users.attended === true, return them
   }
 
   render() {
     let users = this.props.event.users;
     return (
       <View>
-        <Text>
-          Attendees Registered:
+        <View style={Style.container1}>
+          <Appbar.Header style={Style.appHeader}>
+            <Appbar.Content
+              title={`${this.props.event.name} Attendee's`}
+              color="white"
+            />
+          </Appbar.Header>
           {this.props.event.users.map((user) => {
             return (
-              <Text>
-                {user.firstName}
-                {user.lastName}
-                {user.activity.attended === true ? <Text> HERE</Text> : null}
-              </Text>
+              <Surface style={Style.attendee}>
+                <Text style={Style.members}>
+                  {user.firstName} {""}
+                  {user.lastName}
+                  {user.activity.attended === true ? (
+                    <Text style={Style.here}> {"               "}HERE</Text>
+                  ) : null}
+                </Text>
+                <Image
+                  style={Style.pin}
+                  source={require("../../assets/user-pin.png")}
+                />
+              </Surface>
             );
           })}
-        </Text>
+        </View>
       </View>
     );
   }

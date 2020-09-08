@@ -9,10 +9,16 @@ export default StyleSheet.create({
     marginBottom: 50,
     marginHorizontal: 50,
   },
+  container1: {
+    marginTop: 15,
+    marginBottom: 20,
+    marginLeft: 18,
+    marginRight: 18,
+  },
   surface: {
     marginTop: -60,
     alignSelf: "center",
-    width: "30%",
+    width: "35%",
     height: 40,
     marginBottom: 35,
   },
@@ -41,7 +47,7 @@ export default StyleSheet.create({
     height: 55,
   },
   appHeader: {
-    backgroundColor: "rgba(66, 135, 245, 1)",
+    backgroundColor: "rgba(38,153,251, .4)",
     height: 60,
     marginTop: 5,
     marginBottom: 5,

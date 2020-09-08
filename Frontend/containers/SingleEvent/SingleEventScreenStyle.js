@@ -6,6 +6,7 @@ export default StyleSheet.create({
     marginLeft: 20,
     marginRight: 21,
     marginTop: 10,
+    marginBottom: -18,
   },
   appHeader: {
     backgroundColor: "rgba(38,153,251, .4)",
@@ -23,8 +24,7 @@ export default StyleSheet.create({
     color: "gray",
     marginBottom: 5,
     marginTop: -7,
-    fontSize: 15,
-    marginLeft: 16,
+    marginLeft: 20,
   },
   cardImg: {
     width: "92%",
@@ -33,88 +33,26 @@ export default StyleSheet.create({
     marginRight: 10,
     marginTop: 20,
     marginBottom: 10,
-    borderRadius: 8,
+    borderRadius: 3,
+  },
+  title: {
+    marginLeft: 20,
+    fontSize: 21.2,
+    textTransform: "uppercase",
+    marginBottom: 16,
+    marginTop: 35,
+    fontWeight: "500",
   },
   cardDescription: {
     color: "gray",
-    fontSize: 16.5,
     marginTop: 12,
-    marginBottom: 25,
+    marginBottom: 35,
   },
   cardDate: {
     color: "gray",
-    marginBottom: 15,
-    marginTop: 3,
-    marginLeft: 17,
-  },
-
-  cardTime: {
-    color: "gray",
     marginBottom: 0,
-    marginTop: "-9%",
-    marginLeft: "66.5%",
-  },
-  text: {
-    ...Fonts.normal,
-    color: Colors.text,
-    textAlign: "left",
-    marginTop: 20,
-    marginBottom: 20,
-    marginHorizontal: 20,
-  },
-
-  headerText: {
-    color: "white",
-    ...Fonts.h4,
-    position: "relative",
-    top: "20%",
-    textAlign: "center",
-    // text-transform: uppercase;
-    letterSpacing: 2,
-    textTransform: "uppercase",
-  },
-
-  headerBackground: {
-    backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: "17%",
-    width: "100%",
-    position: "absolute",
-    top: "0.3%",
-  },
-
-  informationDiv: {
-    backgroundColor: "rgba(202, 154, 154, 0.65)",
-    height: "25%",
-    width: "100%",
-    position: "absolute",
-    top: "75.5%",
-  },
-
-  fonts: {
-    color: "white",
-    fontSize: 16,
-
-    position: "absolute",
-    textAlign: "center",
-    top: "15%",
-    left: "6%",
-    width: "80%",
-  },
-  addressFonts: {
-    color: "white",
-    ...Fonts.medium,
-    position: "absolute",
-    bottom: "5%",
-    left: "5%",
-    width: 140,
-  },
-  dateFonts: {
-    color: "white",
-    ...Fonts.medium,
-    position: "absolute",
-    bottom: "14%",
-    right: "-10%",
-    width: "35%",
+    marginTop: 3,
+    marginLeft: 20,
   },
   modal: {
     position: "absolute",
@@ -126,6 +64,16 @@ export default StyleSheet.create({
     height: "50%",
     bottom: 0,
     backgroundColor: "white",
+  },
+  container1: {
+    backgroundColor: "white",
+    marginTop: 15,
+    marginBottom: 20,
+    marginLeft: 18,
+    marginRight: 18,
+    borderWidth: 1,
+    borderColor: "white",
+    borderRadius: 10,
   },
   modalText: {
     alignSelf: "center",
@@ -193,13 +141,14 @@ export default StyleSheet.create({
     color: "white",
   },
   surface: {
-    marginTop: "-12.5%",
-    width: "30%",
+    marginTop: "-8.5%",
+    width: "35%",
     left: "10%",
     height: 40,
   },
   surfaceMap: {
-    marginTop: "-12.5%",
+    marginTop: "-10.5%",
+    marginBottom: 10,
     width: "35%",
     left: "55.3%",
     height: 40,

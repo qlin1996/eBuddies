@@ -159,7 +159,7 @@ class JoinedEvent extends React.Component {
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
             <Image
-              source={require("../../assets/ebuddies_logo.png")}
+              source={require("../../assets/ebuddies.gif")}
               style={Style.logo}
             />
             <View style={Style.modalText}>
@@ -240,7 +240,7 @@ class JoinedEvent extends React.Component {
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
             <Image
-              source={require("../../assets/ebuddies_logo.png")}
+              source={require("../../assets/ebuddies.gif")}
               style={Style.logo}
             />
             <View style={Style.modalText}>

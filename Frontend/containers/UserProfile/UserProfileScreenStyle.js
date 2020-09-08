@@ -37,22 +37,25 @@ export default StyleSheet.create({
     ...Metrics.mediumHorizontalMargin,
   },
   name: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     fontWeight: "bold",
     ...Fonts.h3,
     alignSelf: "center",
     textAlign: "center",
   },
   location: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     alignSelf: "center",
     textAlign: "center",
   },
   description: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     ...Fonts.normal,
     marginTop: 30,
     alignSelf: "center",
+    padding: 10,
+    width: "80%",
+    lineHeight: 23.5,
     textAlign: "center",
   },
   interestsContainer: {
@@ -60,6 +63,8 @@ export default StyleSheet.create({
     ...Metrics.mediumVerticalPadding,
     alignSelf: "center",
     textAlign: "center",
+    marginTop: -20,
+    marginBottom: 25,
   },
   hosted: {
     position: "relative",
@@ -79,7 +84,7 @@ export default StyleSheet.create({
     left: "45.5%",
   },
   interests: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     ...Fonts.normal,
     fontWeight: "bold",
     ...Metrics.bottomMargin,
@@ -90,8 +95,8 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
   interest: {
-    color: Colors.darkBlue,
-    borderColor: Colors.blue,
+    color: "rgb(38,153,251)",
+    borderColor: "rgb(38,153,251)",
     borderWidth: 1,
     borderRadius: 8,
     ...Metrics.smallVerticalPadding,
@@ -101,7 +106,7 @@ export default StyleSheet.create({
     textAlign: "center",
   },
   buttons: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     display: "flex",
     alignItems: "center",
     flexDirection: "row",
@@ -111,7 +116,7 @@ export default StyleSheet.create({
     elevation: 4,
   },
   button: {
-    color: Colors.darkBlue,
+    color: "rgb(38,153,251)",
     // display: "flex",
     // alignItems: "center",
     // flexDirection: "row",

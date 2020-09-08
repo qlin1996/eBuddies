@@ -13,6 +13,13 @@ export default StyleSheet.create({
     backgroundColor: "rgba(38,153,251, .4)",
     height: 70,
   },
+  interestsurface: {
+    flex: 1,
+    flexDirection: "row",
+    alignSelf: "center",
+    marginLeft: "10%",
+    marginRight: "10%",
+  },
   surface: {
     padding: 6,
     height: 50,

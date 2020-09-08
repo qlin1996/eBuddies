@@ -14,24 +14,51 @@ export default StyleSheet.create({
   },
   surface: {
     marginTop: 25,
+    left: -70,
+    width: "30%",
+    height: 40,
+    marginBottom: 30,
+  },
+  surfaceGuest: {
+    marginTop: -125,
     left: -100,
     width: "30%",
     height: 40,
     marginBottom: 30,
   },
-  appHeader: {
-    backgroundColor: "rgba(38,153,251, .4)",
-    height: 117,
-    marginTop: -25,
-    marginBottom: 50,
-  },
   surfaceHere: {
+    marginTop: "20%",
+    marginRight: "10%",
+    marginLeft: "10%",
+    alignItems: "center",
+    marginBottom: 10,
+    height: 130,
+  },
+  error: {
+    textAlign: "center",
+    fontSize: 18,
+    marginTop: 35,
+  },
+  surfaceError: {
+    marginTop: 6,
+    alignSelf: "center",
+    width: "25%",
+    height: 45,
+  },
+  surfaceGuest: {
     marginTop: -69,
     right: -104,
     height: 40,
     width: "30%",
     marginBottom: 120,
   },
+  appHeader: {
+    backgroundColor: "rgba(38,153,251, .4)",
+    height: 105,
+    marginTop: -25,
+    marginBottom: 100,
+  },
+
   eventName: {
     fontSize: 15,
     width: 100,

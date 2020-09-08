@@ -95,78 +95,118 @@ class Maps extends React.Component {
   render() {
     return (
       <>
-        <Appbar.Header style={styles.appHeader}>
-          <Appbar.Content
-            title={`Locating ${
-              this.props.user.firstName ? this.props.user.firstName : "you"
-            } to ${this.props.event.name}...`}
-            subtitle="eBuddies"
-            color="white"
-          />
-        </Appbar.Header>
+        {this.props.user.id ? (
+          <>
+            <Appbar.Header style={styles.appHeader}>
+              <Appbar.Content
+                title={`Locating ${
+                  this.props.user.firstName ? this.props.user.firstName : "you"
+                } to ${this.props.event.name}...`}
+                color="white"
+              />
+            </Appbar.Header>
 
-        <View style={styles.container}>
-          <MapView style={styles.mapStyle} region={this.state.eventLocation[0]}>
-            <Marker
-              coordinate={this.state.eventLocation[0]}
-              title={this.props.event.name}
-              description={this.props.event.address}
-            />
-            <Marker
-              pinColor={"blue"}
-              coordinate={this.state.userLocation.coords}
-              title={this.props.user.firstName}
-              description={this.props.user.description}
-            />
-          </MapView>
-          <Surface style={styles.surface}>
-            <Button
-              title="BACK"
-              onPress={() => {
-                this.props.navigation.navigate("SINGLEEVENT", {
-                  id: this.props.event.id,
-                });
-              }}
-            ></Button>
-          </Surface>
-          <Surface style={styles.surfaceHere}>
-            <Button title="IM HERE" onPress={this.handleAttendance}></Button>
-          </Surface>
-          <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
-            <View>
-              <Image
-                source={require("../../assets/ebuddies.gif")}
-                style={styles.logo}
-              />
-              <View style={styles.modalText}>
-                <Text style={{ fontSize: 20 }}>
-                  Thanks for checking in. We're excited to meet you,{" "}
-                  {this.props.user.firstName}!
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.modalChatMessage}>🤩🥳💫</Text>
-              </View>
+            <View style={styles.container}>
+              <MapView
+                style={styles.mapStyle}
+                region={this.state.eventLocation[0]}
+              >
+                <Marker
+                  coordinate={this.state.eventLocation[0]}
+                  title={this.props.event.name}
+                  description={this.props.event.address}
+                />
+                <Marker
+                  pinColor={"blue"}
+                  coordinate={this.state.userLocation.coords}
+                  title={this.props.user.firstName}
+                  description={this.props.user.description}
+                />
+              </MapView>
+
+              <Surface style={styles.surface}>
+                <Button
+                  title="BACK"
+                  onPress={() => {
+                    this.props.navigation.navigate("SINGLEEVENT", {
+                      id: this.props.event.id,
+                    });
+                  }}
+                />
+              </Surface>
+              <Surface style={styles.surfaceHere}>
+                <Button title="IM HERE" onPress={this.handleAttendance} />
+              </Surface>
+
+              <Surface style={styles.surface}>
+                <Button
+                  title="BACK"
+                  onPress={() => {
+                    this.props.navigation.navigate("SINGLEEVENT", {
+                      id: this.props.event.id,
+                    });
+                  }}
+                />
+              </Surface>
+
+              <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
+                <View>
+                  <Image
+                    source={require("../../assets/ebuddies.gif")}
+                    style={styles.logo}
+                  />
+                  <View style={styles.modalText}>
+                    <Text style={{ fontSize: 20 }}>
+                      Thanks for checking in. We're excited to meet you,{" "}
+                      {this.props.user.firstName}!
+                    </Text>
+                  </View>
+                  <View>
+                    <Text style={styles.modalChatMessage}>🤩🥳💫</Text>
+                  </View>
+                </View>
+              </Modal>
+              <Modal
+                isVisible={this.state.isModal2Visible}
+                style={styles.modal2}
+              >
+                <View>
+                  <Image
+                    source={require("../../assets/ebuddies.gif")}
+                    style={styles.logo}
+                  />
+                  <View style={styles.modalText}>
+                    <Text style={{ fontSize: 20 }}>
+                      Sorry, looks like you have not yet reached the
+                      destination. You are still {this.state.miles} miles away.
+                    </Text>
+                  </View>
+                  <View>
+                    <Text style={styles.mapModalEmojis}>🚖🚕✈️</Text>
+                  </View>
+                </View>
+              </Modal>
             </View>
-          </Modal>
-          <Modal isVisible={this.state.isModal2Visible} style={styles.modal2}>
-            <View>
-              <Image
-                source={require("../../assets/ebuddies.gif")}
-                style={styles.logo}
+          </>
+        ) : (
+          <>
+            <Surface style={styles.surfaceHere}>
+              <Text style={styles.error}>
+                Please log in or create an account to locate our events
+              </Text>
+            </Surface>
+            <Surface style={styles.surfaceError}>
+              <Button
+                title="BACK"
+                onPress={() => {
+                  this.props.navigation.navigate("SINGLEEVENT", {
+                    id: this.props.event.id,
+                  });
+                }}
               />
-              <View style={styles.modalText}>
-                <Text style={{ fontSize: 20 }}>
-                  Sorry, looks like you have not yet reached the destination.
-                  You are still {this.state.miles} miles away.
-                </Text>
-              </View>
-              <View>
-                <Text style={styles.mapModalEmojis}>🚖🚕✈️</Text>
-              </View>
-            </View>
-          </Modal>
-        </View>
+            </Surface>
+          </>
+        )}
       </>
     );
   }

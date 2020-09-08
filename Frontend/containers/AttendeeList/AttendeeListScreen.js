@@ -12,9 +12,8 @@ class AttendeeList extends React.Component {
   async componentDidMount() {
     await this.props.fetchSingleEvent(this.props.event.id);
   }
-
   render() {
-    let users = this.props.event.users;
+    let users = this.props.event.users || [];
     return (
       <View>
         <View style={Style.container1}>
@@ -24,7 +23,7 @@ class AttendeeList extends React.Component {
               color="white"
             />
           </Appbar.Header>
-          {this.props.event.users.map((user) => {
+          {users.map((user) => {
             return (
               <Surface style={Style.attendee} key={user.id}>
                 <Text style={Style.members}>

@@ -11,11 +11,11 @@ async function seed() {
   const interests = [];
   const activities = [
     {
-      eventId: 1,
+      eventId: 2,
       userId: 1,
     },
     {
-      eventId: 1,
+      eventId: 2,
       userId: 2,
     },
   ];
@@ -115,24 +115,30 @@ async function seed() {
   });
   interests.push(CGinterest3);
 
-  //FITNESS
-  const fitness1 = await Event.create({
-    name: "Barry's Bootcamp",
-    description: "Best workout in the world.",
-    address: "419 Lafayette Street",
-    city: "New York",
-    state: "NY",
-    zipCode: "10003",
-    date: "Tue 08 Sep 2020",
-    time: "15:34:00 GMT-0400 (EDT)",
-    category: "Fitness",
-    imgUrl:
-      "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
+  const QLinterest1 = await Interest.create({
+    userInterest: "Fitness",
     userId: 2,
-    hostId: 1,
-    latitude: 40.7286,
-    longitude: -73.9922,
   });
+  interests.push(QLinterest1);
+
+  //FITNESS
+  // const fitness1 = await Event.create({
+  //   name: "Barry's Bootcamp",
+  //   description: "Best workout in the world.",
+  //   address: "419 Lafayette Street",
+  //   city: "New York",
+  //   state: "NY",
+  //   zipCode: "10003",
+  //   date: "Tue 08 Sep 2020",
+  //   time: "15:34:00 GMT-0400 (EDT)",
+  //   category: "Fitness",
+  //   imgUrl:
+  //     "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
+  //   userId: 3,
+  //   hostId: 2,
+  //   latitude: 40.7286,
+  //   longitude: -73.9922,
+  // });
 
   const fitness2 = await Event.create({
     name: "Switch Playground",
@@ -441,7 +447,7 @@ async function seed() {
   });
 
   //FITNESS
-  events.push(fitness1);
+  // events.push(fitness1);
   events.push(fitness2);
   events.push(fitness3);
   events.push(fitness4);
@@ -467,9 +473,9 @@ async function seed() {
   events.push(entertainment4);
 
   const message = await Message.create({
-    message: "This is a hard coded message in the db.",
+    message: "Welcome everyone!",
     senderId: 4,
-    eventId: 1,
+    eventId: 2,
   });
 
   messages.push(message);

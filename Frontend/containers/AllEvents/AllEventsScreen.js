@@ -11,8 +11,8 @@ class AllEvents extends React.Component {
     super();
   }
 
-  componentDidMount() {
-    this.props.getAllEvents();
+  async componentDidMount() {
+    await this.props.getAllEvents();
   }
 
   handleEventClick = () => {

@@ -170,6 +170,9 @@ class AddEventScreen extends React.Component {
   };
 
   render() {
+    const uri =
+      this.state.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <ScrollView>
         <View style={styles.container1}>
@@ -181,7 +184,7 @@ class AddEventScreen extends React.Component {
             <Image
               style={styles.image}
               source={{
-                uri: this.state.imgUrl,
+                uri: uri,
               }}
             />
           </View>
@@ -214,6 +217,7 @@ class AddEventScreen extends React.Component {
               this.setState({ name: text });
             }}
             value={this.state.name}
+            returnKeyType="go"
           />
           <Zocial name="eventful" size={13} style={styles.name} />
           {this.state.name.length === 0 && (
@@ -221,6 +225,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
+            returnKeyType="go"
             style={styles.textInput}
             selectionColor="#428AF8"
             placeholder="Event Street Address..."
@@ -238,6 +243,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
+            returnKeyType="go"
             style={styles.textInput}
             selectionColor="#428AF8"
             placeholder="Event City..."
@@ -315,6 +321,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
+            returnKeyType="go"
             style={styles.textInput}
             placeholder="Event Zip Code..."
             selectionColor="#428AF8"
@@ -391,7 +398,7 @@ class AddEventScreen extends React.Component {
             >
               Select Time
             </Text>
-            <Text sstyle={styles.textInput}>{this.state.time}</Text>
+            <Text style={styles.textInput}>{this.state.time}</Text>
           </View>
           <MaterialIcons name="access-time" size={22} style={styles.pin} />
           {this.state.time.length === 0 && (
@@ -399,6 +406,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
+            returnKeyType="go"
             multiline={true}
             style={{
               height: Math.max(30, this.state.height),
@@ -479,7 +487,7 @@ class AddEventScreen extends React.Component {
               <Image
                 style={styles.image2}
                 source={{
-                  uri: this.state.imgUrl,
+                  uri: uri,
                 }}
               />
             </View>

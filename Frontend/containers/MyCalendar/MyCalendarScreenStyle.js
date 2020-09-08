@@ -49,7 +49,5 @@ export default StyleSheet.create({
   appHeader: {
     backgroundColor: "rgba(38,153,251, .4)",
     height: 60,
-    marginTop: 5,
-    marginBottom: 5,
   },
 });

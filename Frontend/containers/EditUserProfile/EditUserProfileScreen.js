@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { Appbar, Surface } from "react-native-paper";
 import { connect } from "react-redux";
 import Style from "./EditUserProfileScreenStyle";
+import styles from "./EditUserProfileScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { updateUser } from "../../store/user";
@@ -17,6 +19,7 @@ import { deleteAllInterests, postNewInterest } from "../../store/interest";
 import RNPickerSelect from "react-native-picker-select";
 import { Metrics, Fonts, Colors } from "../../themes";
 import S3 from "aws-sdk/clients/s3";
+import { Ionicons, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 class EditUserProfileScreen extends React.Component {
   constructor() {
@@ -174,63 +177,94 @@ class EditUserProfileScreen extends React.Component {
   };
 
   render() {
+    const uri =
+      this.state.imgUrl ||
+      "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg";
     return (
       <ScrollView>
-        <View style={{ flex: 1, marginBottom: 100 }}>
-          <View style={Style.imageContainer}>
+        <View style={styles.container1}>
+          <Appbar.Header style={styles.appHeader}>
+            <Appbar.Content title="Add Event" color="white" />
+          </Appbar.Header>
+
+          <View style={styles.imageContainer}>
             <Image
-              style={Style.image}
+              style={styles.image}
               source={{
-                uri: this.state.imgUrl,
+                uri: uri,
               }}
             />
-            <Button title="Select Picture" onPress={this.selectPicture} />
-            <Button title="Take Picture" onPress={this.takePicture} />
           </View>
-          <View style={Style.profileContainer}>
-            {this.state.firstName.length === 0 && (
-              <Text style={{ color: "red" }}>First Name is Required</Text>
-            )}
-            <Text>First Name</Text>
-            <TextInput
-              value={this.state.firstName}
-              style={Style.text}
-              onChangeText={(firstName) => this.setState({ firstName })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
 
-            {this.state.lastName.length === 0 && (
-              <Text style={{ color: "red" }}>Last Name is Required</Text>
-            )}
-            <Text>Last Name</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.lastName}
-              onChangeText={(lastName) => this.setState({ lastName })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
+          <View style={styles.picOption}>
+            <Surface style={styles.surface1}>
+              <Button
+                title="Select Picture"
+                color="rgba(38,153,251,1)"
+                onPress={this.selectPicture}
+              />
+            </Surface>
+            <Surface style={styles.surface2}>
+              <Button
+                title="Take Picture"
+                color="rgba(38,153,251,1)"
+                onPress={this.takePicture}
+              />
+            </Surface>
+          </View>
 
-            {this.state.city.length === 0 && (
-              <Text style={{ color: "red" }}>City is Required</Text>
-            )}
-            <Text>City</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.city}
-              onChangeText={(city) => this.setState({ city })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
+          <TextInput
+            placeholder="First Name..."
+            selectionColor="#428AF8"
+            placeholderTextColor="#4d4a4a"
+            style={styles.textInputName}
+            returnKeyType="go"
+            value={this.state.firstName}
+            onChangeText={(firstName) => this.setState({ firstName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <Ionicons name="md-person" size={20} style={styles.name} />
+          {this.state.firstName.length === 0 && (
+            <Text style={styles.validatorName}>First Name is Required</Text>
+          )}
 
-            {this.state.state.length === 0 && (
-              <Text style={{ color: "red" }}>State is Required</Text>
-            )}
-            <Text>State</Text>
+          <TextInput
+            returnKeyType="go"
+            style={styles.textInput}
+            selectionColor="#428AF8"
+            placeholder="Last Name..."
+            placeholderTextColor="#4d4a4a"
+            value={this.state.lastName}
+            onChangeText={(lastName) => this.setState({ lastName })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <Ionicons name="md-person" size={20} style={styles.name} />
+          {this.state.lastName.length === 0 && (
+            <Text style={styles.validatorName}>Last Name is Required</Text>
+          )}
+
+          <TextInput
+            returnKeyType="go"
+            style={styles.textInput}
+            selectionColor="#428AF8"
+            placeholder="City..."
+            placeholderTextColor="#4d4a4a"
+            value={this.state.city}
+            onChangeText={(city) => this.setState({ city })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {this.state.city.length === 0 && (
+            <Text style={styles.validators}>City is Required</Text>
+          )}
+
+          <View style={styles.selectState}>
             <RNPickerSelect
               onValueChange={(state) => {
                 this.setState({ state: state });
@@ -239,6 +273,7 @@ class EditUserProfileScreen extends React.Component {
                 label: "Select State",
                 value: null,
               }}
+              placeholderTextColor="#4d4a4a"
               items={[
                 { label: "Alabama", value: "Alabama" },
                 { label: "Alaska", value: "Alaska" },
@@ -285,107 +320,125 @@ class EditUserProfileScreen extends React.Component {
                 { label: "South Carolina", value: "South Carolina" },
               ]}
             />
+          </View>
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {this.state.state.length === 0 && (
+            <Text style={styles.validators}>State is Required</Text>
+          )}
 
-            {!this.isValidUSZip(this.state.zipCode) && (
-              <Text style={{ color: "red" }}>
-                Valid US Zip Code is Required
+          <TextInput
+            returnKeyType="go"
+            style={styles.textInput}
+            placeholder="Zip Code..."
+            selectionColor="#428AF8"
+            placeholderTextColor="#4d4a4a"
+            value={this.state.zipCode}
+            onChangeText={(zipCode) => this.setState({ zipCode })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <Entypo name="location-pin" size={22} style={styles.pin} />
+          {!this.isValidUSZip(this.state.zipCode) && (
+            <Text style={styles.validators}>Valid US Zip Code is Required</Text>
+          )}
+
+          <TextInput
+            returnKeyType="go"
+            multiline={true}
+            style={{
+              height: Math.max(30, this.state.height),
+              color: "#4d4a4a",
+              marginLeft: 30,
+              marginRight: 30,
+              borderColor: "#BEBEBE",
+              letterSpacing: 1,
+              textAlign: "left",
+              fontSize: 16,
+              borderBottomWidth: 1,
+              width: "80%",
+              paddingBottom: 40,
+            }}
+            onContentSizeChange={(event) => {
+              this.setState({ height: event.nativeEvent.contentSize.height });
+            }}
+            value={this.state.description}
+            onChangeText={(description) => this.setState({ description })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+          />
+          <MaterialIcons name="short-text" size={22} style={styles.pin} />
+
+          <Text style={styles.interests}>INTERESTS</Text>
+          <View>
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Food");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Food ? styles.interestSelected : styles.interest
+                }
+              >
+                Food
               </Text>
-            )}
-            <Text>Zip Code</Text>
-            <TextInput
-              style={Style.text}
-              value={this.state.zipCode}
-              onChangeText={(zipCode) => this.setState({ zipCode })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
-            <Text>Description</Text>
-            <TextInput
-              multiline={true}
-              style={{
-                height: Math.max(35, this.state.height),
-                ...Fonts.normal,
-                ...Metrics.bottomMargin,
-                color: Colors.blue,
-              }}
-              onContentSizeChange={(event) => {
-                this.setState({ height: event.nativeEvent.contentSize.height });
-              }}
-              value={this.state.description}
-              onChangeText={(description) => this.setState({ description })}
-              ref={(input) => {
-                this.textInput = input;
-              }}
-            />
-            <Text>INTERESTS</Text>
-            <View style={Style.interestContainer}>
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Food");
-                }}
-              >
-                <Text
-                  style={
-                    this.state.Food ? Style.interestSelected : Style.interest
-                  }
-                >
-                  Food
-                </Text>
-              </TouchableOpacity>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Entertainment");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Entertainment");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Entertainment
+                    ? styles.interestSelected
+                    : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Entertainment
-                      ? Style.interestSelected
-                      : Style.interest
-                  }
-                >
-                  Entertainment
-                </Text>
-              </TouchableOpacity>
+                Entertainment
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Education");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Education");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Education
+                    ? styles.interestSelected
+                    : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Education
-                      ? Style.interestSelected
-                      : Style.interest
-                  }
-                >
-                  Education
-                </Text>
-              </TouchableOpacity>
+                Education
+              </Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity
-                onPress={() => {
-                  this.updateChoice("Fitness");
-                }}
+            <TouchableOpacity
+              onPress={() => {
+                this.updateChoice("Fitness");
+              }}
+            >
+              <Text
+                style={
+                  this.state.Fitness ? styles.interestSelected : styles.interest
+                }
               >
-                <Text
-                  style={
-                    this.state.Fitness ? Style.interestSelected : Style.interest
-                  }
-                >
-                  Fitness
-                </Text>
-              </TouchableOpacity>
-            </View>
+                Fitness
+              </Text>
+            </TouchableOpacity>
           </View>
 
-          <Button
-            title="Update My Profile"
-            onPress={this.handleUpdate}
-          ></Button>
+          <View style={{ marginTop: 30, marginBottom: 50 }}>
+            <Button
+              title="Update My Profile"
+              onPress={this.handleUpdate}
+            ></Button>
+          </View>
         </View>
       </ScrollView>
     );

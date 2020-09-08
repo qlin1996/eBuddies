@@ -5,7 +5,6 @@ export default StyleSheet.create({
   surface: {
     alignItems: "center",
     justifyContent: "center",
-    elevation: 4,
   },
   container1: {
     backgroundColor: "white",
@@ -30,7 +29,6 @@ export default StyleSheet.create({
     width: "50%",
     alignSelf: "center",
     margin: 10,
-    elevation: 4,
   },
   profileContainer: {
     ...Metrics.mediumVerticalMargin,
@@ -113,7 +111,6 @@ export default StyleSheet.create({
     padding: 8,
     height: 80,
     justifyContent: "space-around",
-    elevation: 4,
   },
   button: {
     color: "rgb(38,153,251)",
@@ -124,6 +121,5 @@ export default StyleSheet.create({
     // height: 80,
     // width: 100,
     // justifyContent: "space-around",
-    // elevation: 4,
   },
 });

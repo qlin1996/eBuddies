@@ -122,6 +122,7 @@ class ChatScreen extends React.Component {
         </View>
         <Surface style={Style.surface}>
           <TextInput
+            returnKeyType="go"
             style={Style.textInput}
             autoCorrect={false}
             value={this.state.chatMessage.message}

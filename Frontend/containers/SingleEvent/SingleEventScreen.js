@@ -8,9 +8,10 @@ import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import * as Notifications from "expo-notifications";
 import { Card, Title, Paragraph, Surface, Appbar } from "react-native-paper";
+import { serverLink } from "../../store/serverLink";
 
 import io from "socket.io-client";
-const socket = io("http://localhost:8081", {
+const socket = io(serverLink, {
   transports: ["websocket"],
 });
 Notifications.setNotificationHandler({

@@ -26,7 +26,7 @@ class AttendeeList extends React.Component {
           </Appbar.Header>
           {this.props.event.users.map((user) => {
             return (
-              <Surface style={Style.attendee} key={event.id}>
+              <Surface style={Style.attendee} key={user.id}>
                 <Text style={Style.members}>
                   {user.firstName} {""}
                   {user.lastName}

@@ -123,8 +123,8 @@ async function seed() {
     city: "New York",
     state: "NY",
     zipCode: "10003",
-    date: "Sun 13 Sep 2020",
-    time: "22:20:00 GMT-0400 (EDT)",
+    date: "Tue 08 Sep 2020",
+    time: "15:34:00 GMT-0400 (EDT)",
     category: "Fitness",
     imgUrl:
       "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
@@ -429,7 +429,7 @@ async function seed() {
     city: "Sea Girt",
     state: "NJ",
     zipCode: "08750",
-    date: "Fri 04 Sep 2020",
+    date: "Sat 14 Sep 2020",
     time: "22:45:00 GMT-0400 (EDT)",
     imgUrl:
       "https://i.insider.com/5d2798f9a17d6c45e50f623a?width=1100&format=jpeg&auto=webp",

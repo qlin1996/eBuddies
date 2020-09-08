@@ -102,6 +102,7 @@ class Maps extends React.Component {
       longitude: -74.08746105990927,
       speed: -1,
     };
+
     let eventLocation = this.state.eventLocation[0] || {
       accuracy: 100,
       altitude: 0,

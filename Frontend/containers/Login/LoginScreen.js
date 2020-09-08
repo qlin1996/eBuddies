@@ -108,64 +108,61 @@ class Login extends React.Component {
           <Appbar.Header style={styles.appHeader}>
             <Appbar.Content title="Login" color="white" />
           </Appbar.Header>
-          <View style={styles.container1}>
-            <View style={styles.container2}>
-              {this.state.error ? (
-                <Text>EMAIL AND/OR PASSWORD IS INVALID</Text>
-              ) : null}
+          {this.state.error ? (
+            <Text style={{ color: "red" }}>
+              EMAIL AND/OR PASSWORD IS INVALID
+            </Text>
+          ) : null}
 
-              <View>
-                {this.state.email.length === 0 && (
-                  <Text style={styles.validators}>Email is Required</Text>
-                )}
-                <TextInput
-                  style={styles.textInput}
-                  selectionColor="#428AF8"
-                  value={this.state.email}
-                  onChangeText={(email) => this.setState({ email })}
-                  ref={(input) => {
-                    this.textInput = input;
-                  }}
-                  returnKeyType="go"
-                  placeholder="Email..."
-                  placeholderTextColor="#4d4a4a"
-                  keyboardType="email-address"
-                />
-                <Image
-                  style={styles.email}
-                  source={require("../../assets/email.png")}
-                />
-                {this.state.password.length === 0 && (
-                  <Text style={styles.validators}>Password is Required</Text>
-                )}
-                <TextInput
-                  style={styles.textInput}
-                  value={this.state.password}
-                  onChangeText={(password) => this.setState({ password })}
-                  ref={(input) => {
-                    this.textInput = input;
-                  }}
-                  returnKeyType="go"
-                  placeholder="Password..."
-                  placeholderTextColor="#4d4a4a"
-                  secureTextEntry
-                />
-                <Image
-                  style={styles.password}
-                  source={require("../../assets/password.png")}
-                />
-                <View style={styles.button}>
-                  <Button
-                    onPress={this.handleLogin}
-                    color="rgba(38,153,251,1)"
-                    title="CONTINUE"
-                  >
-                    CONTINUE
-                  </Button>
-                </View>
-                <View style={styles.account}></View>
-              </View>
-            </View>
+          <TextInput
+            style={styles.textInputEmail}
+            selectionColor="#428AF8"
+            value={this.state.email}
+            onChangeText={(email) => this.setState({ email })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="Email..."
+            placeholderTextColor="#4d4a4a"
+            keyboardType="email-address"
+          />
+          <Image
+            style={styles.email}
+            source={require("../../assets/email.png")}
+          />
+          {this.state.email.length === 0 && (
+            <Text style={styles.validators}>Email is Required</Text>
+          )}
+
+          <TextInput
+            style={styles.textInput}
+            value={this.state.password}
+            onChangeText={(password) => this.setState({ password })}
+            ref={(input) => {
+              this.textInput = input;
+            }}
+            returnKeyType="go"
+            placeholder="Password..."
+            placeholderTextColor="#4d4a4a"
+            secureTextEntry
+          />
+          <Image
+            style={styles.password}
+            source={require("../../assets/password.png")}
+          />
+          {this.state.password.length === 0 && (
+            <Text style={styles.validators}>Password is Required</Text>
+          )}
+
+          <View style={styles.button}>
+            <Button
+              onPress={this.handleLogin}
+              color="rgba(38,153,251,1)"
+              title="CONTINUE"
+            >
+              CONTINUE
+            </Button>
           </View>
         </View>
       </ScrollView>

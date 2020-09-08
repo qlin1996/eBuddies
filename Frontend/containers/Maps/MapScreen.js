@@ -93,6 +93,24 @@ class Maps extends React.Component {
     }
   };
   render() {
+    let userLocation = this.state.userLocation.coords || {
+      accuracy: 65,
+      altitude: 31.08802032470703,
+      altitudeAccuracy: 10,
+      heading: -1,
+      latitude: 40.158599018515304,
+      longitude: -74.08746105990927,
+      speed: -1,
+    };
+    let eventLocation = this.state.eventLocation[0] || {
+      accuracy: 100,
+      altitude: 0,
+      latitude: 40.7286439,
+      latitudeDelta: 0.05,
+      longitude: -73.9921716,
+      longitudeDelta: 0.065,
+    };
+
     return (
       <>
         {this.props.user.id ? (
@@ -107,18 +125,15 @@ class Maps extends React.Component {
             </Appbar.Header>
 
             <View style={styles.container}>
-              <MapView
-                style={styles.mapStyle}
-                region={this.state.eventLocation[0]}
-              >
+              <MapView style={styles.mapStyle} region={eventLocation}>
                 <Marker
-                  coordinate={this.state.eventLocation[0]}
+                  coordinate={eventLocation}
                   title={this.props.event.name}
                   description={this.props.event.address}
                 />
                 <Marker
                   pinColor={"blue"}
-                  coordinate={this.state.userLocation.coords}
+                  coordinate={userLocation}
                   title={this.props.user.firstName}
                   description={this.props.user.description}
                 />
@@ -140,10 +155,6 @@ class Maps extends React.Component {
 
               <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
                 <View>
-                  <Image
-                    source={require("../../assets/ebuddies.gif")}
-                    style={styles.logo}
-                  />
                   <View style={styles.modalText}>
                     <Text style={{ fontSize: 20 }}>
                       Thanks for checking in. We're excited to meet you,{" "}
@@ -160,10 +171,6 @@ class Maps extends React.Component {
                 style={styles.modal2}
               >
                 <View>
-                  <Image
-                    source={require("../../assets/ebuddies.gif")}
-                    style={styles.logo}
-                  />
                   <View style={styles.modalText}>
                     <Text style={{ fontSize: 20 }}>
                       Sorry, looks like you have not yet reached the
@@ -179,12 +186,10 @@ class Maps extends React.Component {
           </>
         ) : (
           <>
-            <Surface style={styles.surfaceHere}>
+            <Surface style={styles.surfaceback}>
               <Text style={styles.error}>
                 Please log in or create an account to locate our events
               </Text>
-            </Surface>
-            <Surface style={styles.surfaceError}>
               <Button
                 title="BACK"
                 onPress={() => {

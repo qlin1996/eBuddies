@@ -51,56 +51,6 @@ class Login extends React.Component {
     this.props.navigation.navigate("SIGNUP");
   };
 
-  logInFb = async () => {
-    if (this.state.email.length && this.state.password.length) {
-      try {
-        await Facebook.initializeAsync("1194639730905892");
-        const {
-          type,
-          token,
-          expires,
-          permissions,
-          declinedPermissions,
-        } = await Facebook.logInWithReadPermissionsAsync({
-          permissions: ["public_profile"],
-        });
-        if (type === "success") {
-          // Get the user's name using Facebook's Graph API
-          const response = await fetch(
-            `https://graph.facebook.com/me?access_token=${token}`
-          );
-          alert("Logged in!", `Hi ${(await response.json()).name}!`);
-        } else {
-          // type === 'cancel'
-        }
-      } catch ({ message }) {
-        alert(`Facebook Login Error: ${message}`);
-      }
-    }
-  };
-
-  signInWithGoogle = async () => {
-    if (this.state.email.length && this.state.password.length) {
-      try {
-        const result = await Google.logInAsync({
-          iosClientId: IOS_CLIENT_ID,
-          scopes: ["profile", "email"],
-        });
-        if (result.type === "success") {
-          return result.accessToken;
-        } else {
-          return { cancelled: true };
-        }
-      } catch (e) {
-        return { error: true };
-      }
-    }
-  };
-  verifyCallback = (response) => console.log(response);
-  expiredCallback = () => {
-    console.log("hi");
-  };
-
   render() {
     return (
       <ScrollView>

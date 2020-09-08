@@ -27,9 +27,15 @@ export default StyleSheet.create({
   },
   surfaceHere: {
     marginLeft: "15%",
-    height: 150,
-    marginTop: "15%",
-    width: "70%",
+    height: 40,
+    marginTop: -39.5,
+    width: "30%",
+    left: 150,
+  },
+  surfaceback: {
+    width: "50%",
+    alignSelf: "center",
+    marginTop: 30,
     padding: 10,
   },
   error: {

@@ -181,10 +181,6 @@ class SingleEvent extends React.Component {
         </View>
         <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
           <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo2}
-            />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
                 Event {this.props.event.name} has been added!
@@ -204,10 +200,6 @@ class SingleEvent extends React.Component {
 
         <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
           <View>
-            <Image
-              source={require("../../assets/ebuddies.gif")}
-              style={Style.logo}
-            />
             <View style={Style.modalText}>
               <Text style={{ fontSize: 20 }}>
                 Directing you to Maps to view {this.props.event.name}'s

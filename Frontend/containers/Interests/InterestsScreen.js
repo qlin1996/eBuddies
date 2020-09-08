@@ -84,7 +84,6 @@ class Interests extends React.Component {
         return;
       }
       let token = await Notifications.getExpoPushTokenAsync();
-      console.log(token);
       this.setState({
         pushToken: token.data,
       });

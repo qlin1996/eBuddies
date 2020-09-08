@@ -330,21 +330,6 @@ class AddEventScreen extends React.Component {
             <Text style={styles.validators}>Valid US Zip Code is Required</Text>
           )}
 
-          <View style={styles.selectDate}>
-            <Text
-              style={styles.date}
-              onPress={() => {
-                this.setState({ isDatePickerVisible: true });
-              }}
-            >
-              Select Date
-            </Text>
-          </View>
-          <MaterialIcons name="date-range" size={22} style={styles.pin} />
-          {this.state.date.length === 0 && (
-            <Text style={styles.validatorDate}>Event Date is Required</Text>
-          )}
-
           <DateTimePickerModal
             isVisible={this.state.isDatePickerVisible}
             onConfirm={(date) => {
@@ -358,6 +343,46 @@ class AddEventScreen extends React.Component {
             }}
             mode="date"
           />
+
+          <View style={styles.selectDate}>
+            <Text
+              style={styles.date}
+              onPress={() => {
+                this.setState({ isDatePickerVisible: true });
+              }}
+            >
+              Select Date
+            </Text>
+            <Text
+              style={{
+                borderColor: "#BEBEBE",
+                borderBottomWidth: 1,
+                width: "85%",
+                fontSize: 16,
+                color: "#4d4a4a",
+              }}
+            >
+              {this.state.date}
+            </Text>
+          </View>
+          <MaterialIcons name="date-range" size={22} style={styles.pin} />
+          {this.state.date.length === 0 && (
+            <Text style={styles.validatorDate}>Event Date is Required</Text>
+          )}
+
+          <DateTimePickerModal
+            isVisible={this.state.isTimePickerVisible}
+            onConfirm={(time) => {
+              this.setState({
+                time: time.toTimeString(),
+                isTimePickerVisible: false,
+              });
+            }}
+            onCancel={() => {
+              this.setState({ isTimePickerVisible: false });
+            }}
+            mode="time"
+          />
           <View style={styles.selectTime}>
             <Text
               style={styles.time}
@@ -367,6 +392,7 @@ class AddEventScreen extends React.Component {
             >
               Select Time
             </Text>
+            <Text sstyle={styles.textInput}>{this.state.time}</Text>
           </View>
           <MaterialIcons name="access-time" size={22} style={styles.pin} />
           {this.state.time.length === 0 && (

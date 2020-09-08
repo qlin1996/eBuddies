@@ -487,9 +487,7 @@ async function runSeed() {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log("closing db connection");
     await db.close();
-    console.log("db connection closed");
   }
 }
 

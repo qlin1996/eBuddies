@@ -32,8 +32,7 @@ class EditUserProfileScreen extends React.Component {
       Education: false,
       Fitness: false,
       Entertainment: false,
-      imgUrl:
-        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
+      imgUrl: "",
       height: 0,
     };
   }

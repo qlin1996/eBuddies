@@ -370,16 +370,7 @@ class EditUserProfileScreen extends React.Component {
           />
           <MaterialIcons name="short-text" size={22} style={styles.pin} />
 
-          <Text
-            style={{
-              marginLeft: 30,
-              fontSize: 16,
-              marginTop: 20,
-              color: Colors.blue,
-            }}
-          >
-            INTERESTS
-          </Text>
+          <Text style={styles.interests}>INTERESTS</Text>
           <View>
             <TouchableOpacity
               onPress={() => {

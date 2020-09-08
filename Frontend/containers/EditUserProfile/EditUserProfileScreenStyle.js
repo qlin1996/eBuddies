@@ -118,10 +118,11 @@ export default StyleSheet.create({
   },
 
   interests: {
+    marginLeft: 30,
+    fontSize: 16,
+    marginTop: 20,
     color: Colors.blue,
-    ...Fonts.normal,
     fontWeight: "bold",
-    ...Metrics.bottomMargin,
   },
   interestContainer: {
     flexDirection: "row",

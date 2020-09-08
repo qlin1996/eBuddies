@@ -106,166 +106,155 @@ class JoinedEvent extends React.Component {
 
   render() {
     return (
-      <>
-        <ScrollView>
-          <View style={Style.container1}>
-            <Appbar.Header style={Style.appHeader}>
-              <Appbar.Content
-                title={`Viewing ${this.props.event.name}...`}
-                subtitle={`We think you'll love this  ${
-                  this.props.user.firstName ? this.props.user.firstName : ""
-                } `}
-                color="white"
-              />
-            </Appbar.Header>
-            <Card style={Style.card}>
-              <Paragraph style={Style.title}>
-                {""}
-                {this.props.event.name}
-              </Paragraph>
-              <Paragraph style={Style.cardAddress}>
-                {this.props.event.address}
-              </Paragraph>
-              <Paragraph style={Style.cardAddress}>
-                {this.props.event.city}, {this.props.event.state} {""}
-                {this.props.event.zipCode}
-              </Paragraph>
+      <ScrollView>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title={`Viewing ${this.props.event.name}...`}
+            subtitle={`We think you'll love this  ${
+              this.props.user.firstName ? this.props.user.firstName : ""
+            } `}
+            color="white"
+          />
+        </Appbar.Header>
+        <Card style={Style.card}>
+          <Paragraph style={Style.title}>
+            {""}
+            {this.props.event.name}
+          </Paragraph>
+          <Paragraph style={Style.cardAddress}>
+            {this.props.event.address}
+          </Paragraph>
+          <Paragraph style={Style.cardAddress}>
+            {this.props.event.city}, {this.props.event.state} {""}
+            {this.props.event.zipCode}
+          </Paragraph>
 
-              <Paragraph style={Style.cardDate}>
-                {this.props.event.date
-                  ? this.props.event.date.slice(5, 10) +
-                    "-" +
-                    this.props.event.date.slice(0, 4)
-                  : null}{" "}
-                {"at"}{" "}
-                {this.props.event.time
-                  ? this.convertTime(this.props.event.time)
-                  : null}
-              </Paragraph>
+          <Paragraph style={Style.cardDate}>
+            {this.props.event.date
+              ? this.props.event.date.slice(5, 10) +
+                "-" +
+                this.props.event.date.slice(0, 4)
+              : null}{" "}
+            {"at"}{" "}
+            {this.props.event.time
+              ? this.convertTime(this.props.event.time)
+              : null}
+          </Paragraph>
 
-              <Card.Cover
-                style={Style.cardImg}
-                source={{ uri: this.props.event.imgUrl }}
-              />
-              <Card.Content>
-                <Paragraph style={Style.cardDescription}>
-                  {this.props.event.description}
-                </Paragraph>
-              </Card.Content>
+          <Card.Cover
+            style={Style.cardImg}
+            source={{ uri: this.props.event.imgUrl }}
+          />
+          <Card.Content>
+            <Paragraph style={Style.cardDescription}>
+              {this.props.event.description}
+            </Paragraph>
+          </Card.Content>
 
-              <Card.Actions>
-                <Button title="">Cancel</Button>
-                <Button title="">Ok</Button>
-              </Card.Actions>
-            </Card>
-            <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
-              <View>
-                <Image
-                  source={require("../../assets/ebuddies.gif")}
-                  style={Style.logo}
-                />
-                <View style={Style.modalText}>
-                  <Text style={{ fontSize: 20 }}>
-                    Connecting you to the Group Chat for,{" "}
-                    {this.props.event.name}!
-                  </Text>
-                </View>
-                <View>
-                  <Text style={Style.modalChatMessage}>💬💬💬</Text>
-                </View>
-              </View>
-            </Modal>
-            <Surface style={Style.surface}>
-              <View style={Style.menu}>
-                {this.props.event.hostId === this.props.user.id ? (
-                  <Menu
-                    visible={this.state.visible}
-                    onDismiss={this.closeMenu}
-                    anchor={
-                      <Button
-                        onPress={this.openMenu}
-                        title="Show menu"
-                        color="white"
-                      >
-                        Show menu
-                      </Button>
-                    }
-                  >
-                    <Menu.Item
-                      title="Join the chat"
-                      onPress={this.handleChat}
-                    />
-                    <Menu.Item title="View on map" onPress={this.handleMap} />
-                    <Divider />
-                    <Menu.Item
-                      title="Edit Event"
-                      onPress={() => {
-                        this.props.navigation.navigate(
-                          "EDITEVENT",
-                          {
-                            id: this.props.event.id,
-                          },
-                          this.setState({ visible: false })
-                        );
-                      }}
-                    />
-                    <Menu.Item
-                      title="View Attendees"
-                      onPress={() => {
-                        this.props.navigation.navigate(
-                          "ATTENDEES",
-                          {
-                            id: this.props.event.id,
-                          },
-                          this.setState({ visible: false })
-                        );
-                      }}
-                    />
-                  </Menu>
-                ) : (
-                  <Menu
-                    visible={this.state.visible}
-                    onDismiss={this.closeMenu}
-                    anchor={
-                      <Button
-                        onPress={this.openMenu}
-                        title="Show menu"
-                        color="white"
-                      >
-                        Show menu
-                      </Button>
-                    }
-                  >
-                    <Menu.Item
-                      title="Join the chat"
-                      onPress={this.handleChat}
-                    />
-                    <Menu.Item title="View on map" onPress={this.handleMap} />
-                    <Divider />
-                  </Menu>
-                )}
-              </View>
-            </Surface>
-            <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
-              <View>
-                <Image
-                  source={require("../../assets/ebuddies.gif")}
-                  style={Style.logo}
-                />
-                <View style={Style.modalText}>
-                  <Text style={{ fontSize: 20 }}>
-                    Directing you to Maps to view {this.props.event.name}'s
-                    Location!
-                  </Text>
-                </View>
-                <View>
-                  <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
-                </View>
-              </View>
-            </Modal>
+          <Card.Actions>
+            <Button title="">Cancel</Button>
+            <Button title="">Ok</Button>
+          </Card.Actions>
+        </Card>
+        <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={Style.logo}
+            />
+            <View style={Style.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Connecting you to the Group Chat for, {this.props.event.name}!
+              </Text>
+            </View>
+            <View>
+              <Text style={Style.modalChatMessage}>💬💬💬</Text>
+            </View>
           </View>
-        </ScrollView>
-      </>
+        </Modal>
+        <Surface style={Style.surface}>
+          <View style={Style.menu}>
+            {this.props.event.hostId === this.props.user.id ? (
+              <Menu
+                visible={this.state.visible}
+                onDismiss={this.closeMenu}
+                anchor={
+                  <Button
+                    onPress={this.openMenu}
+                    title="Show menu"
+                    color="white"
+                  >
+                    Show menu
+                  </Button>
+                }
+              >
+                <Menu.Item title="Join the chat" onPress={this.handleChat} />
+                <Menu.Item title="View on map" onPress={this.handleMap} />
+                <Divider />
+                <Menu.Item
+                  title="Edit Event"
+                  onPress={() => {
+                    this.props.navigation.navigate(
+                      "EDITEVENT",
+                      {
+                        id: this.props.event.id,
+                      },
+                      this.setState({ visible: false })
+                    );
+                  }}
+                />
+                <Menu.Item
+                  title="View Attendees"
+                  onPress={() => {
+                    this.props.navigation.navigate(
+                      "ATTENDEES",
+                      {
+                        id: this.props.event.id,
+                      },
+                      this.setState({ visible: false })
+                    );
+                  }}
+                />
+              </Menu>
+            ) : (
+              <Menu
+                visible={this.state.visible}
+                onDismiss={this.closeMenu}
+                anchor={
+                  <Button
+                    onPress={this.openMenu}
+                    title="Show menu"
+                    color="white"
+                  >
+                    Show menu
+                  </Button>
+                }
+              >
+                <Menu.Item title="Join the chat" onPress={this.handleChat} />
+                <Menu.Item title="View on map" onPress={this.handleMap} />
+                <Divider />
+              </Menu>
+            )}
+          </View>
+        </Surface>
+        <Modal isVisible={this.state.isModal2Visible} style={Style.modal}>
+          <View>
+            <Image
+              source={require("../../assets/ebuddies.gif")}
+              style={Style.logo}
+            />
+            <View style={Style.modalText}>
+              <Text style={{ fontSize: 20 }}>
+                Directing you to Maps to view {this.props.event.name}'s
+                Location!
+              </Text>
+            </View>
+            <View>
+              <Text style={Style.mapModalEmojis}>✈️🚖🌃</Text>
+            </View>
+          </View>
+        </Modal>
+      </ScrollView>
     );
   }
 }

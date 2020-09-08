@@ -54,51 +54,47 @@ class MyCalendar extends React.Component {
     const events = this.state.events || [];
     return (
       <>
+        <Appbar.Header style={Style.appHeader}>
+          <Appbar.Content
+            title={`Viewing ${this.props.user.firstName}'s Calendar...`}
+            color="white"
+          />
+        </Appbar.Header>
         <ScrollView>
-          <View style={Style.container1}>
-            <Appbar.Header style={Style.appHeader}>
-              <Appbar.Content
-                title={`Viewing ${this.props.user.firstName}'s Calendar...`}
-                color="white"
-              />
-            </Appbar.Header>
-            <ScrollView>
-              <Surface style={Style.surfaceHost}>
-                <Button title="Events I Host" onPress={this.eventsIHost} />
-                <List.Icon
-                  style={Style.hostIcon}
-                  color={Colors.blue500}
-                  icon="folder"
-                />
-              </Surface>
-              <Surface style={Style.surfaceAttend}>
-                <Button title="Events I Attend" onPress={this.eventsIAttend} />
-                <List.Icon
-                  style={Style.attendeeIcon}
-                  color={Colors.blue500}
-                  icon="calendar"
-                />
-              </Surface>
+          <Surface style={Style.surfaceHost}>
+            <Button title="Events I Host" onPress={this.eventsIHost} />
+            <List.Icon
+              style={Style.hostIcon}
+              color={Colors.blue500}
+              icon="folder"
+            />
+          </Surface>
+          <Surface style={Style.surfaceAttend}>
+            <Button title="Events I Attend" onPress={this.eventsIAttend} />
+            <List.Icon
+              style={Style.attendeeIcon}
+              color={Colors.blue500}
+              icon="calendar"
+            />
+          </Surface>
 
-              {events.map((event) => {
-                return (
-                  <View key={event.id}>
-                    <Event event={event} />
-                    <Surface style={Style.surface}>
-                      <Button
-                        title="VIEW EVENT"
-                        onPress={() => {
-                          this.props.navigation.navigate("JOINEDEVENT", {
-                            id: event.id,
-                          });
-                        }}
-                      ></Button>
-                    </Surface>
-                  </View>
-                );
-              })}
-            </ScrollView>
-          </View>
+          {events.map((event) => {
+            return (
+              <View key={event.id}>
+                <Event event={event} />
+                <Surface style={Style.surface}>
+                  <Button
+                    title="VIEW EVENT"
+                    onPress={() => {
+                      this.props.navigation.navigate("JOINEDEVENT", {
+                        id: event.id,
+                      });
+                    }}
+                  ></Button>
+                </Surface>
+              </View>
+            );
+          })}
         </ScrollView>
       </>
     );

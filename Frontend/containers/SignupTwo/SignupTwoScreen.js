@@ -11,7 +11,8 @@ class SignupTwo extends React.Component {
     super();
     this.state = {
       description: "",
-      imgUrl: "",
+      imgUrl:
+        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
       city: "",
       state: "",
       zipCode: "",
@@ -25,7 +26,8 @@ class SignupTwo extends React.Component {
   componentDidMount() {
     this.setState({
       description: "",
-      imgUrl: "",
+      imgUrl:
+        "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
       city: "",
       state: "",
       zipCode: "",
@@ -49,7 +51,8 @@ class SignupTwo extends React.Component {
       this.props.navigation.navigate("INTERESTS", this.state);
       this.setState({
         description: "",
-        imgUrl: "",
+        imgUrl:
+          "https://www.actuall.eu/wp-content/uploads/2016/10/cropped-White-box.jpg",
         city: "",
         state: "",
         zipCode: "",

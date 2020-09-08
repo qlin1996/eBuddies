@@ -8,7 +8,6 @@ import {
   deleteEvent,
 } from "../../store/singleEvent";
 import styles from "./UpdateEventScreenStyle";
-import Style from "./UpdateEventScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
@@ -137,7 +136,7 @@ class AddEventScreen extends React.Component {
       <ScrollView>
         <View style={styles.container1}>
           <Appbar.Header style={styles.appHeader}>
-            <Appbar.Content title="Add Event" color="white" />
+            <Appbar.Content title="Edit Event" color="white" />
           </Appbar.Header>
           <Image
             style={styles.image}
@@ -164,7 +163,7 @@ class AddEventScreen extends React.Component {
           </View>
 
           <TextInput
-            style={Style.textInputName}
+            style={styles.textInputName}
             selectionColor="#428AF8"
             name="name"
             type="text"
@@ -174,6 +173,7 @@ class AddEventScreen extends React.Component {
               this.setState({ name: text });
             }}
             value={this.state.name}
+            returnKeyType="go"
           />
           <Zocial name="eventful" size={13} style={styles.name} />
           {this.state.name.length === 0 && (
@@ -181,7 +181,8 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
-            style={Style.textInput}
+            returnKeyType="go"
+            style={styles.textInput}
             selectionColor="#428AF8"
             placeholder="Event Street Address..."
             placeholderTextColor="#4d4a4a"
@@ -198,7 +199,8 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
-            style={Style.textInput}
+            returnKeyType="go"
+            style={styles.textInput}
             selectionColor="#428AF8"
             placeholder="Event City..."
             onChangeText={(text) => {
@@ -275,7 +277,8 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
-            style={Style.textInput}
+            returnKeyType="go"
+            style={styles.textInput}
             placeholder="Event Zip Code..."
             selectionColor="#428AF8"
             placeholderTextColor="#4d4a4a"
@@ -350,7 +353,7 @@ class AddEventScreen extends React.Component {
             >
               Select Time
             </Text>
-            <Text sstyle={styles.textInput}>{this.state.time}</Text>
+            <Text style={styles.textInput}>{this.state.time}</Text>
           </View>
           <MaterialIcons name="access-time" size={22} style={styles.pin} />
           {this.state.time.length === 0 && (
@@ -358,6 +361,7 @@ class AddEventScreen extends React.Component {
           )}
 
           <TextInput
+            returnKeyType="go"
             multiline={true}
             style={{
               height: Math.max(30, this.state.height),
@@ -427,19 +431,19 @@ class AddEventScreen extends React.Component {
             <Button title="Delete Event" onPress={this.handleDelete}></Button>
           </View>
 
-          <Modal isVisible={this.state.isModalVisible} style={Style.modal}>
+          <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
               <Image
                 source={require("../../assets/ebuddies.gif")}
-                style={Style.logo}
+                style={styles.logo}
               />
-              <View style={Style.modalText}>
+              <View style={styles.modalText}>
                 <Text style={{ ...Fonts.h4 }}>
                   Event, {this.state.name} has been successfully updates!
                 </Text>
               </View>
               <Image
-                style={Style.image2}
+                style={styles.image2}
                 source={{
                   uri: this.state.imgUrl,
                 }}

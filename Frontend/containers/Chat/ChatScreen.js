@@ -112,6 +112,7 @@ class ChatScreen extends React.Component {
 
         <View style={Style.textInputWrapper}>
           <TextInput
+            returnKeyType="go"
             style={Style.textInput}
             autoCorrect={false}
             value={this.state.chatMessage.message}

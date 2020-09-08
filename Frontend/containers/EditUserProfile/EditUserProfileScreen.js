@@ -8,8 +8,10 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
+import { Appbar, Surface } from "react-native-paper";
 import { connect } from "react-redux";
 import Style from "./EditUserProfileScreenStyle";
+import styles from "./EditUserProfileScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { updateUser } from "../../store/user";
@@ -193,6 +195,7 @@ class EditUserProfileScreen extends React.Component {
             )}
             <Text>First Name</Text>
             <TextInput
+              returnKeyType="go"
               value={this.state.firstName}
               style={Style.text}
               onChangeText={(firstName) => this.setState({ firstName })}
@@ -206,6 +209,7 @@ class EditUserProfileScreen extends React.Component {
             )}
             <Text>Last Name</Text>
             <TextInput
+              returnKeyType="go"
               style={Style.text}
               value={this.state.lastName}
               onChangeText={(lastName) => this.setState({ lastName })}
@@ -219,6 +223,7 @@ class EditUserProfileScreen extends React.Component {
             )}
             <Text>City</Text>
             <TextInput
+              returnKeyType="go"
               style={Style.text}
               value={this.state.city}
               onChangeText={(city) => this.setState({ city })}
@@ -293,6 +298,7 @@ class EditUserProfileScreen extends React.Component {
             )}
             <Text>Zip Code</Text>
             <TextInput
+              returnKeyType="go"
               style={Style.text}
               value={this.state.zipCode}
               onChangeText={(zipCode) => this.setState({ zipCode })}
@@ -302,6 +308,7 @@ class EditUserProfileScreen extends React.Component {
             />
             <Text>Description</Text>
             <TextInput
+              returnKeyType="go"
               multiline={true}
               style={{
                 height: Math.max(35, this.state.height),

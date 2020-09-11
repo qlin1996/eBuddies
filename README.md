@@ -1,6 +1,7 @@
 # eBuddies-app
 
 Created by: Anderson Quinones, Qi Lin, Claire Giordano, Blake Ferm
+
 Demo: https://youtu.be/rJzWf-hdbeM
 
 ## Welcome to our eBuddies App! 

@@ -1,5 +1,8 @@
 # eBuddies-app
 
+Created by: Anderson Quinones, Qi Lin, Claire Giordano, Blake Ferm
+Demo: https://youtu.be/rJzWf-hdbeM
+
 ## Welcome to our eBuddies App! 
 
 eBuddies is a Mobile application designed to help a host create, customize and keep track of an event, while allowing different users to participate in the event. You can think of eBuddies as an outlet that allows you to bring people from different backgrounds, but same interests, together.Our application allows everyone to create an event and/or participate in many events, it also allows you to communicate with everyone that it’s in that specific event.

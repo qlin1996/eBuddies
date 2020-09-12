@@ -1,12 +1,10 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   colMain: {
-    ...Helpers.fullWidth,
     width: 375,
     height: 667,
-    backgroundColor: Colors.white,
+    backgroundColor: "rgb(235, 233, 233)",
     overflow: "hidden",
   },
   eventMap: {
@@ -34,11 +32,11 @@ export default StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     height: 70,
-    backgroundColor: Colors.lightBlue,
-    padding: Metrics.medium,
+    backgroundColor: "#F1F9FF",
+    padding: 30,
   },
   errorMsg: {
-    ...Fonts.normal,
+    fontSize: 17,
     alignContent: "center",
     justifyContent: "center",
     textAlign: "center",
@@ -47,9 +45,9 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     marginHorizontal: 10,
-    color: Colors.primary,
-    padding: Metrics.medium,
-    backgroundColor: Colors.lightBlue,
+    color: "#BCE0FD",
+    padding: 30,
+    backgroundColor: "#F1F9FF",
     fontSize: 15,
   },
 });

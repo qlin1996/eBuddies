@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   container1: {
@@ -41,8 +40,8 @@ export default StyleSheet.create({
   },
 
   imageContainer: {
-    ...Helpers.crossCenter,
-    ...Metrics.verticalPadding,
+    alignItems: "center",
+    paddingVertical: 30,
     borderRadius: 150,
     width: "70%",
     alignSelf: "center",
@@ -121,32 +120,32 @@ export default StyleSheet.create({
     marginLeft: 30,
     fontSize: 16,
     marginTop: 20,
-    color: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
     fontWeight: "bold",
   },
   interestContainer: {
     flexDirection: "row",
   },
   interest: {
-    color: Colors.blue,
-    borderColor: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
+    borderColor: "rgba(38, 153, 251, 1)",
     borderWidth: 1,
     borderRadius: 8,
-    ...Metrics.smallVerticalPadding,
-    ...Metrics.smallHorizontalPadding,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     marginLeft: 30,
     marginRight: 30,
     marginTop: 5,
     marginBottom: 5,
   },
   interestSelected: {
-    color: Colors.blue,
-    borderColor: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
+    borderColor: "rgba(38, 153, 251, 1)",
     borderWidth: 1,
     borderRadius: 8,
-    ...Metrics.smallVerticalPadding,
-    ...Metrics.smallHorizontalPadding,
-    backgroundColor: Colors.lightBlue,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    backgroundColor: "#F1F9FF",
     marginTop: 5,
     marginBottom: 5,
     marginLeft: 30,

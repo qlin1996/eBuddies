@@ -1,16 +1,14 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   screenWrapper: {
     display: "flex",
     flex: 1,
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: "#F1F9FF",
     paddingVertical: 10,
   },
   appHeader: {
-    // backgroundColor: "lightblue",
-    backgroundColor: "rgb(38,153,251)",
+    backgroundColor: "rgba(38,153,251, .4)",
     height: 65,
   },
   container1: {
@@ -31,8 +29,8 @@ export default StyleSheet.create({
     marginLeft: 10,
   },
   imageContainer: {
-    ...Helpers.crossCenter,
-    ...Metrics.verticalPadding,
+    alignItems: "center",
+    paddingVertical: 15,
     borderRadius: 150,
     width: "70%",
     alignSelf: "center",

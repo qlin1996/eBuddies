@@ -1,19 +1,16 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   headerMain: {
-    ...Helpers.fullWidth,
     height: "100%",
     width: "100%",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    padding: Metrics.medium,
+    padding: 30,
   },
   headerText: {
-    ...Fonts.normal,
-    color: Colors.primary,
+    color: "#007bff",
     fontSize: 20,
     fontWeight: "bold",
     letterSpacing: 0.9,
@@ -34,7 +31,7 @@ export default StyleSheet.create({
     backgroundColor: "rgba(188, 224, 253, 1)",
     borderWidth: 0.5,
     paddingTop: 10,
-    ...Fonts.normal,
+    fontSize: 17,
     paddingBottom: 10,
     margin: 10,
     borderColor: "rgba(38,153,251,1)",

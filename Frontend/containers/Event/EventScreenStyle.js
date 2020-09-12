@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   card: {

@@ -9,7 +9,6 @@ module.exports = (io) => {
       socket.join(messageObj.eventId);
       // 3. let other knows of new joiner
       socket.to(messageObj.eventId).broadcast.emit("room-joined", messageObj);
-      console.log("MSG OBJ", messageObj);
     });
 
     // 6. listens for message

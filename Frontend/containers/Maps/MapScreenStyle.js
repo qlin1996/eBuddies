@@ -58,16 +58,6 @@ export default StyleSheet.create({
     height: 65,
     marginTop: 0,
   },
-  // container1: {
-  //   backgroundColor: "white",
-  //   marginTop: 15,
-  //   marginBottom: 20,
-  //   marginLeft: 18,
-  //   marginRight: 18,
-  //   borderWidth: 1,
-  //   borderColor: "white",
-  //   borderRadius: 10,
-  // },
 
   eventName: {
     fontSize: 15,

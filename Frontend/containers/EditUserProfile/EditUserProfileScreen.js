@@ -10,15 +10,12 @@ import {
 } from "react-native";
 import { Appbar, Surface } from "react-native-paper";
 import { connect } from "react-redux";
-import Style from "./EditUserProfileScreenStyle";
 import styles from "./EditUserProfileScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import { updateUser } from "../../store/user";
 import { deleteAllInterests, postNewInterest } from "../../store/interest";
 import RNPickerSelect from "react-native-picker-select";
-import { Metrics, Fonts, Colors } from "../../themes";
-import S3 from "aws-sdk/clients/s3";
 import { Ionicons, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 class EditUserProfileScreen extends React.Component {
@@ -69,38 +66,6 @@ class EditUserProfileScreen extends React.Component {
     let newState = { ...this.state };
     newState[interest] = !newState[interest];
     this.setState(newState);
-  };
-
-  uploadImageOnS3 = async (file) => {
-    const s3bucket = new S3({
-      accessKeyId: "",
-      secretAccessKey: "",
-      Bucket: "ebuddies",
-      signatureVersion: "v4",
-    });
-
-    // let contentType = "image/jpeg";
-    // let contentDeposition = 'inline;filename="' + file.name + '"';
-    // const base64 = await fs.readFile(file.uri, "base64");
-    // const arrayBuffer = decode(base64);
-
-    // s3bucket.createBucket(() => {
-    //   const params = {
-    //     Bucket: "ebuddies",
-    //     Key: file.name,
-    //     Body: arrayBuffer,
-    //     ContentDisposition: contentDeposition,
-    //     ContentType: contentType,
-    //   };
-
-    //   s3bucket.upload(params, (err, data) => {
-    //     if (err) {
-    //       console.log("error in callback");
-    //     }
-    //     console.log("success");
-    //     console.log("Respomse URL : " + data.Location);
-    //   });
-    // });
   };
 
   selectPicture = async () => {

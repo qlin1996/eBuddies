@@ -21,6 +21,7 @@ import {
   Menu,
   Divider,
 } from "react-native-paper";
+
 class JoinedEvent extends React.Component {
   constructor() {
     super();

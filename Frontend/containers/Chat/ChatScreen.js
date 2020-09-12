@@ -8,16 +8,7 @@ import { getUserInfo } from "../../store/user";
 import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
 import { serverLink } from "../../store/serverLink";
-import {
-  Card,
-  Title,
-  Paragraph,
-  Surface,
-  Appbar,
-  Menu,
-  Divider,
-  Provider,
-} from "react-native-paper";
+import { Surface, Appbar } from "react-native-paper";
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
@@ -91,8 +82,6 @@ class ChatScreen extends React.Component {
   };
 
   render() {
-    // const chatMessages =
-
     return (
       <ScrollView nestedScrollEnabled>
         <View style={Style.container1}>

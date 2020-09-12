@@ -138,7 +138,7 @@ export default StyleSheet.create({
     height: 40,
   },
   surfaceMap: {
-    marginTop: "-9.4%",
+    marginTop: "-10.7%",
     marginBottom: 10,
     width: 130,
     left: "55.3%",

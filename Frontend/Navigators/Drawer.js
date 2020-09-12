@@ -18,42 +18,36 @@ const RootDrawerNavigator = createDrawerNavigator({
   PROFILE: {
     screen: UserProfileScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "User Profile",
     },
   },
   LOGIN: {
     screen: LoginScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "Login",
     },
   },
   SIGNUP: {
     screen: SignUpScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "Sign Up",
     },
   },
   MYEVENTS: {
     screen: MyEventsScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "My Events",
     },
   },
   ADDEVENT: {
     screen: AddEventScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "Add Event",
     },
   },
   CHAT: {
     screen: ChatScreen,
     navigationOptions: {
-      // headerTitle: () => <Header />,
       title: "Chat",
     },
   },

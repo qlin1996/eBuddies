@@ -8,7 +8,6 @@ import {
   Image,
   Vibration,
 } from "react-native";
-import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import { postNewEvent } from "../../store/events";
 import styles from "./AddEventScreenStyle";
@@ -17,7 +16,6 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Metrics, Fonts, Cors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
 import * as Notifications from "expo-notifications";
 import {
@@ -487,7 +485,7 @@ class AddEventScreen extends React.Component {
           <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
               <View style={styles.modalText}>
-                <Text style={{ ...Fonts.h4 }}>
+                <Text style={{ fontSize: 26 }}>
                   Event, {this.state.name} has been added!
                 </Text>
               </View>

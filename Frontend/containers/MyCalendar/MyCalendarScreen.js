@@ -1,19 +1,12 @@
 import React from "react";
-import { View, Text, ScrollView, Button } from "react-native";
+import { View, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
 import Style from "./MyCalendarScreenStyle";
 import Event from "../Event/EventScreen";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
-import {
-  Card,
-  Title,
-  Paragraph,
-  Surface,
-  Appbar,
-  List,
-  Colors,
-} from "react-native-paper";
+import { Surface, Appbar, List, Colors } from "react-native-paper";
+
 class MyCalendar extends React.Component {
   constructor() {
     super();

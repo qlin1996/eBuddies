@@ -1,22 +1,10 @@
-// Login Screen.js
-import React, { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Image,
-  TouchableOpacity,
-  ActivityIndicator,
-  ScrollView,
-} from "react-native";
+import React from "react";
+import { Text, View, Button, TextInput, Image, ScrollView } from "react-native";
 import { Appbar } from "react-native-paper";
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
 import { login } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
 class Login extends React.Component {
   constructor() {

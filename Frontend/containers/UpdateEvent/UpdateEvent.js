@@ -1,6 +1,5 @@
 import React from "react";
 import { TextInput, View, Button, ScrollView, Text, Image } from "react-native";
-import TextField from "@material-ui/core/TextField";
 import { connect } from "react-redux";
 import {
   fetchUpdateEvent,
@@ -12,7 +11,6 @@ import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import Modal from "react-native-modal";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { Metrics, Fonts, Colors } from "../../themes";
 import RNPickerSelect from "react-native-picker-select";
 import { getAllEvents } from "../../store/events";
 import { Appbar, Surface } from "react-native-paper";
@@ -442,7 +440,7 @@ class AddEventScreen extends React.Component {
           <Modal isVisible={this.state.isModalVisible} style={styles.modal}>
             <View>
               <View style={styles.modalText}>
-                <Text style={{ ...Fonts.h4 }}>
+                <Text style={{ fontSize: 26 }}>
                   Event, {this.state.name} has been successfully updates!
                 </Text>
               </View>

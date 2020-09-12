@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, View, Image, Button } from "react-native";
-import { Card, Title, Paragraph, Appbar } from "react-native-paper";
+import { Button } from "react-native";
+import { Card, Paragraph } from "react-native-paper";
 
 import Style from "./EventScreenStyle";
 

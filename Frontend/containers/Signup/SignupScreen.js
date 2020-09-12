@@ -1,10 +1,9 @@
 import React from "react";
 import { View, Button, TextInput, Text, Image, ScrollView } from "react-native";
 import styles from "./SignupScreenStyle";
-import { Fonts } from "../../themes";
 import { connect } from "react-redux";
 import { getUsersInfo } from "../../store/users";
-import { Appbar, Card } from "react-native-paper";
+import { Appbar } from "react-native-paper";
 class Signup extends React.Component {
   constructor() {
     super();
@@ -153,7 +152,7 @@ class Signup extends React.Component {
           <View style={styles.button}>
             <Button
               color="rgba(38,153,251,1)"
-              style={{ ...Fonts.normal, textAlign: "center" }}
+              style={{ fontSize: 17, textAlign: "center" }}
               title="CONTINUE"
               onPress={this.handleSignup}
             ></Button>

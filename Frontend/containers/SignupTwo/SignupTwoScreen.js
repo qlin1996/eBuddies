@@ -1,11 +1,10 @@
 import React from "react";
 import { View, Button, TextInput, Image, ScrollView, Text } from "react-native";
 import styles from "./SignupTwoScreenStyle";
-import { Fonts } from "../../themes";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
 import RNPickerSelect from "react-native-picker-select";
-import { Appbar, Card, Surface } from "react-native-paper";
+import { Appbar, Surface } from "react-native-paper";
 class SignupTwo extends React.Component {
   constructor() {
     super();
@@ -243,7 +242,7 @@ class SignupTwo extends React.Component {
           <View style={styles.button}>
             <Button
               color="rgba(38,153,251,1)"
-              style={{ ...Fonts.normal, textAlign: "center" }}
+              style={{ fontSize: 17, textAlign: "center" }}
               title="CONTINUE"
               onPress={this.handleSignup2}
             >

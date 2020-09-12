@@ -10,6 +10,7 @@ import { fetchSingleEvent } from "../../store/event";
 import { editActivityAttendance } from "../../store/activity";
 import Modal from "react-native-modal";
 import { Appbar, Surface } from "react-native-paper";
+
 class Maps extends React.Component {
   constructor() {
     super();

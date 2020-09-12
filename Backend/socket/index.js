@@ -13,13 +13,11 @@ module.exports = (io) => {
 
     // 6. listens for message
     socket.on("chat-message", (messageObj) => {
-      console.log("MESSAGE AND ROOM", messageObj);
       // 7. let others know of message
       io.in(messageObj.eventId).emit("send-message", messageObj);
     });
 
     socket.on("leave-room", function (eventId) {
-      console.log("user left the room:", eventId);
       socket.leave(eventId);
     });
 

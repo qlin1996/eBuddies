@@ -1,19 +1,13 @@
 import React from "react";
-import { View, Text, ScrollView, Button, Image } from "react-native";
+import { View, Text, ScrollView, Button } from "react-native";
 import { connect } from "react-redux";
 import Event from "../Event/EventScreen";
 import Style from "./RecommendedEventsScreenStyle";
 import { getAllEvents } from "../../store/events";
 import { getUserInfo } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import {
-  Appbar,
-  Surface,
-  Searchbar,
-  Card,
-  Title,
-  Paragraph,
-} from "react-native-paper";
+import { Appbar, Surface } from "react-native-paper";
+
 class RecommendedEvents extends React.Component {
   constructor() {
     super();
@@ -27,12 +21,6 @@ class RecommendedEvents extends React.Component {
     await this.props.getUser(this.props.user.id);
     await this.props.getAllInterests(this.props.user.id);
   }
-
-  // onChangeSearch = (query) => {
-  //   this.setState({
-  //     text: query,
-  //   });
-  // };
 
   handleClick = (event) => {
     this.setState({ filter: event.target.value });

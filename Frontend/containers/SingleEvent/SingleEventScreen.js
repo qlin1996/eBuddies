@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, Image, Button, Vibration } from "react-native";
+import { Text, View, Image, Button } from "react-native";
 import { connect } from "react-redux";
 import { fetchSingleEvent } from "../../store/event";
 import Modal from "react-native-modal";
@@ -7,13 +7,14 @@ import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
 import * as Notifications from "expo-notifications";
-import { Card, Title, Paragraph, Surface, Appbar } from "react-native-paper";
+import { Card, Paragraph, Surface, Appbar } from "react-native-paper";
 import { serverLink } from "../../store/serverLink";
 
 import io from "socket.io-client";
 const socket = io(serverLink, {
   transports: ["websocket"],
 });
+
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -21,6 +22,7 @@ Notifications.setNotificationHandler({
     shouldSetBadge: true,
   }),
 });
+
 class SingleEvent extends React.Component {
   constructor() {
     super();
@@ -43,7 +45,7 @@ class SingleEvent extends React.Component {
       console.log(error);
     }
   }
-  //ONCE USER CLICKS VIEW EVENT, PUSH NOTIF IS SCHEDULED
+
   sendPushNotification = async (pushToken) => {
     let eventHour = Number(this.props.event.time.slice(0, 2));
     let eventMinute = Number(this.props.event.time.slice(3, 5) - 1);
@@ -95,7 +97,6 @@ class SingleEvent extends React.Component {
   };
   handleMap = async () => {
     try {
-      // await this.props.getUser(this.props.user.id);
       this.setState({ isModal2Visible: true });
 
       let eventId = this.props.event.id;

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Style from "./UserProfileScreenStyle";
 import { logout } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
-import { Appbar, Card, Text, Button, Surface } from "react-native-paper";
+import { Text, Button, Surface } from "react-native-paper";
 
 class UserProfileScreen extends React.Component {
   async componentDidMount() {

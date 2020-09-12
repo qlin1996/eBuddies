@@ -1,12 +1,10 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   colMain: {
-    ...Helpers.fullWidth,
     width: 375,
     height: 667,
-    backgroundColor: Colors.white,
+    backgroundColor: "rgb(235, 233, 233)",
     overflow: "hidden",
   },
   appHeader: {
@@ -29,7 +27,7 @@ export default StyleSheet.create({
     justifyContent: "center",
   },
   eventButton: {
-    ...Fonts.normal,
+    fontSize: 17,
     textAlign: "center",
     marginTop: 20,
     marginBottom: 50,
@@ -42,11 +40,11 @@ export default StyleSheet.create({
     alignContent: "center",
     justifyContent: "center",
     height: 70,
-    backgroundColor: Colors.lightBlue,
-    padding: Metrics.medium,
+    backgroundColor: "#F1F9FF",
+    padding: 30,
   },
   errorMsg: {
-    ...Fonts.normal,
+    fontSize: 17,
     alignContent: "center",
     justifyContent: "center",
     textAlign: "center",
@@ -54,26 +52,26 @@ export default StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     marginHorizontal: 10,
-    color: Colors.primary,
-    padding: Metrics.medium,
-    backgroundColor: Colors.lightBlue,
+    color: "#007bff",
+    padding: 30,
+    backgroundColor: "#F1F9FF",
     fontSize: 15,
   },
 
   interests: {
     textAlign: "center",
     color: "black",
-    ...Fonts.normal,
-    ...Metrics.bottomMargin,
+    fontSize: 17,
+    marginBottom: 30,
   },
   interestContainer: {
     flexDirection: "row",
   },
   interest: {
-    color: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
     textAlign: "center",
     alignSelf: "center",
-    borderColor: Colors.blue,
+    borderColor: "rgba(38, 153, 251, 1)",
     borderWidth: 1,
     borderRadius: 8,
     height: 50,
@@ -84,7 +82,7 @@ export default StyleSheet.create({
 
   specificInterest: {
     textDecorationLine: "underline",
-    textDecorationColor: Colors.blue,
+    textDecorationColor: "rgba(38, 153, 251, 1)",
     fontSize: 16,
   },
 

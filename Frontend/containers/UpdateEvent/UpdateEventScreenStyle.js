@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   container1: {
@@ -209,6 +208,6 @@ export default StyleSheet.create({
     borderRadius: 150,
     marginTop: 20,
     marginBottom: 0,
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: "#F1F9FF",
   },
 });

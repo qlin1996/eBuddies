@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Fonts } from "../../themes";
+
 export default StyleSheet.create({
   appHeader: {
     backgroundColor: "rgba(38,153,251, .4)",
@@ -66,7 +66,7 @@ export default StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    ...Fonts.small,
+    fontSize: 12,
     marginBottom: "28%",
   },
 });

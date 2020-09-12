@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
+
 export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
@@ -24,7 +24,7 @@ export default StyleSheet.create({
     marginRight: "-3%",
   },
   textInput: {
-    ...Fonts.normal,
+    fontSize: 17,
     height: 40,
     backgroundColor: "rgb(235, 233, 233)",
     borderBottomWidth: 0.5,
@@ -50,7 +50,7 @@ export default StyleSheet.create({
 
   button: {
     alignSelf: "center",
-    ...Fonts.small,
+    fontSize: 12,
     margin: 10,
     marginTop: "5%",
     marginBottom: "8%",
@@ -95,13 +95,13 @@ export default StyleSheet.create({
     backgroundColor: "rgba(188, 224, 253, 1)",
     borderWidth: 0.5,
     paddingTop: 10,
-    ...Fonts.normal,
+    fontSize: 17,
     paddingBottom: 10,
     margin: 10,
     borderColor: "rgba(38,153,251,1)",
   },
   account: {
-    ...Fonts.small,
+    fontSize: 12,
     color: "black",
     position: "relative",
     top: 140,

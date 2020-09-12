@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   card: {
@@ -79,11 +78,6 @@ export default StyleSheet.create({
     alignSelf: "center",
     fontSize: 50,
   },
-  logo: {
-    position: "absolute",
-    top: "-29%",
-    left: "22%",
-  },
   image2: {
     width: "50%",
     alignSelf: "center",
@@ -93,7 +87,7 @@ export default StyleSheet.create({
     borderRadius: 150,
     marginTop: 20,
     marginBottom: 0,
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: "#F1F9FF",
   },
   eventImg: {
     width: 336,
@@ -133,8 +127,6 @@ export default StyleSheet.create({
     width: "29%",
     alignSelf: "center",
     borderRadius: 10,
-    // padding: 2,
-    // margin: 1,
     position: "relative",
     top: "-70%",
     color: "white",

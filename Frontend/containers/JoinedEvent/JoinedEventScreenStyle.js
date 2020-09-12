@@ -1,10 +1,9 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   text: {
-    ...Fonts.normal,
-    color: Colors.text,
+    fontSize: 17,
+    color: "#212529",
     textAlign: "left",
     marginTop: 20,
     marginBottom: 20,
@@ -66,7 +65,7 @@ export default StyleSheet.create({
   },
   headerText: {
     color: "white",
-    ...Fonts.h4,
+    fontSize: 26,
     position: "relative",
     top: "20%",
     textAlign: "center",
@@ -156,7 +155,7 @@ export default StyleSheet.create({
     borderRadius: 150,
     marginTop: 20,
     marginBottom: 0,
-    backgroundColor: Colors.lightBlue,
+    backgroundColor: "#F1F9FF",
   },
   eventImg: {
     width: 360,

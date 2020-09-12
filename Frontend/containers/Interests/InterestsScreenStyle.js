@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
+
 export default StyleSheet.create({
   container: {
     backgroundColor: "white",
@@ -23,8 +23,8 @@ export default StyleSheet.create({
     top: 80,
   },
   button: {
-    color: Colors.blue,
-    borderColor: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
+    borderColor: "rgba(38, 153, 251, 1)",
     width: 300,
     padding: 10,
     margin: 2,
@@ -58,7 +58,7 @@ export default StyleSheet.create({
   },
 
   buttonPress: {
-    color: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
     width: 300,
     padding: 10,
     margin: 2,
@@ -67,8 +67,8 @@ export default StyleSheet.create({
   },
 
   selectInterests: {
-    color: Colors.blue,
-    borderColor: Colors.blue,
+    color: "rgba(38, 153, 251, 1)",
+    borderColor: "rgba(38, 153, 251, 1)",
     width: 300,
     padding: 10,
     margin: 2,

@@ -60,7 +60,6 @@ class UserProfileScreen extends React.Component {
         </View>
         <Surface style={Style.buttons}>
           <Button
-            // mode="contained"
             color="rgb(38,153,251)"
             style={Style.button}
             title="EDIT"
@@ -70,7 +69,6 @@ class UserProfileScreen extends React.Component {
           </Button>
 
           <Button
-            // mode="contained"
             color="rgb(38,153,251)"
             style={Style.button}
             title="LOGOUT"

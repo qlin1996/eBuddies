@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
 
 export default StyleSheet.create({
   surface: {
@@ -17,8 +16,8 @@ export default StyleSheet.create({
     borderRadius: 10,
   },
   imageContainer: {
-    ...Helpers.crossCenter,
-    ...Metrics.verticalPadding,
+    alignItems: "center",
+    paddingVertical: 15,
     borderRadius: 150,
     width: "70%",
     alignSelf: "center",
@@ -31,13 +30,13 @@ export default StyleSheet.create({
     margin: 10,
   },
   profileContainer: {
-    ...Metrics.mediumVerticalMargin,
-    ...Metrics.mediumHorizontalMargin,
+    marginVertical: 30,
+    marginHorizontal: 30,
   },
   name: {
     color: "rgb(38,153,251)",
     fontWeight: "bold",
-    ...Fonts.h3,
+    fontSize: 30,
     alignSelf: "center",
     textAlign: "center",
   },
@@ -48,7 +47,7 @@ export default StyleSheet.create({
   },
   description: {
     color: "rgb(38,153,251)",
-    ...Fonts.normal,
+    fontSize: 17,
     marginTop: 30,
     alignSelf: "center",
     padding: 10,
@@ -57,8 +56,8 @@ export default StyleSheet.create({
     textAlign: "center",
   },
   interestsContainer: {
-    ...Metrics.mediumHorizontalPadding,
-    ...Metrics.mediumVerticalPadding,
+    paddingHorizontal: 30,
+    paddingVertical: 30,
     alignSelf: "center",
     textAlign: "center",
     marginTop: -20,
@@ -83,9 +82,9 @@ export default StyleSheet.create({
   },
   interests: {
     color: "rgb(38,153,251)",
-    ...Fonts.normal,
+    fontSize: 17,
     fontWeight: "bold",
-    ...Metrics.bottomMargin,
+    marginBottom: 30,
     alignSelf: "center",
     textAlign: "center",
   },
@@ -97,8 +96,8 @@ export default StyleSheet.create({
     borderColor: "rgb(38,153,251)",
     borderWidth: 1,
     borderRadius: 8,
-    ...Metrics.smallVerticalPadding,
-    ...Metrics.smallHorizontalPadding,
+    paddingVertical: 15,
+    paddingHorizontal: 15,
     marginRight: 10,
     alignSelf: "center",
     textAlign: "center",
@@ -114,12 +113,5 @@ export default StyleSheet.create({
   },
   button: {
     color: "rgb(38,153,251)",
-    // display: "flex",
-    // alignItems: "center",
-    // flexDirection: "row",
-    // marginRight: 280,
-    // height: 80,
-    // width: 100,
-    // justifyContent: "space-around",
   },
 });

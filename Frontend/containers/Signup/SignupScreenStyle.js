@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Helpers, Metrics, Fonts, Colors } from "../../themes";
+
 export default StyleSheet.create({
   container1: {
     backgroundColor: "white",
@@ -128,10 +128,9 @@ export default StyleSheet.create({
   },
   button: {
     alignSelf: "center",
-    ...Fonts.small,
+    fontSize: 12,
     marginTop: "-6%",
     marginBottom: "28%",
-    // marginBottom: "50%",
   },
 
   logo: {

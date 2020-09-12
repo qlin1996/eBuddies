@@ -8,22 +8,18 @@ import {
   ScrollView,
 } from "react-native";
 import { connect } from "react-redux";
-import { fetchSingleEvent } from "../../store/singleEvent";
+import { fetchSingleEvent } from "../../store/event";
 import Modal from "react-native-modal";
 import Style from "./JoinedEventScreenStyle";
 import { getUserInfo } from "../../store/user";
 import { postNewActivity } from "../../store/activity";
-import { editActivityAttendance } from "../../store/activity";
-import updateEvent from "../../containers/UpdateEvent/UpdateEvent";
 import {
   Card,
-  Title,
   Paragraph,
   Surface,
   Appbar,
   Menu,
   Divider,
-  Provider,
 } from "react-native-paper";
 class JoinedEvent extends React.Component {
   constructor() {
@@ -252,7 +248,7 @@ class JoinedEvent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  event: state.singleEvent,
+  event: state.event,
   user: state.user,
   activity: state.activity,
 });

@@ -1,6 +1,7 @@
 const router = require("express").Router();
-const { User, Message, Event } = require("../db/models");
+const { Message } = require("../db/models");
 
+//POST -->  /API/MESSAGES
 router.post("/", async (req, res, next) => {
   try {
     const message = await Message.create(req.body);

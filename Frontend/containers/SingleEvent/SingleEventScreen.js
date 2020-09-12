@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, Image, Button, Vibration } from "react-native";
 import { connect } from "react-redux";
-import { fetchSingleEvent } from "../../store/singleEvent";
+import { fetchSingleEvent } from "../../store/event";
 import Modal from "react-native-modal";
 import Style from "./SingleEventScreenStyle";
 import { getUserInfo } from "../../store/user";
@@ -218,7 +218,7 @@ class SingleEvent extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  event: state.singleEvent,
+  event: state.event,
   user: state.user,
   activity: state.activity,
 });

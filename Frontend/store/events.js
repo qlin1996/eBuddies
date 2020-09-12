@@ -1,9 +1,11 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
+// ACTION TYPES
 const GET_EVENTS = "GET_EVENTS";
 const POST_NEW_EVENT = "POST_NEW_EVENT";
 
+// ACTION CREATORS
 export const getEvents = (events) => ({
   type: GET_EVENTS,
   events,
@@ -14,6 +16,7 @@ export const postEvent = (event) => ({
   event,
 });
 
+// THUNK
 export const getAllEvents = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/events`);
@@ -21,13 +24,6 @@ export const getAllEvents = () => async (dispatch) => {
   } catch (err) {
     console.error(err);
   }
-};
-
-export const getUserEvents = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(`${serverLink}/api/events/${userId}`);
-    return dispatch(getEvents(data));
-  } catch (error) {}
 };
 
 export const postNewEvent = (addEventForm) => async (dispatch) => {
@@ -39,6 +35,7 @@ export const postNewEvent = (addEventForm) => async (dispatch) => {
   }
 };
 
+// REDUCER
 export default function eventsReducer(state = [], action) {
   switch (action.type) {
     case GET_EVENTS:

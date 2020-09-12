@@ -3,7 +3,7 @@ import { Text, View, TextInput, ScrollView, Button, Image } from "react-native";
 import io from "socket.io-client";
 import { createMesssageThunk } from "../../store/message";
 import { connect } from "react-redux";
-import { fetchSingleEvent } from "../../store/singleEvent";
+import { fetchSingleEvent } from "../../store/event";
 import { getUserInfo } from "../../store/user";
 import { getMesssagesThunk } from "../../store/messages";
 import Style from "./ChatScreenStyle";
@@ -157,7 +157,7 @@ const mapToState = (state) => ({
   message: state.message,
   messages: state.messages,
   user: state.user,
-  event: state.singleEvent,
+  event: state.event,
 });
 
 const mapDispatchToProps = (dispatch) => ({

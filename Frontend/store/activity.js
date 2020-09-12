@@ -1,18 +1,11 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
-const GET_ACTIVITIES = "GET_ACTIVITIES";
+// ACTION TYPES
 const POST_ACTIVITY = "POST_ACTIVITY";
-const DELETE_ACTIVITY = "DELETE_ACTIVITY";
 const EDIT_ATTENDANCE = "EDIT_ATTENDANCE";
 
-export const getActivities = (activities) => {
-  return {
-    type: GET_ACTIVITIES,
-    activities,
-  };
-};
-
+// ACTION CREATORS
 export const postActivity = (activity) => ({
   type: POST_ACTIVITY,
   activity,
@@ -23,17 +16,7 @@ export const editAttendance = (attendance) => ({
   attendance,
 });
 
-export const deleteActivity = () => ({
-  type: DELETE_ACTIVITY,
-});
-
-export const getAllActivities = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.get(`${serverLink}/api/activities/${userId}`);
-    return dispatch(getActivities(data));
-  } catch (error) {}
-};
-
+// THUNK
 export const postNewActivity = (activityObject) => async (dispatch) => {
   try {
     const { data } = await axios.post(
@@ -46,16 +29,6 @@ export const postNewActivity = (activityObject) => async (dispatch) => {
   }
 };
 
-export const deleteAllActivities = (userId) => async (dispatch) => {
-  try {
-    const { data } = await axios.delete(
-      `${serverLink}/api/activities/${userId}`
-    );
-    return dispatch(deleteActivities(data));
-  } catch (error) {
-    console.log(error);
-  }
-};
 export const editActivityAttendance = (eventId, userId, attendance) => async (
   dispatch
 ) => {
@@ -70,12 +43,9 @@ export const editActivityAttendance = (eventId, userId, attendance) => async (
   }
 };
 
+// REDUCER
 export default function activityReducer(state = [], action) {
   switch (action.type) {
-    case GET_ACTIVITIES:
-      return action.activities;
-    case DELETE_ACTIVITY:
-      return [];
     case POST_ACTIVITY:
       return [...state, action.activity];
     case EDIT_ATTENDANCE:

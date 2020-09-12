@@ -6,7 +6,7 @@ import {
   fetchUpdateEvent,
   fetchSingleEvent,
   deleteEvent,
-} from "../../store/singleEvent";
+} from "../../store/event";
 import styles from "./UpdateEventScreenStyle";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
@@ -461,7 +461,7 @@ class AddEventScreen extends React.Component {
 }
 const mapStateToProps = (state) => ({
   user: state.user,
-  event: state.singleEvent,
+  event: state.event,
 });
 
 const mapDispatch = (dispatch) => ({

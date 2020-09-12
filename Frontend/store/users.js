@@ -17,11 +17,8 @@ export const getUsersInfo = () => async (dispatch) => {
   }
 };
 
-// Initial State
-const defaultUsers = [];
-
 // REDUCER
-export default function usersReducer(state = defaultUsers, action) {
+export default function usersReducer(state = [], action) {
   switch (action.type) {
     case GET_ALL_USERS:
       return action.users;

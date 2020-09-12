@@ -1,10 +1,12 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
+// ACTION TYPES
 const GET_INTERESTS = "GET_INTERESTS";
 const POST_INTEREST = "POST_INTEREST";
 const DELETE_INTERESTS = "DELETE_INTERESTS";
 
+// ACTION CREATORS
 export const getInterests = (interests) => {
   return {
     type: GET_INTERESTS,
@@ -21,6 +23,7 @@ export const deleteInterests = () => ({
   type: DELETE_INTERESTS,
 });
 
+// THUNK
 export const getAllInterests = (userId) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/interests/${userId}`);
@@ -51,10 +54,7 @@ export const deleteAllInterests = (userId) => async (dispatch) => {
   }
 };
 
-const initialState = {
-  interests: [],
-};
-
+// REDUCER
 export default function interestReducer(state = [], action) {
   switch (action.type) {
     case GET_INTERESTS:

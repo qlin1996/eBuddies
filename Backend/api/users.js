@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const { User, Event } = require("../db/models");
+const { User } = require("../db/models");
 
-//401 NOT AUTHORIZED
+//401 NOT AUTHORIZED MIDDLEWARE
 const isLoggedIn = (req, res, next) => {
   if (!User) {
     const error = new Error(

@@ -101,19 +101,5 @@ router.patch("/:eventId/users/:userId", async (req, res, next) => {
     next(error);
   }
 });
-//GET --> /API/CAMPUSES/:ID
-router.get("/:id", async (req, res, next) => {
-  try {
-    const campuses = await Campus.findOne({
-      where: {
-        id: req.params.id,
-      },
-      include: Student,
-    });
-    res.json(campuses);
-  } catch (error) {
-    next(error);
-  }
-});
 
 module.exports = router;

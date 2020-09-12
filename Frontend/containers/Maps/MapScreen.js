@@ -6,7 +6,7 @@ import MapView from "react-native-maps";
 import { Text, View, Button, Image } from "react-native";
 import styles from "./MapScreenStyle";
 import { Marker } from "react-native-maps";
-import { fetchSingleEvent } from "../../store/singleEvent";
+import { fetchSingleEvent } from "../../store/event";
 import { editActivityAttendance } from "../../store/activity";
 import Modal from "react-native-modal";
 import { Appbar, Surface } from "react-native-paper";
@@ -207,7 +207,7 @@ class Maps extends React.Component {
   }
 }
 const mapToState = (state) => ({
-  event: state.singleEvent,
+  event: state.event,
   user: state.user,
 });
 const mapDispatchToProps = (dispatch) => ({

@@ -1,29 +1,18 @@
 import axios from "axios";
 import { serverLink } from "./serverLink";
 
-/**
- * ACTION TYPES
- */
+// ACTION TYPES
 const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
 const UPDATE_CURRENT_USER = "UPDATE_CURRENT_USER";
 const ADD_USER = "ADD_USER";
 
-/**
- * INITIAL STATE
- */
-const defaultUser = {};
-
-/**
- * ACTION CREATORS
- */
+// ACTION CREATORS
 const getUser = (user) => ({ type: GET_USER, user });
 const removeUser = () => ({ type: REMOVE_USER });
 const updateCurrentUser = (user) => ({ type: UPDATE_CURRENT_USER, user });
 
-/**
- * THUNK CREATORS
- */
+// THUNK
 export const putUser = (id, newInfo) => async (dispatch) => {
   try {
     const { data } = await axios.put(`${serverLink}/api/users/${id}`, newInfo);
@@ -33,6 +22,7 @@ export const putUser = (id, newInfo) => async (dispatch) => {
   }
 };
 
+// REDUCER
 export const me = () => async (dispatch) => {
   try {
     const res = await axios.get(`${serverLink}/auth/me`);
@@ -89,6 +79,7 @@ export const auth2 = (
     console.error(error);
   }
 };
+
 export const getUserInfo = (id) => async (dispatch) => {
   try {
     const { data } = await axios.get(`${serverLink}/api/users/${id}`);
@@ -116,15 +107,12 @@ export const updateUser = (id, body) => async (dispatch) => {
   }
 };
 
-/**
- * REDUCER
- */
-export default function userReducer(state = defaultUser, action) {
+export default function userReducer(state = {}, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
     case REMOVE_USER:
-      return defaultUser;
+      return {};
     case UPDATE_CURRENT_USER:
       return action.user;
     case ADD_USER:

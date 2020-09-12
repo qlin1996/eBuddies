@@ -1,4 +1,3 @@
-const crypto = require("crypto");
 const Sequelize = require("sequelize");
 const db = require("../db");
 
@@ -10,7 +9,6 @@ const Event = db.define("event", {
       notEmpty: true,
     },
   },
-
   description: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -18,13 +16,11 @@ const Event = db.define("event", {
       notEmpty: true,
     },
   },
-
   imgUrl: {
     type: Sequelize.TEXT,
     defaultValue:
       "https://www.nydailynews.com/resizer/yR191ZzXawTpPwelV6Bw9wMouAg=/1200x0/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/K67GWYOYMKSI45CNMJLA7WWTGM.jpg",
   },
-
   date: {
     type: Sequelize.DATE,
     allowNull: false,
@@ -32,7 +28,6 @@ const Event = db.define("event", {
       notEmpty: true,
     },
   },
-
   time: {
     type: Sequelize.TEXT,
     allowNull: false,
@@ -40,7 +35,6 @@ const Event = db.define("event", {
       notEmpty: true,
     },
   },
-
   category: {
     type: Sequelize.ENUM("Food", "Entertainment", "Education", "Fitness"),
     allowNull: false,
@@ -75,12 +69,6 @@ const Event = db.define("event", {
     validate: {
       notEmpty: true,
     },
-  },
-  latitude: {
-    type: Sequelize.FLOAT,
-  },
-  longitude: {
-    type: Sequelize.FLOAT,
   },
 });
 

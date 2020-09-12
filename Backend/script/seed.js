@@ -82,23 +82,7 @@ async function seed() {
   });
   users.push(anderson);
 
-  //USER ACCOUNT FOR DAN
-  const dan = await User.create({
-    firstName: "Dan",
-    lastName: "S",
-    description:
-      "A fordham student looking to find fun workout classes in nyc & quiet coffee shops for studying ",
-    email: "D1@gmail.com",
-    city: "New York",
-    state: "NY",
-    zipCode: "10019",
-    password: "Dan",
-    imgUrl: "https://ca.slack-edge.com/T024FPYBQ-UUNC6D6KF-ead95d00d503-512",
-    pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
-  });
-  users.push(dan);
-
-  //INTERESTS
+  //INTERESTS FOR CLAIRE
   const CGinterest1 = await Interest.create({
     userInterest: "Food",
     userId: 1,
@@ -115,30 +99,29 @@ async function seed() {
   });
   interests.push(CGinterest3);
 
+  //INTERESTS FOR Q
   const QLinterest1 = await Interest.create({
     userInterest: "Fitness",
     userId: 2,
   });
   interests.push(QLinterest1);
 
-  //FITNESS
-  // const fitness1 = await Event.create({
-  //   name: "Barry's Bootcamp",
-  //   description: "Best workout in the world.",
-  //   address: "419 Lafayette Street",
-  //   city: "New York",
-  //   state: "NY",
-  //   zipCode: "10003",
-  //   date: "Tue 08 Sep 2020",
-  //   time: "15:34:00 GMT-0400 (EDT)",
-  //   category: "Fitness",
-  //   imgUrl:
-  //     "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
-  //   userId: 3,
-  //   hostId: 2,
-  //   latitude: 40.7286,
-  //   longitude: -73.9922,
-  // });
+  // FITNESS;
+  const fitness1 = await Event.create({
+    name: "Barry's Bootcamp",
+    description: "Best workout in the world.",
+    address: "419 Lafayette Street",
+    city: "New York",
+    state: "NY",
+    zipCode: "10003",
+    date: "Tue 08 Sep 2020",
+    time: "15:34:00 GMT-0400 (EDT)",
+    category: "Fitness",
+    imgUrl:
+      "https://curiocity.com/vancouver/wp-content/uploads/2020/02/41399468_877839022407440_6372557785845989376_.width-1920.jpg",
+    userId: 3,
+    hostId: 2,
+  });
 
   const fitness2 = await Event.create({
     name: "Switch Playground",
@@ -154,8 +137,6 @@ async function seed() {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSefez5wycJVaPtrsiM4CMTCc7h2kjLhrOiog&usqp=CAU",
     userId: 4,
     hostId: 2,
-    latitude: 40.732069,
-    longitude: -73.988587,
   });
 
   const fitness3 = await Event.create({
@@ -172,8 +153,6 @@ async function seed() {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRixe22DVpUZ9KzMpA6zVVR67p8jarPQIUMLQ&usqp=CAU",
     userId: 1,
     hostId: 2,
-    latitude: 40.742554,
-    longitude: -73.991382,
   });
 
   const fitness4 = await Event.create({
@@ -190,8 +169,6 @@ async function seed() {
       "https://d33bcppgye6mnb.cloudfront.net/users/gallery/gqnexTODjppWllkY.jpg",
     userId: 1,
     hostId: 3,
-    latitude: 40.716656,
-    longitude: -74.00876,
   });
 
   const fitness5 = await Event.create({
@@ -208,8 +185,6 @@ async function seed() {
       "https://www.exhalespa.com/sites/exhale-spa/files/fitness_classes/classcard-exhalehiit30.classesWidget.jpg",
     userId: 1,
     hostId: 4,
-    latitude: 40.76623,
-    longitude: -73.977746,
   });
 
   const fitness6 = await Event.create({
@@ -226,8 +201,6 @@ async function seed() {
       "https://www.washingtonian.com/wp-content/uploads/2014/11/2014-11-13.soulcycle2.jpg",
     userId: 1,
     hostId: 4,
-    latitude: 40.754363,
-    longitude: -73.985286,
   });
 
   //FOOD
@@ -245,8 +218,6 @@ async function seed() {
       "https://cdn.vox-cdn.com/thumbor/9LzonUzPK8rmiDNaDFwbX4Vt-Yk=/1400x0/filters:no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/15961271/Kawi_5.jpg",
     userId: 4,
     hostId: 1,
-    latitude: 40.753802,
-    longitude: -74.00032,
   });
 
   const food2 = await Event.create({
@@ -263,8 +234,6 @@ async function seed() {
       "https://images.ctfassets.net/7m90b3o5uk7x/nO9VBVHWoKeE6YQYK6ymY/071c2374fe487abd3dfe0d310d44d092/intersitial-three.jpg",
     userId: 1,
     hostId: 2,
-    latitude: 40.7413,
-    longitude: -73.991297,
   });
 
   const food3 = await Event.create({
@@ -281,8 +250,6 @@ async function seed() {
       "https://cdn.vox-cdn.com/thumbor/OYm9rG5J6SJM_Cd3p8ebHiIXuTY=/0x0:5823x3890/1400x1400/filters:focal(2446x1480:3376x2410):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/47518355/Pizza_Beach_LES-10.0.0.jpg",
     userId: 1,
     hostId: 4,
-    latitude: 40.721564,
-    longitude: -73.98878,
   });
 
   const food4 = await Event.create({
@@ -313,8 +280,6 @@ async function seed() {
     imgUrl: "https://media.timeout.com/images/105451946/630/472/image.jpg",
     userId: 3,
     hostId: 1,
-    latitude: 40.708176,
-    longitude: -74.008915,
   });
 
   //EDUCATION
@@ -332,8 +297,6 @@ async function seed() {
       "https://www.tun.com/blog/wp-content/uploads/2016/03/NY-Public-Library-NewYorkMania-9072.jpg",
     userId: 1,
     hostId: 2,
-    latitude: 40.747125,
-    longitude: -73.985964,
   });
 
   const education2 = await Event.create({
@@ -350,8 +313,6 @@ async function seed() {
       "https://static1.squarespace.com/static/ta/58ee7cf9db29d6de1df46651/189/assets/img/photos/gc5/003.jpg",
     userId: 2,
     hostId: 1,
-    latitude: 40.757471,
-    longitude: -73.97037,
   });
 
   const education3 = await Event.create({
@@ -368,8 +329,6 @@ async function seed() {
       "https://news.fordham.edu/wp-content/uploads/2019/09/Lincoln-Center-fall-1078.jpg",
     userId: 1,
     hostId: 3,
-    latitude: 40.771454,
-    longitude: -73.98434,
   });
 
   //ENTERTAINMENT
@@ -388,8 +347,6 @@ async function seed() {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcT_t8batvNXd4ERMcJl1h0G3Cfhe_aqXqmzTg&usqp=CAU",
     userId: 3,
     hostId: 1,
-    latitude: 40.782746,
-    longitude: -73.966496,
   });
 
   const entertainment2 = await Event.create({
@@ -406,8 +363,6 @@ async function seed() {
       "https://static.billboard.com/files/media/Kanye-West-forum-calif-2016-nov-billboard-1548-1024x677.jpg",
     userId: 1,
     hostId: 2,
-    latitude: 40.750634,
-    longitude: -73.993512,
   });
 
   const entertainment3 = await Event.create({
@@ -424,9 +379,8 @@ async function seed() {
       "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSAMnxkkcMA63Bm8CD5JgV223nOzRfw-kgyQA&usqp=CAU",
     userId: 1,
     hostId: 3,
-    latitude: 40.730072,
-    longitude: -73.951032,
   });
+
   const entertainment4 = await Event.create({
     name: "Claire's Dinner Party",
     description: "Claire generously invites you to dine at her home in NJ.",
@@ -442,12 +396,10 @@ async function seed() {
     userId: 3,
     hostId: 4,
     pushToken: "ExponentPushToken[NA_5A_L3ThvvLenHPwiOKJ]",
-    latitude: 50.073193,
-    longitude: 14.351719,
   });
 
   //FITNESS
-  // events.push(fitness1);
+  events.push(fitness1);
   events.push(fitness2);
   events.push(fitness3);
   events.push(fitness4);
@@ -472,6 +424,7 @@ async function seed() {
   events.push(entertainment3);
   events.push(entertainment4);
 
+  // MESSAGES
   const message = await Message.create({
     message: "Welcome everyone!",
     senderId: 4,

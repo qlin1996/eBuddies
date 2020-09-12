@@ -22,21 +22,7 @@ export const putUser = (id, newInfo) => async (dispatch) => {
   }
 };
 
-// REDUCER
-export const me = () => async (dispatch) => {
-  try {
-    const res = await axios.get(`${serverLink}/auth/me`);
-    if (res.data) {
-      dispatch(getUser(res.data));
-    } else {
-      return;
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-export const auth1 = (email, password) => async (dispatch) => {
+export const login = (email, password) => async (dispatch) => {
   try {
     const { data } = await axios.post(`${serverLink}/auth/login`, {
       email,
@@ -48,7 +34,7 @@ export const auth1 = (email, password) => async (dispatch) => {
   }
 };
 
-export const auth2 = (
+export const signup = (
   firstName,
   lastName,
   email,
@@ -91,7 +77,6 @@ export const getUserInfo = (id) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await axios.post(`${serverLink}/auth/logout`);
     return dispatch(removeUser());
   } catch (err) {
     console.error(err);
@@ -107,6 +92,7 @@ export const updateUser = (id, body) => async (dispatch) => {
   }
 };
 
+// REDUCER
 export default function userReducer(state = {}, action) {
   switch (action.type) {
     case GET_USER:

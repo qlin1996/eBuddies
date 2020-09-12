@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Button, Text, Image, TouchableHighlight } from "react-native";
+import { View, Button } from "react-native";
 import styles from "./InterestsScreenStyle";
 import { connect } from "react-redux";
-import { Fonts } from "../../themes";
-import { auth2 } from "../../store/user";
+import { signup } from "../../store/user";
 import { postNewInterest } from "../../store/interest";
 import * as Notifications from "expo-notifications";
 import * as Permissions from "expo-permissions";
 import Constants from "expo-constants";
-import { Appbar, Card, Surface } from "react-native-paper";
+import { Appbar, Surface } from "react-native-paper";
 
 class Interests extends React.Component {
   constructor() {
@@ -93,7 +92,7 @@ class Interests extends React.Component {
   };
   handleSignup = async () => {
     await this.askPermissions();
-    await this.props.auth2(
+    await this.props.signup(
       this.state.firstName,
       this.state.lastName,
       this.state.email,
@@ -210,7 +209,7 @@ const mapDispatchToProps = (dispatch) => {
     postNewInterest: (id, updateData) => {
       return dispatch(postNewInterest(id, updateData));
     },
-    auth2: (
+    signup: (
       firstName,
       lastName,
       email,
@@ -223,7 +222,7 @@ const mapDispatchToProps = (dispatch) => {
       pushToken
     ) => {
       return dispatch(
-        auth2(
+        signup(
           firstName,
           lastName,
           email,

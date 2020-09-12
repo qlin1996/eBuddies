@@ -1,1 +1,1 @@
-export const serverLink = "http://2ffcae2186f0.ngrok.io";
+export const serverLink = "http://02fb81d5e06c.ngrok.io";

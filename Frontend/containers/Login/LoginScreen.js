@@ -14,8 +14,7 @@ import {
 import { Appbar } from "react-native-paper";
 import { connect } from "react-redux";
 import styles from "./LoginScreenStyle";
-import { auth1 } from "../../store/user";
-import { me } from "../../store/user";
+import { login } from "../../store/user";
 import { getAllInterests } from "../../store/interest";
 import { ApplicationStyles, Helpers, Metrics, Fonts } from "../../themes";
 
@@ -31,12 +30,11 @@ class Login extends React.Component {
   handleLogin = async () => {
     try {
       if (this.state.email.length && this.state.password.length) {
-        const result = await this.props.auth1(
+        const result = await this.props.login(
           this.state.email,
           this.state.password
         );
 
-        await this.props.me();
         await this.props.getAllInterests(this.props.user.id);
         this.props.navigation.navigate("RECOMMENDEDEVENTS");
       }
@@ -124,8 +122,7 @@ const mapToState = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  auth1: (email, password) => dispatch(auth1(email, password)),
-  me: () => dispatch(me()),
+  login: (email, password) => dispatch(login(email, password)),
   getAllInterests: (userId) => dispatch(getAllInterests(userId)),
 });
 

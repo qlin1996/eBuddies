@@ -12,5 +12,5 @@ eBuddies is a mobile application designed to help a host create, customize and k
 Please install the Expo client app on your phone and connect to the same wireless network as your computer. Once the app is downloaded to your phone, scan our QR code. Enjoy!
 
 ## Sample Components
-![Screenshot](./Frontend/assets/LogIn.PNG) ![Screenshot](./Frontend/assets/UserProfile.PNG)
+![Screenshot](./Frontend/assets/View1.PNG) ![Screenshot](./Frontend/assets/View2.PNG)
 

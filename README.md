@@ -1,4 +1,4 @@
-# eBuddies-app
+# eBuddies
 
 By: Anderson Quinones, Qi Lin, Claire Giordano, Blake Ferm
 

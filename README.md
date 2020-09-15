@@ -2,7 +2,7 @@
 
 By: Anderson Quinones, Qi Lin, Claire Giordano, Blake Ferm
 
-Demo: https://youtu.be/rJzWf-hdbeM
+Demo: https://www.youtube.com/watch?v=PjDfCuBWrMY&list=PLx0iOsdUOUmnRX8RIOz1jje7KDi4CI1oh&index=14
 
 ## Welcome to our eBuddies App! 
 

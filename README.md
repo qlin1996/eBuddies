@@ -11,6 +11,16 @@ eBuddies is a mobile application designed to help a host create, customize and k
 ## To View App
 Please install the Expo client app on your phone and connect to the same wireless network as your computer. Once the app is downloaded to your phone, scan our QR code. Enjoy!
 
+## Features Included
+* Push notifications to notify attendees of event start times
+* Map to track attendee's location relative to the event
+* Chat rooms to promote communication between attendees
+* Modals to alert successful signups
+* Validations for login, signup, events forms 
+
+## Technologies Used 
+React Native, Redux, Expo, Sockets, Ngrok, Express and Sequelize
+
 ## Sample Components
 ![Screenshot](./Frontend/assets/View1.PNG) 
 ![Screenshot](./Frontend/assets/View2.PNG)

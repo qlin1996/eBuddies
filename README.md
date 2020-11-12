@@ -19,7 +19,7 @@ Please install the Expo client app on your phone and connect to the same wireles
 * Validations for login, signup, events forms 
 
 ## Technologies Used 
-React Native, Redux, Expo, Sockets, Ngrok, Express and Sequelize
+React Native, Redux, Expo, Sockets, Ngrok, Express, Sequelize, and PostgreSQL
 
 ## Sample Components
 ![Screenshot](./Frontend/assets/View1.PNG) 
